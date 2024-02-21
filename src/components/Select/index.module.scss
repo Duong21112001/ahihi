@@ -1,0 +1,10 @@
+.select {
+  margin-top: 8px;
+  :global{
+    .rc-select-single .rc-select-selector .rc-select-selection-item, .rc-select-single .rc-select-selector .rc-select-selection-placeholder{
+      height: 100%;
+      top: -2px;
+      left: 9px;
+    }
+  }
+}

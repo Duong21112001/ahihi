@@ -1,0 +1,46 @@
+@import "/src/global/scss/color";
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.btn-default {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  height: 40px;
+  border-radius: 12px;
+  width: 170px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  @extend .btn-default;
+  background-color: var(--main-color-secondary);
+  color: var(--neutral-10);
+  border: none;
+}
+
+.btn-secondary {
+  @extend .btn-default;
+  background-color: var(--neutral-10);
+  border: 1px solid var(--main-color-secondary);
+  color: var(--main-color-secondary);
+}
+.btn-disable {
+  @extend .btn-default;
+  background-color: var(--neutral-6);
+  border: none;
+  color: var(--neutral-10);
+  box-shadow: 0px 2px 10px 0px #1f1f1f4d;
+}
+.btn-secondary-disable {
+  @extend .btn-default;
+  background-color: var(--neutral-10);
+  border: 1px solid var(--neutral-6);
+  color: var(--neutral-6);
+  box-shadow: 0px 2px 10px 0px #1f1f1f4d;
+}

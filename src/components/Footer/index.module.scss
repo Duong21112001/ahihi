@@ -1,0 +1,84 @@
+@import '../../global/scss/responsive';
+
+.container {
+  background-color: var(--gray-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 48px;
+  padding-bottom: 52px;
+
+  .content {
+    max-width: 740px;
+
+    .item {
+      display: grid;
+      grid-template-columns: auto auto auto;
+
+      a {
+        cursor: pointer;
+      }
+
+      @media (min-width: 768px) {
+        grid-template-columns: 33.33% 33.33% 33.33%;
+      }
+
+      .element {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+
+        p {
+          font-size: min(16px, 3.2vw);
+        }
+      }
+
+      .middle {
+        border-style: solid;
+        border-top: 0px;
+        border-bottom: 0px;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        border-color: var(--gray-3);
+
+
+      }
+
+      margin: 40px 0;
+    }
+
+    .info {
+      @include defaultsize {
+        padding: 0 16px;
+      }
+
+      text-align: center;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .seperator {
+      height: 1px;
+      background-color: var(--gray-3);
+      max-width: 740px;
+      margin: 40px 0px;
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .iconContainer {
+        width: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

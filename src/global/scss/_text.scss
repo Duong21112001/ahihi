@@ -1,0 +1,261 @@
+$regular: 400;
+$medium: 500;
+$semi: 600;
+$bold: 700;
+
+@font-face {
+  font-family: "BeVietnamPro-Bold";
+  src: url(/public/assets/fonts/BeVietnamPro-Bold.ttf);
+}
+@font-face {
+  font-family: "BeVietnamPro-Medium";
+  src: url(/public/assets/fonts/BeVietnamPro-Medium.ttf);
+}
+@font-face {
+  font-family: "BeVietnamPro-Regular";
+  src: url(/public/assets/fonts/BeVietnamPro-Regular.ttf);
+}
+@font-face {
+  font-family: "BeVietnamPro-SemiBold";
+  src: url(/public/assets/fonts/BeVietnamPro-SemiBold.ttf);
+}
+
+.title-28 {
+  font-size: 28px;
+  line-height: 40px;
+}
+.title-24 {
+  font-size: 24px;
+  line-height: 36px;
+}
+.title-20 {
+  font-size: 20px;
+  line-height: 32px;
+}
+.title-18 {
+  font-size: 18px;
+  line-height: 28px;
+}
+.body-16 {
+  font-size: 16px;
+  line-height: 20px;
+}
+.body-14 {
+  font-size: 14px;
+  line-height: 20px;
+}
+.tag-12 {
+  font-size: 12px;
+  line-height: 20px;
+}
+.tag-10 {
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.regular {
+  font-weight: $regular;
+  font-family: "BeVietnamPro-Regular";
+}
+.medium {
+  font-weight: $medium;
+  font-family: "BeVietnamPro-Medium";
+}
+.semi-bold {
+  font-weight: $semi;
+  font-family: "BeVietnamPro-SemiBold";
+}
+.bold {
+  font-weight: $bold;
+  font-family: "BeVietnamPro-Bold";
+}
+
+.title-28-regular {
+  @extend .title-28;
+  @extend .regular;
+}
+
+.title-28-medium {
+  @extend .title-28;
+  @extend .medium;
+}
+.title-28-semibold {
+  @extend .title-28;
+  @extend .semi-bold;
+}
+.title-28-bold {
+  @extend .title-28;
+  @extend .bold;
+}
+.title-32-bold {
+  font-weight: $bold;
+  font-size: 32px;
+  @extend .bold;
+}
+
+.title-24-bold {
+  @extend .title-24;
+  @extend .bold;
+}
+.title-24-semibold {
+  @extend .title-24;
+  @extend .semi-bold;
+}
+.title-24-medium {
+  @extend .medium;
+  @extend .title-24;
+}
+.title-24-regular {
+  @extend .regular;
+  @extend .title-24;
+}
+
+.title-20-bold {
+  @extend .bold;
+  @extend .title-20;
+}
+.title-20-semibold {
+  @extend .semi-bold;
+  @extend .title-20;
+}
+.title-20-medium {
+  @extend .medium;
+  @extend .title-20;
+}
+.title-20-regular {
+  @extend .regular;
+  @extend .title-20;
+}
+
+.title-18-bold {
+  @extend .bold;
+  @extend .title-18;
+}
+.title-18-semibold {
+  @extend .semi-bold;
+  @extend .title-18;
+}
+
+.title-18-medium {
+  @extend .medium;
+  @extend .title-18;
+}
+.title-18-regular {
+  @extend .regular;
+  @extend .title-18;
+}
+
+.body-16-bold {
+  @extend .bold;
+  @extend .body-16;
+}
+.body-16-semibold {
+  @extend .semi-bold;
+  @extend .body-16;
+}
+.body-16-medium {
+  @extend .medium;
+  @extend .body-16;
+}
+.body-16-medium-italic {
+  @extend .medium;
+  font-style: italic;
+  @extend .body-16;
+}
+.body-16-regular {
+  @extend .regular;
+  @extend .body-16;
+}
+
+.body-14-bold {
+  @extend .bold;
+  @extend .body-14;
+}
+.body-14-semibold {
+  @extend .semi-bold;
+  @extend .body-14;
+}
+.body-14-medium {
+  @extend .medium;
+  @extend .body-14;
+}
+.body-14-medium-italic {
+  @extend .medium;
+  @extend .body-14;
+  font-style: italic;
+}
+.body-14-regular {
+  @extend .regular;
+  @extend .body-14;
+}
+
+.tag-12-bold {
+  @extend .bold;
+  @extend .tag-12;
+}
+.tag-12-semibold {
+  @extend .semi-bold;
+  @extend .tag-12;
+}
+
+.tag-12-medium {
+  @extend .medium;
+  @extend .tag-12;
+}
+.tag-12-medium-italic {
+  @extend .medium;
+  @extend .tag-12;
+  font-style: italic;
+}
+.tag-12-regular {
+  @extend .regular;
+  @extend .tag-12;
+}
+
+.tag-10-bold {
+  @extend .bold;
+  @extend .tag-10;
+}
+.tag-10-semibold {
+  @extend .semi-bold;
+  @extend .tag-10;
+}
+.tag-10-semibold-italic {
+  @extend .semi-bold;
+  font-style: italic;
+  @extend .tag-10;
+}
+.tag-10-medium {
+  @extend .medium;
+  @extend .tag-10;
+}
+.tag-10-medium-italic {
+  @extend .medium;
+  font-style: italic;
+  @extend .tag-10;
+}
+.tag-10-regular {
+  @extend .regular;
+  @extend .tag-10;
+}
+
+.heading-h1 {
+  @extend .bold;
+  font-size: 40px;
+  line-height: 60px;
+}
+.heading-h2 {
+  @extend .semi-bold;
+  font-size: 32px;
+  line-height: 48px;
+}
+.heading-h3 {
+  @extend .bold;
+  font-size: 24px;
+  line-height: 36px;
+}
+.heading-h4 {
+  @extend .bold;
+  font-size: 20px;
+  line-height: 32px;
+}

@@ -1,0 +1,68 @@
+input {
+  border: 1px solid var(--gray-3);
+  height: 40px;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0 8px;
+  margin-top: 8px;
+
+  &:focus {
+    border: 1px solid var(--gray-1);
+    outline: none;
+  }
+
+  &:active {
+    border: 1px solid var(--gray-1);
+    outline: none;
+  }
+
+  &:hover {
+    border: 1px solid var(--l1);
+    outline: none;
+  }
+
+  &:visited {
+    border: 1px solid var(--gray-1);
+    outline: none;
+  }
+
+  &:focus-visible {
+    border: 1px solid var(--l1);
+    outline: none;
+  }
+}
+
+textarea {
+  height: 128px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-3);
+  margin-top: 8px;
+
+  &:focus,
+  &:active,
+  &:visited {
+    border: 1px solid var(--gray-1);
+    outline: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border: 1px solid var(--l1);
+    outline: none;
+  }
+}
+.inputText {
+  position: relative;
+  &.errors {
+    margin-bottom: 1.8em;
+  }
+  .helperText {
+    position: absolute;
+    top: calc(100% + 0.3em);
+    color: red;
+  }
+}

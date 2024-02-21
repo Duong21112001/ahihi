@@ -1,0 +1,76 @@
+@import "../scss/responsive";
+
+.slider-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-wrap {
+  display: flex;
+  height: 100%;
+}
+
+.slider-item {
+  height: 100%;
+  min-width: 100vw;
+  display: flex;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  border: none;
+  background-color: transparent;
+  height: fit-content;
+
+  @include defaultsize {
+    font-size: 24px;
+    padding: 16px;
+  }
+
+  transform: translateY(-50%);
+
+  font-size: 50px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.33);
+  color: white;
+}
+
+.prev {
+  left: 16px;
+}
+
+.next {
+  right: 16px;
+}
+
+.dot_container {
+  position: absolute;
+
+  @include defaultsize {
+    bottom: 4px;
+  }
+
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  button {
+    padding: 0px;
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  border: none;
+  margin: 4px;
+  background-color: var(--white);
+
+  &.active {
+    width: 24px;
+    background-color: var(--l1);
+  }
+}

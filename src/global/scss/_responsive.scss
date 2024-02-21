@@ -1,0 +1,66 @@
+@use 'sass:math';
+$default: 1023.5px;
+$mobile-s: 320px;
+$mobile-m: 375px;
+$mobile-l: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+$laptop-l: 1440px;
+$four-k: 2560px;
+
+
+@mixin mobile-s {
+  @media screen and (max-width: #{$mobile-s}) {
+    @content;
+  }
+}
+
+@mixin mobile-m {
+  @media screen and (max-width: #{$mobile-m}) {
+    @content;
+  }
+}
+
+@mixin mobile-l {
+  @media screen and (max-width: #{$mobile-l}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: #{$laptop}) {
+    @content;
+  }
+}
+
+@mixin laptop-l {
+  @media screen and (max-width: #{$laptop-l}) {
+    @content;
+  }
+}
+
+@mixin four-k {
+  @media screen and (max-width: #{$mobile-s}) {
+    @content;
+  }
+}
+
+@mixin defaultsize {
+  @media screen and (max-width: #{$default}) {
+    @content;
+  }
+}
+
+@function s1440($size) {
+  @return (math.div($size, 1440)) * 100vw;
+}
+
+@function s428($size) {
+  @return (math.div($size, 428)) * 100vw;
+}
