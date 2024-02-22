@@ -1,59 +1,42 @@
+@import "/src/global/scss/color";
+
 input {
-  border: 1px solid var(--gray-3);
-  height: 40px;
-  border-radius: 4px;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 0 8px;
-  margin-top: 8px;
+  border: 1px solid var(--shade-primary-2);
+  height: 56px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  background-color: var(--neutral-10);
+  padding-left: 10px;
+  color: var(--neutral-1);
+  font-weight: 500;
 
-  &:focus {
-    border: 1px solid var(--gray-1);
-    outline: none;
-  }
-
-  &:active {
-    border: 1px solid var(--gray-1);
-    outline: none;
-  }
-
-  &:hover {
-    border: 1px solid var(--l1);
-    outline: none;
-  }
-
-  &:visited {
-    border: 1px solid var(--gray-1);
-    outline: none;
-  }
-
-  &:focus-visible {
-    border: 1px solid var(--l1);
-    outline: none;
+  &::placeholder {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--bule-5);
   }
 }
-
-textarea {
-  height: 128px;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid var(--gray-3);
-  margin-top: 8px;
-
-  &:focus,
-  &:active,
-  &:visited {
-    border: 1px solid var(--gray-1);
-    outline: none;
-  }
-
-  &:hover,
-  &:focus-visible {
-    border: 1px solid var(--l1);
-    outline: none;
-  }
+.text-required {
+  display: inline;
+  margin-left: 3px;
+}
+.input-wrapper {
+  position: relative;
+  display: grid;
+  align-items: center;
+}
+.input-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.remove-input {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
 }
 .inputText {
   position: relative;

@@ -4,20 +4,20 @@ $semi: 600;
 $bold: 700;
 
 @font-face {
-  font-family: "BeVietnamPro-Bold";
-  src: url(/public/assets/fonts/BeVietnamPro-Bold.ttf);
+  font-family: "Be Vietnam Pro Bold";
+  src: url("/assets/fonts/BeVietnamPro-Bold.ttf");
 }
 @font-face {
   font-family: "BeVietnamPro-Medium";
-  src: url(/public/assets/fonts/BeVietnamPro-Medium.ttf);
+  src: url("/assets/fonts/BeVietnamPro-Medium.ttf");
 }
 @font-face {
   font-family: "BeVietnamPro-Regular";
-  src: url(/public/assets/fonts/BeVietnamPro-Regular.ttf);
+  src: url("/assets/fonts/BeVietnamPro-Regular.ttf");
 }
 @font-face {
   font-family: "BeVietnamPro-SemiBold";
-  src: url(/public/assets/fonts/BeVietnamPro-SemiBold.ttf);
+  src: url("/assets/fonts/BeVietnamPro-SemiBold.ttf");
 }
 
 .title-28 {
@@ -67,7 +67,7 @@ $bold: 700;
 }
 .bold {
   font-weight: $bold;
-  font-family: "BeVietnamPro-Bold";
+  font-family: "Be Vietnam Pro Bold";
 }
 
 .title-28-regular {

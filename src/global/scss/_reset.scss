@@ -83,12 +83,14 @@ summary,
 time,
 mark,
 audio,
-video {
+video,
+input {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  font-family: "BeVietnamPro-Medium";
 }
 
 /* HTML5 display-role reset for older browsers */

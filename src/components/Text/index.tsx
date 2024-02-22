@@ -63,6 +63,7 @@ interface TextProps {
     | "bule-4"
     | "bule-5"
     | "tint-primary-3"
+    | "sematic-1"
     | undefined;
   disabled?: boolean;
   state?: null | "disable";
