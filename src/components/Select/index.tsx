@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import RCSelect, { Option } from "rc-select";
 import styles from "./index.module.scss";
+import Image from "next/image";
 
 interface SelectOption {
   value: number | string;
@@ -16,6 +17,10 @@ interface SelectProps {
   onChange?: (value: any) => void;
   meta?: any;
   disabled?: boolean;
+  Label?: string;
+  icon?: string;
+  widthIcon?: number;
+  heightIcon?: number;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -27,19 +32,34 @@ const Select: React.FC<SelectProps> = ({
   onChange = () => {},
   meta,
   disabled,
+  Label,
+  icon,
+  widthIcon,
+  heightIcon,
 }) => {
   const { errors } = meta;
+
   return (
     <div>
-      {placeholder && (
+      {Label && (
         <label
           className={classNames("body-regular", { danger: errors.length })}
           htmlFor={name}
         >
-          {placeholder} {required && " *"}
+          {Label} {required && " *"}
         </label>
       )}
       <div className={styles.select}>
+        {icon && (
+          <Image
+            src={icon}
+            alt={icon}
+            width={widthIcon || 20}
+            height={heightIcon || 20}
+            layout="fixed"
+            className={styles.iconLeft}
+          />
+        )}
         <RCSelect
           disabled={disabled}
           id={name}
@@ -49,8 +69,18 @@ const Select: React.FC<SelectProps> = ({
           aria-controls={name}
           aria-activedescendant={name}
           aria-expanded="false"
-          value={value ? value : ""}
+          value={value}
           onChange={onChange}
+          placeholder={placeholder}
+          suffixIcon={
+            <Image
+              src="/svg/icon-down.svg"
+              alt="icon-down"
+              width={12}
+              height={6}
+              layout="fixed"
+            />
+          }
         >
           {options.map((e) => {
             return (

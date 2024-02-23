@@ -15,7 +15,8 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   htmlType?: "button" | "submit";
-  width?: number;
+  width?: string;
+  bottom?: number;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -27,7 +28,8 @@ const Button: React.FC<ButtonProps> = ({
   loading,
   disabled,
   htmlType = "submit",
-  width = 170,
+  width = "170px",
+  bottom = 0,
 }) => {
   const classes = classNames(
     type,
@@ -43,6 +45,7 @@ const Button: React.FC<ButtonProps> = ({
           className={classes}
           onClick={onClick}
           disabled={disabled || loading}
+          style={{ width: width, marginBottom: bottom }}
         >
           {children}
         </button>
@@ -56,6 +59,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={htmlType}
       disabled={disabled || loading}
+      style={{ width: width, marginBottom: bottom }}
     >
       {children}
     </button>

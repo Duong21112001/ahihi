@@ -1,10 +1,25 @@
 .select {
-  margin-top: 8px;
-  :global{
-    .rc-select-single .rc-select-selector .rc-select-selection-item, .rc-select-single .rc-select-selector .rc-select-selection-placeholder{
-      height: 100%;
-      top: -2px;
-      left: 9px;
+  position: relative;
+  .iconLeft {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 1;
+  }
+  :global {
+    .rc-select {
+      height: 48px;
+      border-radius: 12px;
+      position: relative;
+      background-color: var(--neutral-10);
+    }
+    .rc-select-arrow {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translate(0, -50%);
+      cursor: pointer;
     }
   }
 }

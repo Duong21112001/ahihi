@@ -14,6 +14,9 @@ interface TextInputProps {
   onChange?: (value: any) => void;
   meta?: any;
   label?: string;
+  iconPath?: string;
+  widthIcon?: number;
+  heightIcon?: number;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -27,8 +30,11 @@ const TextInput: React.FC<TextInputProps> = ({
   value,
   onChange = () => {},
   meta = {},
+  iconPath,
+  widthIcon,
+  heightIcon,
 }) => {
-  const classes = classNames([className]);
+  const classes = classNames("text-input", [className]);
   const { errors } = meta;
   return (
     <div
@@ -52,13 +58,24 @@ const TextInput: React.FC<TextInputProps> = ({
         </div>
       )}
       <div className="input-wrapper">
+        {iconPath && (
+          <Image
+            src={iconPath}
+            alt="icon-left-input"
+            width={widthIcon || 20}
+            height={heightIcon || 20}
+            layout="fixed"
+            className="icon-left-input"
+            style={type === "textarea" ? { top: 14 } : {}}
+          />
+        )}
         {type === "input" ? (
           <input
             id={name}
             className={classes}
             aria-label={name}
             aria-required="false"
-            // value={value ? value : ""}
+            value={value ? value : ""}
             onChange={(e) => {
               onChange(e.target.value);
             }}
@@ -74,16 +91,22 @@ const TextInput: React.FC<TextInputProps> = ({
             onChange={(e) => {
               onChange(e.target.value);
             }}
+            placeholder={placeholder}
+            style={{ paddingTop: 16, minHeight: 86 }}
           />
         )}
-        <Image
-          src="/svg/remove-circle.svg"
-          alt="remove-circle"
-          width={24}
-          height={24}
-          layout="fixed"
-          className="remove-input"
-        />
+        {value && (
+          <Image
+            src="/svg/remove-circle.svg"
+            alt="remove-circle"
+            width={20}
+            height={20}
+            layout="fixed"
+            className="remove-input"
+            onClick={() => onChange("")}
+            style={type === "textarea" ? { top: 14 } : {}}
+          />
+        )}
       </div>
 
       {errors?.length > 0 && <p className="helperText">{errors[0]}</p>}

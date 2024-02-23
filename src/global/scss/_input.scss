@@ -1,14 +1,13 @@
 @import "/src/global/scss/color";
 
-input {
-  border: 1px solid var(--shade-primary-2);
+.text-input {
   height: 56px;
   border-radius: 12px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
   background-color: var(--neutral-10);
-  padding-left: 10px;
+  padding-left: 40px;
   color: var(--neutral-1);
   font-weight: 500;
 
@@ -17,6 +16,10 @@ input {
     font-weight: 500;
     line-height: 20px;
     color: var(--bule-5);
+  }
+  &:focus,
+  &:focus-visible {
+    border: 1px solid var(--shade-primary-2);
   }
 }
 .text-required {
@@ -27,6 +30,10 @@ input {
   position: relative;
   display: grid;
   align-items: center;
+  .icon-left-input {
+    position: absolute;
+    left: 10px;
+  }
 }
 .input-label {
   display: flex;
@@ -47,5 +54,6 @@ input {
     position: absolute;
     top: calc(100% + 0.3em);
     color: red;
+    font-size: 12px;
   }
 }

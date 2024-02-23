@@ -69,6 +69,8 @@ interface TextProps {
   state?: null | "disable";
   className?: string;
   onClick?: () => void;
+  bottom?: number;
+  center?: boolean;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -78,15 +80,21 @@ const Text: React.FC<TextProps> = ({
   className = "",
   onClick = () => {},
   children,
+  bottom,
+  center,
 }) => {
   const classes = classNames(
     type,
     color,
-    { "text-disable": disabled },
+    { "text-disable": disabled, "center-text": center },
     className
   );
   return (
-    <p className={classes} onClick={onClick}>
+    <p
+      className={classes}
+      onClick={onClick}
+      style={{ marginBottom: bottom || 0 }}
+    >
       {children}
     </p>
   );

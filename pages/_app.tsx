@@ -3,6 +3,8 @@ import type { ReactElement } from "react";
 import { appWithTranslation } from "next-i18next";
 import { NextPage } from "next";
 import "@/global/scss/index.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => typeof page | ReactElement;

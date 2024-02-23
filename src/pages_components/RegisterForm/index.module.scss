@@ -1,0 +1,19 @@
+.registerForm {
+  width: 560px;
+  background-color: var(--background-2);
+  border-radius: 12px;
+  padding: 24px 24px 12px 24px;
+  .registerFormItem {
+    margin-bottom: 24px;
+  }
+  .registerFormHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 49px;
+    margin-bottom: 24px;
+  }
+  .form {
+    margin-bottom: 12px;
+  }
+}
