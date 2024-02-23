@@ -34,8 +34,10 @@ const TextInput: React.FC<TextInputProps> = ({
   widthIcon,
   heightIcon,
 }) => {
-  const classes = classNames("text-input", [className]);
   const { errors } = meta;
+  const classes = classNames("text-input", [className], {
+    errorInput: errors?.length > 0,
+  });
   return (
     <div
       onClick={onClick}

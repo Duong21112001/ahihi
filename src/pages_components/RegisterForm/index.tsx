@@ -6,6 +6,7 @@ import Text from "@/components/Text";
 import Select from "@/components/Select";
 import styles from "./index.module.scss";
 import Image from "next/image";
+import { validateEmail, validatePhone } from "@/utils/validate";
 
 const RegisterForm = () => {
   const { t } = useTranslation("common");
@@ -60,7 +61,16 @@ const RegisterForm = () => {
             </Field>
           </div>
           <div className={styles.registerFormItem}>
-            <Field name="phone_number">
+            <Field
+              name="phone_number"
+              rules={[
+                {
+                  required: true,
+                  message: t("not_empty"),
+                },
+                validatePhone(t),
+              ]}
+            >
               {({ value, onChange }, meta) => {
                 return (
                   <TextInput
@@ -79,7 +89,16 @@ const RegisterForm = () => {
             </Field>
           </div>
           <div className={styles.registerFormItem}>
-            <Field name="email">
+            <Field
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: t("not_empty"),
+                },
+                validateEmail(t),
+              ]}
+            >
               {({ value, onChange }, meta) => {
                 return (
                   <TextInput
@@ -109,7 +128,10 @@ const RegisterForm = () => {
               {({ value, onChange }, meta) => {
                 return (
                   <Select
-                    options={[{ label: "1", value: 1 }]}
+                    options={[
+                      { label: "Đại học", value: "Đại học" },
+                      { label: "Trung học", value: "Trung học" },
+                    ]}
                     required
                     placeholder="*Trình độ học*"
                     value={value}
@@ -136,7 +158,10 @@ const RegisterForm = () => {
               {({ value, onChange }, meta) => {
                 return (
                   <Select
-                    options={[{ label: "1", value: 1 }]}
+                    options={[
+                      { label: "Đại học", value: "Đại học" },
+                      { label: "Trung học", value: "Trung học" },
+                    ]}
                     required
                     placeholder="*Cơ sở học*"
                     value={value}
