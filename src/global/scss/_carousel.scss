@@ -7,13 +7,14 @@
 .carousel-button-group {
   position: absolute;
   right: 98px;
-  bottom: 0;
+  bottom: -50px;
   display: flex;
   align-items: center;
 }
 .dotListClass {
   left: 98px !important;
   justify-content: flex-start !important;
+  bottom: -35px !important;
 }
 .dotCarousel {
   width: 10px;
@@ -54,4 +55,20 @@
 .able-button-carousel {
   @extend .button-carousel;
   background-color: var(--main-color-primary);
+}
+.container-class-course {
+  height: unset;
+  width: calc(100% - 80px);
+  margin: 0 auto;
+  overflow: hidden;
+  position: static !important;
+  .react-multiple-carousel__arrow {
+    background: #4a556866;
+  }
+  .react-multiple-carousel__arrow--right {
+    right: 0;
+  }
+  .react-multiple-carousel__arrow--left {
+    left: 0;
+  }
 }

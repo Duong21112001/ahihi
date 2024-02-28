@@ -63,7 +63,7 @@ const TextInput: React.FC<TextInputProps> = ({
         {iconPath && (
           <Image
             src={iconPath}
-            alt="icon-left-input"
+            alt={iconPath}
             width={widthIcon || 20}
             height={heightIcon || 20}
             layout="fixed"

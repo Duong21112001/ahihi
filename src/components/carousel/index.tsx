@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
@@ -39,13 +38,7 @@ const CarouselComponent: React.FC<ButtonProps> = ({
     const {
       carouselState: { currentSlide, slidesToShow, totalItems, transform },
     } = rest;
-    console.log(
-      "currentSlide",
-      currentSlide,
-      slidesToShow,
-      totalItems,
-      transform
-    );
+
     return (
       <div className="carousel-button-group">
         <div
@@ -73,14 +66,14 @@ const CarouselComponent: React.FC<ButtonProps> = ({
         <div
           onClick={() => next()}
           className={
-            currentSlide === numberItemShow
+            currentSlide + 1 === itemNumber
               ? "disable-button-carousel"
               : "able-button-carousel"
           }
         >
           <Image
             src={
-              currentSlide === numberItemShow
+              currentSlide + 1 === itemNumber
                 ? "/svg/caret-right.svg"
                 : "/svg/caret-right-active.svg"
             }

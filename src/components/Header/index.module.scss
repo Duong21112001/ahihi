@@ -1,18 +1,17 @@
 @mixin defaultsize {
-  @media screen and (max-width: 1243.5px) {
+  @media screen and (max-width: 1024px) {
     @content;
   }
 }
-.container {  
+
+.container {
   align-items: center;
   position: absolute;
   width: 100vw;
   left: 0px;
   top: 0px;
   z-index: 3;
-
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(32px);
+  background: var(--neutral-10);
   @include defaultsize {
     position: sticky;
     top: 0;
@@ -27,8 +26,11 @@
     align-items: center;
     background-color: transparent;
     padding: 0;
-    height: 64px;
+    height: 80px;
     margin: auto;
+    @media screen and (max-width: 1200px) {
+      padding: 0 20px;
+    }
 
     @include defaultsize {
       height: 44px;
@@ -85,13 +87,14 @@
       .containerLink {
         width: 100%;
         display: flex;
+        align-items: center;
         @include defaultsize {
           position: absolute;
           top: 0;
           left: 0;
           width: 324px;
           height: 100vh;
-          padding: 24px 16px;
+          padding: 0 16px;
           transition: 0.3s ease-in-out;
           transform: translateX(-100%);
           background-color: white;
@@ -104,27 +107,18 @@
       .mobileNavbar {
         display: flex;
         align-items: center;
+        height: 44px;
+
         .closeIcon {
           display: none;
         }
         .logo {
           cursor: pointer;
-          display: grid;
-          grid-template-columns: auto auto;
-          gap: 7px;
-          @media (min-width:1024px) {            
-            svg {
-              path {
-                fill: white;
-              }
-            }      
-          }
-          svg:last-child {
-            path {
-              fill: white;
-              @include defaultsize {
-                fill: #494949;
-              }
+          margin-right: 123px;
+          @media (max-width: 1024px) {
+            img {
+              width: 60px;
+              height: 30px;
             }
           }
         }
@@ -133,26 +127,23 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 0 10px;
           .closeIcon {
             display: block;
             width: 16px;
             height: 16px;
           }
-          box-shadow: 0px 1px 1px #ececec;
         }
       }
       .link {
-        margin-left: auto;
         display: flex;
-
+        justify-content: space-between;
+        width: 100%;
         @include defaultsize {
           width: 100%;
           flex-direction: column;
           padding-top: 32px;
         }
         .a {
-          margin: auto 40px auto 0;
           color: var(--white);
           display: inline;
           position: relative;
@@ -174,24 +165,15 @@
           &.highlight {
             border-color: var(--l1);
           }
-          @include defaultsize {
-            width: 100%;
-            padding-bottom: 0.5em;
-            margin-bottom: 32px;
-            color: var(--gray-1);
-            border-bottom: 1px solid lightgray;
-          }
+
           cursor: pointer;
           .subTitle {
             display: flex;
-            justify-content: space-between;
-            svg {
-              margin-left: 0.5em;
-              path {
-                height: 100%;
-                transition: 0.3s ease-in-out;
-                @include defaultsize {
-                  fill: var(--gray-1);
+            align-items: center;
+            &:hover {
+              svg {
+                path {
+                  fill: var(--primary-bule);
                 }
               }
             }
@@ -213,7 +195,7 @@
             }
           }
           .subNavbar {
-            top: calc(100% + 15px);
+            top: calc(100%);
             left: 0;
             height: 0px;
             position: absolute;
@@ -252,16 +234,38 @@
                 background-color: #efefef;
               }
               @include defaultsize {
-                margin-bottom: 0.5em;
-                padding: 0;
-                &::before {
-                  content: "";
-                  padding-left: 1em;
-                  margin-right: 0.5em;
-                }
+                // margin-bottom: 0.5em;
+                // padding: 0;
+                // &::before {
+                //   content: "";
+                //   padding-left: 1em;
+                //   margin-right: 0.5em;
+                // }
               }
             }
           }
+        }
+        p:hover {
+          color: var(--primary-bule);
+        }
+
+        @media screen and (max-width: 1024px) {
+          a,
+          .subTitle {
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .auth {
+        display: flex;
+        align-items: center;
+        margin-left: 123px;
+        white-space: nowrap;
+        @media screen and (max-width: 1024px) {
+          margin-left: 0;
+        }
+        .space {
+          padding: 0 8px;
         }
       }
     }

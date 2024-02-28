@@ -56,14 +56,18 @@ interface TextProps {
     | "neutral-5"
     | "neutral-10"
     | "neutral-8"
+    | "neutral-9"
     | "main-color-secondary"
     | "main-color-primary "
+    | "main-color-primary"
     | "shade-primary-4"
     | "shade-primary-5"
     | "bule-4"
     | "bule-5"
     | "tint-primary-3"
     | "sematic-1"
+    | "gray-500"
+    | "dark-500"
     | undefined;
   disabled?: boolean;
   state?: null | "disable";
@@ -71,6 +75,8 @@ interface TextProps {
   onClick?: () => void;
   bottom?: number;
   center?: boolean;
+  right?: number;
+  maxWidth?: number;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -82,6 +88,8 @@ const Text: React.FC<TextProps> = ({
   children,
   bottom,
   center,
+  right,
+  maxWidth,
 }) => {
   const classes = classNames(
     type,
@@ -93,7 +101,11 @@ const Text: React.FC<TextProps> = ({
     <p
       className={classes}
       onClick={onClick}
-      style={{ marginBottom: bottom || 0 }}
+      style={{
+        marginBottom: bottom || 0,
+        marginRight: right || 0,
+        maxWidth: maxWidth || "unset",
+      }}
     >
       {children}
     </p>

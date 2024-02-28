@@ -7,7 +7,8 @@ interface ButtonProps {
     | "btn-primary"
     | "btn-secondary"
     | "btn-disable"
-    | "btn-secondary-disable";
+    | "btn-secondary-disable"
+    | "btn-blue";
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
@@ -17,6 +18,7 @@ interface ButtonProps {
   htmlType?: "button" | "submit";
   width?: string;
   bottom?: number;
+  right?: number;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -30,6 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   htmlType = "submit",
   width = "170px",
   bottom = 0,
+  right = 0,
 }) => {
   const classes = classNames(
     type,
@@ -45,7 +48,7 @@ const Button: React.FC<ButtonProps> = ({
           className={classes}
           onClick={onClick}
           disabled={disabled || loading}
-          style={{ width: width, marginBottom: bottom }}
+          style={{ width: width, marginBottom: bottom, marginRight: right }}
         >
           {children}
         </button>
@@ -59,7 +62,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={htmlType}
       disabled={disabled || loading}
-      style={{ width: width, marginBottom: bottom }}
+      style={{ width: width, marginBottom: bottom, marginRight: right }}
     >
       {children}
     </button>

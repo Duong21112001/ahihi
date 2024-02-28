@@ -74,8 +74,11 @@
   --bule-3: #0055e5;
   --bule-4: #6ba3ff;
   --bule-5: #aec7e5;
+  --bule-6: #f0f5ff;
   --primary-bule: #1e73be;
   --gray-100: #cfd3d6;
+  --gray-500: #a8a7ae;
+  --dark-500: #100f14;
 }
 
 .primary-bule {
@@ -98,6 +101,9 @@
 }
 .neutral-10 {
   color: var(--neutral-10);
+}
+.neutral-9 {
+  color: var(--neutral-9);
 }
 .neutral-8 {
   color: var(--neutral-8);
@@ -125,4 +131,13 @@
 }
 .sematic-1 {
   color: var(--sematic-1);
+}
+.main-color-primary {
+  color: var(--main-color-primary);
+}
+.gray-500 {
+  color: var(--gray-500);
+}
+.dark-500 {
+  color: var(--dark-500);
 }

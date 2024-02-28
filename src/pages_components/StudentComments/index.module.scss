@@ -1,0 +1,56 @@
+.studentCommentsWrapper {
+  background-image: url(/Images/background-comment.png);
+  background-repeat: no-repeat;
+  background-position-x: left;
+  .studentComments {
+    max-width: 1200px;
+    margin: 0 auto;
+    @media screen and (max-width: 1200px) {
+      padding: 0 20px;
+    }
+  }
+  .boxRating {
+    background-color: var(--bule-6);
+    border-radius: 20px;
+    border: 1px solid #a8a7ae33;
+    max-width: 500px;
+    padding: 30px;
+    .rating {
+      display: flex;
+      margin-bottom: 20px;
+    }
+  }
+  .user {
+    display: flex;
+    align-items: center;
+  }
+  .studentCommentsBox {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    .studentCommentsLeft {
+      width: calc(50% - 25px);
+    }
+    .studentCommentsRight {
+      width: calc(50% - 25px);
+      position: relative;
+      .boxBlue {
+        height: 282px;
+        width: 100%;
+        border-radius: 30px;
+        background-color: var(--main-color-primary);
+        position: absolute;
+        bottom: 0;
+        left: -20px;
+        z-index: -1;
+      }
+      .videoComment {
+        height: 560px;
+        margin-bottom: 20px;
+        iframe {
+          border-radius: 30px;
+        }
+      }
+    }
+  }
+}
