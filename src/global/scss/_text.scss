@@ -19,7 +19,14 @@ $bold: 700;
   font-family: "BeVietnamPro-SemiBold";
   src: url("/assets/fonts/BeVietnamPro-SemiBold.ttf");
 }
-
+.title-57 {
+  font-size: 57px;
+  line-height: 55px;
+}
+.title-40 {
+  font-size: 40px;
+  line-height: 55px;
+}
 .title-28 {
   font-size: 28px;
   line-height: 40px;
@@ -69,7 +76,19 @@ $bold: 700;
   font-weight: $bold;
   font-family: "Be Vietnam Pro Bold";
 }
+.title-57-bold {
+  @extend .title-57;
+  @extend .bold;
+}
 
+.title-40-bold {
+  @extend .title-40;
+  @extend .bold;
+}
+.title-40-semiBold {
+  @extend .title-40;
+  @extend .semi-bold;
+}
 .title-28-regular {
   @extend .title-28;
   @extend .regular;
@@ -261,4 +280,11 @@ $bold: 700;
 }
 .center-text {
   text-align: center;
+}
+.margin-auto {
+  margin: 0 auto;
+}
+.over-flow-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

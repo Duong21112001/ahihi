@@ -1,0 +1,73 @@
+.lecturersPadding {
+  padding-top: 200px;
+  .lecturersWrap {
+    background-image: url(/images/background-lecturers.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    .lecturersContainer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 0 45px 0;
+      position: relative;
+    }
+    .oneLecturers {
+      padding: 0 10px;
+      .lecturers {
+        background-color: var(--neutral-10);
+        border-radius: 12px;
+        padding: 18px 0px 23px 0px;
+        text-align: center;
+        .button {
+          width: 30px;
+          height: 30px;
+          border-radius: 10px;
+          border: 1px solid var(--primary-lighter);
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+        }
+      }
+    }
+    .cloudImage {
+      position: absolute;
+      top: -80px;
+    }
+    .lecturersArrows {
+      .lecturersArrowsLeft {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(0, 50%);
+        cursor: pointer;
+      }
+      .lecturersArrowsRight {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, 50%);
+        cursor: pointer;
+      }
+    }
+    .active {
+      margin-top: 40px;
+    }
+    .unActive {
+      width: 70%;
+      margin: 0 auto;
+    }
+    .buttonActive {
+      background-color: var(--main-color-secondary);
+      color: var(--neutral-10);
+      width: 115px;
+      height: 44px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+  }
+}

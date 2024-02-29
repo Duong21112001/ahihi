@@ -76,11 +76,20 @@
   --bule-5: #aec7e5;
   --bule-6: #f0f5ff;
   --primary-bule: #1e73be;
+  --primary-base: #052a45;
+  --primary-light: #637177;
+  --primary-lighter: #d0cdcd;
   --gray-100: #cfd3d6;
   --gray-500: #a8a7ae;
   --dark-500: #100f14;
 }
 
+.primary-light {
+  color: var(--primary-light);
+}
+.primary-base {
+  color: var(--primary-base);
+}
 .primary-bule {
   color: var(--primary-bule);
 }

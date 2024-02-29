@@ -41,6 +41,7 @@ const LandingPageHome = () => {
             color="neutral-10"
             maxWidth={530}
             bottom={12}
+            className={styles.contentText}
           >
             Hệ thống đào tạo Nhật Ngữ toàn diện hàng đầu Việt Nam
           </Text>
@@ -49,6 +50,7 @@ const LandingPageHome = () => {
             color="neutral-9"
             maxWidth={560}
             bottom={32}
+            className={styles.descriptionText}
           >
             Lorem ipsum dolor sit amet consectetur. Sagittis tortor enim egestas
             vitae gravida justo. Mi ut eget placerat tellus cras platea. Urna
@@ -58,9 +60,7 @@ const LandingPageHome = () => {
             iaculis.
           </Text>
           <div className={styles.buttons}>
-            <Button type="btn-primary" width="270px">
-              Đăng ký ngay!
-            </Button>
+            <Button type="btn-primary">Đăng ký ngay!</Button>
           </div>
         </div>
       </div>
@@ -82,6 +82,7 @@ const LandingPageHome = () => {
                   color="neutral-10"
                   maxWidth={145}
                   center
+                  className={styles.textInfo}
                 >
                   {info.label}
                 </Text>

@@ -46,6 +46,9 @@ interface TextProps {
     | "heading-h2"
     | "heading-h3"
     | "heading-h4"
+    | "title-40-bold"
+    | "title-57-bold"
+    | "title-40-semiBold"
     | undefined;
   color?:
     | "primary-bule"
@@ -68,6 +71,8 @@ interface TextProps {
     | "sematic-1"
     | "gray-500"
     | "dark-500"
+    | "primary-base"
+    | "primary-light"
     | undefined;
   disabled?: boolean;
   state?: null | "disable";
@@ -77,6 +82,9 @@ interface TextProps {
   center?: boolean;
   right?: number;
   maxWidth?: number;
+  marginAuto?: boolean;
+  height?: number;
+  overFlowHidden?: boolean;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -90,11 +98,19 @@ const Text: React.FC<TextProps> = ({
   center,
   right,
   maxWidth,
+  marginAuto,
+  height,
+  overFlowHidden,
 }) => {
   const classes = classNames(
     type,
     color,
-    { "text-disable": disabled, "center-text": center },
+    {
+      "text-disable": disabled,
+      "center-text": center,
+      "margin-auto": marginAuto,
+      "over-flow-hidden": overFlowHidden,
+    },
     className
   );
   return (
@@ -103,8 +119,9 @@ const Text: React.FC<TextProps> = ({
       onClick={onClick}
       style={{
         marginBottom: bottom || 0,
-        marginRight: right || 0,
+        marginRight: right,
         maxWidth: maxWidth || "unset",
+        height: height,
       }}
     >
       {children}

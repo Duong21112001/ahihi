@@ -1,0 +1,21 @@
+.ListVideoWrap {
+  background-image: url(/images/bg-list-video.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding: 120px 0 200px 0;
+  .ListVideoContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    .oneVideo {
+      padding: 10px;
+      .shadow {
+        box-shadow: 0px 8px 10px 0px #14518929;
+        border-radius: 12px;
+      }
+      iframe {
+        border-radius: 12px;
+      }
+    }
+  }
+}

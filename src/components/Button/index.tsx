@@ -30,7 +30,6 @@ const Button: React.FC<ButtonProps> = ({
   loading,
   disabled,
   htmlType = "submit",
-  width = "170px",
   bottom = 0,
   right = 0,
 }) => {
@@ -48,7 +47,7 @@ const Button: React.FC<ButtonProps> = ({
           className={classes}
           onClick={onClick}
           disabled={disabled || loading}
-          style={{ width: width, marginBottom: bottom, marginRight: right }}
+          style={{ marginBottom: bottom, marginRight: right }}
         >
           {children}
         </button>
@@ -62,7 +61,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={htmlType}
       disabled={disabled || loading}
-      style={{ width: width, marginBottom: bottom, marginRight: right }}
+      style={{ marginBottom: bottom, marginRight: right }}
     >
       {children}
     </button>

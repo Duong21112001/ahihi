@@ -18,23 +18,15 @@ const RegisterForm = () => {
   return (
     <>
       <Form form={form} className={styles.registerForm} onFinish={onFinish}>
-        <div className={styles.registerFormHeader}>
-          <Image
-            src="/Images/register-logo-left.png"
-            alt="register-logo-left"
-            width={40}
-            height={40}
-          />
-          <Text type="title-24-bold" color="main-color-primary ">
-            Thông tin đăng ký
-          </Text>
-          <Image
-            src="/Images/register-logo-right.png"
-            alt="register-logo-right"
-            width={40}
-            height={40}
-          />
-        </div>
+        <Text
+          type="title-24-bold"
+          color="main-color-primary"
+          center
+          bottom={20}
+        >
+          Thông tin đăng ký
+        </Text>
+
         <div className={styles.form}>
           <div className={styles.registerFormItem}>
             <Field

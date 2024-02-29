@@ -72,3 +72,13 @@
     left: 0;
   }
 }
+.container-class-lecturers {
+  width: calc(100% - 100px);
+  position: static !important;
+  margin: 0 auto;
+  li {
+    &:nth-child(1) {
+      color: pink;
+    }
+  }
+}

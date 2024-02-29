@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import ReactPlayer from "react-player";
+import styles from "./index.module.scss";
 
 interface VideoProps {
   url: string;
@@ -10,7 +11,20 @@ interface VideoProps {
 }
 
 const Video: React.FC<VideoProps> = ({ url, width, className, height }) => {
-  const classes = classNames("player-wrapper", className);
+  const classes = classNames("player-video", className);
+  const PlayIcon = () => {
+    return (
+      <div className={styles.videoImage}>
+        <img src="images/video-image.png" />
+        <div className={styles.play}>
+          <div className={styles.border}>
+            <div className={styles.icon}></div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="player-wrapper">
       <ReactPlayer
@@ -20,6 +34,7 @@ const Video: React.FC<VideoProps> = ({ url, width, className, height }) => {
         height={height}
         controls={true}
         muted={true}
+        light={<PlayIcon />}
       />
     </div>
   );

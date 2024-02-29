@@ -66,14 +66,14 @@ const CarouselComponent: React.FC<ButtonProps> = ({
         <div
           onClick={() => next()}
           className={
-            currentSlide + 1 === itemNumber
+            currentSlide + slidesToShow === itemNumber
               ? "disable-button-carousel"
               : "able-button-carousel"
           }
         >
           <Image
             src={
-              currentSlide + 1 === itemNumber
+              currentSlide + slidesToShow === itemNumber
                 ? "/svg/caret-right.svg"
                 : "/svg/caret-right-active.svg"
             }

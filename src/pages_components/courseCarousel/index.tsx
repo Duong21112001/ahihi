@@ -6,6 +6,9 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Box from "@/components/Box";
 import Button from "@/components/Button";
+import { useRequest } from "@umijs/hooks";
+import { listCourse } from "./service";
+import PlaceholderBox from "@/components/placeholderBox";
 
 const CourseCarousel = () => {
   const { t } = useTranslation("common");
@@ -28,97 +31,135 @@ const CourseCarousel = () => {
       items: 1,
     },
   };
+  const { loading, data } = useRequest(
+    async () => {
+      const result = await listCourse();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
+  console.log("data", data);
 
   const Course = () => {
     return (
-      <div className={styles.courseWrap}>
-        <img src="/images/course.png" className={styles.images} alt="course" />
-        <div className={styles.courseContent}>
-          <Text type="title-24-bold" color="main-color-primary" bottom={18}>
-            KHÓA HỌC TIẾNG NHẬT QUYẾT CHIẾN N2
-          </Text>
-          <Box flex agileItem="agile-center" bottom={24}>
-            <Box flex right={10}>
-              {[...Array(4)].map(() => {
-                return (
-                  <Image
-                    src="/svg/rating.svg"
-                    alt="rating"
-                    layout="fixed"
-                    width={20}
-                    height={20}
-                    style={{ marginRight: 2 }}
-                  />
-                );
-              })}
-              {[...Array(1)].map(() => {
-                return (
-                  <Image
-                    src="/svg/rating.svg"
-                    alt="rating"
-                    layout="fixed"
-                    width={20}
-                    height={20}
-                    style={{ marginRight: 2 }}
-                  />
-                );
-              })}
-            </Box>
-            <Text type="body-16-regular" color="dark-500">
-              4.8 (120 đánh giá)
+      <div className={styles.coursePadding}>
+        <div className={styles.courseWrap}>
+          <img
+            src="/images/course.png"
+            className={styles.images}
+            alt="course"
+          />
+          <div className={styles.courseContent}>
+            <Text type="title-24-bold" color="main-color-primary" bottom={18}>
+              KHÓA HỌC TIẾNG NHẬT QUYẾT CHIẾN N2
             </Text>
-          </Box>
-          <Box
-            flex
-            agileItem="agile-center"
-            justContent="content-beetween"
-            bottom={50}
-          >
-            <Box flex agileItem="agile-center">
-              <Image
-                src="/svg/clock-circle.svg"
-                alt="clock-circle"
-                layout="fixed"
-                width={29}
-                height={29}
-                style={{ marginRight: 10 }}
-              />
-              <Text type="body-14-medium" color="neutral-1">
-                40 - 55 buổi
+            <Box flex agileItem="agile-center" bottom={24}>
+              <Box flex right={10}>
+                {[...Array(4)].map(() => {
+                  return (
+                    <Image
+                      src="/svg/rating.svg"
+                      alt="rating"
+                      layout="fixed"
+                      width={20}
+                      height={20}
+                      style={{ marginRight: 2 }}
+                    />
+                  );
+                })}
+                {[...Array(1)].map(() => {
+                  return (
+                    <Image
+                      src="/svg/rating.svg"
+                      alt="rating"
+                      layout="fixed"
+                      width={20}
+                      height={20}
+                      style={{ marginRight: 2 }}
+                    />
+                  );
+                })}
+              </Box>
+              <Text type="body-16-regular" color="dark-500">
+                4.8 (120 đánh giá)
               </Text>
             </Box>
-            <Box flex agileItem="agile-center">
-              <Image
-                src="/svg/calendar.svg"
-                alt="calendar"
-                layout="fixed"
-                width={29}
-                height={29}
-                style={{ marginRight: 10 }}
-              />
-              <Text type="body-14-medium" color="neutral-1">
-                20-06-2023
-              </Text>
+            <Box
+              flex
+              agileItem="agile-center"
+              justContent="content-beetween"
+              bottom={50}
+            >
+              <Box flex agileItem="agile-center">
+                <Image
+                  src="/svg/clock-circle.svg"
+                  alt="clock-circle"
+                  layout="fixed"
+                  width={29}
+                  height={29}
+                  style={{ marginRight: 10 }}
+                />
+                <Text type="body-14-medium" color="neutral-1">
+                  40 - 55 buổi
+                </Text>
+              </Box>
+              <Box flex agileItem="agile-center">
+                <Image
+                  src="/svg/calendar.svg"
+                  alt="calendar"
+                  layout="fixed"
+                  width={29}
+                  height={29}
+                  style={{ marginRight: 10 }}
+                />
+                <Text type="body-14-medium" color="neutral-1">
+                  20-06-2023
+                </Text>
+              </Box>
             </Box>
-          </Box>
-          <Button type="btn-blue">Mua ngay </Button>
+            <Button type="btn-blue">Mua ngay </Button>
+          </div>
         </div>
       </div>
     );
   };
 
   return (
-    <div className={styles.courseCarouselWrap}>
-      <Carousel
-        responsive={responsive}
-        showDots={false}
-        containerClass="container-class-course"
-      >
-        <Course />
-        <Course />
-        <Course />
-        <Course />
-      </Carousel>
+    <div className={styles.courseCarouselPadding}>
+      <div className={styles.courseCarouselWrap}>
+        <div className={styles.courseCarouselContainer}>
+          <Text
+            type="title-40-bold"
+            color="neutral-1"
+            center
+            maxWidth={518}
+            marginAuto
+            bottom={64}
+          >
+            KHOÁ HỌC TIẾNG NHẬT ONLINE APP VÀ WEBSITE
+          </Text>
+
+          <Carousel
+            responsive={responsive}
+            showDots={false}
+            containerClass="container-class-course"
+            centerMode={false}
+            renderArrowsWhenDisabled={true}
+          >
+            <PlaceholderBox loading={loading}>
+              <Course />
+            </PlaceholderBox>
+            <PlaceholderBox loading={loading}>
+              <Course />
+            </PlaceholderBox>
+            <PlaceholderBox loading={loading}>
+              <Course />
+            </PlaceholderBox>
+          </Carousel>
+        </div>
+      </div>
     </div>
   );
 };

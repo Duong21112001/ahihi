@@ -3,6 +3,7 @@
   padding-top: 60%;
   position: relative;
   overflow: hidden;
+
   .LandingPageImage {
     top: 50%;
     left: 50%;
@@ -42,6 +43,11 @@
       line-height: 96px;
       margin-bottom: 8px;
     }
+    .buttons {
+      button {
+        width: 270px;
+      }
+    }
   }
 }
 .infoContainer {
@@ -63,6 +69,115 @@
     margin-right: 90px;
     &:last-child {
       margin-right: 0;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .LandingPage {
+    padding-top: 40%;
+    .LandingPageImage {
+      padding-top: 44%;
+    }
+    .textContent {
+      position: absolute;
+      left: 10%;
+      top: 50%;
+      transform: translate(0, -50%);
+      .title {
+        font-size: 24px;
+        line-height: 36px;
+      }
+      .contentText {
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .descriptionText {
+        display: none;
+      }
+      .buttons {
+        button {
+          width: 140px;
+          font-size: 14px;
+          line-height: 20px;
+          height: 40px;
+        }
+      }
+    }
+  }
+  .infoContainer {
+    margin-top: 0;
+    height: 100px;
+    .infoWrap {
+      .info {
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
+        img {
+          width: 30px;
+          height: 30px;
+          margin-bottom: 5px !important;
+        }
+        .textInfo {
+          font-size: 12px;
+          line-height: 20px;
+          max-width: 120px !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .infoContainer {
+    padding: 0 5px;
+    .infoWrap {
+      .info {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .LandingPage {
+    .textContent {
+      .title {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 0px;
+      }
+      .contentText {
+        font-size: 10px;
+        line-height: 18px;
+      }
+
+      .buttons {
+        button {
+          width: 110px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .infoContainer {
+    .infoWrap {
+      .info {
+        margin-right: 5px;
+        &:last-child {
+          margin-right: 0;
+        }
+        img {
+          width: 20px;
+          height: 20px;
+          margin-bottom: 5px !important;
+        }
+        .textInfo {
+          font-size: 10px;
+          line-height: 16px;
+          max-height: 30px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
   }
 }
