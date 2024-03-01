@@ -24,10 +24,20 @@ const ListVideo = () => {
   return (
     <div className={styles.ListVideoWrap}>
       <div className={styles.ListVideoContainer}>
-        <Text type="heading-h2" color="neutral-1" bottom={10} center>
+        <Text
+          type="heading-h2"
+          color="neutral-1"
+          center
+          className={styles.title}
+        >
           Học Kosei thi là đỗ JLPT
         </Text>
-        <Text type="body-16-regular" color="neutral-3" bottom={64} center>
+        <Text
+          type="body-16-regular"
+          color="neutral-3"
+          center
+          className={styles.textContent}
+        >
           Gần 999+ Video học miễn phí được đăng lên Kosei Youtube channel
         </Text>
         <div>

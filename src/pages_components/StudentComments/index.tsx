@@ -15,7 +15,7 @@ const StudentComments = () => {
       <div className={styles.studentCommentsBox}>
         <div className={styles.studentCommentsLeft}>
           <div>
-            <Text type="heading-h1" bottom={10}>
+            <Text type="heading-h2" bottom={10} className={styles.title}>
               Cảm nhận của học viên
             </Text>
             <Text
@@ -23,6 +23,7 @@ const StudentComments = () => {
               color="gray-500"
               bottom={32}
               maxWidth={500}
+              className={styles.textContent}
             >
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The

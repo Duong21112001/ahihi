@@ -7,7 +7,36 @@
     .achievementsContainer {
       max-width: 1200px;
       margin: 0 auto;
-      padding-top: 110px;
+      padding: 110px 20px 0px 20px;
+      .title {
+        margin-bottom: 10px;
+      }
+      .textContent {
+        margin-bottom: 64px;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .achievementsWrap {
+      .achievementsContainer {
+        padding: 50px 20px 0px 20px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 20px 0;
+    .achievementsWrap {
+      .achievementsContainer {
+        padding: 20px 20px 0px 20px;
+        .title {
+          margin-bottom: 10px;
+          font-size: 22px;
+          line-height: 32px;
+        }
+        .textContent {
+          margin-bottom: 40px;
+        }
+      }
     }
   }
 }

@@ -7,6 +7,13 @@
   .ListVideoContainer {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
+    .title {
+      margin-bottom: 10px;
+    }
+    .textContent {
+      margin-bottom: 64px;
+    }
     .oneVideo {
       padding: 10px;
       .shadow {
@@ -15,6 +22,26 @@
       }
       iframe {
         border-radius: 12px;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 50px 0px 100px 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ListVideoContainer {
+      .title {
+        font-size: 22px;
+        line-height: 32px;
+      }
+      .textContent {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 40px;
+      }
+      .videoComment {
+        height: 220px !important;
       }
     }
   }

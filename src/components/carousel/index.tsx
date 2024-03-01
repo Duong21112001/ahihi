@@ -18,19 +18,19 @@ const CarouselComponent: React.FC<ButtonProps> = ({
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
+      breakpoint: { max: 4000, min: 1024 },
       items: numberItemShow,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: numberItemShow,
+      breakpoint: { max: 1024, min: 768 },
+      items: numberItemShow === 1 ? 1 : 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      breakpoint: { max: 768, min: 480 },
+      items: numberItemShow === 1 ? 1 : 2,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 480, min: 0 },
       items: 1,
     },
   };

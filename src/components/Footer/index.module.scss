@@ -2,18 +2,18 @@
 
 .container {
   background-color: var(--main-color-primary);
-  padding: 50px 0px 20px 0px;
+  padding-top: 50px;
   .content {
     max-width: 1200px;
     margin: 0 auto;
-    @media screen and (max-width: 1200px) {
-      padding: 0 20px;
-    }
+    padding: 0 20px;
+
     .top {
       display: flex;
       align-items: center;
       border-bottom: 1px solid #100f141a;
       padding-bottom: 15px;
+
       .contact {
         width: 30%;
         .icons {
@@ -42,12 +42,43 @@
           }
         }
       }
+      @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        .contact {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+        .menu {
+          width: 100%;
+          .menuItem {
+            width: 25%;
+          }
+        }
+      }
+      @media screen and (max-width: 678px) {
+        .menu {
+          width: 100%;
+          flex-wrap: wrap;
+          .menuItem {
+            width: 50%;
+            margin-bottom: 15px;
+          }
+        }
+      }
     }
     .bottom {
-      padding-top: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      height: 60px;
+      .TextFooter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+      }
       .socialWrap {
         display: flex;
         align-items: center;
@@ -58,6 +89,22 @@
           }
         }
       }
+      @media screen and (max-width: 768px) {
+        height: 70px;
+        .TextFooter {
+          bottom: 0px;
+          font-size: 10px;
+          line-height: 18px;
+          top: unset;
+        }
+        .socialWrap,
+        .cardImage {
+          margin-top: -20px;
+        }
+      }
     }
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 0;
   }
 }

@@ -41,10 +41,18 @@ const BannerRegister = () => {
             {countDown.map((item) => {
               return (
                 <div className={styles.countDownItem} key={item.label}>
-                  <Text type="title-57-bold" color="neutral-10">
+                  <Text
+                    type="title-57-bold"
+                    color="neutral-10"
+                    className={styles.countDownTime}
+                  >
                     {item.time}
                   </Text>
-                  <Text type="body-16-semibold" color="neutral-10">
+                  <Text
+                    type="body-16-semibold"
+                    color="neutral-10"
+                    className={styles.countDownLabel}
+                  >
                     {item.label}
                   </Text>
                 </div>

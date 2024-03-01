@@ -9,6 +9,7 @@ import Button from "@/components/Button";
 import { useRequest } from "@umijs/hooks";
 import { listCourse } from "./service";
 import PlaceholderBox from "@/components/placeholderBox";
+import classNames from "classnames";
 
 const CourseCarousel = () => {
   const { t } = useTranslation("common");
@@ -19,12 +20,12 @@ const CourseCarousel = () => {
       items: 3,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 769 },
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      breakpoint: { max: 768, min: 480 },
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -40,8 +41,6 @@ const CourseCarousel = () => {
       onError: () => {},
     }
   );
-  console.log("data", data);
-
   const Course = () => {
     return (
       <div className={styles.coursePadding}>
@@ -52,11 +51,15 @@ const CourseCarousel = () => {
             alt="course"
           />
           <div className={styles.courseContent}>
-            <Text type="title-24-bold" color="main-color-primary" bottom={18}>
+            <Text
+              type="title-24-bold"
+              color="main-color-primary"
+              className={styles.courseTitle}
+            >
               KHÓA HỌC TIẾNG NHẬT QUYẾT CHIẾN N2
             </Text>
-            <Box flex agileItem="agile-center" bottom={24}>
-              <Box flex right={10}>
+            <Box flex agileItem="agile-center" className={styles.rate}>
+              <Box flex right={10} className={styles.rateIcon}>
                 {[...Array(4)].map(() => {
                   return (
                     <Image
@@ -90,9 +93,13 @@ const CourseCarousel = () => {
               flex
               agileItem="agile-center"
               justContent="content-beetween"
-              bottom={50}
+              className={styles.infoCourse}
             >
-              <Box flex agileItem="agile-center">
+              <Box
+                flex
+                agileItem="agile-center"
+                className={styles.infoCourseTime}
+              >
                 <Image
                   src="/svg/clock-circle.svg"
                   alt="clock-circle"
@@ -105,7 +112,11 @@ const CourseCarousel = () => {
                   40 - 55 buổi
                 </Text>
               </Box>
-              <Box flex agileItem="agile-center">
+              <Box
+                flex
+                agileItem="agile-center"
+                className={styles.infoCourseTime}
+              >
                 <Image
                   src="/svg/calendar.svg"
                   alt="calendar"
@@ -136,7 +147,7 @@ const CourseCarousel = () => {
             center
             maxWidth={518}
             marginAuto
-            bottom={64}
+            className={styles.title}
           >
             KHOÁ HỌC TIẾNG NHẬT ONLINE APP VÀ WEBSITE
           </Text>
@@ -144,7 +155,10 @@ const CourseCarousel = () => {
           <Carousel
             responsive={responsive}
             showDots={false}
-            containerClass="container-class-course"
+            containerClass={classNames(
+              "container-class-course",
+              styles.containerClassCourse
+            )}
             centerMode={false}
             renderArrowsWhenDisabled={true}
           >

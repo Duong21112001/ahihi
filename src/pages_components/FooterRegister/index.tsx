@@ -19,13 +19,17 @@ const FooterRegister = () => {
             type="title-40-semiBold"
             color="neutral-10"
             center
-            maxWidth={700}
             marginAuto
-            bottom={23}
+            className={styles.title}
           >
             Đăng kí tư vấn ngay hôm nay để được nhận những ưu đãi tốt nhất
           </Text>
-          <Text type="body-16-regular" color="neutral-10" center bottom={64}>
+          <Text
+            type="body-16-regular"
+            color="neutral-10"
+            center
+            className={styles.textContent}
+          >
             20k+ students daily learn with Eduvi. Subscribe for new courses.
           </Text>
           <Button type="btn-primary" width="411px">

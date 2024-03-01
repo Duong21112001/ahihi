@@ -118,9 +118,9 @@ const Text: React.FC<TextProps> = ({
       className={classes}
       onClick={onClick}
       style={{
-        marginBottom: bottom || 0,
+        marginBottom: bottom,
         marginRight: right,
-        maxWidth: maxWidth || "unset",
+        maxWidth: maxWidth,
         height: height,
       }}
     >

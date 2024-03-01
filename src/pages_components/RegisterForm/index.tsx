@@ -192,7 +192,7 @@ const RegisterForm = () => {
             {() => {
               return (
                 <>
-                  <Button htmlType="submit" width={"100%"} bottom={24}>
+                  <Button htmlType="submit" bottom={24}>
                     Đăng ký
                   </Button>
                 </>

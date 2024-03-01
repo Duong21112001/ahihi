@@ -27,7 +27,11 @@ const Community = () => {
             </Text>
           </div>
         </div>
-        <Text type="title-18-semibold" color="neutral-1">
+        <Text
+          type="title-18-semibold"
+          color="neutral-1"
+          className={styles.textNew}
+        >
           Fanpage Tiếng Nhật Kosei là nơi chia sẻ kiến thức, các sự kiện của
           Kosei được cập nhật mỗi ngày.
         </Text>
@@ -39,13 +43,18 @@ const Community = () => {
     <div className={styles.communityWrap}>
       <div className={styles.communityContainer}>
         <div className={styles.title}>
-          <Text type="heading-h2" color="neutral-1" center bottom={10}>
+          <Text type="heading-h2" color="neutral-1" center>
             Cồng đồng tiếng nhật cùng Kosei
           </Text>
           <img src="/images/cotton-sheep.png" />
         </div>
 
-        <Text type="body-16-regular" color="neutral-3" center bottom={64}>
+        <Text
+          type="body-16-regular"
+          color="neutral-3"
+          center
+          className={styles.textContent}
+        >
           Gần 999+ Video học miễn phí được đăng lên Kosei Youtube channel
         </Text>
         <div className={styles.communityContent}>

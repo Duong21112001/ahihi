@@ -58,7 +58,7 @@
 }
 .container-class-course {
   height: unset;
-  width: calc(100% - 80px);
+  width: calc(100% - 120px);
   margin: 0 auto;
   overflow: hidden;
   position: static !important;
@@ -66,10 +66,22 @@
     background: #4a556866;
   }
   .react-multiple-carousel__arrow--right {
-    right: 0;
+    right: 20px;
   }
   .react-multiple-carousel__arrow--left {
-    left: 0;
+    left: 20px;
+  }
+  @media screen and (max-width: 1024px) {
+    .react-multiple-carousel__arrow--right {
+      right: 20px;
+      width: 20px;
+      height: 20px;
+    }
+    .react-multiple-carousel__arrow--left {
+      left: 20px;
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 .container-class-lecturers {

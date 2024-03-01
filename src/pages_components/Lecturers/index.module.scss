@@ -1,3 +1,14 @@
+.buttonActive {
+  background-color: var(--main-color-secondary);
+  color: var(--neutral-10);
+  width: 115px;
+  height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
 .lecturersPadding {
   padding-top: 200px;
   .lecturersWrap {
@@ -9,15 +20,21 @@
     .lecturersContainer {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 56px 0 45px 0;
+      padding: 56px 20px 45px 20px;
       position: relative;
+      @media screen and (max-width: 768px) {
+        .lecturersTitle {
+          font-size: 22px;
+          line-height: 32px;
+        }
+      }
     }
     .oneLecturers {
       padding: 0 10px;
       .lecturers {
         background-color: var(--neutral-10);
         border-radius: 12px;
-        padding: 18px 0px 23px 0px;
+        padding: 18px 5px 23px 5px;
         text-align: center;
         .button {
           width: 30px;
@@ -29,6 +46,9 @@
           justify-content: center;
           margin: 0 auto;
         }
+        .name {
+          margin-bottom: 13px;
+        }
       }
     }
     .cloudImage {
@@ -38,14 +58,14 @@
     .lecturersArrows {
       .lecturersArrowsLeft {
         position: absolute;
-        left: 0;
+        left: 20px;
         top: 50%;
         transform: translate(0, 50%);
         cursor: pointer;
       }
       .lecturersArrowsRight {
         position: absolute;
-        right: 0;
+        right: 20px;
         top: 50%;
         transform: translate(0, 50%);
         cursor: pointer;
@@ -58,16 +78,25 @@
       width: 70%;
       margin: 0 auto;
     }
-    .buttonActive {
-      background-color: var(--main-color-secondary);
-      color: var(--neutral-10);
-      width: 115px;
-      height: 44px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
+
+    @media screen and (max-width: 768px) {
+      .active {
+        margin-top: 0;
+      }
+      .unActive {
+        width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    padding-top: 100px;
+    .imgAvatar {
+      width: 100px;
+      height: 100px;
+    }
+    .name {
+      font-size: 16px;
+      line-height: 20px;
     }
   }
 }

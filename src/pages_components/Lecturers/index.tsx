@@ -20,13 +20,13 @@ const Lecturers = () => {
       slidesToSlide: 1,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 768 },
       items: 3,
       slidesToSlide: 1,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      breakpoint: { max: 767, min: 480 },
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -56,6 +56,7 @@ const Lecturers = () => {
         <div className={styles.lecturers}>
           {teacher?.image && (
             <Image
+              className={styles.imgAvatar}
               src={teacher?.image}
               alt="avatar-lecturers.png"
               layout="fixed"
@@ -64,7 +65,6 @@ const Lecturers = () => {
               style={{
                 marginBottom: 8,
                 borderRadius: "100%",
-                width: 150,
                 objectFit: "cover",
               }}
             />
@@ -80,14 +80,19 @@ const Lecturers = () => {
             // />
           )}
 
-          <Text type="title-24-semibold" color="primary-base" bottom={13}>
+          <Text
+            type="title-24-semibold"
+            color="primary-base"
+            className={styles.name}
+          >
             {teacher?.name}
           </Text>
 
           <Text
             type="body-16-regular"
             color="primary-light"
-            bottom={active ? 30 : 14}
+            // bottom={active ? 30 : 14}
+            bottom={14}
             maxWidth={188}
             marginAuto
             height={40}
@@ -96,7 +101,7 @@ const Lecturers = () => {
             {teacher?.content}
           </Text>
 
-          {active ? (
+          {/* {active ? (
             <div className={styles.buttonActive}>
               <Text type="body-16-bold" color="neutral-10" right={8}>
                 Chi tiết
@@ -109,17 +114,17 @@ const Lecturers = () => {
                 height={20}
               />
             </div>
-          ) : (
-            <div className={styles.button}>
-              <Image
-                src="/svg/shape-right.svg"
-                alt="shape-right"
-                layout="fixed"
-                width={20}
-                height={20}
-              />
-            </div>
-          )}
+          ) : ( */}
+          <div className={styles.button}>
+            <Image
+              src="/svg/shape-right.svg"
+              alt="shape-right"
+              layout="fixed"
+              width={20}
+              height={20}
+            />
+          </div>
+          {/* )} */}
         </div>
       </div>
     );
@@ -170,7 +175,13 @@ const Lecturers = () => {
           className={styles.cloudImage}
         />
         <div className={styles.lecturersContainer}>
-          <Text type="heading-h2" color="shade-primary-5" center bottom={10}>
+          <Text
+            type="heading-h2"
+            color="shade-primary-5"
+            center
+            bottom={10}
+            className={styles.lecturersTitle}
+          >
             Đội ngũ giảng viên tại Kosei
           </Text>
           <Text type="body-16-regular" color="neutral-3" center bottom={64}>

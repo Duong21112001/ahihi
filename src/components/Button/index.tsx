@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   htmlType = "submit",
   bottom = 0,
-  right = 0,
+  right,
 }) => {
   const classes = classNames(
     type,

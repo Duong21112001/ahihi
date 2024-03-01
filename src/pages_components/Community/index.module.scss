@@ -4,6 +4,7 @@
   .communityContainer {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
     .title {
       max-width: 670px;
       display: flex;
@@ -11,11 +12,15 @@
       justify-content: center;
       position: relative;
       margin: 0 auto;
+      margin-bottom: 10px;
       img {
         position: absolute;
-        right: -40px;
+        right: -20px;
         bottom: -20px;
       }
+    }
+    .textContent {
+      margin-bottom: 64px;
     }
   }
   .new {
@@ -64,5 +69,42 @@
   .communityContent {
     display: flex;
     justify-content: space-between;
+  }
+  @media screen and (max-width: 768px) {
+    .communityContainer {
+      .title {
+        p {
+          font-size: 22px;
+          line-height: 32px;
+        }
+        img {
+          width: 70px;
+        }
+        @media screen and (max-width: 480px) {
+          img {
+            right: 0;
+            bottom: 50px;
+          }
+        }
+      }
+      .textContent {
+        margin-bottom: 40px;
+      }
+      .communityContent {
+        flex-wrap: wrap;
+        .new {
+          width: calc(50% - 10px);
+          margin-bottom: 10px;
+          @media screen and (max-width: 480px) {
+            width: 100%;
+            margin-right: 0;
+            .textNew {
+              font-size: 14px;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+    }
   }
 }

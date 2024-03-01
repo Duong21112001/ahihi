@@ -1,13 +1,14 @@
 .registerForm {
-  width: 496px;
   background-color: var(--background-2);
   border-radius: 12px;
   padding: 24px 24px 12px 24px;
   .registerFormItem {
     margin-bottom: 24px;
   }
-
   .form {
     margin-bottom: 12px;
+  }
+  button {
+    width: 100%;
   }
 }

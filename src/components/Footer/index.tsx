@@ -211,7 +211,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.bottom}>
-          <div>
+          <div className={styles.cardImage}>
             {cards.map((card) => {
               return (
                 <Image
@@ -225,7 +225,11 @@ const Footer = () => {
               );
             })}
           </div>
-          <Text type="body-16-regular" color="neutral-10">
+          <Text
+            type="body-16-regular"
+            color="neutral-10"
+            className={styles.TextFooter}
+          >
             ©2023 Kosei All Rights are reserved️
           </Text>
           <div className={styles.socialWrap}>

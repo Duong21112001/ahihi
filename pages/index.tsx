@@ -17,11 +17,12 @@ import StudentComments from "@/pages_components/StudentComments";
 import FooterRegister from "@/pages_components/FooterRegister";
 import PlaceholderBox from "@/components/placeholderBox";
 import ListVideo from "@/pages_components/ListVideo";
+import styles from "./page.module.scss";
 
 const Home: NextPageWithLayout = () => {
   const { t } = useTranslation("common");
   return (
-    <>
+    <div className={styles.homePageContainer}>
       <LandingPageHome />
       <CourseCarousel />
       <BannerRegister />
@@ -31,7 +32,7 @@ const Home: NextPageWithLayout = () => {
       <Achievements />
       <StudentComments />
       <FooterRegister />
-    </>
+    </div>
   );
 };
 export default Home;
