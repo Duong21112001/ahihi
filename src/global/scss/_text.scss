@@ -288,3 +288,25 @@ $bold: 700;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@media screen and (max-width: 768px) {
+  .heading-h2 {
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .title-18 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .title-20 {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .body-16 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .title-24 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}

@@ -8,7 +8,8 @@ interface ButtonProps {
     | "btn-secondary"
     | "btn-disable"
     | "btn-secondary-disable"
-    | "btn-blue";
+    | "btn-blue"
+    | "btn-blue-secondary";
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;

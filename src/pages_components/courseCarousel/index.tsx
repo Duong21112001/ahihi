@@ -10,9 +10,11 @@ import { useRequest } from "@umijs/hooks";
 import { listCourse } from "./service";
 import PlaceholderBox from "@/components/placeholderBox";
 import classNames from "classnames";
+import { useState } from "react";
 
 const CourseCarousel = () => {
   const { t } = useTranslation("common");
+  const [tabActive, setTabActive] = useState(0);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -53,7 +55,7 @@ const CourseCarousel = () => {
           <div className={styles.courseContent}>
             <Text
               type="title-24-bold"
-              color="main-color-primary"
+              color="neutral-1"
               className={styles.courseTitle}
             >
               KHÓA HỌC TIẾNG NHẬT QUYẾT CHIẾN N2
@@ -130,12 +132,35 @@ const CourseCarousel = () => {
                 </Text>
               </Box>
             </Box>
-            <Button type="btn-blue">Mua ngay </Button>
+            <Box
+              flex
+              agileItem="agile-center"
+              justContent="content-beetween"
+              className={styles.buttons}
+            >
+              <Button type="btn-blue-secondary">Xem chi tiết</Button>
+              <Button type="btn-blue">Mua ngay </Button>
+            </Box>
           </div>
         </div>
       </div>
     );
   };
+
+  const tabs = [
+    {
+      label: "Khoá học OFFLINE",
+      value: 0,
+    },
+    {
+      label: "Khoá học ONLINE SKYPE",
+      value: 1,
+    },
+    {
+      label: "Khoá học ONLINE WEBSITE",
+      value: 2,
+    },
+  ];
 
   return (
     <div className={styles.courseCarouselPadding}>
@@ -151,6 +176,20 @@ const CourseCarousel = () => {
           >
             KHOÁ HỌC TIẾNG NHẬT ONLINE APP VÀ WEBSITE
           </Text>
+          <div className={styles.tabs}>
+            {tabs.map((tab) => {
+              return (
+                <Button
+                  key={tab.value}
+                  className={styles.buttonTab}
+                  onClick={() => setTabActive(tab.value)}
+                  type={tab.value === tabActive ? "btn-blue" : "btn-disable"}
+                >
+                  {tab.label}
+                </Button>
+              );
+            })}
+          </div>
 
           <Carousel
             responsive={responsive}

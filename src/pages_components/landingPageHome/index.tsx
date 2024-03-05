@@ -37,10 +37,10 @@ const LandingPageHome = () => {
         <div className={styles.textContent}>
           <p className={styles.title}>Trung tâm tiếng nhật Kosei</p>
           <Text
-            type="title-24-regular"
+            type="title-20-bold"
             color="neutral-10"
-            maxWidth={530}
-            bottom={12}
+            maxWidth={587}
+            bottom={16}
             className={styles.contentText}
           >
             Hệ thống đào tạo Nhật Ngữ toàn diện hàng đầu Việt Nam

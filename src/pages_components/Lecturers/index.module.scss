@@ -10,9 +10,8 @@
   margin: 0 auto;
 }
 .lecturersPadding {
-  padding-top: 200px;
   .lecturersWrap {
-    background-image: url(/images/background-lecturers.png);
+    background: url(/images/background-lecturers.png), var(--background-3);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -20,7 +19,7 @@
     .lecturersContainer {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 56px 20px 45px 20px;
+      padding: 168px 20px 120px 20px;
       position: relative;
       @media screen and (max-width: 768px) {
         .lecturersTitle {
@@ -30,15 +29,16 @@
       }
     }
     .oneLecturers {
-      padding: 0 10px;
+      padding: 30px 20px;
       .lecturers {
-        background-color: var(--neutral-10);
+        background-color: var(--background-2);
         border-radius: 12px;
-        padding: 18px 5px 23px 5px;
+        padding: 16px 0;
         text-align: center;
+        box-shadow: 0px 16px 24px 0px #dfe0e5;
         .button {
-          width: 30px;
-          height: 30px;
+          width: 116px;
+          height: 48px;
           border-radius: 10px;
           border: 1px solid var(--primary-lighter);
           display: grid;
@@ -49,28 +49,33 @@
         .name {
           margin-bottom: 13px;
         }
+        img {
+          margin: 0 auto;
+        }
       }
     }
     .cloudImage {
       position: absolute;
       top: -80px;
     }
-    .lecturersArrows {
-      .lecturersArrowsLeft {
-        position: absolute;
-        left: 20px;
-        top: 50%;
-        transform: translate(0, 50%);
-        cursor: pointer;
-      }
-      .lecturersArrowsRight {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translate(0, 50%);
-        cursor: pointer;
-      }
+
+    .lecturersArrowsLeft {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translate(0, 50%);
+      cursor: pointer;
+      background: #767f8c4d;
     }
+    .lecturersArrowsRight {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translate(0, 50%);
+      cursor: pointer;
+      background: #767f8c4d;
+    }
+
     .active {
       margin-top: 40px;
     }
@@ -89,7 +94,12 @@
     }
   }
   @media screen and (max-width: 1024px) {
-    padding-top: 100px;
+    .lecturersWrap {
+      .lecturersContainer {
+        padding: 50px 20px 45px 20px;
+      }
+    }
+
     .imgAvatar {
       width: 100px;
       height: 100px;

@@ -1,0 +1,50 @@
+.downloadAppWrap {
+  background: url(/images/bg-app.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  .downloadAppContainer {
+    padding: 100px 20px 0 20px;
+    display: flex;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    .left {
+      margin-right: 44px;
+    }
+    .right {
+      margin-top: 42px;
+      .title {
+        max-width: 300px;
+      }
+      .textContent {
+        max-width: 331px;
+      }
+      .appleStore {
+        margin-right: 16px;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .downloadAppContainer {
+      padding-top: 50px;
+      align-items: center;
+      .left {
+        img {
+          width: 200px;
+          height: auto;
+        }
+      }
+      .right {
+        margin-top: 0;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .downloadAppContainer {
+      .left {
+        display: none;
+      }
+    }
+  }
+}

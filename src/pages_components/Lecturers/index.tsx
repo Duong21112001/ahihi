@@ -1,39 +1,18 @@
 import Text from "@/components/Text";
 import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
-import Carousel from "react-multi-carousel";
+import Carousel, { StateCallBack } from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRequest } from "@umijs/hooks";
 import { listTeacher } from "./service";
 import PlaceholderBox from "@/components/placeholderBox";
 import { IlistTeacher } from "@/utils/model/teacher";
+import Slider from "react-slick";
+import Button from "@/components/Button";
 
 const Lecturers = () => {
-  const { t } = useTranslation("common");
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 3,
-      slidesToSlide: 1,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 768 },
-      items: 3,
-      slidesToSlide: 1,
-    },
-    tablet: {
-      breakpoint: { max: 767, min: 480 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-  const [currentSlide, setCurrentSlide] = useState(0);
   const { loading, data } = useRequest(
     async () => {
       const result = await listTeacher();
@@ -68,112 +47,95 @@ const Lecturers = () => {
                 objectFit: "cover",
               }}
             />
-            // <img
-            //   src={teacher?.image}
-            //   alt="avatar-lecturers.png"
-            //   style={{
-            //     marginBottom: 8,
-            //     borderRadius: "100%",
-            //     width: 150,
-            //     objectFit: "cover",
-            //   }}
-            // />
           )}
 
           <Text
-            type="title-24-semibold"
-            color="primary-base"
+            type="heading-h4"
+            color="neutral-1"
             className={styles.name}
+            bottom={4}
           >
             {teacher?.name}
+          </Text>
+          <Text type="body-16-semibold" color="neutral-3" bottom={12}>
+            Trình độ: N1
           </Text>
 
           <Text
             type="body-16-regular"
             color="primary-light"
             // bottom={active ? 30 : 14}
-            bottom={14}
+            bottom={24}
             maxWidth={188}
             marginAuto
             height={40}
             overFlowHidden
+            className="text-content-lecturer"
           >
             {teacher?.content}
           </Text>
-
-          {/* {active ? (
-            <div className={styles.buttonActive}>
-              <Text type="body-16-bold" color="neutral-10" right={8}>
-                Chi tiết
+          <div className="button-lecturer">
+            <Button className={styles.button} type="btn-blue">
+              <Text type="body-14-semibold" color="neutral-10">
+                Xem chi tiết
               </Text>
-              <Image
-                src="/svg/shape-right-white.svg"
-                alt="shape-right"
-                layout="fixed"
-                width={20}
-                height={20}
-              />
-            </div>
-          ) : ( */}
-          <div className={styles.button}>
-            <Image
-              src="/svg/shape-right.svg"
-              alt="shape-right"
-              layout="fixed"
-              width={20}
-              height={20}
-            />
+            </Button>
           </div>
-          {/* )} */}
         </div>
       </div>
     );
   };
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
-    const {
-      carouselState: { currentSlide, slidesToShow, totalItems, transform },
-    } = rest;
 
-    return (
-      <div className={styles.lecturersArrows}>
-        <div
-          onClick={() => previous()}
-          style={{ marginRight: 12 }}
-          className={styles.lecturersArrowsLeft}
-        >
-          <Image
-            src="/svg/arrow-left.svg"
-            alt="arrow-left"
-            layout="fixed"
-            width={40}
-            height={40}
-          />
-        </div>
-        <div onClick={() => next()} className={styles.lecturersArrowsRight}>
-          <Image
-            src="/svg/arrow-right.svg"
-            alt="arrow-right"
-            layout="fixed"
-            width={40}
-            height={40}
-          />
-        </div>
-      </div>
-    );
+  const ref: any = useRef({});
+
+  const next = () => {
+    ref.current.slickNext();
   };
-  const beforeChange = (nextSlide: any, state: any) => {
-    console.log("nextSlide", nextSlide);
-    setCurrentSlide(nextSlide);
+
+  const previous = () => {
+    ref.current.slickPrev();
+  };
+
+  const settings = {
+    className: "section-outstanding__slider",
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: true,
+    infinite: true,
+    rows: 1,
+    variableWidth: true,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 1198,
+        settings: {
+          slidesToShow: 3,
+
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          rows: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          rows: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div className={styles.lecturersPadding}>
       <div className={styles.lecturersWrap}>
-        <img
-          src="/images/cloud-left.png"
-          alt="cloud-left"
-          className={styles.cloudImage}
-        />
         <div className={styles.lecturersContainer}>
           <Text
             type="heading-h2"
@@ -184,45 +146,56 @@ const Lecturers = () => {
           >
             Đội ngũ giảng viên tại Kosei
           </Text>
-          <Text type="body-16-regular" color="neutral-3" center bottom={64}>
+          <Text type="body-16-regular" color="neutral-3" center bottom={8}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
             tempus felis vitae sit est quisque.
           </Text>
           <div>
-            <Carousel
-              responsive={responsive}
-              showDots={false}
-              containerClass="container-class-lecturers"
-              // centerMode={false}
-              // renderArrowsWhenDisabled={true}
-              customButtonGroup={<ButtonGroup />}
-              arrows={false}
-              // infinite={true}
-              beforeChange={beforeChange}
-              rewind={true}
+            <Slider
+              ref={ref}
+              {...settings}
+              className="slider-lecturer"
+              initialSlide={2}
+              // dotsClass="dotsClass-lecturer"
+              nextArrow={
+                <div onClick={next} className={styles.lecturersArrowsRight}>
+                  <Image
+                    src="/svg/caret-right-active.svg"
+                    alt="arrow-right"
+                    layout="fixed"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+              }
+              prevArrow={
+                <div
+                  onClick={previous}
+                  style={{ marginRight: 12 }}
+                  className={styles.lecturersArrowsLeft}
+                >
+                  <Image
+                    src="/svg/caret-left-active.svg"
+                    alt="arrow-left"
+                    layout="fixed"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+              }
             >
               {(loading ? [...Array(3)] : data)?.map(
                 (teacher: IlistTeacher, index: number) => {
-                  console.log("index", index);
                   return (
-                    <div
-                      className={
-                        currentSlide + 1 === index
-                          ? styles.active
-                          : styles.unActive
-                      }
-                    >
+                    <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
                       <PlaceholderBox loading={loading}>
-                        <Lecturer
-                          active={currentSlide + 1 === index ? true : false}
-                          teacher={teacher}
-                        />
+                        <Lecturer active={false} teacher={teacher} />
                       </PlaceholderBox>
                     </div>
                   );
                 }
               )}
-            </Carousel>
+            </Slider>
           </div>
         </div>
       </div>

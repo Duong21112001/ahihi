@@ -1,13 +1,12 @@
 .achievementsPadding {
-  padding: 56px 0px 48px 0;
   .achievementsWrap {
-    background-image: url(/images/frame.png);
+    background: url(/images/frame.png), var(--background-2);
     background-repeat: no-repeat;
     background-position: top right;
     .achievementsContainer {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 110px 20px 0px 20px;
+      padding: 48px 20px 48px 20px;
       .title {
         margin-bottom: 10px;
       }
@@ -24,7 +23,6 @@
     }
   }
   @media screen and (max-width: 768px) {
-    padding: 20px 0;
     .achievementsWrap {
       .achievementsContainer {
         padding: 20px 20px 0px 20px;

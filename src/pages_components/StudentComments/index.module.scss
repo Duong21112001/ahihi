@@ -1,5 +1,6 @@
 .studentCommentsPadding {
-  padding: 120px 0 200px 0;
+  padding-top: 120px;
+
   .studentCommentsWrapper {
     background-image: url(/Images/background-comment.png);
     background-repeat: no-repeat;
@@ -32,6 +33,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+
       .studentCommentsLeft {
         width: calc(50% - 25px);
       }
@@ -60,7 +62,7 @@
     }
   }
   @media screen and (max-width: 1024px) {
-    padding: 50px 0;
+    padding-top: 50px;
   }
   @media screen and (max-width: 768px) {
     .studentCommentsWrapper {

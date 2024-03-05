@@ -18,6 +18,8 @@ import FooterRegister from "@/pages_components/FooterRegister";
 import PlaceholderBox from "@/components/placeholderBox";
 import ListVideo from "@/pages_components/ListVideo";
 import styles from "./page.module.scss";
+import DownloadApp from "@/pages_components/DownloadApp";
+import ChooseKosei from "@/pages_components/ChooseKosei";
 
 const Home: NextPageWithLayout = () => {
   const { t } = useTranslation("common");
@@ -25,13 +27,13 @@ const Home: NextPageWithLayout = () => {
     <div className={styles.homePageContainer}>
       <LandingPageHome />
       <CourseCarousel />
+      <ChooseKosei />
       <BannerRegister />
+      <DownloadApp />
       <Lecturers />
-      <ListVideo />
-      <Community />
       <Achievements />
       <StudentComments />
-      <FooterRegister />
+      <Community />
     </div>
   );
 };

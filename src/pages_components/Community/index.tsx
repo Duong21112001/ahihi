@@ -46,7 +46,6 @@ const Community = () => {
           <Text type="heading-h2" color="neutral-1" center>
             Cồng đồng tiếng nhật cùng Kosei
           </Text>
-          <img src="/images/cotton-sheep.png" />
         </div>
 
         <Text

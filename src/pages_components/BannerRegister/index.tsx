@@ -30,9 +30,9 @@ const BannerRegister = () => {
     <div className={styles.bannerRegisterWrap}>
       <div className={styles.bannerRegisterContainer}>
         <div className={styles.form}>
-          <div className={styles.icon}>
+          {/* <div className={styles.icon}>
             <img src="/images/cotton-sheep.png" alt="cotton-sheep" />
-          </div>
+          </div> */}
 
           <RegisterForm />
         </div>

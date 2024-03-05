@@ -84,13 +84,116 @@
     }
   }
 }
-.container-class-lecturers {
-  width: calc(100% - 100px);
-  position: static !important;
-  margin: 0 auto;
-  li {
-    &:nth-child(1) {
-      color: pink;
+
+.slider-lecturer {
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }
+  .slick-list {
+    width: calc(100% - 100px);
+    margin: 0 auto;
+  }
+  .slick-slide {
+    width: calc(100% / 12 - 50px);
+    .text-content-lecturer {
+      display: none;
+    }
+    .button-lecturer {
+      display: none;
+    }
+  }
+  .slick-current + .slick-active {
+    width: calc(100% / 12 + 100px);
+    .text-content-lecturer {
+      display: block;
+    }
+    .button-lecturer {
+      display: block;
+    }
+  }
+  .slick-prev {
+    left: -15px;
+    &::before {
+      display: none;
+    }
+  }
+
+  .slick-next {
+    right: -15px;
+    &::before {
+      display: none;
+    }
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 48px;
+    height: 48px;
+    background: #767f8c4d;
+    display: grid !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    &:hover {
+      background: #767f8c4d;
+    }
+  }
+  .slick-dots {
+    li {
+      margin: 0 12px 0 0;
+      width: unset;
+      height: unset;
+      button {
+        border-radius: 100%;
+        width: 12px;
+        height: 12px;
+        background-color: var(--neutral-6);
+        &::before {
+          display: none;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    li.slick-active {
+      button {
+        background-color: var(--main-color-primary);
+      }
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .slick-slide {
+      .text-content-lecturer {
+        display: block;
+      }
+      .button-lecturer {
+        display: block;
+      }
+    }
+    .slick-list {
+      width: calc(100% - 50px);
+    }
+    .slick-prev,
+    .slick-next {
+      width: 30px;
+      height: 30px;
+    }
+    .slick-current + .slick-active {
+      width: calc(100% / 12 - 30px);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .slick-slide,
+    .slick-current + .slick-active {
+      width: calc(100% / 12);
     }
   }
 }

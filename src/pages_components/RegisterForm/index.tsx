@@ -5,7 +5,6 @@ import Button from "@/components/Button";
 import Text from "@/components/Text";
 import Select from "@/components/Select";
 import styles from "./index.module.scss";
-import Image from "next/image";
 import { validateEmail, validatePhone } from "@/utils/validate";
 
 const RegisterForm = () => {
@@ -18,12 +17,7 @@ const RegisterForm = () => {
   return (
     <>
       <Form form={form} className={styles.registerForm} onFinish={onFinish}>
-        <Text
-          type="title-24-bold"
-          color="main-color-primary"
-          center
-          bottom={20}
-        >
+        <Text type="title-24-bold" color="neutral-1" center bottom={20}>
           Thông tin đăng ký
         </Text>
 

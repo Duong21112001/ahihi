@@ -12,7 +12,7 @@
   font-size: 16px;
   line-height: 20px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: 8px;
   width: 170px;
   font-weight: 600;
 }
@@ -32,10 +32,9 @@
 }
 .btn-disable {
   @extend .btn-default;
-  background-color: var(--neutral-6);
-  border: none;
-  color: var(--neutral-10);
-  box-shadow: 0px 2px 10px 0px #1f1f1f4d;
+  background-color: var(--neutral-10);
+  border: 1px solid var(--neutral-6);
+  color: var(--bule-5);
 }
 .btn-secondary-disable {
   @extend .btn-default;
@@ -49,4 +48,10 @@
   background-color: var(--main-color-primary);
   color: var(--neutral-10);
   border: none;
+}
+.btn-blue-secondary {
+  @extend .btn-default;
+  background-color: var(--neutral-10);
+  color: var(--main-color-primary);
+  border: 1px solid var(--main-color-primary);
 }

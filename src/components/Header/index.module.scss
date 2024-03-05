@@ -94,7 +94,6 @@
           left: 0;
           width: 324px;
           height: 100vh;
-          padding: 0 16px;
           transition: 0.3s ease-in-out;
           transform: translateX(-100%);
           background-color: white;
@@ -108,6 +107,9 @@
         display: flex;
         align-items: center;
         height: 44px;
+        @include defaultsize {
+          padding: 0 16px;
+        }
 
         .closeIcon {
           display: none;
@@ -141,16 +143,14 @@
         @include defaultsize {
           width: 100%;
           flex-direction: column;
-          padding-top: 32px;
+          padding: 32px 16px 0 16px;
         }
         .a {
           color: var(--white);
           display: inline;
           position: relative;
           align-items: center;
-          border-bottom-width: 2px;
           border-style: solid;
-          padding-bottom: 4px;
           border-color: transparent;
           &::after {
             display: block;
@@ -263,6 +263,7 @@
         white-space: nowrap;
         @media screen and (max-width: 1024px) {
           margin-left: 0;
+          padding: 0 16px;
         }
         .space {
           padding: 0 8px;
