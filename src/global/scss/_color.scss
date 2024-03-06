@@ -19,7 +19,7 @@
   --sematic-10: #fff4e8;
   --sematic-9: #fffdf4;
   --sematic-8: #effff5;
-  --sematic-7: #fff6f6;
+  --sematic-7: #14b5fb;
   --sematic-6: #ed4f9d;
   --sematic-5: #ffa23a;
   --sematic-4: #21d969;
@@ -110,6 +110,9 @@
 .neutral-5 {
   color: var(--neutral-5);
 }
+.neutral-6 {
+  color: var(--neutral-6);
+}
 .neutral-10 {
   color: var(--neutral-10);
 }
@@ -143,6 +146,9 @@
 .sematic-1 {
   color: var(--sematic-1);
 }
+.sematic-7 {
+  color: var(--sematic-7);
+}
 .main-color-primary {
   color: var(--main-color-primary);
 }
@@ -151,4 +157,7 @@
 }
 .dark-500 {
   color: var(--dark-500);
+}
+.sematic-7 {
+  color: var(--sematic-7);
 }

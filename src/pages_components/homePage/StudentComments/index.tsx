@@ -91,7 +91,11 @@ const StudentComments = () => {
     <div className={styles.studentCommentsPadding}>
       <div className={styles.studentCommentsWrapper}>
         <div className={styles.studentComments}>
-          <CarouselComponent numberItemShow={1} itemNumber={2}>
+          <CarouselComponent
+            numberItemShow={1}
+            itemNumber={2}
+            classButton={styles.studentCommentsButton}
+          >
             <OneComment />
             <OneComment />
           </CarouselComponent>

@@ -43,9 +43,23 @@ const Community = () => {
     <div className={styles.communityWrap}>
       <div className={styles.communityContainer}>
         <div className={styles.title}>
+          <Image
+            src="/svg/fish-left.svg"
+            alt="fish-right"
+            layout="fixed"
+            width={40}
+            height={48}
+          />
           <Text type="heading-h2" color="neutral-1" center>
             Cồng đồng tiếng nhật cùng Kosei
           </Text>
+          <Image
+            src="/images/fish-right.png"
+            alt="fish-right"
+            layout="fixed"
+            width={70}
+            height={52}
+          />
         </div>
 
         <Text

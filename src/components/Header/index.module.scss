@@ -6,10 +6,7 @@
 
 .container {
   align-items: center;
-  position: absolute;
   width: 100vw;
-  left: 0px;
-  top: 0px;
   z-index: 3;
   background: var(--neutral-10);
   @include defaultsize {

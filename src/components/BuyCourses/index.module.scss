@@ -1,0 +1,19 @@
+.form {
+  background: var(--background-3);
+  box-shadow: 0px 8px 10px 0px #14518929;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: -50px;
+  .price {
+    line-height: 40px;
+    text-decoration: line-through;
+  }
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button {
+    width: 100%;
+  }
+}

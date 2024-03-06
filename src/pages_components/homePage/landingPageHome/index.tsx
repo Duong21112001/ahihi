@@ -2,9 +2,6 @@ import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
-import Layout from "@/components/Layout";
-import { NextPageContext } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 
 const LandingPageHome = () => {

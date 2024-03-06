@@ -11,10 +11,13 @@ import { listCourse } from "./service";
 import PlaceholderBox from "@/components/placeholderBox";
 import classNames from "classnames";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const CourseCarousel = () => {
   const { t } = useTranslation("common");
   const [tabActive, setTabActive] = useState(0);
+  const router = useRouter();
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -30,7 +33,7 @@ const CourseCarousel = () => {
       items: 2,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 540, min: 0 },
       items: 1,
     },
   };
@@ -138,7 +141,12 @@ const CourseCarousel = () => {
               justContent="content-beetween"
               className={styles.buttons}
             >
-              <Button type="btn-blue-secondary">Xem chi tiết</Button>
+              <Button
+                type="btn-blue-secondary"
+                onClick={() => router.push("/course_detail")}
+              >
+                Xem chi tiết
+              </Button>
               <Button type="btn-blue">Mua ngay </Button>
             </Box>
           </div>

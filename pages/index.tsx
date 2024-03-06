@@ -1,25 +1,20 @@
-import Text from "@/components/Text";
-import Button from "@/components/Button";
-import TextInput from "@/components/TextInput";
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { NextPageWithLayout } from "./_app";
-import LandingPageHome from "@/pages_components/landingPageHome";
-import CourseCarousel from "@/pages_components/courseCarousel";
-import BannerRegister from "@/pages_components/BannerRegister";
-import Lecturers from "@/pages_components/Lecturers";
-import Community from "@/pages_components/Community";
-import Achievements from "@/pages_components/Achievements";
-import StudentComments from "@/pages_components/StudentComments";
-import FooterRegister from "@/pages_components/FooterRegister";
-import PlaceholderBox from "@/components/placeholderBox";
-import ListVideo from "@/pages_components/ListVideo";
+import LandingPageHome from "@/pages_components/homePage/landingPageHome";
+import CourseCarousel from "@/pages_components/homePage/courseCarousel";
+import BannerRegister from "@/pages_components/homePage/BannerRegister";
+import Lecturers from "@/pages_components/homePage/Lecturers";
+import Community from "@/pages_components/homePage/Community";
+import Achievements from "@/pages_components/homePage/Achievements";
+import StudentComments from "@/pages_components/homePage/StudentComments";
 import styles from "./page.module.scss";
-import DownloadApp from "@/pages_components/DownloadApp";
-import ChooseKosei from "@/pages_components/ChooseKosei";
+import DownloadApp from "@/pages_components/homePage/DownloadApp";
+import ChooseKosei from "@/pages_components/homePage/ChooseKosei";
+import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
 
 const Home: NextPageWithLayout = () => {
   const { t } = useTranslation("common");
@@ -34,6 +29,7 @@ const Home: NextPageWithLayout = () => {
       <Achievements />
       <StudentComments />
       <Community />
+      <DownloadAppFooter />
     </div>
   );
 };

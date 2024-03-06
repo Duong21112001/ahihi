@@ -1,6 +1,6 @@
 .LandingPage {
   width: 100%;
-  padding-top: 58%;
+  padding-top: 50%;
   position: relative;
   overflow: hidden;
 
@@ -32,7 +32,7 @@
   }
   .textContent {
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 10%;
     z-index: 1;
     .title {
@@ -55,7 +55,7 @@
   background-image: url("/images/landing-page-2.png");
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: -4%;
+  margin-top: 0;
   height: 180px;
   .infoWrap {
     display: flex;

@@ -1,0 +1,80 @@
+.LandingPageCourse {
+  width: 100%;
+  padding-top: 35%;
+  position: relative;
+  .LandingPageImage {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 100%;
+    padding-top: 35%;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      box-sizing: border-box;
+      padding: 0;
+      border: none;
+      margin: auto;
+      display: block;
+      width: 0;
+      height: 0;
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 100%;
+      max-height: 100%;
+    }
+  }
+  .cloud {
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+    z-index: 1;
+  }
+  .textContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+
+    .left {
+      width: calc(60% - 20px);
+      margin-right: 20px;
+      .breadcrumb {
+        margin-bottom: 48px;
+      }
+      .seeMore {
+        text-decoration: underline;
+        margin-bottom: 16px;
+      }
+      .infoCourse {
+        display: flex;
+        align-items: center;
+        .infoItem {
+          border-right: 2px solid var(--neutral-10);
+          padding: 0 16px;
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            border: none;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+    .right {
+      width: calc(40%);
+      margin-bottom: -50px;
+    }
+  }
+}

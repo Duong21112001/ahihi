@@ -1,0 +1,90 @@
+.loginWrap {
+  .loginContainer {
+    display: flex;
+    align-items: center;
+
+    .left {
+      width: 50%;
+      background-color: var(--background-2);
+      height: 100vh;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+    .right {
+      width: 50%;
+      display: grid;
+      align-items: center;
+      max-width: 600px;
+      .rightBackground {
+        padding-left: 56px;
+        .loginForm {
+          .loginFormItem {
+            margin-bottom: 16px;
+            .input {
+              background: var(--background-2);
+            }
+          }
+
+          //   input[type="checkbox"] {
+          //     accent-color: var(--sematic-2);
+          //     color: white;
+          //   }
+          .textCheckBox {
+            position: relative;
+            padding-left: 30px;
+          }
+          .textCheckBox:before {
+            content: "";
+            display: inline-block;
+
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            background-color: var(--sematic-2);
+            border-radius: 4px;
+          }
+          input[type="checkbox"] {
+            display: none;
+          }
+          input[type="checkbox"]:checked + .textCheckBox:before {
+            content: "\2713";
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            line-height: 12px;
+          }
+          button {
+            width: 100%;
+          }
+          .textBottom {
+            &::before {
+              content: "";
+              width: 100%;
+              border-bottom: 1px solid;
+            }
+          }
+          .faceBook {
+            margin-right: 12px;
+            width: calc(50% - 12px);
+            background: #1877f2;
+            height: 48px;
+            border-radius: 8px;
+            padding-left: 23px;
+          }
+          .google {
+            width: calc(50% - 12px);
+            background: #de4b39;
+            height: 48px;
+            border-radius: 8px;
+            padding-left: 23px;
+          }
+        }
+      }
+    }
+  }
+}

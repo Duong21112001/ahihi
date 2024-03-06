@@ -73,6 +73,8 @@ interface TextProps {
     | "dark-500"
     | "primary-base"
     | "primary-light"
+    | "neutral-6"
+    | "sematic-7"
     | undefined;
   disabled?: boolean;
   state?: null | "disable";

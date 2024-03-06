@@ -12,10 +12,8 @@
       position: relative;
       margin: 0 auto;
       margin-bottom: 10px;
-      img {
-        position: absolute;
-        right: -20px;
-        bottom: -20px;
+      p {
+        margin: 0 16px;
       }
     }
     .textContent {
@@ -74,12 +72,9 @@
     .communityContainer {
       .title {
         p {
-          font-size: 22px;
-          line-height: 32px;
+          margin: 0 5px;
         }
-        img {
-          width: 70px;
-        }
+
         @media screen and (max-width: 480px) {
           img {
             right: 0;

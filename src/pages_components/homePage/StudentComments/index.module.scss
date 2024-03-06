@@ -10,6 +10,11 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      .studentCommentsButton {
+        width: calc(50% - 80px);
+        justify-content: flex-end;
+        right: unset;
+      }
       @media screen and (max-width: 1200px) {
         padding: 0 20px;
       }
@@ -93,6 +98,12 @@
               border-radius: 20px;
             }
           }
+        }
+      }
+      .studentComments {
+        .studentCommentsButton {
+          width: 100%;
+          justify-content: center;
         }
       }
     }

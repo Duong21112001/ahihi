@@ -8,12 +8,14 @@ interface ButtonProps {
   children: React.ReactNode;
   numberItemShow: number;
   itemNumber: number;
+  classButton?: string;
 }
 
 const CarouselComponent: React.FC<ButtonProps> = ({
   children,
   numberItemShow,
   itemNumber,
+  classButton,
 }) => {
   const responsive = {
     superLargeDesktop: {
@@ -40,7 +42,7 @@ const CarouselComponent: React.FC<ButtonProps> = ({
     } = rest;
 
     return (
-      <div className="carousel-button-group">
+      <div className={classNames("carousel-button-group", classButton)}>
         <div
           className={
             currentSlide === 0

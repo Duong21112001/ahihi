@@ -1,0 +1,17 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  .text {
+    color: var(--neutral-5);
+  }
+  .textActive {
+    color: var(--neutral-10);
+  }
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background: var(--neutral-5);
+    margin: 0 8px;
+  }
+}
