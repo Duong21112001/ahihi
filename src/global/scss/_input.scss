@@ -47,14 +47,12 @@
 }
 .inputText {
   position: relative;
-  &.errors {
-    margin-bottom: 1.8em;
-  }
   .helperText {
     position: absolute;
     top: calc(100% + 0.3em);
     color: var(--sematic-1);
     font-size: 12px;
+    margin-top: 4px;
   }
 }
 .errorInput {

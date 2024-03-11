@@ -87,6 +87,7 @@ interface TextProps {
   marginAuto?: boolean;
   height?: number;
   overFlowHidden?: boolean;
+  cursorPoiter?: boolean;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -103,6 +104,7 @@ const Text: React.FC<TextProps> = ({
   marginAuto,
   height,
   overFlowHidden,
+  cursorPoiter,
 }) => {
   const classes = classNames(
     type,
@@ -112,6 +114,7 @@ const Text: React.FC<TextProps> = ({
       "center-text": center,
       "margin-auto": marginAuto,
       "over-flow-hidden": overFlowHidden,
+      "cursor-poiter": cursorPoiter,
     },
     className
   );

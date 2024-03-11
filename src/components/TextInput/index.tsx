@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import Text from "../Text";
 import Image from "next/image";
@@ -17,6 +17,7 @@ interface TextInputProps {
   iconPath?: string;
   widthIcon?: number;
   heightIcon?: number;
+  password?: boolean;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -33,11 +34,16 @@ const TextInput: React.FC<TextInputProps> = ({
   iconPath,
   widthIcon,
   heightIcon,
+  password,
 }) => {
   const { errors } = meta;
   const classes = classNames("text-input", [className], {
     errorInput: errors?.length > 0,
   });
+  const [isVisibleEye, setIsVisibleEye] = useState(false);
+  const handleToggleEyes = () => {
+    setIsVisibleEye(!isVisibleEye);
+  };
   return (
     <div
       onClick={onClick}
@@ -82,6 +88,7 @@ const TextInput: React.FC<TextInputProps> = ({
               onChange(e.target.value);
             }}
             placeholder={placeholder}
+            type={isVisibleEye ? "password" : "text"}
           />
         ) : (
           <textarea
@@ -97,18 +104,30 @@ const TextInput: React.FC<TextInputProps> = ({
             style={{ paddingTop: 16, minHeight: 86 }}
           />
         )}
-        {value && (
-          <Image
-            src="/svg/remove-circle.svg"
-            alt="remove-circle"
-            width={20}
-            height={20}
-            layout="fixed"
-            className="remove-input"
-            onClick={() => onChange("")}
-            style={type === "textarea" ? { top: 14 } : {}}
-          />
-        )}
+        {value &&
+          (password ? (
+            <Image
+              src={isVisibleEye ? "/svg/eye.svg" : "/svg/eye-disable.svg"}
+              alt="eyes"
+              width={20}
+              height={20}
+              layout="fixed"
+              className="remove-input"
+              onClick={handleToggleEyes}
+              style={type === "textarea" ? { top: 14 } : {}}
+            />
+          ) : (
+            <Image
+              src="/svg/remove-circle.svg"
+              alt="remove-circle"
+              width={20}
+              height={20}
+              layout="fixed"
+              className="remove-input"
+              onClick={() => onChange("")}
+              style={type === "textarea" ? { top: 14 } : {}}
+            />
+          ))}
       </div>
 
       {errors?.length > 0 && <p className="helperText">{errors[0]}</p>}

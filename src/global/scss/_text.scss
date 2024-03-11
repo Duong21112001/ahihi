@@ -288,6 +288,9 @@ $bold: 700;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.cursor-poiter {
+  cursor: pointer;
+}
 @media screen and (max-width: 768px) {
   .heading-h2 {
     font-size: 22px;

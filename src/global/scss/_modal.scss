@@ -1,7 +1,9 @@
 .rc-dialog {
   position: relative;
-  width: auto;
-  margin: 10px;
+  margin: 30px auto;
+}
+.rc-dialog-body {
+  text-align: center;
 }
 .rc-dialog-wrap {
   position: fixed;
@@ -46,7 +48,7 @@
   text-decoration: none;
 }
 .rc-dialog-close-x:after {
-  content: '';  
+  content: "";
 }
 .rc-dialog-close:hover {
   opacity: 1;
@@ -108,12 +110,7 @@
     transform: scale(0, 0);
   }
 }
-@media (min-width: 768px) {
-  .rc-dialog {
-    width: fit-content;
-    margin: 250px auto;
-  }
-}
+
 .rc-dialog-mask {
   position: fixed;
   top: 0;

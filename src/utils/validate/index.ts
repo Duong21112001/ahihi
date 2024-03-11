@@ -13,14 +13,15 @@ export const isEmail = (value: any) => {
   );
 };
 export const isPassword = (value: any) => {
-  return /^(?=.*?[A-Z])(?=.*?[a-z]).{8,16}$/.test(value);
+  console.log("value", value);
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.{6,})/.test(value);
 };
 export const validatePhone = (t: any) => {
   return {
     validator: async (rule: any, value: any) => {
       if (value) {
         if (!isPhoneNumber(value)) {
-          throw new Error(t("invalid_phone"));
+          throw new Error(t("Số điện thoại không hợp lệ"));
         }
       }
       return Promise.resolve();
@@ -32,7 +33,7 @@ export const validateEmail = (t: any) => {
     validator: async (rule: any, value: any) => {
       if (value) {
         if (!isEmail(value)) {
-          throw new Error(t("invalid_email"));
+          throw new Error(t("Email không hợp lệ. Vui lòng thử lại"));
         }
       }
       return Promise.resolve();
@@ -41,22 +42,24 @@ export const validateEmail = (t: any) => {
 };
 export const validatePassword = (t: any) => {
   return {
-    validator: async (value: any) => {
+    validator: async (rule: any, value: any) => {
       if (value) {
+        console.log("aa", isPassword(value));
         if (!isPassword(value)) {
-          throw new Error(t("invalid_password"));
+          throw new Error(t("Sai định dạng"));
         }
       }
       return Promise.resolve();
     },
   };
 };
-export const validateConfirmPassword = (form: any, t: any) => {
+export const validateConfirmPassword = (form: any, name: string, t: any) => {
   return {
     validator: async (rule: any, value: any) => {
+      const password = form.getFieldValue(name);
       if (value) {
-        if (value !== form.getFieldValue("new_password")) {
-          throw new Error(t("password_not_match"));
+        if (value !== password) {
+          throw new Error("Mật khẩu không trùng nhau. Vui lòng thử lại");
         }
         return Promise.resolve();
       }
