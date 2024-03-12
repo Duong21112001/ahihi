@@ -221,6 +221,7 @@ const Footer = () => {
                   width={36}
                   height={24}
                   style={{ marginRight: 10 }}
+                  key={card}
                 />
               );
             })}

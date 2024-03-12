@@ -10,7 +10,7 @@ import CheckBox from "@/components/CheckBox";
 import Radio from "@/components/Radio";
 import { useState } from "react";
 import { RegisterParam } from "@/utils/model/register";
-import { register } from "./service";
+import { register } from "../../src/service/register";
 import { useRequest } from "@umijs/hooks";
 import {
   validateConfirmPassword,
@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
 
-const registerForm = () => {
+const RegisterForm = () => {
   const { t } = useTranslation("common");
   const [gender, setGender] = useState<string | null>(null);
   const [form] = Form.useForm();
@@ -42,7 +42,7 @@ const registerForm = () => {
             content="Tài khoản đã đăng ký thành công"
           />
         );
-        router.push("/");
+        router.push("/login");
       }
       console.log("result", result);
       return result;
@@ -409,9 +409,9 @@ const registerForm = () => {
   );
 };
 
-export default registerForm;
+export default RegisterForm;
 
-registerForm.getLayout = function getLayout(page: React.ReactElement) {
+RegisterForm.getLayout = function getLayout(page: React.ReactElement) {
   return <LayoutAuth>{page}</LayoutAuth>;
 };
 

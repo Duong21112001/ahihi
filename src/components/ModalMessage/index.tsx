@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useState } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import Dialog from "rc-dialog";
 import "rc-dialog/assets/index.css";
 import Text from "../Text";
@@ -36,7 +36,6 @@ const ModalMessage = React.forwardRef<PopUpRef, ModalProps>((props, ref) => {
     titleBack,
     img,
     routerBack,
-    ...rest
   } = props;
   const [visible, setVisible] = useState(false);
   const open = () => {
@@ -98,5 +97,5 @@ const ModalMessage = React.forwardRef<PopUpRef, ModalProps>((props, ref) => {
     </Dialog>
   );
 });
-
+ModalMessage.displayName = "ModalMessage";
 export default ModalMessage;

@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import Image from "next/image";
+import { deleteCookie } from "cookies-next";
 
 const LandingPageHome = () => {
   const { t } = useTranslation("common");
@@ -57,7 +58,12 @@ const LandingPageHome = () => {
             iaculis.
           </Text>
           <div className={styles.buttons}>
-            <Button type="btn-primary">Đăng ký ngay!</Button>
+            <Button
+              type="btn-primary"
+              // onClick={() => deleteCookie("kosei-token")}
+            >
+              Đăng ký ngay!
+            </Button>
           </div>
         </div>
       </div>
@@ -65,7 +71,7 @@ const LandingPageHome = () => {
         <div className={styles.infoWrap}>
           {infos.map((info) => {
             return (
-              <div className={styles.info}>
+              <div className={styles.info} key={info.label}>
                 <Image
                   src={info.icon}
                   alt="logo"

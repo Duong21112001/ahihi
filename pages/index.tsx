@@ -18,6 +18,8 @@ import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
 
 const Home: NextPageWithLayout = () => {
   const { t } = useTranslation("common");
+  // deleteCookie("kosei-token");
+
   return (
     <div className={styles.homePageContainer}>
       <LandingPageHome />

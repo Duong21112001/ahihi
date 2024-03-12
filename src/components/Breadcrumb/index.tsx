@@ -23,7 +23,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
     <div className={classes}>
       {breadcrumbs.map((breadcrumb, index) => {
         return (
-          <Box flex agileItem="agile-center">
+          <Box flex agileItem="agile-center" key={breadcrumb.label}>
             <Link href={breadcrumb.link}>
               <Text
                 className={

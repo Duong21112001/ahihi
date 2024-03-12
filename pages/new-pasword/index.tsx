@@ -20,7 +20,7 @@ import {
   ForgotPasswordParam,
   NewPasswordParam,
 } from "@/utils/model/forgotPassword";
-import { newPassword } from "./service";
+import { newPassword } from "../../src/service/newPassword";
 import { useSearchParams } from "next/navigation";
 import ModalMessage, { PopUpRef } from "@/components/ModalMessage";
 import { toast } from "react-toastify";

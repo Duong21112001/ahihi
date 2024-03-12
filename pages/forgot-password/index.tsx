@@ -14,7 +14,7 @@ import Image from "next/image";
 import { validateEmail } from "@/utils/validate";
 import { useRouter } from "next/router";
 import { useRequest } from "@umijs/hooks";
-import { forgotPassword } from "./service";
+import { forgotPassword } from "../../src/service/forgotPassword";
 import { ForgotPasswordParam } from "@/utils/model/forgotPassword";
 
 const ForgotPasswordForm = () => {

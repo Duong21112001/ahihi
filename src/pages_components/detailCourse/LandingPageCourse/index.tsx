@@ -82,7 +82,7 @@ const LandingPageCourse = () => {
           </Text>
           <Box flex agileItem="agile-center" bottom={16}>
             <Box flex agileItem="agile-center">
-              {[...Array(5)].map(() => {
+              {[...Array(5)].map((value) => {
                 return (
                   <Image
                     src="/svg/rating.svg"
@@ -91,6 +91,7 @@ const LandingPageCourse = () => {
                     width={35}
                     height={35}
                     style={{ marginRight: 4 }}
+                    key={`rating-${value}`}
                   />
                 );
               })}

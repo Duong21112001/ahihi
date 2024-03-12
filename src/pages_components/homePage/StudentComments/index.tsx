@@ -32,9 +32,9 @@ const StudentComments = () => {
             </Text>
             <div className={styles.boxRating}>
               <div className={styles.rating}>
-                {[...Array(5)].map(() => {
+                {[...Array(5)].map((value) => {
                   return (
-                    <div>
+                    <div key={`rating-${value}`}>
                       <Image
                         src="/svg/rating.svg"
                         alt="rating"

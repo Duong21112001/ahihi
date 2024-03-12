@@ -65,7 +65,7 @@ const CourseCarousel = () => {
             </Text>
             <Box flex agileItem="agile-center" className={styles.rate}>
               <Box flex right={10} className={styles.rateIcon}>
-                {[...Array(4)].map(() => {
+                {[...Array(4)].map((value) => {
                   return (
                     <Image
                       src="/svg/rating.svg"
@@ -74,10 +74,11 @@ const CourseCarousel = () => {
                       width={20}
                       height={20}
                       style={{ marginRight: 2 }}
+                      key={`rating-${value}`}
                     />
                   );
                 })}
-                {[...Array(1)].map(() => {
+                {[...Array(1)].map((value) => {
                   return (
                     <Image
                       src="/svg/rating.svg"
@@ -86,6 +87,7 @@ const CourseCarousel = () => {
                       width={20}
                       height={20}
                       style={{ marginRight: 2 }}
+                      key={`un-rating-${value}`}
                     />
                   );
                 })}

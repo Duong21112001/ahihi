@@ -8,7 +8,7 @@ import Image from "next/image";
 import Box from "@/components/Box";
 import CheckBox from "@/components/CheckBox";
 import { useRequest } from "@umijs/hooks";
-import { login } from "./service";
+import { login } from "../../src/service/login";
 import { LoginParam } from "@/utils/model/login";
 import { useState } from "react";
 import { NextPageContext } from "next";
@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
 import { validateEmail } from "@/utils/validate";
+import { setCookie } from "cookies-next";
 
 const LoginForm = () => {
   const { t } = useTranslation("common");
@@ -33,7 +34,11 @@ const LoginForm = () => {
         );
       }
       if (result?.code === 200) {
-        router.replace("/");
+        const token = result?.data?.[0]?.user?.token;
+        if (token) {
+          setCookie("kosei-token", token);
+          router.replace("/");
+        }
       }
       return result;
     },
