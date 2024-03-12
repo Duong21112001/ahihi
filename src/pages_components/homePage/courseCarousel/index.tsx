@@ -145,7 +145,7 @@ const CourseCarousel = () => {
             >
               <Button
                 type="btn-blue-secondary"
-                onClick={() => router.push("/course_detail")}
+                onClick={() => router.push("/course-detail")}
               >
                 Xem chi tiết
               </Button>

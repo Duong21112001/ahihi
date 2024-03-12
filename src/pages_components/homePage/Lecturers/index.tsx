@@ -9,8 +9,8 @@ import { useRequest } from "@umijs/hooks";
 import { listTeacher } from "./service";
 import PlaceholderBox from "@/components/placeholderBox";
 import { IlistTeacher } from "@/utils/model/teacher";
-import Slider from "react-slick";
 import Button from "@/components/Button";
+import Slider from "react-slick";
 
 const Lecturers = () => {
   const { loading, data } = useRequest(

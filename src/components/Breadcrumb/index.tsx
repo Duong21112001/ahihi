@@ -4,6 +4,7 @@ import Text from "../Text";
 import styles from "./index.module.scss";
 import Link from "next/link";
 import Box from "../Box";
+import Image from "next/image";
 
 interface LinkProps {
   label: string;
@@ -21,26 +22,39 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const classes = classNames(className, styles.breadcrumb);
   return (
     <div className={classes}>
-      {breadcrumbs.map((breadcrumb, index) => {
-        return (
-          <Box flex agileItem="agile-center" key={breadcrumb.label}>
-            <Link href={breadcrumb.link}>
-              <Text
-                className={
-                  index + 1 === breadcrumbs.length
-                    ? styles.textActive
-                    : styles.text
-                }
-                key={breadcrumb.label}
-                type="body-14-regular"
-              >
-                {breadcrumb.label}
-              </Text>
-            </Link>
-            {index + 1 !== breadcrumbs.length && <div className={styles.dot} />}
-          </Box>
-        );
-      })}
+      <div className={styles.breadcrumbContainer}>
+        {breadcrumbs.map((breadcrumb, index) => {
+          return (
+            <Box flex agileItem="agile-center" key={breadcrumb.label}>
+              <Link href={breadcrumb.link}>
+                <Text
+                  key={breadcrumb.label}
+                  type="body-14-regular"
+                  color="neutral-10"
+                >
+                  {breadcrumb.label}
+                </Text>
+              </Link>
+              {index + 1 !== breadcrumbs.length && (
+                <Box
+                  width={24}
+                  flex
+                  agileItem="agile-center"
+                  justContent="content-center"
+                >
+                  <Image
+                    src="/svg/caret-right-active.svg"
+                    alt="rating"
+                    layout="fixed"
+                    width={11}
+                    height={11}
+                  />
+                </Box>
+              )}
+            </Box>
+          );
+        })}
+      </div>
     </div>
   );
 };

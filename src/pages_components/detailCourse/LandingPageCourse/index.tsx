@@ -22,34 +22,23 @@ const LandingPageCourse = () => {
       value: "5.7K",
     },
   ];
-  const breadcrumb = [
-    {
-      label: "Khoá học",
-      link: "/",
-    },
-    {
-      label: "Khoá học N5",
-      link: "/course_detail",
-    },
-  ];
 
   return (
     <div className={styles.LandingPageCourse}>
       <div className={styles.LandingPageImage}>
         <img src="/Images/landing-page-course.png" />
       </div>
-      <img
-        src="/images/cloud-right.png"
-        alt="cloud-right"
-        className={styles.cloud}
-        width={200}
-      />
-      <div className={styles.textContent}>
-        <div className={styles.left}>
-          <div className={styles.breadcrumb}>
-            <Breadcrumb breadcrumbs={breadcrumb} />
-          </div>
 
+      <div className={styles.content}>
+        <img
+          src="/images/mascot.png"
+          alt="mascot"
+          className={styles.mascot}
+          width={200}
+        />
+      </div>
+      {/* <div className={styles.textContent}>
+        <div className={styles.left}>
           <Text
             className={styles.title}
             type="heading-h1"
@@ -118,7 +107,7 @@ const LandingPageCourse = () => {
         <div className={styles.right}>
           <BuyCourses />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
