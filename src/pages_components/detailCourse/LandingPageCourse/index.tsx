@@ -11,7 +11,7 @@ const LandingPageCourse = ({ course }: LandingPageProps) => {
   return (
     <div className={styles.LandingPageCourse}>
       <div className={styles.LandingPageImage}>
-        <img src="/Images/landing-page-course.png" alt="landing-page-course" />
+        <img src="/images/landing-page-course.png" alt="landing-page-course" />
       </div>
 
       <div className={styles.contentWrap}>
