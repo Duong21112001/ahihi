@@ -10,7 +10,7 @@ import { listTeacher } from "./service";
 import PlaceholderBox from "@/components/placeholderBox";
 import { IlistTeacher } from "@/utils/model/teacher";
 import Button from "@/components/Button";
-import Slider from "react-slick";
+import classNames from "classnames";
 
 const Lecturers = () => {
   const { loading, data } = useRequest(
@@ -22,6 +22,25 @@ const Lecturers = () => {
       onError: () => {},
     }
   );
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 3,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 769 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 480 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 540, min: 0 },
+      items: 1,
+    },
+  };
 
   const Lecturer = ({
     teacher,
@@ -86,14 +105,14 @@ const Lecturers = () => {
     );
   };
 
-  const ref: any = useRef({});
+  // const ref = useRef(null);
 
   const next = () => {
-    ref.current.slickNext();
+    // ref?.current?.
   };
 
   const previous = () => {
-    ref.current.slickPrev();
+    // ref?.current?.slickPrev();
   };
 
   const settings = {
@@ -151,12 +170,12 @@ const Lecturers = () => {
             tempus felis vitae sit est quisque.
           </Text>
           <div>
-            <Slider
+            {/* <Slider
               ref={ref}
               {...settings}
               className="slider-lecturer"
               initialSlide={2}
-              // dotsClass="dotsClass-lecturer"
+              dotsClass="dotsClass-lecturer"
               nextArrow={
                 <div onClick={next} className={styles.lecturersArrowsRight}>
                   <Image
@@ -195,7 +214,44 @@ const Lecturers = () => {
                   );
                 }
               )}
-            </Slider>
+            </Slider> */}
+            <Carousel
+              responsive={responsive}
+              showDots={false}
+              containerClass={classNames(
+                "container-class-course",
+                styles.carousel
+              )}
+              centerMode={false}
+              renderArrowsWhenDisabled={true}
+              arrows={true}
+            >
+              {/* {!loading &&
+                data?.map((teacher: IlistTeacher, index: number) => {
+                  return (
+                    <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
+                      <PlaceholderBox loading={loading}>
+                        {!loading && (
+                          <Lecturer active={false} teacher={teacher} />
+                        )}
+                      </PlaceholderBox>
+                    </div>
+                  );
+                })} */}
+              {(loading ? [...Array(3)] : data)?.map(
+                (teacher: IlistTeacher, index: number) => {
+                  return (
+                    <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
+                      <PlaceholderBox loading={loading}>
+                        {!loading && (
+                          <Lecturer active={false} teacher={teacher} />
+                        )}
+                      </PlaceholderBox>
+                    </div>
+                  );
+                }
+              )}
+            </Carousel>
           </div>
         </div>
       </div>

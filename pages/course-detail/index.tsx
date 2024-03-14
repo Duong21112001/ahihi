@@ -5,8 +5,41 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import LandingPageCourse from "@/pages_components/detailCourse/LandingPageCourse";
 import styles from "./index.module.scss";
 import Breadcrumb from "@/components/Breadcrumb";
+import ContentCourse from "@/pages_components/detailCourse/contentCourse";
+import CourseCarousel from "@/pages_components/homePage/courseCarousel";
+import CourseCarouselComponent from "@/pages_components/component/carouselCourseComponent";
+import Text from "@/components/Text";
+import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
+import { useParams, useSearchParams } from "next/navigation";
+import { useRequest } from "@umijs/hooks";
+import { getCourseId } from "@/service/course";
+import { Course } from "@/utils/model/courses";
+import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
 
 const CourseDetail = () => {
+  const params = useSearchParams();
+  const id = params.get("id");
+  const { loading, data }: { loading: boolean; data: Course } = useRequest(
+    async () => {
+      if (id) {
+        const result = await getCourseId(id);
+        return result;
+      }
+    },
+    {
+      onError: () => {},
+    }
+  );
+  const { loading: loadingListCourse, data: dataListCourse } = useRequest(
+    async () => {
+      const result = await listCourse();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
+
   const breadcrumb = [
     {
       label: "Trang chủ",
@@ -21,13 +54,29 @@ const CourseDetail = () => {
       link: "/course_detail",
     },
   ];
+  console.log("data", data);
+
   return (
-    <div>
+    <div className={styles.courseDetailWrap}>
       <div className={styles.breadcrumb}>
         <Breadcrumb breadcrumbs={breadcrumb} />
       </div>
-      <LandingPageCourse />
-      <div style={{ width: "100%", height: 500 }}></div>
+      <LandingPageCourse course={data} />
+      <div className={styles.contentCourseWrap}>
+        <div className={styles.contentCourseContainer}>
+          <ContentCourse course={data} />
+        </div>
+      </div>
+      <div className={styles.courseCarousel}>
+        <Text type="title-40-bold" color="neutral-1" bottom={48}>
+          Khoá học liên quan
+        </Text>
+        <CourseCarouselComponent
+          dataCarousel={dataListCourse}
+          loading={loadingListCourse}
+        />
+      </div>
+      <DownloadAppFooter />
     </div>
   );
 };

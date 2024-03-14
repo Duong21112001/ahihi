@@ -3,6 +3,7 @@ import Text from "../Text";
 import styles from "./index.module.scss";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
 
 const Footer = () => {
   const { t } = useTranslation(["footer"]);
@@ -147,114 +148,116 @@ const Footer = () => {
   ];
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <div className={styles.top}>
-          <div className={styles.contact}>
-            <Image
-              src="/images/kosei-logo-footer.png"
-              alt="logo"
-              layout="fixed"
-              width={128}
-              height={128}
-            />
-            <div className={styles.icons}>
-              {contacts?.map((contact) => {
+    <>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.top}>
+            <div className={styles.contact}>
+              <Image
+                src="/images/kosei-logo-footer.png"
+                alt="logo"
+                layout="fixed"
+                width={128}
+                height={128}
+              />
+              <div className={styles.icons}>
+                {contacts?.map((contact) => {
+                  return (
+                    <div key={contact.label} className={styles.iconItem}>
+                      <Image
+                        src={contact.icon}
+                        alt={contact.label}
+                        layout="fixed"
+                        width={24}
+                        height={24}
+                        style={{ marginRight: 10 }}
+                      />
+                      <Text type="body-16-regular" color="neutral-10">
+                        {contact.label}
+                      </Text>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className={styles.menu}>
+              {menuFooter.map((item) => {
                 return (
-                  <div key={contact.label} className={styles.iconItem}>
-                    <Image
-                      src={contact.icon}
-                      alt={contact.label}
-                      layout="fixed"
-                      width={24}
-                      height={24}
-                      style={{ marginRight: 10 }}
-                    />
-                    <Text type="body-16-regular" color="neutral-10">
-                      {contact.label}
+                  <div className={styles.menuItem} key={item.title}>
+                    <Text
+                      type="title-18-bold"
+                      color="neutral-10"
+                      bottom={20}
+                      className={styles.menuText}
+                    >
+                      {item.title}
                     </Text>
+                    <div>
+                      {item.menu.map((menuItem) => {
+                        return (
+                          <Link href={menuItem.link} key={menuItem.link}>
+                            <Text
+                              type="body-16-regular"
+                              color="neutral-10"
+                              bottom={16}
+                            >
+                              {menuItem.label}
+                            </Text>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
-          <div className={styles.menu}>
-            {menuFooter.map((item) => {
-              return (
-                <div className={styles.menuItem} key={item.title}>
-                  <Text
-                    type="title-18-bold"
-                    color="neutral-10"
-                    bottom={20}
-                    className={styles.menuText}
-                  >
-                    {item.title}
-                  </Text>
-                  <div>
-                    {item.menu.map((menuItem) => {
-                      return (
-                        <Link href={menuItem.link} key={menuItem.link}>
-                          <Text
-                            type="body-16-regular"
-                            color="neutral-10"
-                            bottom={16}
-                          >
-                            {menuItem.label}
-                          </Text>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className={styles.bottom}>
-          <div className={styles.cardImage}>
-            {cards.map((card) => {
-              return (
-                <Image
-                  src={card}
-                  alt={card}
-                  layout="fixed"
-                  width={36}
-                  height={24}
-                  style={{ marginRight: 10 }}
-                  key={card}
-                />
-              );
-            })}
-          </div>
-          <Text
-            type="body-16-regular"
-            color="neutral-10"
-            className={styles.TextFooter}
-          >
-            ©2023 Kosei All Rights are reserved️
-          </Text>
-          <div className={styles.socialWrap}>
-            {socials.map((social) => {
-              return (
-                <Link
-                  href={social.link}
-                  key={social.link}
-                  className={styles.social}
-                >
+          <div className={styles.bottom}>
+            <div className={styles.cardImage}>
+              {cards.map((card) => {
+                return (
                   <Image
-                    src={social.icon}
-                    alt={social.icon}
+                    src={card}
+                    alt={card}
                     layout="fixed"
-                    width={20}
-                    height={20}
+                    width={36}
+                    height={24}
+                    style={{ marginRight: 10 }}
+                    key={card}
                   />
-                </Link>
-              );
-            })}
+                );
+              })}
+            </div>
+            <Text
+              type="body-16-regular"
+              color="neutral-10"
+              className={styles.TextFooter}
+            >
+              ©2023 Kosei All Rights are reserved️
+            </Text>
+            <div className={styles.socialWrap}>
+              {socials.map((social) => {
+                return (
+                  <Link
+                    href={social.link}
+                    key={social.link}
+                    className={styles.social}
+                  >
+                    <Image
+                      src={social.icon}
+                      alt={social.icon}
+                      layout="fixed"
+                      width={20}
+                      height={20}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,20 @@
+.courseDetailWrap {
+  background: url(/images/bg-detail-course.png), var(--background-3);
+  background-repeat: no-repeat;
+  background-position: top right;
+  .contentCourseWrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px;
+    .contentCourseContainer {
+      width: calc(100% - 390px);
+    }
+  }
+  .courseCarousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    padding-bottom: 145px;
+  }
+}

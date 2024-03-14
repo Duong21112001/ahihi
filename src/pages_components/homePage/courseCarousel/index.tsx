@@ -12,31 +12,12 @@ import PlaceholderBox from "@/components/placeholderBox";
 import classNames from "classnames";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import CourseCarouselComponent from "@/pages_components/component/carouselCourseComponent";
 
 const CourseCarousel = () => {
   const { t } = useTranslation("common");
   const [tabActive, setTabActive] = useState(0);
   const router = useRouter();
-
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 3,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 769 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 768, min: 480 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 540, min: 0 },
-      items: 1,
-    },
-  };
   const { loading, data } = useRequest(
     async () => {
       const result = await listCourse();
@@ -46,116 +27,6 @@ const CourseCarousel = () => {
       onError: () => {},
     }
   );
-  const Course = () => {
-    return (
-      <div className={styles.coursePadding}>
-        <div className={styles.courseWrap}>
-          <img
-            src="/images/course.png"
-            className={styles.images}
-            alt="course"
-          />
-          <div className={styles.courseContent}>
-            <Text
-              type="title-24-bold"
-              color="neutral-1"
-              className={styles.courseTitle}
-            >
-              KHÓA HỌC TIẾNG NHẬT QUYẾT CHIẾN N2
-            </Text>
-            <Box flex agileItem="agile-center" className={styles.rate}>
-              <Box flex right={10} className={styles.rateIcon}>
-                {[...Array(4)].map((value) => {
-                  return (
-                    <Image
-                      src="/svg/rating.svg"
-                      alt="rating"
-                      layout="fixed"
-                      width={20}
-                      height={20}
-                      style={{ marginRight: 2 }}
-                      key={`rating-${value}`}
-                    />
-                  );
-                })}
-                {[...Array(1)].map((value) => {
-                  return (
-                    <Image
-                      src="/svg/rating.svg"
-                      alt="rating"
-                      layout="fixed"
-                      width={20}
-                      height={20}
-                      style={{ marginRight: 2 }}
-                      key={`un-rating-${value}`}
-                    />
-                  );
-                })}
-              </Box>
-              <Text type="body-16-regular" color="dark-500">
-                4.8 (120 đánh giá)
-              </Text>
-            </Box>
-            <Box
-              flex
-              agileItem="agile-center"
-              justContent="content-beetween"
-              className={styles.infoCourse}
-            >
-              <Box
-                flex
-                agileItem="agile-center"
-                className={styles.infoCourseTime}
-              >
-                <Image
-                  src="/svg/clock-circle.svg"
-                  alt="clock-circle"
-                  layout="fixed"
-                  width={29}
-                  height={29}
-                  style={{ marginRight: 10 }}
-                />
-                <Text type="body-14-medium" color="neutral-1">
-                  40 - 55 buổi
-                </Text>
-              </Box>
-              <Box
-                flex
-                agileItem="agile-center"
-                className={styles.infoCourseTime}
-              >
-                <Image
-                  src="/svg/calendar.svg"
-                  alt="calendar"
-                  layout="fixed"
-                  width={29}
-                  height={29}
-                  style={{ marginRight: 10 }}
-                />
-                <Text type="body-14-medium" color="neutral-1">
-                  20-06-2023
-                </Text>
-              </Box>
-            </Box>
-            <Box
-              flex
-              agileItem="agile-center"
-              justContent="content-beetween"
-              className={styles.buttons}
-            >
-              <Button
-                type="btn-blue-secondary"
-                onClick={() => router.push("/course-detail")}
-              >
-                Xem chi tiết
-              </Button>
-              <Button type="btn-blue">Mua ngay </Button>
-            </Box>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   const tabs = [
     {
@@ -201,26 +72,7 @@ const CourseCarousel = () => {
             })}
           </div>
 
-          <Carousel
-            responsive={responsive}
-            showDots={false}
-            containerClass={classNames(
-              "container-class-course",
-              styles.containerClassCourse
-            )}
-            centerMode={false}
-            renderArrowsWhenDisabled={true}
-          >
-            <PlaceholderBox loading={loading}>
-              <Course />
-            </PlaceholderBox>
-            <PlaceholderBox loading={loading}>
-              <Course />
-            </PlaceholderBox>
-            <PlaceholderBox loading={loading}>
-              <Course />
-            </PlaceholderBox>
-          </Carousel>
+          <CourseCarouselComponent dataCarousel={data} loading={loading} />
         </div>
       </div>
     </div>

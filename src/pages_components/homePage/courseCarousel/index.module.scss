@@ -1,42 +1,8 @@
-.coursePadding {
-  padding: 20px;
-  .courseWrap {
-    border-radius: 12px;
-    box-shadow: 0px 8px 10px 0px #14518929;
-    padding-bottom: 12px;
-    background: var(--background-3);
-
-    .images {
-      border-bottom: 1px solid var(--neutral-4);
-      width: 100%;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
-    .courseContent {
-      padding: 18px 16px 0px 16px;
-      .courseTitle {
-        margin-bottom: 8px;
-      }
-      .infoCourse {
-        margin-bottom: 32px;
-      }
-      .buttons {
-        button {
-          width: calc(50% - 6px);
-        }
-      }
-    }
-    .rate {
-      margin-bottom: 16px;
-    }
-  }
-}
 .containerClass {
   height: unset;
   width: calc(100% - 80px);
   margin: 0 auto;
   overflow: hidden;
-  // position: static;
   .react-multiple-carousel__arrow--right {
     right: 0;
   }
@@ -79,15 +45,6 @@
 @media screen and (max-width: 1024px) {
   .courseCarouselPadding {
     padding-bottom: 80px;
-    p,
-    button {
-      font-size: 14px;
-      line-height: 20px;
-    }
-    button {
-      height: 50px;
-      width: 140px;
-    }
 
     .courseCarouselWrap {
       padding: 20px 0;
@@ -100,37 +57,6 @@
           font-size: 22px;
           line-height: 30px;
           margin-bottom: 40px;
-        }
-        .courseTitle {
-          font-size: 16px;
-          line-height: 20px;
-          margin-bottom: 10px;
-        }
-        .rate {
-          flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 10px;
-          .rateIcon {
-            margin-bottom: 10px;
-            margin-right: 0;
-          }
-        }
-        .infoCourse {
-          flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 20px;
-          .infoCourseTime {
-            img {
-              width: 20px;
-              height: 20px;
-            }
-            &:first-child {
-              margin-bottom: 5px;
-            }
-          }
-        }
-        .containerClassCourse {
-          width: calc(100% - 80px);
         }
       }
     }
@@ -156,23 +82,6 @@
               padding: 0 5px;
             }
           }
-        }
-        .courseTitle {
-          font-size: 14px;
-          line-height: 20px;
-          margin-bottom: 10px;
-        }
-        .rate {
-          flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 10px;
-          .rateIcon {
-            margin-bottom: 10px;
-            margin-right: 0;
-          }
-        }
-        .coursePadding {
-          padding: 10px;
         }
       }
     }

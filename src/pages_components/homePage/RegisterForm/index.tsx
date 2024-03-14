@@ -177,10 +177,7 @@ const RegisterForm = () => {
             </Field>
           </div>
         </div>
-        <Text type="tag-12-semibold" color="tint-primary-3" bottom={24}>
-          Gửi thông tin quý khách chú ý: (*) Vui lòng điền đầy đủ thông tin để
-          chúng tôi có thể hỗ trợ tốt nhất
-        </Text>
+
         <div>
           <Field>
             {() => {

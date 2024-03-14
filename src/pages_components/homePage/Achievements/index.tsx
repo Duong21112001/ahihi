@@ -11,7 +11,7 @@ const Achievements = () => {
       <div className={styles.oneAchievementsPadding}>
         <div className={styles.oneAchievements}>
           <div className={styles.img}>
-            <img src="/images/achievements.png" />
+            <img src="/images/achievements.png" alt="achievements" />
             <div className={styles.zoomOut}>
               <Image
                 src="/svg/zoom-out.svg"

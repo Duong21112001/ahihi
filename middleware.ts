@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const AUTH_PATH: any = { "/login": true, "/forgot-password": true };
 
-const PATH: any = ["/"];
+const PATH: any = ["/payment"];
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("kosei-token");
@@ -23,14 +23,14 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // if (!token && isMatchPath) {
-  //   url.pathname = "/login";
-  //   return NextResponse.redirect(url);
-  // }
+  if (!token && isMatchPath) {
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
+  }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/", "/login"],
+  matcher: ["/", "/login", "/payment"],
 };

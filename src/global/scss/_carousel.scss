@@ -58,10 +58,10 @@
 }
 .container-class-course {
   height: unset;
-  width: calc(100% - 120px);
+  width: calc(100% - 150px);
   margin: 0 auto;
-  overflow: hidden;
   position: static !important;
+  // overflow: visible !important;
   .react-multiple-carousel__arrow {
     background: #4a556866;
   }
@@ -72,6 +72,7 @@
     left: 20px;
   }
   @media screen and (max-width: 1024px) {
+    width: calc(100% - 50px);
     .react-multiple-carousel__arrow--right {
       right: 20px;
       width: 20px;

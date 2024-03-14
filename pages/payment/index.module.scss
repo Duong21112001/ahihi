@@ -1,0 +1,101 @@
+.payMentWrap {
+  position: relative;
+  .cloudSunRight {
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+  }
+  .cloudSunLeft {
+    position: absolute;
+    top: 212px;
+    left: 0;
+  }
+  .payMentContainer {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 20px;
+    .title {
+      padding: 48px 0;
+    }
+    .about {
+      border: 1px solid var(--neutral-6);
+      position: relative;
+      margin-bottom: 48px;
+      border-radius: 12px;
+      .border {
+        height: 100%;
+        width: 16px;
+        position: absolute;
+        background: linear-gradient(135deg, #64c590 0%, #40a76f 100%);
+        left: 0;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+      }
+      .aboutPadding {
+        padding: 24px 10px 24px 52px;
+      }
+    }
+    .paymentForm {
+      margin-bottom: 360px;
+      .paymentFormItem {
+        margin-bottom: 24px;
+        input,
+        textarea,
+        .selectPayment {
+          background: var(--background-2);
+        }
+        .note {
+          height: 200px;
+        }
+        .buttonRight {
+          width: 106px;
+          height: 56px;
+          display: grid;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background: #0f5faf;
+          border: none;
+          border-top-right-radius: 12px;
+          border-bottom-right-radius: 12px;
+          cursor: pointer;
+          &:disabled {
+            background: var(--neutral-6);
+          }
+        }
+      }
+      .button {
+        width: 100%;
+      }
+    }
+    .directPayment {
+      margin-bottom: 24px;
+      .directPaymentPading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .item {
+          width: calc(50% - 10px);
+          background: var(--neutral-9);
+          padding: 16px 24px;
+          border-radius: 8px;
+        }
+      }
+    }
+    .bankPayment {
+      margin-bottom: 24px;
+      .item {
+        margin-bottom: 24px;
+      }
+      .notWrap {
+        background: var(--sematic-10);
+        padding: 16px 24px;
+        border: 1px dashed #87afd7;
+        border-radius: 8px;
+      }
+    }
+  }
+}

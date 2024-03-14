@@ -197,11 +197,11 @@
 .rc-select-dropdown {
   border: 1px solid var(--gray-3);
   border-radius: 8px;
-  min-height: 100px;
   position: absolute;
   background: #fff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   z-index: 2;
+  padding: 10px 0;
 }
 
 .rc-select-dropdown-hidden {
@@ -247,6 +247,7 @@
 }
 .rc-select-item-option-active .rc-select-item-option-content {
   background: var(--gray-3);
+  color: var(--main-color-primary);
 }
 
 .rc-select-item-option-disabled {

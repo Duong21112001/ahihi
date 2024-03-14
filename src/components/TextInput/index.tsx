@@ -18,6 +18,7 @@ interface TextInputProps {
   widthIcon?: number;
   heightIcon?: number;
   password?: boolean;
+  iconRight?: React.ReactElement<any>;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -35,6 +36,7 @@ const TextInput: React.FC<TextInputProps> = ({
   widthIcon,
   heightIcon,
   password,
+  iconRight,
 }) => {
   const { errors } = meta;
   const classes = classNames("text-input", [className], {
@@ -128,6 +130,7 @@ const TextInput: React.FC<TextInputProps> = ({
               style={type === "textarea" ? { top: 14 } : {}}
             />
           ))}
+        {iconRight && <div className="input-icon-right">{iconRight}</div>}
       </div>
 
       {errors?.length > 0 && <p className="helperText">{errors[0]}</p>}

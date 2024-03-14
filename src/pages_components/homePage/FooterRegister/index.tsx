@@ -11,7 +11,7 @@ const FooterRegister = () => {
     <div className={styles.footerRegisterPadding}>
       <div className={styles.footerRegisterWrap}>
         <div className={styles.footerBackground}>
-          <img src="/images/bg-footer.png" />
+          <img src="/images/bg-footer.png" alt="bg-footer" />
         </div>
 
         <div className={styles.footerRegisterContainer}>

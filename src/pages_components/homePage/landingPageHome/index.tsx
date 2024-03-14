@@ -30,7 +30,10 @@ const LandingPageHome = () => {
     <div>
       <div className={styles.LandingPage}>
         <div className={styles.LandingPageImage}>
-          <img src="/Images/landingpage-background.png" />
+          <img
+            src="/Images/landingpage-background.png"
+            alt="landingpage-background"
+          />
         </div>
         <div className={styles.textContent}>
           <p className={styles.title}>Trung tâm tiếng nhật Kosei</p>
@@ -60,7 +63,7 @@ const LandingPageHome = () => {
           <div className={styles.buttons}>
             <Button
               type="btn-primary"
-              // onClick={() => deleteCookie("kosei-token")}
+              onClick={() => deleteCookie("kosei-token")}
             >
               Đăng ký ngay!
             </Button>
