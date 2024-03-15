@@ -54,7 +54,7 @@ const Community = () => {
             Cồng đồng tiếng nhật cùng Kosei
           </Text>
           <Image
-            src="/images/fish-right.png"
+            src="/Images/fish-right.png"
             alt="fish-right"
             layout="fixed"
             width={70}

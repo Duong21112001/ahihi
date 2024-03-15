@@ -113,7 +113,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
           Liên hệ tư vấn
         </Button>
         <img
-          src="/images/cloud-right-3.png"
+          src="/Images/cloud-right-3.png"
           alt="cloud-left"
           className={styles.cloudLeft}
         />

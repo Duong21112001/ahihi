@@ -55,7 +55,7 @@ const Header = () => {
                 }}
               >
                 <Image
-                  src="/images/logo-kosei.png"
+                  src="/Images/logo-kosei.png"
                   alt="logo"
                   layout="fixed"
                   width={100}

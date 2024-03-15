@@ -9,7 +9,7 @@ const DownloadApp = () => {
       <div className={styles.downloadAppContainer}>
         <div className={styles.left}>
           <Image
-            src="/images/iPhone.png"
+            src="/Images/iPhone.png"
             alt="zoom-out"
             layout="fixed"
             width={426}
@@ -47,7 +47,7 @@ const DownloadApp = () => {
               className={styles.appleStore}
             />
             <Image
-              src="/images/google-play.png"
+              src="/Images/google-play.png"
               alt="zoom-out"
               layout="fixed"
               width={142}
