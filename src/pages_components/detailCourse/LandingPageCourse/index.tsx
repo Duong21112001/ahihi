@@ -11,25 +11,25 @@ const LandingPageCourse = ({ course }: LandingPageProps) => {
   return (
     <div className={styles.LandingPageCourse}>
       <div className={styles.LandingPageImage}>
-        <img src="/images/landing-page-course.png" alt="landing-page-course" />
+        <img src="/Images/landing-page-course.png" alt="landing-page-course" />
       </div>
 
       <div className={styles.contentWrap}>
         <div className={styles.content}>
           <img
-            src="/images/mascot.png"
+            src="/Images/mascot.png"
             alt="mascot"
             className={styles.mascot}
             width={288}
           />
           <img
-            src="/images/hand-left.png"
+            src="/Images/hand-left.png"
             alt="hand-left"
             className={styles.handLeft}
             width={70}
           />
           <img
-            src="/images/hand-right.png"
+            src="/Images/hand-right.png"
             alt="hand-right"
             className={styles.handRight}
             width={80}

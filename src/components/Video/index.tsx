@@ -15,7 +15,7 @@ const Video: React.FC<VideoProps> = ({ url, width, className, height }) => {
   const PlayIcon = () => {
     return (
       <div className={styles.videoImage}>
-        <img src="/images/video-image.png" alt="video" />
+        <img src="/Images/video-image.png" alt="video" />
         <div className={styles.play}>
           <div className={styles.border}>
             <div className={styles.icon}></div>

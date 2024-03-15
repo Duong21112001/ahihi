@@ -170,7 +170,7 @@ const NewPasswordForm = () => {
         titleBack="Quay lại đăng nhập"
         ref={refModal}
         width={500}
-        img="/images/password-mess.png"
+        img="/Images/password-mess.png"
         routerBack="/login"
       />
     </>

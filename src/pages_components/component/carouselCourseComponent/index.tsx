@@ -50,7 +50,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       <div className={styles.coursePadding}>
         <div className={styles.courseWrap}>
           <img
-            src={course?.image ? course?.image : "/images/course.png"}
+            src={course?.image ? course?.image : "/Images/course.png"}
             className={styles.images}
             alt="course"
           />

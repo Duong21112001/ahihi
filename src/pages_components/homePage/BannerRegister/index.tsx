@@ -31,7 +31,7 @@ const BannerRegister = () => {
       <div className={styles.bannerRegisterContainer}>
         <div className={styles.form}>
           {/* <div className={styles.icon}>
-            <img src="/images/cotton-sheep.png" alt="cotton-sheep" />
+            <img src="/Images/cotton-sheep.png" alt="cotton-sheep" />
           </div> */}
 
           <RegisterForm />
@@ -59,7 +59,7 @@ const BannerRegister = () => {
               );
             })}
           </div>
-          <img src="/images/banner-register-1.png" alt="banner-register" />
+          <img src="/Images/banner-register-1.png" alt="banner-register" />
         </div>
       </div>
     </div>

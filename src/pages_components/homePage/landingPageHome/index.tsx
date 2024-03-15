@@ -31,7 +31,7 @@ const LandingPageHome = () => {
       <div className={styles.LandingPage}>
         <div className={styles.LandingPageImage}>
           <img
-            src="/images/landingpage-background.png"
+            src="/Images/landingpage-background.png"
             alt="landingpage-background"
           />
         </div>

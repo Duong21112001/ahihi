@@ -28,7 +28,7 @@ const DownloadAppFooter = () => {
               className={styles.appleStore}
             />
             <Image
-              src="/images/google-play.png"
+              src="/Images/google-play.png"
               alt="zoom-out"
               layout="fixed"
               width={142}
@@ -43,7 +43,7 @@ const DownloadAppFooter = () => {
           className={styles.right}
         >
           <Image
-            src="/images/qr-code.png"
+            src="/Images/qr-code.png"
             alt="zoom-out"
             layout="fixed"
             width={132}
@@ -51,7 +51,7 @@ const DownloadAppFooter = () => {
             className={styles.qrCode}
           />
           <Image
-            src="/images/phones.png"
+            src="/Images/phones.png"
             alt="zoom-out"
             layout="fixed"
             width={357}

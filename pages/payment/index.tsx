@@ -209,12 +209,12 @@ const PayMent: NextPageWithLayout = () => {
   return (
     <div className={styles.payMentWrap}>
       <img
-        src="/images/cloud-sun-right.png"
+        src="/Images/cloud-sun-right.png"
         alt="cloud-sun-right"
         className={styles.cloudSunLeft}
       />
       <img
-        src="/images/cloud-sun-left.png"
+        src="/Images/cloud-sun-left.png"
         alt="cloud-sun-left"
         className={styles.cloudSunRight}
       />

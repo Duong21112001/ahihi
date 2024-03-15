@@ -125,11 +125,11 @@ const Footer = () => {
     },
   ];
   const cards = [
-    "/images/Visa.png",
-    "/images/Mastercard.png",
-    "/images/GooglePay.png",
-    "/images/Amex.png",
-    "/images/PayPal.png",
+    "/Images/Visa.png",
+    "/Images/Mastercard.png",
+    "/Images/GooglePay.png",
+    "/Images/Amex.png",
+    "/Images/PayPal.png",
   ];
 
   const socials = [
@@ -154,7 +154,7 @@ const Footer = () => {
           <div className={styles.top}>
             <div className={styles.contact}>
               <Image
-                src="/images/kosei-logo-footer.png"
+                src="/Images/kosei-logo-footer.png"
                 alt="logo"
                 layout="fixed"
                 width={128}
