@@ -55,7 +55,7 @@ const LoginForm = () => {
   return (
     <div className={styles.loginWrap}>
       <Image
-        src="/Images/kosei-logo.png"
+        src="/images/kosei-logo.png"
         alt="kosei-logo"
         layout="fixed"
         width={76}
