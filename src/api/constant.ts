@@ -10,3 +10,8 @@ export const API_PATH = {
   COURSES_ORDER: "/courses/order",
   COURSES_CODE: "/courses/code",
 };
+
+export const ROUTER = {
+  LOGIN: "./login",
+  REGISTER: "./register",
+};

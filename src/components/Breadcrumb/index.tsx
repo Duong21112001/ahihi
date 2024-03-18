@@ -26,7 +26,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
         {breadcrumbs.map((breadcrumb, index) => {
           return (
             <Box flex agileItem="agile-center" key={breadcrumb.label}>
-              <Link href={breadcrumb.link}>
+              {index + 1 === breadcrumbs.length ? (
                 <Text
                   key={breadcrumb.label}
                   type="body-14-regular"
@@ -34,7 +34,18 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 >
                   {breadcrumb.label}
                 </Text>
-              </Link>
+              ) : (
+                <Link href={breadcrumb.link}>
+                  <Text
+                    key={breadcrumb.label}
+                    type="body-14-regular"
+                    color="neutral-10"
+                  >
+                    {breadcrumb.label}
+                  </Text>
+                </Link>
+              )}
+
               {index + 1 !== breadcrumbs.length && (
                 <Box
                   width={24}

@@ -1,5 +1,11 @@
 .payMentWrap {
   position: relative;
+  @media screen and (max-width: 768px) {
+    .cloudSunRight {
+      width: 100px;
+      height: unset;
+    }
+  }
   .cloudSunRight {
     position: absolute;
     bottom: 50px;
@@ -22,6 +28,8 @@
       position: relative;
       margin-bottom: 48px;
       border-radius: 12px;
+      background: var(--neutral-10);
+
       .border {
         height: 100%;
         width: 16px;

@@ -71,8 +71,9 @@ const CourseCarousel = () => {
               );
             })}
           </div>
-
-          <CourseCarouselComponent dataCarousel={data} loading={loading} />
+          {!loading && data && data?.length > 0 && (
+            <CourseCarouselComponent dataCarousel={data} loading={loading} />
+          )}
         </div>
       </div>
     </div>

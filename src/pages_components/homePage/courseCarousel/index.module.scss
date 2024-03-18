@@ -8,19 +8,22 @@
   }
 }
 .courseCarouselPadding {
-  padding-bottom: 120px;
+  padding-bottom: 104px;
   .courseCarouselWrap {
-    padding-top: 128px;
     background-image: url(/Images/background-comment.png),
-      url(/Images/cloud-left.png), url(/Images/cloud-right.png);
+      url(/Images/cloud-left.png), url(/Images/cloud-right.png),
+      url(/svg/_homePage/wave1.svg);
     background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: left top, left bottom, right 116px;
+    background-position: left top, left bottom, right 116px, right bottom;
+    padding: 120px 0 70px 0;
+
     .courseCarouselContainer {
       max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
       position: relative;
       margin-bottom: 10px;
+      padding: 0 20px;
       .title {
         margin-bottom: 24px;
       }
@@ -44,15 +47,12 @@
 }
 @media screen and (max-width: 1024px) {
   .courseCarouselPadding {
-    padding-bottom: 80px;
-
+    padding-bottom: 50px;
     .courseCarouselWrap {
-      padding: 20px 0;
-      background-size: 100px, 100px;
-      background-position: left top, left bottom, right 60px;
-
+      background-size: 500px, 100px, 100px, 500px;
+      background-position: left top, left bottom, right 60px, right bottom;
+      padding-top: 50px;
       .courseCarouselContainer {
-        padding: 0 50px;
         .title {
           font-size: 22px;
           line-height: 30px;
@@ -66,10 +66,7 @@
   .courseCarouselPadding {
     .courseCarouselWrap {
       .courseCarouselContainer {
-        padding: 0 20px;
-
         @media screen and (max-width: 480px) {
-          padding: 0 10px;
           .title {
             font-size: 20px;
             line-height: 32px;

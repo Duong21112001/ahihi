@@ -12,6 +12,7 @@ import classNames from "classnames";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Course } from "@/utils/model/courses";
+import { getCookie } from "cookies-next";
 
 interface CourseCarouselProps {
   dataCarousel: Course[];
@@ -23,6 +24,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
   0;
   const router = useRouter();
   const { dataCarousel, loading } = props;
+  const token = getCookie("kosei-token");
 
   const responsive = {
     superLargeDesktop: {
@@ -46,6 +48,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
 
   const CourseComponent = (props: { course: Course }) => {
     const { course } = props;
+
     return (
       <div className={styles.coursePadding}>
         <div className={styles.courseWrap}>
@@ -115,10 +118,10 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
                   style={{ marginRight: 10 }}
                 />
                 <Text type="body-14-medium" color="neutral-1">
-                  40 - 55 buổi
+                  {course?.expired_at} buổi
                 </Text>
               </Box>
-              <Box
+              {/* <Box
                 flex
                 agileItem="agile-center"
                 className={styles.infoCourseTime}
@@ -134,7 +137,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
                 <Text type="body-14-medium" color="neutral-1">
                   20-06-2023
                 </Text>
-              </Box>
+              </Box> */}
             </Box>
             <Box
               flex
@@ -153,7 +156,23 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
               >
                 Xem chi tiết
               </Button>
-              <Button type="btn-blue">Mua ngay </Button>
+              <Button
+                type="btn-blue"
+                onClick={() =>
+                  router.push(
+                    token
+                      ? {
+                          pathname: "/payment",
+                          query: { id: course?.cat_id },
+                        }
+                      : {
+                          pathname: "/login",
+                        }
+                  )
+                }
+              >
+                Mua ngay
+              </Button>
             </Box>
           </div>
         </div>
@@ -164,7 +183,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
   return (
     <Carousel
       responsive={responsive}
-      showDots={false}
+      showDots={true}
       containerClass={classNames(
         "container-class-course",
         styles.containerClassCourse
@@ -172,17 +191,6 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       centerMode={false}
       renderArrowsWhenDisabled={true}
     >
-      {/* {(loading ? [...Array(3)] : dataCarousel)?.map(
-        (course: Course, index: number) => {
-          return (
-            <div key={`lecturer-${course?.id}-${index}`} className={`${index}`}>
-              <PlaceholderBox loading={loading}>
-                {!loading && <CourseComponent course={course} />}
-              </PlaceholderBox>
-            </div>
-          );
-        }
-      )} */}
       {!loading &&
         dataCarousel?.map((course: Course, index: number) => {
           return (

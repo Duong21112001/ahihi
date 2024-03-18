@@ -155,6 +155,65 @@ const Lecturers = () => {
   return (
     <div className={styles.lecturersPadding}>
       <div className={styles.lecturersWrap}>
+        <div className={styles.lecturersImage}>
+          <Image
+            src="/svg/_homePage/teacher-flower-1.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower1}
+            width={25}
+            height={20}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-2.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower2}
+            width={17}
+            height={13}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-3.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower3}
+            width={53}
+            height={54}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-4.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower4}
+            width={22}
+            height={21}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-5.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower5}
+            width={18}
+            height={13}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-6.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower6}
+            width={54}
+            height={54}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-7.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower7}
+            width={85}
+            height={82}
+          />
+          <Image
+            src="/svg/_homePage/teacher-flower-8.svg"
+            alt="bg-lecturer"
+            className={styles.teacherFlower8}
+            width={19}
+            height={28}
+          />
+        </div>
+
         <div className={styles.lecturersContainer}>
           <Text
             type="heading-h2"
@@ -170,88 +229,27 @@ const Lecturers = () => {
             tempus felis vitae sit est quisque.
           </Text>
           <div>
-            {/* <Slider
-              ref={ref}
-              {...settings}
-              className="slider-lecturer"
-              initialSlide={2}
-              dotsClass="dotsClass-lecturer"
-              nextArrow={
-                <div onClick={next} className={styles.lecturersArrowsRight}>
-                  <Image
-                    src="/svg/caret-right-active.svg"
-                    alt="arrow-right"
-                    layout="fixed"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-              }
-              prevArrow={
-                <div
-                  onClick={previous}
-                  style={{ marginRight: 12 }}
-                  className={styles.lecturersArrowsLeft}
-                >
-                  <Image
-                    src="/svg/caret-left-active.svg"
-                    alt="arrow-left"
-                    layout="fixed"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-              }
-            >
-              {(loading ? [...Array(3)] : data)?.map(
-                (teacher: IlistTeacher, index: number) => {
+            {!loading && data && data?.length > 0 && (
+              <Carousel
+                responsive={responsive}
+                showDots={false}
+                containerClass={classNames(
+                  "container-class-course",
+                  styles.carousel
+                )}
+                centerMode={false}
+                renderArrowsWhenDisabled={true}
+                arrows={true}
+              >
+                {data?.map((teacher: IlistTeacher, index: number) => {
                   return (
                     <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
-                      <PlaceholderBox loading={loading}>
-                        <Lecturer active={false} teacher={teacher} />
-                      </PlaceholderBox>
+                      <Lecturer active={false} teacher={teacher} />
                     </div>
                   );
-                }
-              )}
-            </Slider> */}
-            <Carousel
-              responsive={responsive}
-              showDots={false}
-              containerClass={classNames(
-                "container-class-course",
-                styles.carousel
-              )}
-              centerMode={false}
-              renderArrowsWhenDisabled={true}
-              arrows={true}
-            >
-              {/* {!loading &&
-                data?.map((teacher: IlistTeacher, index: number) => {
-                  return (
-                    <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
-                      <PlaceholderBox loading={loading}>
-                        {!loading && (
-                          <Lecturer active={false} teacher={teacher} />
-                        )}
-                      </PlaceholderBox>
-                    </div>
-                  );
-                })} */}
-              {(loading ? [...Array(3)] : data)?.map(
-                (teacher: IlistTeacher, index: number) => {
-                  return (
-                    <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
-                      <PlaceholderBox loading={loading}>
-                        {!loading && (
-                          <Lecturer active={false} teacher={teacher} />
-                        )}
-                      </PlaceholderBox>
-                    </div>
-                  );
-                }
-              )}
-            </Carousel>
+                })}
+              </Carousel>
+            )}
           </div>
         </div>
       </div>
