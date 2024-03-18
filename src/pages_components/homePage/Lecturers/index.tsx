@@ -232,7 +232,7 @@ const Lecturers = () => {
             {!loading && data && data?.length > 0 && (
               <Carousel
                 responsive={responsive}
-                showDots={false}
+                showDots={true}
                 containerClass={classNames(
                   "container-class-course",
                   styles.carousel

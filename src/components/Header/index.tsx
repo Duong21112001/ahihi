@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Text from "../Text";
 import React from "react";
 import { getCookie } from "cookies-next";
+import Button from "../Button";
 
 const Header = () => {
   const { t } = useTranslation("header");
@@ -91,29 +92,55 @@ const Header = () => {
                 />
               </svg>
             </aside>
-            {!isSearch && (
-              <aside className={styles.link}>
-                <Link href="/">
+
+            <aside className={!isSearch ? styles.link : styles.displayNoneNav}>
+              <Link href="/">
+                <Text
+                  type="body-16-regular"
+                  color={router.pathname === "/" ? "primary-bule" : "neutral-1"}
+                >
+                  Trang chủ
+                </Text>
+              </Link>
+              <div
+                className={classNames(
+                  {
+                    [styles.highlight]:
+                      router.asPath === "/about_us" ||
+                      router.asPath === "/press",
+                  },
+                  styles.a
+                )}
+              >
+                <div className={styles.subTitle}>
                   <Text
                     type="body-16-regular"
                     color={
-                      router.pathname === "/" ? "primary-bule" : "neutral-1"
+                      router.pathname === "/course"
+                        ? "primary-bule"
+                        : "neutral-1"
                     }
+                    right={5}
                   >
-                    Trang chủ
+                    Khoá học
                   </Text>
-                </Link>
-                <div
-                  className={classNames(
-                    {
-                      [styles.highlight]:
-                        router.asPath === "/about_us" ||
-                        router.asPath === "/press",
-                    },
-                    styles.a
-                  )}
-                >
-                  <div className={styles.subTitle}>
+                  <svg
+                    width="12"
+                    height="6"
+                    viewBox="0 0 12 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.414376 0.531506C0.673133 0.20806 1.1451 0.155619 1.46855 0.414376L6.00003 4.03956L10.5315 0.414376C10.855 0.155619 11.3269 0.20806 11.5857 0.531506C11.8444 0.854953 11.792 1.32692 11.4685 1.58568L6.46855 5.58568C6.19464 5.80481 5.80542 5.80481 5.53151 5.58568L0.531506 1.58568C0.20806 1.32692 0.155619 0.854953 0.414376 0.531506Z"
+                      fill="#090A0B"
+                    />
+                  </svg>
+                </div>
+                <div className={styles.subNavbar}>
+                  <Link href="/about_us">
                     <Text
                       type="body-16-regular"
                       color={
@@ -121,143 +148,129 @@ const Header = () => {
                           ? "primary-bule"
                           : "neutral-1"
                       }
-                      right={5}
                     >
-                      Khoá học
+                      {t("header_what_we_do")}
                     </Text>
-                    <svg
-                      width="12"
-                      height="6"
-                      viewBox="0 0 12 6"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                  </Link>
+                  <Link href="/press">
+                    <Text
+                      type="body-16-regular"
+                      color={
+                        router.pathname === "/course"
+                          ? "primary-bule"
+                          : "neutral-1"
+                      }
                     >
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M0.414376 0.531506C0.673133 0.20806 1.1451 0.155619 1.46855 0.414376L6.00003 4.03956L10.5315 0.414376C10.855 0.155619 11.3269 0.20806 11.5857 0.531506C11.8444 0.854953 11.792 1.32692 11.4685 1.58568L6.46855 5.58568C6.19464 5.80481 5.80542 5.80481 5.53151 5.58568L0.531506 1.58568C0.20806 1.32692 0.155619 0.854953 0.414376 0.531506Z"
-                        fill="#090A0B"
-                      />
-                    </svg>
-                  </div>
-                  <div className={styles.subNavbar}>
-                    <Link href="/about_us">
-                      <Text
-                        type="body-16-regular"
-                        color={
-                          router.pathname === "/course"
-                            ? "primary-bule"
-                            : "neutral-1"
-                        }
-                      >
-                        {t("header_what_we_do")}
-                      </Text>
-                    </Link>
-                    <Link href="/press">
-                      <Text
-                        type="body-16-regular"
-                        color={
-                          router.pathname === "/course"
-                            ? "primary-bule"
-                            : "neutral-1"
-                        }
-                      >
-                        {t("header_press")}
-                      </Text>
-                    </Link>
-                  </div>
+                      {t("header_press")}
+                    </Text>
+                  </Link>
                 </div>
-                <Link href="/auditions">
-                  <Text
-                    type="body-16-regular"
-                    color={
-                      router.pathname === "/auditions"
-                        ? "primary-bule"
-                        : "neutral-1"
-                    }
-                  >
-                    Thi thử
-                  </Text>
-                </Link>
-                <Link href="/about">
-                  <Text
-                    type="body-16-regular"
-                    color={
-                      router.pathname === "/about"
-                        ? "primary-bule"
-                        : "neutral-1"
-                    }
-                  >
-                    Về chúng tôi
-                  </Text>
-                </Link>
-                <Link href="/contact">
-                  <Text
-                    type="body-16-regular"
-                    color={
-                      router.pathname === "/contact"
-                        ? "primary-bule"
-                        : "neutral-1"
-                    }
-                  >
-                    Liên hệ
-                  </Text>
-                </Link>
-              </aside>
-            )}
-            {/* {isSearch && (
-              <div className={styles.inputSearch}>
-                <input className={styles.link} />
+              </div>
+              <Link href="/auditions">
+                <Text
+                  type="body-16-regular"
+                  color={
+                    router.pathname === "/auditions"
+                      ? "primary-bule"
+                      : "neutral-1"
+                  }
+                >
+                  Thi thử
+                </Text>
+              </Link>
+              <Link href="/about">
+                <Text
+                  type="body-16-regular"
+                  color={
+                    router.pathname === "/about" ? "primary-bule" : "neutral-1"
+                  }
+                >
+                  Về chúng tôi
+                </Text>
+              </Link>
+              <Link href="/contact">
+                <Text
+                  type="body-16-regular"
+                  color={
+                    router.pathname === "/contact"
+                      ? "primary-bule"
+                      : "neutral-1"
+                  }
+                >
+                  Liên hệ
+                </Text>
+              </Link>
+            </aside>
+
+            <div className={isSearch ? styles.inputSearch : styles.displayNone}>
+              <div className={styles.inputBackground}>
                 <Image
-                  src="/svg/remove.svg"
+                  src="/svg/search-header.svg"
                   alt="close"
                   width={24}
                   height={24}
-                  onClick={() => setIsSearch(false)}
-                  style={{ cursor: "pointer" }}
+                  className={styles.iconSearch}
                 />
+                <input placeholder="Email của bạn" />
               </div>
-            )} */}
+
+              <Image
+                src="/svg/remove.svg"
+                alt="close"
+                width={24}
+                height={24}
+                onClick={() => setIsSearch(false)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
 
             <div className={styles.menuRight}>
-              {/* {!isSearch && (
-                <div className={styles.icons}>
-                  <Image
-                    src="/svg/search.svg"
-                    alt="search"
-                    layout="fixed"
-                    width={24}
-                    height={24}
-                    style={{ marginRight: 24 }}
-                    className={styles.iconSearch}
-                    onClick={() => setIsSearch(true)}
-                  />
+              <div
+                className={!isSearch ? styles.icons : styles.displayNoneSearch}
+              >
+                <Image
+                  src="/svg/search.svg"
+                  alt="search"
+                  layout="fixed"
+                  width={24}
+                  height={24}
+                  style={{ marginRight: 24 }}
+                  className={styles.iconSearch}
+                  onClick={() => setIsSearch(true)}
+                />
 
-                  <Image
-                    src="/svg/cart.svg"
-                    alt="cart"
-                    layout="fixed"
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              )} */}
+                <Image
+                  src="/svg/cart.svg"
+                  alt="cart"
+                  layout="fixed"
+                  width={24}
+                  height={24}
+                />
+              </div>
 
               {!token && (
                 <div className={styles.auth}>
-                  <Link href="/register">
+                  <Button
+                    type="btn-secondary"
+                    className={styles.button}
+                    onClick={() => router.push("/register")}
+                  >
                     <Text type="body-16-semibold" color="main-color-secondary">
                       Đăng kí
                     </Text>
-                  </Link>
-                  <Text className={styles.space} color="main-color-primary">
-                    |
-                  </Text>
-                  <Link href="/login">
-                    <Text type="body-16-semibold" color="main-color-primary">
+                  </Button>
+
+                  <div className={styles.space} />
+
+                  <Button
+                    type="btn-blue"
+                    className={styles.button}
+                    onClick={() => router.push("/login")}
+                  >
+                    <Text type="body-16-semibold" color="neutral-10">
                       Đăng nhập
                     </Text>
-                  </Link>
+                  </Button>
                 </div>
               )}
             </div>
