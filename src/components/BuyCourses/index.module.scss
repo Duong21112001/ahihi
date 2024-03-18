@@ -61,4 +61,34 @@
       }
     }
   }
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .buyCourse {
+      width: calc(60% - 10px);
+      .cloudLeft {
+        width: 100px;
+        right: -20px;
+      }
+      .cloudRight {
+        width: 100px;
+      }
+    }
+    .infos {
+      width: calc(40% - 10px);
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    .buyCourse {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .infos {
+      width: 100%;
+    }
+  }
 }

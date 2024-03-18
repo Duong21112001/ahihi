@@ -28,7 +28,7 @@ const RegisterForm = () => {
               rules={[
                 {
                   required: true,
-                  message: t("not_empty"),
+                  message: t("Họ tên không được để trống"),
                 },
               ]}
             >
@@ -52,7 +52,7 @@ const RegisterForm = () => {
               rules={[
                 {
                   required: true,
-                  message: t("not_empty"),
+                  message: t("Số điện thoại không được để trống"),
                 },
                 validatePhone(t),
               ]}
@@ -80,7 +80,7 @@ const RegisterForm = () => {
               rules={[
                 {
                   required: true,
-                  message: t("not_empty"),
+                  message: t("Email không được để trống"),
                 },
                 validateEmail(t),
               ]}

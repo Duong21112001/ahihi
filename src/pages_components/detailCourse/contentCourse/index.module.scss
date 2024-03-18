@@ -6,7 +6,7 @@
     margin-bottom: 48px;
     .infoCourse {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       .infoItem {
         padding: 0 16px;
         border-right: 1px solid var(--neutral-6);
@@ -49,6 +49,32 @@
     }
     .tabActive {
       border-bottom: 3px solid var(--main-color-primary);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .infoCourseWrap {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      .infoCourse {
+        margin-top: 15px;
+      }
+    }
+    .tabs {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .tab,
+      .tabActive {
+        width: calc(50% - 10px);
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .infoCourse {
+      .infoItem {
+        padding: 0 5px;
+      }
     }
   }
 }

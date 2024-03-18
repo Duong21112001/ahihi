@@ -15,6 +15,8 @@ import { useRequest } from "@umijs/hooks";
 import { getCourseId } from "@/service/course";
 import { Course } from "@/utils/model/courses";
 import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
+import BuyCourses from "@/components/BuyCourses";
+import Image from "next/image";
 
 const CourseDetail = () => {
   const params = useSearchParams();
@@ -46,15 +48,10 @@ const CourseDetail = () => {
       link: "/",
     },
     {
-      label: "Danh sách khoá học",
+      label: data?.name,
       link: "/",
     },
-    {
-      label: "Khoá tiếng nhật N4 - Online",
-      link: "/course_detail",
-    },
   ];
-  console.log("data", data);
 
   return (
     <div className={styles.courseDetailWrap}>
@@ -62,9 +59,41 @@ const CourseDetail = () => {
         <Breadcrumb breadcrumbs={breadcrumb} />
       </div>
       <LandingPageCourse course={data} />
+      <div className={styles.contentWrap}>
+        <div className={styles.content}>
+          <img
+            src="/Images/mascot.png"
+            alt="mascot"
+            className={styles.mascot}
+            width={288}
+          />
+          <img
+            src="/Images/hand-left.png"
+            alt="hand-left"
+            className={styles.handLeft}
+            width={70}
+          />
+          <img
+            src="/Images/hand-right.png"
+            alt="hand-right"
+            className={styles.handRight}
+            width={80}
+          />
+          <div className={styles.buyCourses}>
+            <BuyCourses course={data} />
+          </div>
+        </div>
+      </div>
       <div className={styles.contentCourseWrap}>
         <div className={styles.contentCourseContainer}>
-          <ContentCourse course={data} />
+          <div className={styles.contentCourse}>
+            <ContentCourse course={data} />
+          </div>
+          <img
+            src="/Images/mascot-detail.png"
+            alt="mascot-detail"
+            className={styles.imagesDetail}
+          />
         </div>
       </div>
       <div className={styles.courseCarousel}>

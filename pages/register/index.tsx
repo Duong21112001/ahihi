@@ -24,6 +24,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
+import { ROUTER } from "@/api/constant";
 
 const RegisterForm = () => {
   const { t } = useTranslation("common");
@@ -397,7 +398,13 @@ const RegisterForm = () => {
           </Field>
         </div>
         <Box flex agileItem="agile-center">
-          <Text type="body-16-bold" color="main-color-primary" right={4}>
+          <Text
+            type="body-16-bold"
+            color="main-color-primary"
+            right={4}
+            onClick={() => router.push(ROUTER.LOGIN)}
+            cursorPoiter
+          >
             Đăng nhập
           </Text>
           <Text type="body-16-regular" color="neutral-1">

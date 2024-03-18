@@ -15,11 +15,10 @@ import styles from "./page.module.scss";
 import DownloadApp from "@/pages_components/homePage/DownloadApp";
 import ChooseKosei from "@/pages_components/homePage/ChooseKosei";
 import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
+import { deleteCookie } from "cookies-next";
 
 const Home: NextPageWithLayout = () => {
-  const { t } = useTranslation("common");
   // deleteCookie("kosei-token");
-
   return (
     <div className={styles.homePageContainer}>
       <LandingPageHome />

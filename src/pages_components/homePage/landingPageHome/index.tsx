@@ -3,10 +3,14 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import Image from "next/image";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
+import { useRouter } from "next/router";
+import { ROUTER } from "@/api/constant";
 
 const LandingPageHome = () => {
   const { t } = useTranslation("common");
+  const token = getCookie("kosei-token");
+  const router = useRouter();
   const infos = [
     {
       label: "Đa dạng bài học cho từng cấp độ",
@@ -60,14 +64,16 @@ const LandingPageHome = () => {
             bibendum egestas pellentesque in diam sit. Purus est placerat
             iaculis.
           </Text>
-          <div className={styles.buttons}>
-            <Button
-              type="btn-primary"
-              onClick={() => deleteCookie("kosei-token")}
-            >
-              Đăng ký ngay!
-            </Button>
-          </div>
+          {!token && (
+            <div className={styles.buttons}>
+              <Button
+                type="btn-primary"
+                onClick={() => router.push(ROUTER.REGISTER)}
+              >
+                Đăng ký ngay!
+              </Button>
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.infoContainer}>

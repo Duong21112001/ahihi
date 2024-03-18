@@ -18,6 +18,8 @@ export interface Course {
   cou_price: number;
   discount_value: number;
   teacher_name: string;
+  start_date: string;
+  end_date: string;
 }
 
 export interface RegisterCourseParams {

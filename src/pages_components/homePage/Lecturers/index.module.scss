@@ -10,17 +10,66 @@
   margin: 0 auto;
 }
 .lecturersPadding {
+  padding: 165px 0px;
   .lecturersWrap {
-    background: url(/Images/background-lecturers.png), var(--background-3);
-    background-repeat: no-repeat;
-    background-size: cover;
     position: relative;
+    .lecturersImage {
+      .teacherFlower1 {
+        position: absolute;
+        top: 0;
+        left: 66px;
+        z-index: 0;
+      }
+      .teacherFlower2 {
+        position: absolute;
+        top: 20px;
+        left: 103px;
+        z-index: 0;
+      }
+      .teacherFlower3 {
+        position: absolute;
+        top: 164px;
+        left: 79px;
+        z-index: 0;
+      }
+      .teacherFlower4 {
+        position: absolute;
+        bottom: 0;
+        left: 79px;
+        z-index: 0;
+      }
+      .teacherFlower5 {
+        position: absolute;
+        top: 0;
+        right: 144px;
+        z-index: 0;
+      }
+      .teacherFlower6 {
+        position: absolute;
+        top: 26px;
+        right: 34px;
+        z-index: 0;
+      }
+      .teacherFlower7 {
+        position: absolute;
+        top: 91px;
+        right: 86px;
+        z-index: 0;
+      }
+      .teacherFlower8 {
+        position: absolute;
+        top: 222px;
+        right: 61px;
+        z-index: 0;
+      }
+    }
 
     .lecturersContainer {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 168px 20px 120px 20px;
+      padding: 0 20px;
       position: relative;
+
       @media screen and (max-width: 768px) {
         .lecturersTitle {
           font-size: 22px;
@@ -94,9 +143,36 @@
     }
   }
   @media screen and (max-width: 1024px) {
+    padding: 50px 0;
     .lecturersWrap {
-      .lecturersContainer {
-        padding: 50px 20px 45px 20px;
+      .lecturersImage {
+        .teacherFlower1 {
+          left: 10px;
+        }
+        .teacherFlower2 {
+          left: 30px;
+        }
+        .teacherFlower3 {
+          left: 10px;
+        }
+        .teacherFlower4 {
+          left: 30px;
+          bottom: 30px;
+        }
+        .teacherFlower5 {
+          right: 80px;
+        }
+        .teacherFlower6 {
+          right: 10px;
+        }
+        .teacherFlower7 {
+          right: 50px;
+          width: 50px;
+          height: unset;
+        }
+        .teacherFlower8 {
+          right: 10px;
+        }
       }
     }
 

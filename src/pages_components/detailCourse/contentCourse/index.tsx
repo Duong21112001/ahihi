@@ -58,7 +58,7 @@ const ContentCourse = ({ course }: Courseprops) => {
     <div className={styles.contentCourse}>
       <Text
         className={styles.title}
-        type="heading-h1"
+        type="title-40-bold"
         bottom={12}
         color="neutral-1"
       >

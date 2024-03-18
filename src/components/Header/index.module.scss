@@ -3,6 +3,32 @@
     @content;
   }
 }
+@keyframes inputSearch {
+  0% {
+    background: white;
+    width: 0;
+  }
+  100% {
+    background: #f2f8ff;
+    width: calc(100% - 300px);
+  }
+}
+
+.inputSearch {
+  width: calc(100% - 300px);
+  display: flex;
+  align-items: center;
+  input {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    animation-name: inputSearch;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+}
 
 .container {
   align-items: center;
@@ -26,6 +52,31 @@
     padding: 0;
     height: 80px;
     margin: auto;
+    .link {
+      margin-right: 24px;
+    }
+    // .inputSearch {
+    //   input {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     width: 100%;
+    //     height: 50px;
+    //   }
+    // }
+    .menuRight {
+      display: flex;
+      align-items: center;
+      width: 280px;
+      justify-content: flex-end;
+      .icons {
+        display: flex;
+        align-items: center;
+        img {
+          cursor: pointer;
+        }
+      }
+    }
+
     @media screen and (max-width: 1200px) {
       padding: 0 20px;
     }
@@ -114,7 +165,8 @@
         }
         .logo {
           cursor: pointer;
-          margin-right: 123px;
+          // margin-right: 123px;
+          width: 180px;
           @media (max-width: 1024px) {
             img {
               width: 60px;
@@ -257,7 +309,7 @@
       .auth {
         display: flex;
         align-items: center;
-        margin-left: 123px;
+        margin-left: 24px;
         white-space: nowrap;
         @media screen and (max-width: 1024px) {
           margin-left: 0;

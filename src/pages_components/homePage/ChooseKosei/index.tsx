@@ -45,12 +45,12 @@ const ChooseKosei = () => {
         className={styles.cloudSmallRight}
       />
       <img
-        src="/images/bird-flower.png"
+        src="/Images/bird-flower.png"
         alt="bird-flower"
         className={styles.bird}
       />
       <img
-        src="/images/cloud-right.png"
+        src="/Images/cloud-right.png"
         alt="cloud-right"
         className={styles.cloud}
       />

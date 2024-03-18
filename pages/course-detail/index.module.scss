@@ -1,13 +1,24 @@
 .courseDetailWrap {
-  background: url(/Images/bg-detail-course.png), var(--background-3);
-  background-repeat: no-repeat;
-  background-position: top right;
+  background: var(--background-3);
+
   .contentCourseWrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 48px 20px;
+    position: relative;
+    background: url(/Images/bg-detail-course.png), var(--background-3);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left top;
     .contentCourseContainer {
-      width: calc(100% - 390px);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 20px;
+      .contentCourse {
+        width: calc(100% - 390px);
+      }
+      .imagesDetail {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
     }
   }
   .courseCarousel {
@@ -15,6 +26,85 @@
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
-    padding-bottom: 145px;
+    margin-bottom: 145px;
+  }
+  .contentWrap {
+    max-width: 1200px;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 20px;
+    top: 140px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .content {
+      position: absolute;
+      right: 0;
+      width: 390px;
+      .mascot {
+        position: absolute;
+        right: 47px;
+      }
+      .handLeft {
+        position: absolute;
+        top: 280px;
+        left: 0;
+        z-index: 2;
+      }
+      .handRight {
+        position: absolute;
+        right: -20px;
+        top: 216px;
+        z-index: 2;
+      }
+      .buyCourses {
+        position: absolute;
+        top: 250px;
+        right: 0;
+        z-index: 1;
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .imagesDetail {
+      width: 200px;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .contentWrap {
+      position: static;
+      margin-top: 20px;
+      .content {
+        width: 100%;
+        position: static;
+        .mascot {
+          display: none;
+        }
+        .handLeft {
+          display: none;
+        }
+        .handRight {
+          display: none;
+        }
+        .buyCourses {
+          position: static;
+        }
+      }
+    }
+    .contentCourseWrap {
+      .contentCourseContainer {
+        .contentCourse {
+          width: 100%;
+        }
+      }
+    }
+    .courseCarousel {
+      margin-bottom: 50px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .imagesDetail {
+      display: none;
+    }
   }
 }

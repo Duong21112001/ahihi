@@ -71,6 +71,18 @@
   .react-multiple-carousel__arrow--left {
     left: 20px;
   }
+  .react-multi-carousel-dot {
+    button {
+      border: none;
+      background: var(--neutral-6);
+    }
+  }
+  .react-multi-carousel-dot--active {
+    button {
+      border: none;
+      background: var(--main-color-primary);
+    }
+  }
   @media screen and (max-width: 1024px) {
     width: calc(100% - 50px);
     .react-multiple-carousel__arrow--right {
