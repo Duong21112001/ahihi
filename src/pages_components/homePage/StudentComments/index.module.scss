@@ -2,14 +2,16 @@
   padding-top: 120px;
 
   .studentCommentsWrapper {
-    background-image: url(/Images/background-comment.png);
+    background-image: url(/svg/cloud-small-2.svg), url(/svg/cloud-small-2.svg);
     background-repeat: no-repeat;
-    background-position: left top;
+    background-position: left 72px top, right 56px bottom;
+    background-size: 168px, 244px;
 
     .studentComments {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      padding-bottom: 2px;
       .studentCommentsButton {
         width: calc(50% - 80px);
         justify-content: flex-end;
@@ -41,14 +43,20 @@
 
       .studentCommentsLeft {
         width: calc(50% - 25px);
+        padding-bottom: 74px;
       }
       .studentCommentsRight {
         width: calc(50% - 25px);
         position: relative;
+        .cloud {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
         .boxBlue {
           height: 282px;
           width: 100%;
-          border-radius: 30px;
+          border-radius: 12px;
           background-color: var(--main-color-primary);
           position: absolute;
           bottom: 0;
@@ -60,7 +68,7 @@
           margin-bottom: 20px;
           iframe,
           img {
-            border-radius: 30px;
+            border-radius: 12px;
           }
         }
       }
@@ -71,10 +79,13 @@
   }
   @media screen and (max-width: 768px) {
     .studentCommentsWrapper {
+      background-size: 100px;
+      background-position: left 10px top, right 10px bottom;
       .studentCommentsBox {
         flex-direction: column;
         .studentCommentsLeft {
           width: 100%;
+          padding-bottom: 10px;
           .title {
             font-size: 22px;
             line-height: 32px;
@@ -104,6 +115,7 @@
         .studentCommentsButton {
           width: 100%;
           justify-content: center;
+          bottom: -50px;
         }
       }
     }

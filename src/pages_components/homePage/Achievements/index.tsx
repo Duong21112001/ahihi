@@ -3,9 +3,30 @@ import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
+import Carousel from "react-multi-carousel";
+import classNames from "classnames";
 
 const Achievements = () => {
   const { t } = useTranslation("common");
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 3,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 769 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 480 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 540, min: 0 },
+      items: 1,
+    },
+  };
   const OneAchievements = () => {
     return (
       <div className={styles.oneAchievementsPadding}>
@@ -66,13 +87,23 @@ const Achievements = () => {
             Lorem ipsum dolor sit amet
           </Text>
           <div>
-            <CarouselComponent numberItemShow={4} itemNumber={5}>
+            <Carousel
+              responsive={responsive}
+              showDots={false}
+              containerClass={classNames(
+                "container-class-course",
+                styles.carousel
+              )}
+              centerMode={false}
+              renderArrowsWhenDisabled={true}
+              arrows={true}
+            >
               <OneAchievements />
               <OneAchievements />
               <OneAchievements />
               <OneAchievements />
               <OneAchievements />
-            </CarouselComponent>
+            </Carousel>
           </div>
         </div>
       </div>

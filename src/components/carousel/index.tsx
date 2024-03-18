@@ -102,9 +102,9 @@ const CarouselComponent: React.FC<ButtonProps> = ({
       <Carousel
         responsive={responsive}
         arrows={false}
+        showDots={true}
         renderButtonGroupOutside={true}
         renderDotsOutside={true}
-        showDots={true}
         customButtonGroup={<ButtonGroup />}
         customDot={<CustomDot />}
         dotListClass="dotListClass"
