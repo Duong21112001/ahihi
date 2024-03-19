@@ -62,8 +62,11 @@ const Header = () => {
                   src="/Images/logo-kosei.png"
                   alt="logo"
                   layout="fixed"
-                  width={100}
-                  height={52}
+                  width={120}
+                  height={64}
+                  unoptimized
+                  quality={100}
+                  style={{ objectFit: "cover" }}
                 />
               </div>
 
@@ -93,7 +96,13 @@ const Header = () => {
               </svg>
             </aside>
 
-            <aside className={!isSearch ? styles.link : styles.displayNoneNav}>
+            <aside
+              className={
+                !isSearch
+                  ? styles.link
+                  : classNames(styles.link, styles.displayNoneNav)
+              }
+            >
               <Link href="/">
                 <Text
                   type="body-16-regular"
@@ -211,7 +220,7 @@ const Header = () => {
                   height={24}
                   className={styles.iconSearch}
                 />
-                <input placeholder="Email của bạn" />
+                <input placeholder="Nhập nội dung tìm kiếm" />
               </div>
 
               <Image
