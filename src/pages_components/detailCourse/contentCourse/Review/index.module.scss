@@ -1,0 +1,110 @@
+.review {
+  .reviewTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--background-2);
+    border-radius: 12px;
+    margin-bottom: 48px;
+    .reviewLeft {
+      text-align: center;
+      width: 188px;
+      display: grid;
+      justify-content: center;
+      padding: 0 26px;
+    }
+    .reviewRight {
+      width: calc(100% - 188px);
+      padding: 32px 28px;
+      border-left: 1px solid var(--neutral-8);
+      .ratingProgress {
+        display: flex;
+        align-items: center;
+        margin-bottom: 22px;
+        .text {
+          min-width: 88px;
+        }
+        .textNumber {
+          min-width: 40px;
+        }
+        p {
+          white-space: nowrap;
+        }
+        .progress {
+          width: 100%;
+          background: var(--neutral-6);
+          height: 4px;
+          border-radius: 40px;
+          margin-right: 20px;
+          position: relative;
+          .progressActive {
+            background: var(--main-color-primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            border-radius: 40px;
+          }
+        }
+      }
+    }
+  }
+  .comments {
+    .oneComment {
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--neutral-8);
+      padding-top: 24px;
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+  .formComments {
+    padding-top: 32px;
+    margin-bottom: 120px;
+    .yourRating {
+      margin-bottom: 32px;
+    }
+    .form {
+      .formItem {
+        margin-bottom: 20px;
+        .input {
+          background: var(--background-2);
+          padding-left: 16px;
+        }
+      }
+      button {
+        width: 128px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .reviewTop {
+      .reviewLeft {
+        padding: 20px;
+        width: 150px;
+      }
+      .reviewRight {
+        padding: 20px;
+        width: calc(100% - 150px);
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .reviewTop {
+      flex-direction: column;
+      align-items: flex-start;
+      .reviewLeft {
+        text-align: start;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .reviewRight {
+        border-left: none;
+        width: 100%;
+      }
+    }
+  }
+}

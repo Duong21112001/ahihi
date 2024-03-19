@@ -1,0 +1,59 @@
+.course {
+  .courseItem {
+    border-bottom: 1px solid var(--neutral-8);
+    padding: 32px 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+    .courseVideo {
+      .oneCourse {
+        display: flex;
+        align-items: center;
+        padding: 26px 24px;
+        border: 1px solid var(--neutral-7);
+        border-radius: 12px;
+        background: var(--neutral-10);
+        justify-content: space-between;
+        margin-bottom: 24px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .title {
+          display: flex;
+          align-items: center;
+        }
+        .ring {
+          width: 24px;
+          height: 24px;
+          border-radius: 100%;
+          background: var(--main-color-primary);
+          display: grid;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          margin-right: 20px;
+          .border {
+            width: 6px;
+            height: 6px;
+            background: var(--neutral-10);
+            border-radius: 100%;
+          }
+        }
+        .play {
+          width: 40px;
+          height: 40px;
+          background: var(--main-color-primary);
+          border-radius: 8px;
+          display: grid;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

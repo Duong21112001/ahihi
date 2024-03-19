@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <meta name="robots" content="all" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="shortcut icon" href="/Images/logo-kosei.png" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
