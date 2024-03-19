@@ -95,16 +95,17 @@ const CourseDetail = () => {
             className={styles.imagesDetail}
           />
         </div>
+        <div className={styles.courseCarousel}>
+          <Text type="title-40-bold" color="neutral-1" bottom={48}>
+            Khoá học liên quan
+          </Text>
+          <CourseCarouselComponent
+            dataCarousel={dataListCourse}
+            loading={loadingListCourse}
+          />
+        </div>
       </div>
-      <div className={styles.courseCarousel}>
-        <Text type="title-40-bold" color="neutral-1" bottom={48}>
-          Khoá học liên quan
-        </Text>
-        <CourseCarouselComponent
-          dataCarousel={dataListCourse}
-          loading={loadingListCourse}
-        />
-      </div>
+
       <DownloadAppFooter />
     </div>
   );

@@ -6,6 +6,9 @@ import Box from "@/components/Box";
 import Button from "@/components/Button";
 import { useState } from "react";
 import AboutCourse from "./About";
+import TeacherCourse from "./Teacher";
+import ReviewCourse from "./Review";
+import CourseVideo from "./Course";
 import { Course } from "@/utils/model/courses";
 
 interface Courseprops {
@@ -50,6 +53,12 @@ const ContentCourse = ({ course }: Courseprops) => {
     switch (tabActive) {
       case "1":
         return <AboutCourse />;
+      case "2":
+        return <CourseVideo />;
+      case "3":
+        return <TeacherCourse />;
+      case "4":
+        return <ReviewCourse />;
       default:
         return <></>;
     }

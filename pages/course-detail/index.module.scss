@@ -3,21 +3,22 @@
 
   .contentCourseWrap {
     position: relative;
-    background: url(/Images/bg-detail-course.png), var(--background-3);
+    background: url(/Images/_detailCourse/bg-2.png),
+      url(/Images/_detailCourse/bg-1.png), var(--background-3);
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: left top;
+    background-position: left top, right 410px;
     .contentCourseContainer {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 48px 20px;
+      padding: 48px 20px 114px 20px;
       .contentCourse {
         width: calc(100% - 390px);
       }
       .imagesDetail {
         position: absolute;
         right: 0;
-        bottom: 0;
+        top: 800px;
       }
     }
   }
@@ -66,8 +67,15 @@
     }
   }
   @media screen and (max-width: 1200px) {
-    .imagesDetail {
-      width: 200px;
+    .contentCourseWrap {
+      .contentCourseContainer {
+        .imagesDetail {
+          display: none;
+        }
+      }
+      .buyCourses {
+        right: 20px;
+      }
     }
   }
   @media screen and (max-width: 1024px) {
@@ -100,11 +108,6 @@
     }
     .courseCarousel {
       margin-bottom: 50px;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .imagesDetail {
-      display: none;
     }
   }
 }
