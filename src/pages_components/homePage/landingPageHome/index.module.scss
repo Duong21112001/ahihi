@@ -52,9 +52,10 @@
   }
 }
 .infoContainer {
-  background-image: url("/Images/landing-page-2.png");
+  background: url("/svg/_homePage/flowerLeft.svg"),
+    url("/svg/_homePage/flowerRight.svg") var(--shade-primary-6);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: left 56px top 50%, right 56px top 50%;
   margin-top: 0;
   height: 180px;
   .infoWrap {
@@ -108,6 +109,9 @@
   .infoContainer {
     margin-top: 0;
     height: 100px;
+    background-size: 40px;
+    background-position: left 20px top 50%, right 20px top 50%;
+
     .infoWrap {
       .info {
         margin-right: 20px;
@@ -131,6 +135,9 @@
 @media screen and (max-width: 768px) {
   .infoContainer {
     padding: 0 5px;
+    background-size: 30px;
+    background-position: left 10px top 50%, right 10px top 50%;
+
     .infoWrap {
       .info {
         margin-right: 10px;

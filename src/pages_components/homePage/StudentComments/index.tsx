@@ -7,6 +7,7 @@ import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
 import styles from "./index.module.scss";
 import Video from "@/components/Video";
+import VideoModal from "@/components/VideoModal";
 
 const StudentComments = () => {
   const { t } = useTranslation("common");
@@ -74,13 +75,14 @@ const StudentComments = () => {
         </div>
         <div className={styles.studentCommentsRight}>
           <div className={styles.boxBlue} />
-          <div>
-            <Video
+          <div className={styles.videoComment}>
+            {/* <Video
               url="https://www.youtube.com/watch?v=n-WbAWqZ7t4"
               width="100%"
               className={styles.videoComment}
               height="560px"
-            />
+            /> */}
+            <VideoModal url="https://youtube.com/embed/n-WbAWqZ7t4" />
           </div>
         </div>
       </div>

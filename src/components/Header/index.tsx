@@ -259,27 +259,33 @@ const Header = () => {
 
               {!token && (
                 <div className={styles.auth}>
-                  <Button
-                    type="btn-secondary"
-                    className={styles.button}
-                    onClick={() => router.push("/register")}
-                  >
-                    <Text type="body-16-semibold" color="main-color-secondary">
-                      Đăng kí
-                    </Text>
-                  </Button>
+                  <Link href="/register">
+                    <Button
+                      type="btn-secondary"
+                      className={styles.button}
+                      // onClick={() => router.push("/register")}
+                    >
+                      <Text
+                        type="body-16-semibold"
+                        color="main-color-secondary"
+                      >
+                        Đăng kí
+                      </Text>
+                    </Button>
+                  </Link>
 
                   <div className={styles.space} />
-
-                  <Button
-                    type="btn-blue"
-                    className={styles.button}
-                    onClick={() => router.push("/login")}
-                  >
-                    <Text type="body-16-semibold" color="neutral-10">
-                      Đăng nhập
-                    </Text>
-                  </Button>
+                  <Link href="/login">
+                    <Button
+                      type="btn-blue"
+                      className={styles.button}
+                      // onClick={() => router.push("/login")}
+                    >
+                      <Text type="body-16-semibold" color="neutral-10">
+                        Đăng nhập
+                      </Text>
+                    </Button>
+                  </Link>
                 </div>
               )}
             </div>

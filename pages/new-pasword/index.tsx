@@ -35,7 +35,7 @@ const NewPasswordForm = () => {
 
   const { loading, data, run } = useRequest(
     async (values: NewPasswordParam) => {
-      const result = await newPassword(values);
+      const result: any = await newPassword(values);
       if (result?.code === 401) {
         toast(
           <ToastComponent type="error" content="Đường link không tồn tại" />

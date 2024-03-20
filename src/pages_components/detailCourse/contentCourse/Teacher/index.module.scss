@@ -4,6 +4,11 @@
     padding: 24px;
     border-radius: 12px;
     margin-bottom: 32px;
+    background: var(--neutral-10);
+    .avatar {
+      border-radius: 100%;
+      margin-right: 24px;
+    }
     &:last-child {
       margin-bottom: 0;
     }
