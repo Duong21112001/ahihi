@@ -4,9 +4,30 @@ import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";
 import Rating from "@/components/rating";
+import { IlistTeacher } from "@/utils/model/teacher";
+import { useRequest } from "@umijs/hooks";
+import { getTeacherDetailId } from "@/service/teacher";
 
-const TeacherCourse = () => {
+interface TeacherCourseProps {
+  idTeacher: string;
+}
+
+const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
   const { t } = useTranslation("common");
+
+  const {
+    loading: loadingTeacher,
+    data: teacherData,
+  }: { loading: boolean; data: IlistTeacher[] } = useRequest(
+    async () => {
+      const result = await getTeacherDetailId(idTeacher);
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
+  const teacher = teacherData?.[0];
   const infos = [
     {
       label: "Review",
@@ -14,7 +35,7 @@ const TeacherCourse = () => {
     },
     {
       label: "Số học sinh đang giảng dạy",
-      value: 100,
+      value: teacher?.view || 0,
     },
     {
       label: "Số khoá học đang giảng dạy",
@@ -26,16 +47,16 @@ const TeacherCourse = () => {
       <div className={styles.oneTeacher}>
         <Box flex agileItem="agile-center" bottom={24}>
           <Image
-            src="/images/avatar-lecturers.png"
+            src={teacher?.image}
             alt="avatar"
             layout="fixed"
             width={100}
             height={100}
-            style={{ marginRight: 24 }}
+            className={styles.avatar}
           />
           <div>
             <Text type="title-20-bold" color="neutral-1">
-              Mai Lan SS
+              {teacher?.name}
             </Text>
             <Text type="body-16-regular" color="neutral-3">
               Giảng viên
@@ -43,17 +64,7 @@ const TeacherCourse = () => {
           </div>
         </Box>
         <Text type="body-16-regular" bottom={24}>
-          Lorem ipsum dolor sit amet consectetur. Id augue elementum amet sit
-          porta in pharetra consectetur. Egestas nec eu mi nibh velit sed nisl
-          vitae vitae. In arcu a neque ipsum a tempor neque. Odio erat commodo
-          tellus id urna sem mauris. Vehicula mi nunc sed nibh. Pellentesque
-          eget lacus integer a. Ipsum eu tincidunt lacus massa porta feugiat.
-          Eget tincidunt sem id mauris cursus. Id proin duis molestie
-          suspendisse turpis accumsan sed gravida quis. Dignissim enim
-          scelerisque cras tortor imperdiet sed ligula risus eget. Vivamus et
-          suspendisse quam ac rhoncus nibh. Nulla enim donec feugiat sit.
-          Tincidunt id condimentum commodo aliquam. Lacinia nibh erat suscipit
-          nulla quam erat velit. Urna felis eu.
+          {teacher?.content}
         </Text>
         <div className={styles.bottom}>
           {infos.map((info, index) => {
@@ -78,7 +89,6 @@ const TeacherCourse = () => {
 
   return (
     <div className={styles.teacherCourse}>
-      <OneTeacher />
       <OneTeacher />
     </div>
   );

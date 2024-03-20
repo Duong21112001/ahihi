@@ -8,6 +8,7 @@ import Video from "../Video";
 import { useRouter } from "next/router";
 import { Course } from "@/utils/model/courses";
 import { getCookie } from "cookies-next";
+import VideoModal from "../VideoModal";
 
 interface BuyCoursesProps {
   course: Course;
@@ -52,13 +53,8 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
   return (
     <div className={styles.buyCourseWrap}>
       <div className={styles.buyCourse}>
-        {course?.youtube_link ? (
-          <Video
-            url={course.youtube_link}
-            width="100%"
-            className={styles.videoCourse}
-            height="218px"
-          />
+        {!course?.youtube_link ? (
+          <VideoModal url="https://youtube.com/embed/CSwvnpY_dnc" />
         ) : course?.image ? (
           <img src={course.image} alt="course" className={styles.img} />
         ) : (
@@ -68,6 +64,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
             className={styles.img}
           />
         )}
+
         <div className={styles.video}></div>
 
         <Text type="heading-h2" color="neutral-1" bottom={8}>

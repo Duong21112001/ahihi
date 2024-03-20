@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";
+import VideoModal from "@/components/VideoModal";
 
 const CourseVideo = () => {
   const { t } = useTranslation("common");
@@ -19,15 +20,10 @@ const CourseVideo = () => {
           </Text>
         </div>
 
-        <div className={styles.play}>
-          <Image
-            src="/svg/play.svg"
-            alt="heart"
-            layout="fixed"
-            width={14}
-            height={16}
-          />
-        </div>
+        <VideoModal
+          type="play-button"
+          url="https://youtube.com/embed/CSwvnpY_dnc"
+        />
       </div>
     );
   };

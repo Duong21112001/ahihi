@@ -6,12 +6,89 @@ import Text from "@/components/Text";
 import Select from "@/components/Select";
 import styles from "./index.module.scss";
 import { validateEmail, validatePhone } from "@/utils/validate";
+import { useRequest } from "@umijs/hooks";
+import {
+  getCentersList,
+  getLevelsList,
+  registerConsultation,
+} from "@/service/homePage";
+import {
+  CentersResponse,
+  LevelListResponse,
+  RegisterConsultationParam,
+} from "@/utils/model/homePage";
+import { toast } from "react-toastify";
+import ToastComponent from "@/components/Toast";
+import ModalMessage, { PopUpRef } from "@/components/ModalMessage";
+import { useRef } from "react";
 
 const RegisterForm = () => {
   const { t } = useTranslation("common");
   const [form] = Form.useForm();
-  const onFinish = (values: any) => {
-    console.log("values", values);
+  const refModal = useRef<PopUpRef>(null);
+
+  const {
+    loading: loadingListLevel,
+    data: listLevel,
+  }: { loading: boolean; data: LevelListResponse[] } = useRequest(
+    async () => {
+      const result = await getLevelsList();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
+
+  const {
+    loading: loadingListCenter,
+    data: listCenter,
+  }: { loading: boolean; data: CentersResponse[] } = useRequest(
+    async () => {
+      const result = await getCentersList();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
+  const { loading: loadingConsultation, run: runConsultation } = useRequest(
+    async (params) => {
+      const result = await registerConsultation(params);
+      if (result?.code === 204) {
+        refModal?.current?.open && refModal.current.open();
+      } else {
+        toast(
+          <ToastComponent
+            type="error"
+            content="Đăng ký tư vấn không thành công"
+          />
+        );
+      }
+      return result;
+    },
+    {
+      manual: true,
+      onError: () => {},
+    }
+  );
+  const convertListLevel = listLevel?.map((level) => {
+    return {
+      label: level?.name,
+      value: level?.id,
+    };
+  });
+
+  const convertListCenter = listCenter?.map((level) => {
+    return {
+      label: level?.name,
+      value: level?.id,
+    };
+  });
+
+  const onFinish = (values: RegisterConsultationParam) => {
+    values.level = values?.level?.toString();
+    runConsultation(values);
   };
 
   return (
@@ -24,7 +101,7 @@ const RegisterForm = () => {
         <div className={styles.form}>
           <div className={styles.registerFormItem}>
             <Field
-              name="name"
+              name="fullname"
               rules={[
                 {
                   required: true,
@@ -48,7 +125,7 @@ const RegisterForm = () => {
           </div>
           <div className={styles.registerFormItem}>
             <Field
-              name="phone_number"
+              name="phone"
               rules={[
                 {
                   required: true,
@@ -75,16 +152,7 @@ const RegisterForm = () => {
             </Field>
           </div>
           <div className={styles.registerFormItem}>
-            <Field
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  message: t("Email không được để trống"),
-                },
-                validateEmail(t),
-              ]}
-            >
+            <Field name="email" rules={[validateEmail(t)]}>
               {({ value, onChange }, meta) => {
                 return (
                   <TextInput
@@ -102,22 +170,11 @@ const RegisterForm = () => {
             </Field>
           </div>
           <div className={styles.registerFormItem}>
-            <Field
-              name="qualifications"
-              rules={[
-                {
-                  required: true,
-                  message: "",
-                },
-              ]}
-            >
+            <Field name="level">
               {({ value, onChange }, meta) => {
                 return (
                   <Select
-                    options={[
-                      { label: "Đại học", value: "Đại học" },
-                      { label: "Trung học", value: "Trung học" },
-                    ]}
+                    options={convertListLevel}
                     required
                     placeholder="*Trình độ học*"
                     value={value}
@@ -126,6 +183,7 @@ const RegisterForm = () => {
                     icon="/svg/rank.svg"
                     widthIcon={24}
                     heightIcon={24}
+                    loading={loadingListLevel}
                   />
                 );
               }}
@@ -133,21 +191,19 @@ const RegisterForm = () => {
           </div>
           <div className={styles.registerFormItem}>
             <Field
-              name="qualifications"
-              rules={[
-                {
-                  required: true,
-                  message: "",
-                },
-              ]}
+              name="address"
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: "",
+              //   },
+              // ]}
             >
               {({ value, onChange }, meta) => {
                 return (
                   <Select
-                    options={[
-                      { label: "Đại học", value: "Đại học" },
-                      { label: "Trung học", value: "Trung học" },
-                    ]}
+                    loading={loadingListCenter}
+                    options={convertListCenter}
                     required
                     placeholder="*Cơ sở học*"
                     value={value}
@@ -183,7 +239,11 @@ const RegisterForm = () => {
             {() => {
               return (
                 <>
-                  <Button htmlType="submit" bottom={24}>
+                  <Button
+                    htmlType="submit"
+                    bottom={24}
+                    loading={loadingConsultation}
+                  >
                     Đăng ký
                   </Button>
                 </>
@@ -195,6 +255,13 @@ const RegisterForm = () => {
           Trung Tâm Tiếng Nhật Kosei Hotline : 0966026133
         </Text>
       </Form>
+      <ModalMessage
+        title="Cảm ơn bạn đã đăng ký khóa học trung tâm"
+        content="Kosei sẽ liên hệ với bạn trong thời gian sớm nhất"
+        ref={refModal}
+        width={500}
+        img="/Images/password-mess.png"
+      />
     </>
   );
 };

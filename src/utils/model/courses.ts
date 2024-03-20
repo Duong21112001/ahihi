@@ -20,6 +20,7 @@ export interface Course {
   teacher_name: string;
   start_date: string;
   end_date: string;
+  teacher_id: string;
 }
 
 export interface RegisterCourseParams {

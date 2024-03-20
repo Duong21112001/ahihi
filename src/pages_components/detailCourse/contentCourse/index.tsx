@@ -56,7 +56,7 @@ const ContentCourse = ({ course }: Courseprops) => {
       case "2":
         return <CourseVideo />;
       case "3":
-        return <TeacherCourse />;
+        return <TeacherCourse idTeacher={course?.teacher_id} />;
       case "4":
         return <ReviewCourse />;
       default:
@@ -117,7 +117,7 @@ const ContentCourse = ({ course }: Courseprops) => {
           })}
         </div>
         <Box flex agileItem="agile-center">
-          <div className={styles.heart}>
+          {/* <div className={styles.heart}>
             <Image
               src="/svg/heart.svg"
               alt="rating"
@@ -125,7 +125,7 @@ const ContentCourse = ({ course }: Courseprops) => {
               width={20}
               height={20}
             />
-          </div>
+          </div> */}
           <Button type="btn-blue-secondary" className={styles.share}>
             <Image
               src="/svg/share-icon.svg"

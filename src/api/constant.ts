@@ -9,6 +9,10 @@ export const API_PATH = {
   COURSES_PAYMENT: "/courses/payment",
   COURSES_ORDER: "/courses/order",
   COURSES_CODE: "/courses/code",
+  COURSES_CONSULTATION: "/courses/consultation",
+  LEVELS_LIST: "/levels/list",
+  CENTERS_LIST: "/centers/list",
+  TEACHERS_DETAIL: "/teachers/detail",
 };
 
 export const ROUTER = {

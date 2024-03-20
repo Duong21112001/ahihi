@@ -1,0 +1,101 @@
+.videoImage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .play {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(193, 183, 248, 0.7) 0%,
+      rgba(193, 183, 248, 0) 100%
+    );
+    border-radius: 64px;
+    width: 153px;
+    height: 153px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+
+    .border {
+      width: 60px;
+      height: 60px;
+      background: var(--main-color-primary);
+      border-radius: 100%;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        border-style: solid;
+        border-width: 8px 0px 8px 16px;
+        border-color: transparent transparent transparent white;
+        margin-left: 7px;
+      }
+    }
+  }
+}
+.playButton {
+  width: 40px;
+  height: 40px;
+  background: var(--main-color-primary);
+  border-radius: 8px;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.video {
+  max-width: 1140px;
+}
+.modalMess {
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    top: 50px;
+    iframe {
+      height: 400px;
+    }
+  }
+  :global {
+    .rc-dialog {
+      margin: 0 auto;
+      width: calc(100% - 20px);
+      max-width: 1200px;
+      iframe {
+        max-width: 100%;
+      }
+      .rc-dialog-content {
+        background-image: url(/Images/overlay.png);
+        background-repeat: no-repeat;
+        background-position: left top;
+        .rc-dialog-body {
+          padding: 0;
+        }
+        .rc-dialog-close {
+          top: 5px;
+          left: 0;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+.iconClose {
+  background: #00000080;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}

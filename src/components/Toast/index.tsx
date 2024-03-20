@@ -51,12 +51,12 @@ const ToastComponent = (props: toastProps) => {
           height={26}
           style={{ marginRight: 16 }}
         />
-        <div>
+        <div className={styles.content}>
           <Text type="body-14-semibold" color="neutral-2" bottom={4}>
             {title}
           </Text>
           {content && (
-            <Text type="tag-12-medium" color="neutral-5">
+            <Text type="tag-12-medium" color="neutral-5" maxWidth={220}>
               {content}
             </Text>
           )}

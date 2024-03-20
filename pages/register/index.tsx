@@ -25,6 +25,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
 import { ROUTER } from "@/api/constant";
+import Link from "next/link";
 
 const RegisterForm = () => {
   const { t } = useTranslation("common");
@@ -44,6 +45,14 @@ const RegisterForm = () => {
           />
         );
         router.push("/login");
+      }
+      if (result?.code === 404) {
+        toast(
+          <ToastComponent
+            type="error"
+            content="Email hoặc số điện thoại đã được đăng ký ttttttttttttttttttttttttttttttttttttttt"
+          />
+        );
       }
       console.log("result", result);
       return result;
@@ -398,15 +407,17 @@ const RegisterForm = () => {
           </Field>
         </div>
         <Box flex agileItem="agile-center">
-          <Text
-            type="body-16-bold"
-            color="main-color-primary"
-            right={4}
-            onClick={() => router.push(ROUTER.LOGIN)}
-            cursorPoiter
-          >
-            Đăng nhập
-          </Text>
+          <Link href={ROUTER.LOGIN}>
+            <Text
+              type="body-16-bold"
+              color="main-color-primary"
+              right={4}
+              // onClick={() => router.push(ROUTER.LOGIN)}
+              cursorPoiter
+            >
+              Đăng nhập
+            </Text>
+          </Link>
           <Text type="body-16-regular" color="neutral-1">
             nếu bạn đã có tài khoản
           </Text>
