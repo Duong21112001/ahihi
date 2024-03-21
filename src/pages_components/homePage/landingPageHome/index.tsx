@@ -64,7 +64,7 @@ const LandingPageHome = () => {
             bibendum egestas pellentesque in diam sit. Purus est placerat
             iaculis.
           </Text>
-          {!token && (
+          {/* {!token && (
             <div className={styles.buttons}>
               <Button
                 type="btn-primary"
@@ -73,7 +73,7 @@ const LandingPageHome = () => {
                 Đăng ký ngay!
               </Button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div className={styles.infoContainer}>

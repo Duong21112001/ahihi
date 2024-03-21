@@ -257,7 +257,7 @@ const Header = () => {
                 />
               </div>
 
-              {!token && (
+              {/* {!token && (
                 <div className={styles.auth}>
                   <Link href="/register">
                     <Button
@@ -287,7 +287,7 @@ const Header = () => {
                     </Button>
                   </Link>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </main>

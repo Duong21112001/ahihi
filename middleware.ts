@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const AUTH_PATH: any = { "/login": true, "/forgot-password": true };
 
-const PATH: any = ["/payment"];
+const PATH: any = ["/payment,/learn-page"];
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("kosei-token");
@@ -32,5 +32,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/payment"],
+  matcher: ["/", "/login", "/payment", "/learn-page"],
 };

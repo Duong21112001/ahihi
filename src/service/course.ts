@@ -1,5 +1,5 @@
 import { API_PATH } from "@/api/constant";
-import { requestPist } from "@/api/request";
+import { privateRequest, requestCommunity, requestPist } from "@/api/request";
 
 const getCourseId = async (course_id: string) => {
   const result = await requestPist.get(API_PATH.COURSES_COURSE_BY_ID, {
@@ -7,4 +7,15 @@ const getCourseId = async (course_id: string) => {
   });
   return result?.data;
 };
-export { getCourseId };
+
+const getCourseContent = async (course_id: string) => {
+  const result = await privateRequest(
+    requestCommunity.get,
+    API_PATH.COURSES_CONTENT,
+    {
+      params: { course_id },
+    }
+  );
+  return result?.data;
+};
+export { getCourseId, getCourseContent };
