@@ -1,0 +1,61 @@
+.learnPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  padding: 0 20px;
+  margin-bottom: 100px;
+  .learnPageLeft {
+    width: 60%;
+    .caroselTop {
+      iframe {
+        width: 100%;
+        height: 400px;
+      }
+    }
+    .caroselBottom {
+      iframe {
+        width: 100%;
+      }
+    }
+  }
+  .learnPageRight {
+    width: 40%;
+    .collapseItem {
+      border-bottom: 1px solid #edf2f7;
+      .collapseTitle {
+        border-bottom: 1px solid #edf2f7;
+        .collapseLessonWrap {
+          padding-top: 16px;
+        }
+        .collapseLesson {
+          margin: 0 16px 0 32px;
+
+          .collapseLectures {
+            margin-left: 25px;
+            border-left: 1px solid var(--neutral-5);
+          }
+        }
+      }
+    }
+  }
+}
+.lecturersArrowsLeft {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translate(0, 50%);
+  cursor: pointer;
+  background: #767f8c4d;
+}
+.lecturersArrowsRight {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, 50%);
+  cursor: pointer;
+  background: #767f8c4d;
+}
+.videoBottom {
+  pointer-events: none;
+}

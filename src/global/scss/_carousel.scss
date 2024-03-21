@@ -207,3 +207,30 @@
     }
   }
 }
+.learning-slick {
+  .slick-slide {
+    padding: 10px;
+  }
+
+  .slick-prev::before {
+    content: none;
+  }
+  .slick-next::before {
+    content: none;
+  }
+  .slick-next,
+  .slick-prev {
+    background: #f7fafc;
+    width: 48px;
+    height: 48px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    box-shadow: 0px 8px 10px 0px #14518929;
+    z-index: 3;
+    &:hover {
+      background: #f7fafc;
+    }
+  }
+}

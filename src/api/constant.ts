@@ -13,6 +13,8 @@ export const API_PATH = {
   LEVELS_LIST: "/levels/list",
   CENTERS_LIST: "/centers/list",
   TEACHERS_DETAIL: "/teachers/detail",
+  COURSES_CONTENT: "/courses/content",
+  USERS_PROFILE: "/users/profile",
 };
 
 export const ROUTER = {
