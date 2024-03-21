@@ -11,9 +11,16 @@ import "react-circular-progressbar/dist/styles.css";
 interface CollapseProps {
   title: string;
   learned?: number;
+  numberIndex: number;
+  onClickCallBack?: (numberIndex: number) => void;
 }
 
-const CollapseVideo: React.FC<CollapseProps> = ({ title, learned }) => {
+const CollapseVideo: React.FC<CollapseProps> = ({
+  title,
+  learned,
+  numberIndex,
+  onClickCallBack,
+}) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const onClick = () => {
@@ -31,6 +38,7 @@ const CollapseVideo: React.FC<CollapseProps> = ({ title, learned }) => {
           height={16}
           layout="fixed"
           style={{ marginRight: 10, cursor: "pointer" }}
+          onClick={() => onClickCallBack && onClickCallBack(numberIndex)}
         />
         <Text type="tag-12-semibold" color="neutral-1">
           {title}

@@ -9,6 +9,9 @@ import Text from "../Text";
 import React from "react";
 import { getCookie } from "cookies-next";
 import Button from "../Button";
+import { useRequest } from "@umijs/hooks";
+import { getUser } from "@/service/user";
+import { UserResponse } from "@/utils/model/user";
 
 const Header = () => {
   const { t } = useTranslation("header");
@@ -17,10 +20,25 @@ const Header = () => {
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
   const [isSearch, setIsSearch] = useState(false);
+  const { loading, data }: { loading: boolean; data: UserResponse[] } =
+    useRequest(
+      async () => {
+        if (token) {
+          const result = await getUser();
+          return result;
+        }
+      },
+
+      {
+        onSuccess: (result) => {},
+      }
+    );
 
   useEffect(() => {
     setnavBarOpen(false);
   }, [router]);
+  const nameUser = data?.[0]?.user?.fullname;
+  const avatar = data?.[0]?.user?.avatar;
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -257,7 +275,7 @@ const Header = () => {
                 />
               </div>
 
-              {/* {!token && (
+              {!token && (
                 <div className={styles.auth}>
                   <Link href="/register">
                     <Button
@@ -287,7 +305,37 @@ const Header = () => {
                     </Button>
                   </Link>
                 </div>
-              )} */}
+              )}
+              {token && (
+                <div
+                  className={styles.user}
+                  onClick={() =>
+                    router.push({
+                      pathname: "/my-course",
+                    })
+                  }
+                >
+                  <Image
+                    src={avatar ? avatar : "/svg/no-user.svg"}
+                    alt="no-user"
+                    layout="fixed"
+                    width={24}
+                    height={24}
+                    style={{ marginRight: 12 }}
+                  />
+                  <Text type="body-14-semibold" color="neutral-1" right={12}>
+                    {nameUser}
+                  </Text>
+                  <Image
+                    src="/svg/icon-down-black.svg"
+                    alt="icon-down"
+                    layout="fixed"
+                    width={12}
+                    height={6}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </main>

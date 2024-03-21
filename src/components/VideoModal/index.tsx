@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import styles from "./index.module.scss";
 import Image from "next/image";
+import ReactPlayer from "react-player";
 
 interface ModalVideoProps {
   url: string;
@@ -45,7 +46,8 @@ const VideoModal: React.FC<ModalVideoProps> = ({
           </div>
         }
       >
-        <iframe width="1000" height="600" src={url}></iframe>
+        <iframe width="1000" height="600" src={url} />
+        {/* <ReactPlayer url={url} width="1000" height="600" /> */}
       </Dialog>
       {type === "play-image" && (
         <div className={styles.videoImage}>
