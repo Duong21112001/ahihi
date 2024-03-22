@@ -1,5 +1,5 @@
 import { API_PATH } from "@/api/constant";
-import { requestPist } from "@/api/request";
+import { privateRequest, requestCommunity, requestPist } from "@/api/request";
 import { LoginParam } from "@/utils/model/login";
 
 const login = async (params: LoginParam) => {
@@ -8,4 +8,9 @@ const login = async (params: LoginParam) => {
   });
   return result;
 };
-export { login };
+
+const logout = async () => {
+  const result = await privateRequest(requestCommunity.post, API_PATH.LOGOUT);
+  return result;
+};
+export { login, logout };

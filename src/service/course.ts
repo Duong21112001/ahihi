@@ -18,4 +18,12 @@ const getCourseContent = async (course_id: string) => {
   );
   return result?.data;
 };
-export { getCourseId, getCourseContent };
+
+const getCourseStuding = async () => {
+  const result = await privateRequest(
+    requestCommunity.get,
+    API_PATH.COURSE_STUDYING
+  );
+  return result?.data;
+};
+export { getCourseId, getCourseContent, getCourseStuding };

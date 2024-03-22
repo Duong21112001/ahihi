@@ -6,10 +6,13 @@ import Image from "next/image";
 import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { ROUTER } from "@/api/constant";
+import { useRecoilState } from "recoil";
+import { userProfile } from "@/context/User";
 
 const LandingPageHome = () => {
   const { t } = useTranslation("common");
   const token = getCookie("kosei-token");
+  const [user, setUser] = useRecoilState(userProfile);
   const router = useRouter();
   const infos = [
     {
@@ -64,7 +67,7 @@ const LandingPageHome = () => {
             bibendum egestas pellentesque in diam sit. Purus est placerat
             iaculis.
           </Text>
-          {!token && (
+          {!user?.user_id && (
             <div className={styles.buttons}>
               <Button
                 type="btn-primary"

@@ -135,7 +135,7 @@
 }
 
 .inputSearch {
-  width: calc(100% - 300px);
+  width: 100%;
   display: flex;
   align-items: center;
   height: 50px;
@@ -206,7 +206,6 @@
     .menuRight {
       display: flex;
       align-items: center;
-      width: 330px;
       justify-content: flex-end;
       .icons {
         display: flex;
@@ -325,6 +324,7 @@
         display: flex;
         align-items: center;
         height: 44px;
+        margin-right: 73px;
         @include defaultsize {
           padding: 0 16px;
         }
@@ -380,4 +380,66 @@
   align-items: center;
   margin-left: 24px;
   cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    margin-left: 0;
+  }
+}
+.dropDown {
+  padding: 24px 16px;
+  box-shadow: 0px 8px 10px 0px #14518929;
+  border-radius: 12px;
+  background: var(--neutral-10);
+  width: 339px;
+  max-width: 100%;
+  .dropDownShadow {
+    box-shadow: 0px 4px 40px 0px #7575751f;
+
+    padding: 12px 16px;
+    background: var(--neutral-10);
+    border: 1px solid #edf2f7;
+    margin-bottom: 16px;
+    border-radius: 8px;
+
+    .dropDownUser {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e7eff7;
+    }
+    .course {
+      padding-top: 16px;
+      cursor: pointer;
+    }
+  }
+  .history {
+    border-top: 1px solid #e7eff7;
+    padding: 16px 0;
+    border-bottom: 1px solid #e7eff7;
+    cursor: pointer;
+  }
+  .logout {
+    padding-top: 16px;
+    cursor: pointer;
+  }
+}
+.overlayClassName {
+  opacity: 1 !important;
+  top: 72px !important;
+  @media screen and (max-width: 1024px) {
+    top: 37px !important;
+  }
+  :global {
+    .rc-tooltip-inner {
+      background: transparent;
+      padding: 0;
+    }
+  }
+}
+.arrow {
+  transform: rotate(180deg);
+}
+
+.arrow_open {
+  transform: rotate(0deg);
 }

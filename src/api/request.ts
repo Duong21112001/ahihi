@@ -55,7 +55,6 @@ const privateRequest = async (
   configs?: any
 ) => {
   const token = getCookie("kosei-token");
-  console.log("token", token);
   if (token) {
     return request(suffixUrl, {
       headers: {
