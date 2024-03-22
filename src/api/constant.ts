@@ -15,9 +15,12 @@ export const API_PATH = {
   TEACHERS_DETAIL: "/teachers/detail",
   COURSES_CONTENT: "/courses/content",
   USERS_PROFILE: "/users/profile",
+  COURSE_STUDYING: "/course_students/studying",
+  LOGOUT: "/users/signout",
 };
 
 export const ROUTER = {
-  LOGIN: "./login",
-  REGISTER: "./register",
+  LOGIN: "/login",
+  REGISTER: "/register",
+  HOME: "/",
 };

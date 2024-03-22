@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import "@/global/scss/index.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import UserProvider from "@/context/User";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => typeof page | ReactElement;
@@ -17,7 +18,7 @@ type AppPropsWithLayout = AppProps & {
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(<Component {...pageProps} />);
+  return <UserProvider>{getLayout(<Component {...pageProps} />)}</UserProvider>;
 }
 
 export default appWithTranslation(MyApp);

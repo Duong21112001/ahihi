@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import CourseCarouselComponent from "@/pages_components/component/carouselCourseComponent";
 import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
 import { Course } from "@/utils/model/courses";
+import { getCourseStuding } from "@/service/course";
 
 const MyCourseCarousel = () => {
   const { t } = useTranslation("common");
@@ -29,10 +30,17 @@ const MyCourseCarousel = () => {
     }
   );
 
+  const { loading: loadingLearning, data: dataLearning } = useRequest(
+    async () => {
+      const result = await getCourseStuding();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
   const CourseComponent = (props: { course: Course }) => {
     const { course } = props;
-    console.log("course", course);
-
     return (
       <div className={styles.coursePadding}>
         <div className={styles.courseWrap}>

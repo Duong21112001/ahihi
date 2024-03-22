@@ -7,11 +7,18 @@ import styles from "./index.module.scss";
 import { useEffect, useState } from "react";
 import Text from "../Text";
 import React from "react";
-import { getCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import Button from "../Button";
 import { useRequest } from "@umijs/hooks";
 import { getUser } from "@/service/user";
 import { UserResponse } from "@/utils/model/user";
+import { useRecoilState } from "recoil";
+import { initUser, userProfile } from "@/context/User";
+import Tooltip from "rc-tooltip";
+import Box from "../Box";
+import "rc-tooltip/assets/bootstrap.css";
+import { logout } from "@/service/login";
+import { ROUTER } from "@/api/constant";
 
 const Header = () => {
   const { t } = useTranslation("header");
@@ -20,6 +27,8 @@ const Header = () => {
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
   const [isSearch, setIsSearch] = useState(false);
+  const [user, setUser] = useRecoilState(userProfile);
+  const [isShowDropdown, setIsShowDropdown] = useState(false);
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
     useRequest(
       async () => {
@@ -30,15 +39,98 @@ const Header = () => {
       },
 
       {
-        onSuccess: (result) => {},
+        onSuccess: (result) => {
+          setUser(result?.[0]?.user);
+        },
       }
     );
+  const { run: onDelete, loading: loadingLogOut } = useRequest(
+    async () => {
+      if (token) {
+        const result = await logout();
+        return result;
+      }
+    },
+
+    {
+      manual: true,
+      onSuccess: (result: any) => {
+        if (result?.code === 204) {
+          deleteCookie("kosei-token");
+          setUser(initUser);
+          router.push(ROUTER.HOME);
+        }
+      },
+    }
+  );
+
+  const onGoMyCourse = () => {
+    router.push({
+      pathname: "/my-course",
+    });
+    setIsShowDropdown(false);
+  };
 
   useEffect(() => {
     setnavBarOpen(false);
   }, [router]);
   const nameUser = data?.[0]?.user?.fullname;
   const avatar = data?.[0]?.user?.avatar;
+  const DropDown = () => {
+    return (
+      <div className={styles.dropDown}>
+        <div className={styles.dropDownShadow}>
+          <div className={styles.dropDownUser}>
+            <Box flex agileItem="agile-center">
+              <Image
+                src={avatar ? avatar : "/svg/no-user.svg"}
+                alt="no-user"
+                layout="fixed"
+                width={24}
+                height={24}
+                style={{ marginRight: 12 }}
+              />
+              <Text type="body-14-semibold" color="neutral-1" right={12}>
+                {nameUser}
+              </Text>
+            </Box>
+            <Image
+              src="/svg/edit.svg"
+              alt="edit"
+              layout="fixed"
+              width={20}
+              height={20}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
+          <Text
+            type="body-16-semibold"
+            color="main-color-primary"
+            className={styles.course}
+            onClick={onGoMyCourse}
+          >
+            Khoá học của tôi
+          </Text>
+        </div>
+
+        <Text
+          type="body-16-medium"
+          color="neutral-2"
+          className={styles.history}
+        >
+          Lịch sử học tập
+        </Text>
+        <Text
+          type="body-16-medium"
+          color="sematic-1"
+          className={styles.logout}
+          onClick={onDelete}
+        >
+          Đăng xuất
+        </Text>
+      </div>
+    );
+  };
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -275,7 +367,7 @@ const Header = () => {
                 />
               </div>
 
-              {!token && (
+              {!user?.user_id && (
                 <div className={styles.auth}>
                   <Link href="/register">
                     <Button
@@ -306,39 +398,45 @@ const Header = () => {
                   </Link>
                 </div>
               )}
-              {token && (
-                <div
-                  className={styles.user}
-                  onClick={() =>
-                    router.push({
-                      pathname: "/my-course",
-                    })
-                  }
-                >
-                  <Image
-                    src={avatar ? avatar : "/svg/no-user.svg"}
-                    alt="no-user"
-                    layout="fixed"
-                    width={24}
-                    height={24}
-                    style={{ marginRight: 12 }}
-                  />
-                  <Text type="body-14-semibold" color="neutral-1" right={12}>
-                    {nameUser}
-                  </Text>
-                  <Image
-                    src="/svg/icon-down-black.svg"
-                    alt="icon-down"
-                    layout="fixed"
-                    width={12}
-                    height={6}
-                    style={{ cursor: "pointer" }}
-                  />
-                </div>
-              )}
             </div>
           </div>
         </main>
+        {user?.user_id && (
+          <div
+            className={styles.user}
+            onClick={() => setIsShowDropdown(!isShowDropdown)}
+          >
+            <Image
+              src={avatar ? avatar : "/svg/no-user.svg"}
+              alt="no-user"
+              layout="fixed"
+              width={24}
+              height={24}
+              style={{ marginRight: 12 }}
+            />
+            <Text type="body-14-semibold" color="neutral-1" right={12}>
+              {nameUser}
+            </Text>
+            <Tooltip
+              placement="bottomRight"
+              overlay={<DropDown />}
+              showArrow={false}
+              trigger={["click"]}
+              overlayClassName={styles.overlayClassName}
+              visible={isShowDropdown}
+            >
+              <Image
+                src="/svg/icon-down-black.svg"
+                alt="icon-down"
+                layout="fixed"
+                width={12}
+                height={6}
+                style={{ cursor: "pointer" }}
+                className={isShowDropdown ? styles.arrow : styles.arrow_open}
+              />
+            </Tooltip>
+          </div>
+        )}
       </div>
     </div>
   );

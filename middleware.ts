@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const AUTH_PATH: any = { "/login": true, "/forgot-password": true };
 
-const PATH: any = ["/payment,/learn-page"];
+const PATH: any = ["/payment", "/learn-page", "/my-course"];
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("kosei-token");
@@ -14,7 +14,6 @@ export async function middleware(request: NextRequest) {
   const isMatchPath = PATH.find(
     (path: string) => request.nextUrl.pathname === path
   );
-
   if (token) {
     if (isMatchAuthPath) {
       url.pathname = "/";
@@ -24,6 +23,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!token && isMatchPath) {
+    console.log("ggg");
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
@@ -32,5 +32,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/payment", "/learn-page"],
+  matcher: ["/", "/login", "/payment", "/learn-page", "/my-course"],
 };

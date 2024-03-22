@@ -9,6 +9,8 @@ import Text from "@/components/Text";
 import classNames from "classnames";
 import CourseVideo from "@/pages_components/detailCourse/contentCourse/Course";
 import MyCourseCarousel from "@/pages_components/myCourse/course";
+import { useRecoilState } from "recoil";
+import { userProfile } from "@/context/User";
 
 interface VideoInfo {
   video: string;
@@ -17,6 +19,8 @@ interface VideoInfo {
 
 const MyCoursePage: NextPageWithLayout = () => {
   const [tabActive, setTabActive] = useState("1");
+  const [user, setUser] = useRecoilState(userProfile);
+
   const breadcrumb = [
     {
       label: "Trang chủ",
@@ -59,7 +63,7 @@ const MyCoursePage: NextPageWithLayout = () => {
       <div className={styles.tabsWrap}>
         <div className={styles.tabsContainer}>
           <Text type="heading-h3" color="neutral-10" bottom={24}>
-            Xin chào, Anh Nguyen!
+            Xin chào, {user?.user_name}!
           </Text>
           <div className={styles.tabs}>
             {tabs?.map((tab) => {
