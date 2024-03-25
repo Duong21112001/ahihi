@@ -5,6 +5,10 @@ import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
 import Carousel from "react-multi-carousel";
 import classNames from "classnames";
+import { useRequest } from "@umijs/hooks";
+import { getAchievement } from "@/service/course";
+import { AchievementResponse } from "@/utils/model/courses";
+import ImageModal from "@/components/ImageModal";
 
 const Achievements = () => {
   const { t } = useTranslation("common");
@@ -27,20 +31,30 @@ const Achievements = () => {
       items: 1,
     },
   };
-  const OneAchievements = () => {
+  const {
+    loading: loadingAchievement,
+    data: dataAchievement,
+  }: {
+    loading: boolean;
+    data: AchievementResponse[];
+  } = useRequest(
+    async () => {
+      const result = await getAchievement();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
+  const OneAchievements = (props: { data: AchievementResponse }) => {
+    const { data } = props;
     return (
       <div className={styles.oneAchievementsPadding}>
         <div className={styles.oneAchievements}>
           <div className={styles.img}>
-            <img src="/Images/achievements.png" alt="achievements" />
+            <img src={data?.avatar} alt="achievements" />
             <div className={styles.zoomOut}>
-              <Image
-                src="/svg/zoom-out.svg"
-                alt="zoom-out"
-                layout="fixed"
-                width={13}
-                height={13}
-              />
+              <ImageModal url={data?.avatar} />
             </div>
           </div>
           <div className={styles.info}>
@@ -49,7 +63,7 @@ const Achievements = () => {
                 Học viên:
               </Text>
               <Text type="body-16-semibold" color="neutral-10">
-                Nguyễn Văn A
+                {data?.fullname}
               </Text>
             </div>
             <div className={styles.point}>
@@ -57,7 +71,7 @@ const Achievements = () => {
                 điểm số:
               </Text>
               <Text type="title-20-bold" color="neutral-10">
-                119/180
+                {data?.score}
               </Text>
             </div>
           </div>
@@ -87,23 +101,27 @@ const Achievements = () => {
             Lorem ipsum dolor sit amet
           </Text>
           <div>
-            <Carousel
-              responsive={responsive}
-              showDots={false}
-              containerClass={classNames(
-                "container-class-course",
-                styles.carousel
-              )}
-              centerMode={false}
-              renderArrowsWhenDisabled={true}
-              arrows={true}
-            >
-              <OneAchievements />
-              <OneAchievements />
-              <OneAchievements />
-              <OneAchievements />
-              <OneAchievements />
-            </Carousel>
+            {!loadingAchievement && dataAchievement?.length > 0 && (
+              <Carousel
+                responsive={responsive}
+                showDots={false}
+                containerClass={classNames(
+                  "container-class-course",
+                  styles.carousel
+                )}
+                centerMode={false}
+                renderArrowsWhenDisabled={true}
+                arrows={true}
+              >
+                {dataAchievement?.map((achievement) => {
+                  return (
+                    <div key={`achievement-${achievement?.id}`}>
+                      <OneAchievements data={achievement} />
+                    </div>
+                  );
+                })}
+              </Carousel>
+            )}
           </div>
         </div>
       </div>

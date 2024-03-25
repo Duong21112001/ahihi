@@ -13,7 +13,6 @@ export const isEmail = (value: any) => {
   );
 };
 export const isPassword = (value: any) => {
-  console.log("value", value);
   return /^(?=.*[a-z])(?=.*[A-Z])(?=.{6,})/.test(value);
 };
 export const validatePhone = (t: any) => {
@@ -44,7 +43,6 @@ export const validatePassword = (t: any) => {
   return {
     validator: async (rule: any, value: any) => {
       if (value) {
-        console.log("aa", isPassword(value));
         if (!isPassword(value)) {
           throw new Error(t("Sai định dạng"));
         }

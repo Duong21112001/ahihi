@@ -82,7 +82,7 @@
       .lecturers {
         background-color: var(--background-2);
         border-radius: 12px;
-        padding: 16px 0;
+        padding: 16px;
         text-align: center;
         box-shadow: 0px 16px 24px 0px #dfe0e5;
         .button {
@@ -100,6 +100,17 @@
         }
         img {
           margin: 0 auto;
+        }
+        .content {
+          min-height: 50px;
+          span,
+          p {
+            font-family: "BeVietnamPro-Medium" !important;
+            margin-bottom: 24px;
+            color: var(--neutral-4) !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
     }

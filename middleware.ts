@@ -23,7 +23,6 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!token && isMatchPath) {
-    console.log("ggg");
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }

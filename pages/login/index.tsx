@@ -35,7 +35,6 @@ const LoginForm = () => {
       }
       if (result?.code === 200) {
         const token = result?.data?.[0]?.user?.token;
-        console.log("token22", token);
         if (token) {
           setCookie("kosei-token", token);
           router.replace("/");

@@ -27,7 +27,7 @@ const Rating: React.FunctionComponent<RatingProps> = ({ ...props }) => {
       {[...Array(5 - numberRating)].map((value, key) => {
         return (
           <Image
-            src="/svg/rating.svg"
+            src="/svg/un-rating.svg"
             alt="rating"
             layout="fixed"
             width={20}

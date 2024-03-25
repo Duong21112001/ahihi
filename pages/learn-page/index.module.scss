@@ -1,45 +1,3 @@
-.learnPage {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  padding: 0 20px;
-  margin-bottom: 100px;
-  .learnPageLeft {
-    width: 60%;
-    .caroselTop {
-      iframe {
-        width: 100%;
-        height: 400px;
-      }
-    }
-    .caroselBottom {
-      iframe {
-        width: 100%;
-      }
-    }
-  }
-  .learnPageRight {
-    width: 40%;
-    .collapseItem {
-      border-bottom: 1px solid #edf2f7;
-      .collapseTitle {
-        border-bottom: 1px solid #edf2f7;
-        .collapseLessonWrap {
-          padding-top: 16px;
-        }
-        .collapseLesson {
-          margin: 0 16px 0 32px;
-
-          .collapseLectures {
-            margin-left: 25px;
-            border-left: 1px solid var(--neutral-5);
-          }
-        }
-      }
-    }
-  }
-}
 .lecturersArrowsLeft {
   position: absolute;
   left: 20px;
@@ -58,4 +16,72 @@
 }
 .videoBottom {
   pointer-events: none;
+}
+.learnPageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  .learnPage {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    .learnPageLeft {
+      width: 60%;
+      .caroselTop {
+        iframe {
+          width: 100%;
+          height: 400px;
+        }
+      }
+      .caroselBottom {
+        margin-bottom: 48px;
+        iframe {
+          width: 100%;
+        }
+      }
+    }
+    .learnPageRight {
+      width: 40%;
+      background: #fbfbfb;
+      height: 100%;
+      .collapseItem {
+        border-bottom: 1px solid #edf2f7;
+        .collapseTitle {
+          border-bottom: 1px solid #edf2f7;
+          .collapseLessonWrap {
+            padding-top: 16px;
+          }
+          .collapseLesson {
+            margin: 0 16px 0 32px;
+
+            .collapseLectures {
+              margin-left: 25px;
+              border-left: 1px solid var(--neutral-5);
+            }
+          }
+        }
+      }
+    }
+  }
+  .learnTabs {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    .tabItem {
+      margin-right: 32px;
+      &:last-child {
+        margin-right: 0;
+      }
+      .tab {
+        height: 40px;
+        cursor: pointer;
+      }
+      .tabActive {
+        border-bottom: 4px solid var(--main-color-primary);
+      }
+    }
+  }
+  .contentTabs {
+    overflow: hidden;
+  }
 }

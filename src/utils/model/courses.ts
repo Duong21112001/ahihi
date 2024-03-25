@@ -21,6 +21,9 @@ export interface Course {
   start_date: string;
   end_date: string;
   teacher_id: string;
+  cou_summary: string;
+  star: number;
+  total_rate: number;
 }
 
 export interface RegisterCourseParams {
@@ -33,7 +36,28 @@ export interface RegisterCourseParams {
   course_id: string;
   combo_id: string;
 }
+export interface AchievementResponse {
+  id: number;
+  userId: number;
+  fullname: string;
+  content: string;
+  status: number;
+  created_at: string;
+  updated_at: string;
+  avatar: string;
+  score: string;
+}
 
+export interface SocialsResponse {
+  id: number;
+  title: string;
+  platform: string;
+  icon: string;
+  status: number;
+  banner: null;
+  created_at: string;
+  updated_at: string;
+}
 export interface CoursePayment {
   id: number;
   name: string;
@@ -92,6 +116,39 @@ export interface CourseContent {
   has_child: number;
   total_learned: number;
   cats: CourseCats[];
+}
+
+export interface Questions {
+  id: number;
+  parent_id: number;
+  course_id: number;
+  exam_id: number;
+  lecture_id: number;
+  ctype: string;
+  name: string;
+  point: number;
+  question_limit: number;
+  question: string;
+  attachment: string;
+  image: string;
+  video_id: string;
+  translate: string;
+  answer_a: string;
+  answer_b: string;
+  answer_c: string;
+  answer_d: string;
+  correct_answer: string;
+  lang_code: string;
+  active: number;
+  created_at: string;
+  updated_at: string;
+  trial_test_id: string;
+  test_id: string;
+  questions: Questions[];
+}
+
+export interface QuestionsResponse {
+  data: Questions[];
 }
 export interface ListCourseContent {
   courses: CourseContent[];

@@ -17,6 +17,9 @@ export const API_PATH = {
   USERS_PROFILE: "/users/profile",
   COURSE_STUDYING: "/course_students/studying",
   LOGOUT: "/users/signout",
+  COURSES_QUESTIONS: "/courses/questions",
+  COURSES_ACHIEVEMENT: "/courses/achievement",
+  COURSES_SOCIALS: "/courses/socials",
 };
 
 export const ROUTER = {

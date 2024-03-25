@@ -50,11 +50,10 @@ const RegisterForm = () => {
         toast(
           <ToastComponent
             type="error"
-            content="Email hoặc số điện thoại đã được đăng ký ttttttttttttttttttttttttttttttttttttttt"
+            content="Email hoặc số điện thoại đã được đăng ký"
           />
         );
       }
-      console.log("result", result);
       return result;
     },
     {

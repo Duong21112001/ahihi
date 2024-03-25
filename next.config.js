@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "koseionline.vn",
       },
+      {
+        protocol: "https",
+        hostname: "kosei.eupsolution.net",
+      },
     ],
   },
 };
