@@ -7,6 +7,7 @@ import Rating from "@/components/rating";
 import { IlistTeacher } from "@/utils/model/teacher";
 import { useRequest } from "@umijs/hooks";
 import { getTeacherDetailId } from "@/service/teacher";
+import { convert } from "html-to-text";
 
 interface TeacherCourseProps {
   idTeacher: string;
@@ -29,10 +30,10 @@ const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
   );
   const teacher = teacherData?.[0];
   const infos = [
-    {
-      label: "Review",
-      value: "",
-    },
+    // {
+    //   label: "Review",
+    //   value: "",
+    // },
     {
       label: "Số học sinh đang giảng dạy",
       value: teacher?.view || 0,
@@ -63,9 +64,10 @@ const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
             </Text>
           </div>
         </Box>
-        <Text type="body-16-regular" bottom={24}>
-          {teacher?.content}
-        </Text>
+        <div
+          dangerouslySetInnerHTML={{ __html: convert(teacher?.content) }}
+          style={{ marginBottom: 24 }}
+        ></div>
         <div className={styles.bottom}>
           {infos.map((info, index) => {
             return (
@@ -73,12 +75,12 @@ const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
                 <Text type="body-14-regular" color="gray-500" bottom={4}>
                   {info.label}
                 </Text>
-                {index === 0 && <Rating numberRating={4} />}
-                {index !== 0 && (
+                {/* {index === 0 && <Rating numberRating={4} />} */}
+                {
                   <Text type="body-16-semibold" color="dark-500">
                     {info?.value}
                   </Text>
-                )}
+                }
               </div>
             );
           })}

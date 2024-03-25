@@ -1,36 +1,39 @@
-.inputRadio {
+.inputRadioWrap {
   display: flex;
-  align-items: center;
-  .radio {
-    width: 20px;
-    height: 20px;
-    box-sizing: border-box;
-    border: 1px solid var(--neutral-6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    .selected {
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
-      border-radius: 50%;
-      background: var(--main-color-primary);
-      display: none;
+  align-items: flex-start;
+  .inputRadio {
+    margin-right: 10px;
+    .radio {
+      width: 20px;
+      height: 20px;
+      box-sizing: border-box;
+      border: 1px solid var(--neutral-6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      cursor: pointer;
+      .selected {
+        width: calc(100% - 8px);
+        height: calc(100% - 8px);
+        border-radius: 100%;
+        background: var(--main-color-primary);
+        display: none;
+      }
     }
-  }
-  input {
-    display: none;
-    &:checked {
-      & + .radio {
-        border: 1px solid var(--main-color-primary);
-        .selected {
-          display: block;
+    input {
+      display: none;
+      &:checked {
+        & + .radio {
+          border: 1px solid var(--main-color-primary);
+          .selected {
+            display: block;
+          }
         }
       }
     }
-  }
-  .label {
-    margin-left: 10px;
+    .label {
+      margin-left: 10px;
+    }
   }
 }

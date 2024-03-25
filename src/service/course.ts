@@ -8,6 +8,16 @@ const getCourseId = async (course_id: string) => {
   return result?.data;
 };
 
+const getAchievement = async () => {
+  const result = await requestPist.get(API_PATH.COURSES_ACHIEVEMENT);
+  return result?.data;
+};
+
+const getSocials = async () => {
+  const result = await requestPist.get(API_PATH.COURSES_SOCIALS);
+  return result?.data;
+};
+
 const getCourseContent = async (course_id: string) => {
   const result = await privateRequest(
     requestCommunity.get,
@@ -26,4 +36,22 @@ const getCourseStuding = async () => {
   );
   return result?.data;
 };
-export { getCourseId, getCourseContent, getCourseStuding };
+
+const getCourseQuestions = async (course_id: string) => {
+  const result = await privateRequest(
+    requestCommunity.get,
+    API_PATH.COURSES_QUESTIONS,
+    {
+      params: { course_id },
+    }
+  );
+  return result?.data;
+};
+export {
+  getCourseId,
+  getCourseContent,
+  getCourseStuding,
+  getCourseQuestions,
+  getAchievement,
+  getSocials,
+};

@@ -3,8 +3,14 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";
+import { convert } from "html-to-text";
+import { Course } from "@/utils/model/courses";
 
-const AboutCourse = () => {
+interface AboutCourseProps {
+  data: Course;
+}
+
+const AboutCourse = ({ data }: AboutCourseProps) => {
   const { t } = useTranslation("common");
   const infos = [
     "Lorem ipsum dolor sit",
@@ -23,10 +29,10 @@ const AboutCourse = () => {
     "Tải giáo trình của trung tâm",
     "Môi trường học yên tĩnh, đảm bảo độ tập trung",
   ];
-
   return (
     <div className={styles.AboutCourse}>
-      <div className={styles.AboutCourseItem}>
+      <div dangerouslySetInnerHTML={{ __html: data?.cou_summary }}></div>
+      {/* <div className={styles.AboutCourseItem}>
         <Box flex agileItem="agile-center" bottom={10}>
           <Image
             src="/svg/book.svg"
@@ -41,18 +47,7 @@ const AboutCourse = () => {
           </Text>
         </Box>
         <Text type="body-16-regular" color="neutral-2">
-          Lorem ipsum dolor sit amet consectetur. Tempor neque porta ut cursus
-          iaculis interdum orci lacus risus. Lacus iaculis facilisi tincidunt
-          odio ligula turpis hendrerit aliquet. Vitae pellentesque non aliquet
-          risus elementum nunc. Quis amet est ut lectus tincidunt rhoncus
-          viverra tincidunt faucibus. Tortor tellus amet accumsan morbi
-          consequat diam posuere duis fames. Et blandit libero netus imperdiet
-          interdum vel. Congue velit enim fringilla vitae enim. Velit ipsum
-          justo aliquam sed nulla sed. Lacinia massa vitae volutpat nulla eget.
-          Ultrices sagittis lacus dolor bibendum amet. Tristique fermentum
-          euismod morbi semper eget. Arcu mattis lectus mollis pulvinar aliquet.
-          Amet leo aliquam sed dictum condimentum gravida suspendisse adipiscing
-          sapien. Vel erat quis cras non id.
+          {convert(convert(data?.cou_summary))}
         </Text>
       </div>
       <div className={styles.AboutCourseItem}>
@@ -132,7 +127,7 @@ const AboutCourse = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

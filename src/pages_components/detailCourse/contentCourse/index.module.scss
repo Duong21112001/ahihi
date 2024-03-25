@@ -51,6 +51,9 @@
       border-bottom: 3px solid var(--main-color-primary);
     }
   }
+  .renderTab {
+    min-height: 200px;
+  }
   @media screen and (max-width: 768px) {
     .infoCourseWrap {
       flex-direction: column-reverse;

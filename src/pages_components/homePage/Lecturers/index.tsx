@@ -11,6 +11,8 @@ import PlaceholderBox from "@/components/placeholderBox";
 import { IlistTeacher } from "@/utils/model/teacher";
 import Button from "@/components/Button";
 import classNames from "classnames";
+import { convert } from "html-to-text";
+import Slider from "react-slick";
 
 const Lecturers = () => {
   const { loading, data } = useRequest(
@@ -22,25 +24,6 @@ const Lecturers = () => {
       onError: () => {},
     }
   );
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 3,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 769 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 768, min: 480 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 540, min: 0 },
-      items: 1,
-    },
-  };
 
   const Lecturer = ({
     teacher,
@@ -76,23 +59,12 @@ const Lecturers = () => {
           >
             {teacher?.name}
           </Text>
-          <Text type="body-16-semibold" color="neutral-3" bottom={12}>
-            Trình độ: N1
-          </Text>
 
-          <Text
-            type="body-16-regular"
-            color="primary-light"
-            // bottom={active ? 30 : 14}
-            bottom={24}
-            maxWidth={188}
-            marginAuto
-            height={40}
-            overFlowHidden
-            className="text-content-lecturer"
-          >
-            {teacher?.content}
-          </Text>
+          <div
+            dangerouslySetInnerHTML={{ __html: convert(teacher?.content) }}
+            className={styles.content}
+          ></div>
+
           <div className="button-lecturer">
             <Button className={styles.button} type="btn-blue">
               <Text type="body-14-semibold" color="neutral-10">
@@ -105,14 +77,14 @@ const Lecturers = () => {
     );
   };
 
-  // const ref = useRef(null);
+  const ref: any = useRef(null);
 
   const next = () => {
-    // ref?.current?.
+    ref?.current?.slickNext();
   };
 
   const previous = () => {
-    // ref?.current?.slickPrev();
+    ref?.current?.slickPrev();
   };
 
   const settings = {
@@ -230,25 +202,71 @@ const Lecturers = () => {
           </Text>
           <div>
             {!loading && data && data?.length > 0 && (
-              <Carousel
-                responsive={responsive}
-                showDots={true}
-                containerClass={classNames(
-                  "container-class-course",
-                  styles.carousel
-                )}
-                centerMode={false}
-                renderArrowsWhenDisabled={true}
-                arrows={true}
+              // <Carousel
+              //   responsive={responsive}
+              //   showDots={true}
+              //   containerClass={classNames(
+              //     "container-class-course",
+              //     styles.carousel
+              //   )}
+              //   centerMode={false}
+              //   renderArrowsWhenDisabled={true}
+              //   arrows={true}
+              // >
+              //   {data?.map((teacher: IlistTeacher, index: number) => {
+              //     return (
+              //       <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
+              //         <Lecturer active={false} teacher={teacher} />
+              //       </div>
+              //     );
+              //   })}
+              // </Carousel>
+              <Slider
+                ref={ref}
+                {...settings}
+                className="slider-lecturer"
+                initialSlide={2}
+                // dotsClass="dotsClass-lecturer"
+                nextArrow={
+                  <div onClick={next} className={styles.lecturersArrowsRight}>
+                    <Image
+                      src="/svg/caret-right-active.svg"
+                      alt="arrow-right"
+                      layout="fixed"
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                }
+                prevArrow={
+                  <div
+                    onClick={previous}
+                    style={{ marginRight: 12 }}
+                    className={styles.lecturersArrowsLeft}
+                  >
+                    <Image
+                      src="/svg/caret-left-active.svg"
+                      alt="arrow-left"
+                      layout="fixed"
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                }
               >
-                {data?.map((teacher: IlistTeacher, index: number) => {
-                  return (
-                    <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
-                      <Lecturer active={false} teacher={teacher} />
-                    </div>
-                  );
-                })}
-              </Carousel>
+                {(loading ? [...Array(3)] : data)?.map(
+                  (teacher: IlistTeacher, index: number) => {
+                    return (
+                      <div
+                        key={`lecturer-${teacher?.id}`}
+                        className={`${index}`}
+                      >
+                        <Lecturer active={false} teacher={teacher} />
+                      </div>
+                    );
+                  }
+                )}
+              </Slider>
             )}
           </div>
         </div>

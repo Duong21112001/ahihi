@@ -1,20 +1,44 @@
 import Text from "@/components/Text";
 import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
+import { useRequest } from "@umijs/hooks";
+import { getSocials } from "@/service/course";
+import { SocialsResponse } from "@/utils/model/courses";
 
 const Community = () => {
+  const {
+    loading: loadingSocials,
+    data: dataSocials,
+  }: {
+    loading: boolean;
+    data: SocialsResponse[];
+  } = useRequest(
+    async () => {
+      const result = await getSocials();
+      return result;
+    },
+    {
+      onError: () => {},
+    }
+  );
   const { t } = useTranslation("common");
-  const New = () => {
+  const New = (props: { data: SocialsResponse }) => {
+    const { data } = props;
     return (
       <div className={styles.new}>
         <div className={styles.img}></div>
         <div className={styles.tag}>
           <div className={styles.tagRing}>
             <Image
-              src="/svg/fb.svg"
+              src={
+                data?.platform === "Facebook"
+                  ? "/svg/fb.svg"
+                  : data?.platform === "Youtube"
+                  ? "/svg/youtube.svg"
+                  : "/svg/tiktok.svg"
+              }
               alt="fb"
               layout="fixed"
               width={48}
@@ -23,7 +47,7 @@ const Community = () => {
           </div>
           <div className={styles.tagText}>
             <Text type="title-18-semibold" color="dark-500">
-              Facebook
+              {data?.platform}
             </Text>
           </div>
         </div>
@@ -32,8 +56,7 @@ const Community = () => {
           color="neutral-1"
           className={styles.textNew}
         >
-          Fanpage Tiếng Nhật Kosei là nơi chia sẻ kiến thức, các sự kiện của
-          Kosei được cập nhật mỗi ngày.
+          {data?.title}
         </Text>
       </div>
     );
@@ -71,9 +94,9 @@ const Community = () => {
           Gần 999+ Video học miễn phí được đăng lên Kosei Youtube channel
         </Text>
         <div className={styles.communityContent}>
-          <New />
-          <New />
-          <New />
+          {dataSocials?.map((social) => {
+            return <New data={social} key={`social-${social?.id}`} />;
+          })}
         </div>
       </div>
     </div>

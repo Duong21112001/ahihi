@@ -10,6 +10,7 @@ import TeacherCourse from "./Teacher";
 import ReviewCourse from "./Review";
 import CourseVideo from "./Course";
 import { Course } from "@/utils/model/courses";
+import Rating from "@/components/rating";
 
 interface Courseprops {
   course: Course;
@@ -52,9 +53,9 @@ const ContentCourse = ({ course }: Courseprops) => {
   const renderTab = () => {
     switch (tabActive) {
       case "1":
-        return <AboutCourse />;
+        return <AboutCourse data={course} />;
       case "2":
-        return <CourseVideo />;
+        return <CourseVideo data={course} />;
       case "3":
         return <TeacherCourse idTeacher={course?.teacher_id} />;
       case "4":
@@ -74,27 +75,18 @@ const ContentCourse = ({ course }: Courseprops) => {
         {course?.name}
       </Text>
       <Box flex agileItem="agile-center" bottom={12}>
-        <Box flex agileItem="agile-center">
-          {[...Array(5)].map((value, key) => {
-            return (
-              <Image
-                src="/svg/rating.svg"
-                alt="rating"
-                layout="fixed"
-                width={20}
-                height={20}
-                style={{ marginRight: 4 }}
-                key={`rating-${key}`}
-              />
-            );
-          })}
-        </Box>
+        {course?.star && (
+          <Box flex agileItem="agile-center">
+            <Rating numberRating={course?.star} />
+          </Box>
+        )}
+
         <Box flex agileItem="agile-flex-end">
           <Text type="body-14-medium" color="neutral-2" right={5}>
-            5.0
+            {course?.star}
           </Text>
           <Text type="tag-12-regular" color="neutral-4">
-            (100 đánh giá)
+            ({course?.total_rate} đánh giá)
           </Text>
         </Box>
       </Box>
@@ -163,7 +155,7 @@ const ContentCourse = ({ course }: Courseprops) => {
             );
           })}
         </div>
-        {renderTab()}
+        <div className={styles.renderTab}>{renderTab()}</div>
       </div>
     </div>
   );
