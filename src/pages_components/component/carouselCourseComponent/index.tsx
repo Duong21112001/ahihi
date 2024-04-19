@@ -61,7 +61,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
             <Text
               type="title-24-bold"
               color="neutral-1"
-              className={styles.courseTitle}
+              className={styles.courseContentTitle}
             >
               {course.name}
             </Text>

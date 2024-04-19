@@ -18,6 +18,9 @@
       padding: 18px 16px 0px 16px;
       .courseTitle {
         margin-bottom: 8px;
+        max-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .infoCourse {
         margin-bottom: 32px;

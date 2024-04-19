@@ -5,6 +5,7 @@
     box-shadow: 0px 8px 10px 0px #14518929;
     padding-bottom: 12px;
     background: var(--background-3);
+    margin-bottom: 15px;
 
     .images {
       border-bottom: 1px solid var(--neutral-4);
@@ -16,6 +17,11 @@
     }
     .courseContent {
       padding: 18px 16px 0px 16px;
+      .courseContentTitle {
+        max-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .courseTitle {
         margin-bottom: 8px;
       }
