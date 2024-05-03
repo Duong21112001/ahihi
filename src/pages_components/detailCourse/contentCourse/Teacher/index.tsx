@@ -64,7 +64,6 @@ const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
             </Text>
           </div>
         </Box>
-
         <div
           dangerouslySetInnerHTML={{ __html: convert(teacher?.content) }}
           style={{ marginBottom: 24 }}
