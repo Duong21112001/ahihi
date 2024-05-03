@@ -9,37 +9,13 @@ import Image from "next/image";
 import { WebContentResponse } from "@/utils/model/homePage";
 import { useRequest } from "@umijs/hooks";
 import { getWebContent } from "@/service/homePage";
-import { useSearchParams } from "next/navigation";
 
 const ChooseKosei = () => {
   const { t } = useTranslation("common");
-  const chooseKosei = [
-    {
-      title: "Lorem ipsum dolor sit amet consectetur. Sit.",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdietempus felis vitae sit est quisque. Lorem ipsum dolor sit ametconsectetur adipiscing elit. Imperdiet tempus felis vitae sit estquisque.",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur. Sit.",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdietempus felis vitae sit est quisque. Lorem ipsum dolor sit ametconsectetur adipiscing elit. Imperdiet tempus felis vitae sit estquisque.",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur. Sit.",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdietempus felis vitae sit est quisque. Lorem ipsum dolor sit ametconsectetur adipiscing elit. Imperdiet tempus felis vitae sit estquisque.",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur. Sit.",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdietempus felis vitae sit est quisque. Lorem ipsum dolor sit ametconsectetur adipiscing elit. Imperdiet tempus felis vitae sit estquisque.",
-    },
-  ];
 
-  const { data }: { data: WebContentResponse[] } = useRequest(async () => {
-    const result = await getWebContent("why_kosei");
-    return result;
-  });
+  const { data } = useRequest<WebContentResponse[]>(() =>
+    getWebContent("why_kosei")
+  );
 
   return (
     <div className={styles.chooseKoseiWrap}>
