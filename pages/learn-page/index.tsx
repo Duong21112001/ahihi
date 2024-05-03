@@ -237,6 +237,7 @@ const LearnPage: NextPageWithLayout = () => {
                   <div
                     onClick={() => setTabActive(tab.value)}
                     className={styles.tabItem}
+                    key={`tab-${tab.value}`}
                   >
                     <Text
                       type={
