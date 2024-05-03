@@ -21,6 +21,7 @@ export const API_PATH = {
   COURSES_ACHIEVEMENT: "/courses/achievement",
   COURSES_SOCIALS: "/courses/socials",
   WEB_CONTENT: "/web_contents/list",
+  FEEDBACK: "/feedbacks/list",
 };
 
 export const ROUTER = {

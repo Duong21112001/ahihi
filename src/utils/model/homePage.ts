@@ -41,3 +41,31 @@ export interface WebContentResponse {
   title: string;
   content: ContentWeb;
 }
+
+export interface IListFeedback {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  status: number;
+  confirmation_code: string;
+  deleted_at: null;
+  phone: number;
+  avatar_path: string;
+  gender: 0 | 1;
+  full_name: null;
+  address: string;
+  status_text: null;
+  user_type: string;
+  birthday: string;
+  created_at: string;
+  remember_token: null;
+}
+export interface ListFeedbackResponse {
+  id: number;
+  user_id: number;
+  message: string;
+  created_at: string;
+  updated_at: number;
+  user: IListFeedback;
+}

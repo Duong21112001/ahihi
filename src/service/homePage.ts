@@ -18,10 +18,21 @@ const registerConsultation = async (params: RegisterConsultationParam) => {
   return result;
 };
 
-const getWebContent = async (type: "why_kosei") => {
+const getWebContent = async (type: string) => {
   const result = await requestPist.get(API_PATH.WEB_CONTENT, {
     params: { type },
   });
   return result?.data;
 };
-export { getLevelsList, registerConsultation, getCentersList, getWebContent };
+
+const getListFeedback = async () => {
+  const result = await requestPist.get(API_PATH.FEEDBACK);
+  return result?.data;
+};
+export {
+  getLevelsList,
+  registerConsultation,
+  getCentersList,
+  getWebContent,
+  getListFeedback,
+};
