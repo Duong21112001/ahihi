@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface RegisterConsultationParam {
   fullname: string;
   email: string;
@@ -24,4 +26,18 @@ export interface CentersResponse {
   email: string;
   status: number;
   hotline: string;
+}
+
+export interface ContentWeb {
+  [x: string]: any;
+  icon: StaticImageData;
+  title: string;
+  content: string;
+}
+export interface WebContentResponse {
+  id: number;
+  type: string;
+  text: string;
+  title: string;
+  content: ContentWeb;
 }

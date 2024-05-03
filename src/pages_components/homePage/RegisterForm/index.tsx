@@ -176,7 +176,7 @@ const RegisterForm = () => {
                   <Select
                     options={convertListLevel}
                     required
-                    placeholder="*Trình độ học*"
+                    placeholder="* học*"
                     value={value}
                     onChange={onChange}
                     meta={meta}

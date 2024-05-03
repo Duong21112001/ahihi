@@ -17,4 +17,11 @@ const registerConsultation = async (params: RegisterConsultationParam) => {
   });
   return result;
 };
-export { getLevelsList, registerConsultation, getCentersList };
+
+const getWebContent = async (type: "why_kosei") => {
+  const result = await requestPist.get(API_PATH.WEB_CONTENT, {
+    params: { type },
+  });
+  return result?.data;
+};
+export { getLevelsList, registerConsultation, getCentersList, getWebContent };
