@@ -42,9 +42,9 @@ pipeline {
                         exit
                     EOF"""
                     sh """ssh -o StrictHostKeyChecking=no ansible@206.189.158.254 << EOF
-                        docker service scale kosei-admin_web-client=2
-                        docker service update --image registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} kosei-admin_web-client
-                        docker service scale kosei-admin_web-client=1
+                        docker service scale kosei-web_web-release=2
+                        docker service update --image registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} kosei-web_web-release
+                        docker service scale kosei-web_web-release=1
                         exit
                     EOF"""
                 }
