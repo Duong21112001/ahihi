@@ -1,7 +1,4 @@
 import { useTranslation } from "next-i18next";
-import Form, { Field } from "rc-field-form";
-import TextInput from "@/components/TextInput";
-import Button from "@/components/Button";
 import Text from "@/components/Text";
 import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
@@ -15,7 +12,7 @@ import { useRequest } from "@umijs/hooks";
 const StudentComments = () => {
   const { t } = useTranslation("common");
   const { data } = useRequest<ListFeedbackResponse[]>(() => getListFeedback());
-  console.log("item====", data?.length);
+  console.log("item====", data);
   const itemNumber = data ? data.length : 0;
 
   const OneComment = () => {
@@ -35,10 +32,10 @@ const StudentComments = () => {
                     maxWidth={500}
                     className={styles.textContent}
                   >
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters.
+                    Dưới đây là cảm nhận của tất cả các học viên đã theo học tại
+                    Kosei từ năm 2014 đến nay, học viên gửi những tâm tư, tình
+                    cảm, trải nghiệm học tập và kết quả đạt được trong suốt hành
+                    trang theo học tại Kosei.
                   </Text>
                   <div className={styles.boxRating}>
                     <div className={styles.rating}>
