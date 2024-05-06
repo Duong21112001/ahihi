@@ -69,3 +69,13 @@ export interface ListFeedbackResponse {
   updated_at: number;
   user: IListFeedback;
 }
+
+export interface SignWithFBResponse {
+  id: number;
+  full_name: string;
+  email: string;
+  password: null | string;
+  created_at: null | string;
+  avatar_path: string;
+  accessToken: string;
+}

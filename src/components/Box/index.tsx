@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import Link from "next/link";
 
 interface BoxProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ interface BoxProps {
   paddingLeft?: number;
   paddingBottom?: number;
   paddingRight?: number;
+  // href: string;
 }
 
 const Box: React.FC<BoxProps> = ({
@@ -35,10 +37,18 @@ const Box: React.FC<BoxProps> = ({
   agileItem,
   justContent,
   radius,
+  // href,
 }) => {
-  const classes = classNames(agileItem, justContent, alignText, className, {
-    displayFlex: flex,
-  });
+  const classes = classNames(
+    agileItem,
+
+    justContent,
+    alignText,
+    className,
+    {
+      displayFlex: flex,
+    }
+  );
   return (
     <div
       className={classes}
@@ -52,6 +62,7 @@ const Box: React.FC<BoxProps> = ({
         borderRadius: radius,
       }}
     >
+      {/* <Link href={href}></Link> */}
       {children}
     </div>
   );

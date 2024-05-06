@@ -34,6 +34,8 @@ const ForgotPasswordForm = () => {
     }
   );
   const onFinish = (values: ForgotPasswordParam) => {
+    console.log("values=====", values);
+
     run(values);
   };
 
@@ -112,6 +114,12 @@ const ForgotPasswordForm = () => {
                   type="btn-blue"
                   loading={loading}
                   disabled={isError}
+                  onClick={() =>
+                    router.push({
+                      pathname: "forgot-password/identify-account",
+                      query: { email: userEmail },
+                    })
+                  }
                 >
                   Gửi mã
                 </Button>

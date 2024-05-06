@@ -29,10 +29,20 @@ const getListFeedback = async () => {
   const result = await requestPist.get(API_PATH.FEEDBACK);
   return result?.data;
 };
+
+const signInWithFacebook = async (
+  fbAccessToken: "EAAGcb2rZC1gUBO4PoNxcsCEmnY3Op6iweZAg9alFSRi4sYndHjvMe7EWAqJJmcgPAKxMUsieKayoGqZB3NOI84HnCZCSBtqiR8nq6ybUHOH9WPfRq4pbJZCXuYxYZCFXGNFZBJ8oQulcClwF0BFi7FIvJAk9HGmkn5V2wDkZA1V3n62pFcs6fpO6ZAaINDTVdYAJ2oPWtlkSlmRCnS4UZBdhZAZCm5DDvSUdbrE5EYupH2tJw6HCuMKKTt6ZCA2YmVXDtpshya2AZD"
+) => {
+  const result = await requestPist.post(API_PATH.SIGNIN_WITH_FACEBOOK, {
+    params: { fbAccessToken },
+  });
+  return result?.data;
+};
 export {
   getLevelsList,
   registerConsultation,
   getCentersList,
   getWebContent,
   getListFeedback,
+  signInWithFacebook,
 };

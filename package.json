@@ -32,7 +32,10 @@
     "react-player": "^2.15.1",
     "react-responsive-carousel": "^3.2.23",
     "react-slick": "^0.30.2",
+    "react-social-login-buttons": "^4.1.0",
     "react-toastify": "^10.0.4",
+    "react18-input-otp": "^1.1.4",
+    "reactjs-social-login": "^2.6.3",
     "recoil": "^0.7.7",
     "sass": "^1.71.1",
     "slick-carousel": "^1.8.1"

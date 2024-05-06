@@ -22,6 +22,7 @@ export const API_PATH = {
   COURSES_SOCIALS: "/courses/socials",
   WEB_CONTENT: "/web_contents/list",
   FEEDBACK: "/feedbacks/list",
+  SIGNIN_WITH_FACEBOOK: "/users/signInWithFacebook",
 };
 
 export const ROUTER = {
