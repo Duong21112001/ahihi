@@ -59,7 +59,7 @@ const StudentComments = () => {
                     </Text>
                     <div className={styles.user}>
                       <Image
-                        src={item.user.avatar_path}
+                        src={item.user.avatar_path || ""}
                         alt="user-comment"
                         layout="fixed"
                         width={65}

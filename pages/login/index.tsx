@@ -8,7 +8,7 @@ import Image from "next/image";
 import Box from "@/components/Box";
 import CheckBox from "@/components/CheckBox";
 import { useRequest } from "@umijs/hooks";
-import { login } from "../../src/service/login";
+import { login, loginWithFaceBook } from "../../src/service/login";
 import { LoginParam } from "@/utils/model/login";
 import { useState } from "react";
 import { NextPageContext } from "next";
@@ -19,15 +19,39 @@ import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
 import { validateEmail } from "@/utils/validate";
 import { setCookie } from "cookies-next";
+import FacebookLogin from "@greatsumini/react-facebook-login";
+import { KOSEI_TOKEN } from "@/api/constant";
 
 const LoginForm = () => {
   const { t } = useTranslation("common");
   const [isRememberLogin, setIsRememberLogin] = useState(false);
   const [form] = Form.useForm();
   const router = useRouter();
-  const { loading, data, run } = useRequest(
+  const { run: runLoginFaceBook } = useRequest(
+    async (accessToken) => {
+      return await loginWithFaceBook(accessToken);
+    },
+    {
+      manual: true,
+      onSuccess: (result) => {
+        console.log("result", result);
+        const token = result?.data?.accessToken;
+        console.log("token", token);
+        if (token) {
+          if (token) {
+            setCookie(KOSEI_TOKEN, token);
+            router.replace("/");
+          }
+        }
+        console.log("result", result);
+      },
+      onError: (err: any) => {},
+    }
+  );
+  const { loading, run } = useRequest(
     async (values: LoginParam) => {
       const result = await login(values);
+      console.log("result====", result);
       if (result?.code === 404) {
         toast(
           <ToastComponent type="error" content="Tài khoản không tồn tại" />
@@ -36,7 +60,7 @@ const LoginForm = () => {
       if (result?.code === 200) {
         const token = result?.data?.[0]?.user?.token;
         if (token) {
-          setCookie("kosei-token", token);
+          setCookie(KOSEI_TOKEN, token);
           router.replace("/");
         }
       }
@@ -197,17 +221,45 @@ const LoginForm = () => {
         </Box>
         <Box flex agileItem="agile-center" justContent="content-beetween">
           <Box flex agileItem="agile-center" className={styles.faceBook}>
-            <Image
-              src="/svg/_Facebook.svg"
-              alt="kosei-logo"
-              layout="fixed"
-              width={24}
-              height={24}
-              style={{ marginRight: 12 }}
-            />
-            <Text type="body-16-semibold" color="neutral-10">
+            <FacebookLogin
+              appId="1165803831114574"
+              onSuccess={(response) => {
+                console.log("Login Success!", response);
+                if (response?.accessToken) {
+                  runLoginFaceBook(response?.accessToken);
+                }
+              }}
+              onFail={(error) => {
+                console.log("Login Failed!", error);
+              }}
+              onProfileSuccess={(response) => {
+                setCookie("fullname", response.name);
+                setCookie("avt", response.picture?.data.url);
+                console.log("Get Profile Success!", response);
+              }}
+              style={{
+                backgroundColor: "#1877f2",
+                color: "#fff",
+                fontSize: "16px",
+                border: "none",
+                borderRadius: "4px",
+                fontWeight: 600,
+                cursor: "pointer",
+                textAlign: "left",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                src="/svg/_Facebook.svg"
+                alt="kosei-logo"
+                layout="fixed"
+                width={24}
+                height={24}
+                style={{ marginRight: 12 }}
+              />
               Facebook
-            </Text>
+            </FacebookLogin>
           </Box>
           <Box flex agileItem="agile-center" className={styles.google}>
             <Image

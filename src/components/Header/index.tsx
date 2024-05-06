@@ -19,6 +19,7 @@ import Box from "../Box";
 import "rc-tooltip/assets/bootstrap.css";
 import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
+import { log } from "console";
 
 const Header = () => {
   const { t } = useTranslation("header");
@@ -26,24 +27,34 @@ const Header = () => {
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
+  const fullnameFromCookie = getCookie("fullname");
+  console.log("fullName===========", fullnameFromCookie);
+  const [fullname, setFullname] = useState("");
+
   const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useRecoilState(userProfile);
   const [isShowDropdown, setIsShowDropdown] = useState(false);
+  console.log("tok=", token);
+
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
     useRequest(
       async () => {
         if (token) {
           const result = await getUser();
+          console.log("result=========", result);
+
           return result;
         }
       },
 
       {
         onSuccess: (result) => {
+          console.log("result", result);
           setUser(result?.[0]?.user);
         },
       }
     );
+
   const { run: onDelete, loading: loadingLogOut } = useRequest(
     async () => {
       if (token) {
@@ -385,17 +396,17 @@ const Header = () => {
                   </Link>
 
                   <div className={styles.space} />
-                  <Link href="/login">
-                    <Button
-                      type="btn-blue"
-                      className={styles.button}
-                      // onClick={() => router.push("/login")}
-                    >
-                      <Text type="body-16-semibold" color="neutral-10">
-                        Đăng nhập
-                      </Text>
-                    </Button>
-                  </Link>
+                  {/* <Link href="/login"> */}
+                  <Button
+                    type="btn-blue"
+                    className={styles.button}
+                    onClick={() => router.push("/login")}
+                  >
+                    <Text type="body-16-semibold" color="neutral-10">
+                      Đăng nhập
+                    </Text>
+                  </Button>
+                  {/* </Link> */}
                 </div>
               )}
             </div>
@@ -415,7 +426,8 @@ const Header = () => {
               style={{ marginRight: 12 }}
             />
             <Text type="body-14-semibold" color="neutral-1" right={12}>
-              {nameUser}
+              {nameUser || fullname}
+              {/* {fullnameFromCookie} */}
             </Text>
             <Tooltip
               placement="bottomRight"

@@ -30,3 +30,5 @@ export const ROUTER = {
   REGISTER: "/register",
   HOME: "/",
 };
+
+export const KOSEI_TOKEN = "kosei-token";
