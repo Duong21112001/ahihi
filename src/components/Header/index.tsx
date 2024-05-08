@@ -27,14 +27,11 @@ const Header = () => {
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
-  const fullnameFromCookie = getCookie("fullname");
-  console.log("fullName===========", fullnameFromCookie);
   const [fullname, setFullname] = useState("");
 
   const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useRecoilState(userProfile);
   const [isShowDropdown, setIsShowDropdown] = useState(false);
-  console.log("tok=", token);
 
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
     useRequest(
@@ -49,7 +46,7 @@ const Header = () => {
 
       {
         onSuccess: (result) => {
-          console.log("result", result);
+          console.log("result=============", result);
           setUser(result?.[0]?.user);
         },
       }
@@ -381,11 +378,7 @@ const Header = () => {
               {!user?.user_id && (
                 <div className={styles.auth}>
                   <Link href="/register">
-                    <Button
-                      type="btn-secondary"
-                      className={styles.button}
-                      // onClick={() => router.push("/register")}
-                    >
+                    <Button type="btn-secondary" className={styles.button}>
                       <Text
                         type="body-16-semibold"
                         color="main-color-secondary"
@@ -396,7 +389,6 @@ const Header = () => {
                   </Link>
 
                   <div className={styles.space} />
-                  {/* <Link href="/login"> */}
                   <Button
                     type="btn-blue"
                     className={styles.button}
@@ -406,7 +398,6 @@ const Header = () => {
                       Đăng nhập
                     </Text>
                   </Button>
-                  {/* </Link> */}
                 </div>
               )}
             </div>
@@ -427,7 +418,6 @@ const Header = () => {
             />
             <Text type="body-14-semibold" color="neutral-1" right={12}>
               {nameUser || fullname}
-              {/* {fullnameFromCookie} */}
             </Text>
             <Tooltip
               placement="bottomRight"

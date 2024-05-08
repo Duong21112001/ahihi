@@ -30,17 +30,10 @@ const getListFeedback = async () => {
   return result?.data;
 };
 
-// const signInWithFacebook = async (fbAccessToken: string) => {
-//   const result = await requestPist.post(API_PATH.SIGNIN_WITH_FACEBOOK, {
-//     params: { fbAccessToken },
-//   });
-//   return result?.data;
-// };
 export {
   getLevelsList,
   registerConsultation,
   getCentersList,
   getWebContent,
   getListFeedback,
-  // signInWithFacebook,
 };

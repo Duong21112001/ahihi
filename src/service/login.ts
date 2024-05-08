@@ -1,3 +1,4 @@
+import { SignWithGGResponse } from "./../utils/model/homePage";
 import { API_PATH } from "@/api/constant";
 import { privateRequest, requestCommunity, requestPist } from "@/api/request";
 import { LoginParam } from "@/utils/model/login";
@@ -19,4 +20,13 @@ const loginWithFaceBook = async (fbAccessToken: string) => {
   });
   return result;
 };
-export { login, logout, loginWithFaceBook };
+
+const loginWithGoogle = async (id_token: string) => {
+  const result = await requestPist.get(API_PATH.SIGNIN_WITH_GOOGLE, {
+    params: { id_token },
+  });
+
+  return result;
+};
+
+export { login, logout, loginWithFaceBook, loginWithGoogle };

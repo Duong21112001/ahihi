@@ -8,7 +8,11 @@ import Image from "next/image";
 import Box from "@/components/Box";
 import CheckBox from "@/components/CheckBox";
 import { useRequest } from "@umijs/hooks";
-import { login, loginWithFaceBook } from "../../src/service/login";
+import {
+  login,
+  loginWithFaceBook,
+  loginWithGoogle,
+} from "../../src/service/login";
 import { LoginParam } from "@/utils/model/login";
 import { useState } from "react";
 import { NextPageContext } from "next";
@@ -17,16 +21,46 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
-import { validateEmail } from "@/utils/validate";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import FacebookLogin from "@greatsumini/react-facebook-login";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { KOSEI_TOKEN } from "@/api/constant";
+import { jwtDecode } from "jwt-decode";
+import { SignWithGGResponse } from "@/utils/model/homePage";
 
 const LoginForm = () => {
   const { t } = useTranslation("common");
   const [isRememberLogin, setIsRememberLogin] = useState(false);
   const [form] = Form.useForm();
   const router = useRouter();
+
+  const { run: runLoginGoogle } = useRequest(
+    async (accessToken) => {
+      if (accessToken) {
+        const result = await loginWithGoogle(accessToken);
+        console.log("resultGet=====", result);
+        const token = result?.data?.accessToken;
+        if (token) {
+          setCookie(KOSEI_TOKEN, token);
+          router.replace("/");
+        }
+        console.log("resultGet=====", result?.data?.accessToken);
+
+        return result;
+      }
+    }
+    // {
+    //   manual: true,
+    //   onSuccess: (result) => {
+    //     console.log("resultHIHI====", result);
+
+    //     const accessToken = result?.[0]?.accessToken;
+    //     console.log("accessToken=======", accessToken);
+    //     setCookie(KOSEI_TOKEN, accessToken);
+    //   },
+    //   onError: (error) => {},
+    // }
+  );
   const { run: runLoginFaceBook } = useRequest(
     async (accessToken) => {
       return await loginWithFaceBook(accessToken);
@@ -34,16 +68,16 @@ const LoginForm = () => {
     {
       manual: true,
       onSuccess: (result) => {
-        console.log("result", result);
         const token = result?.data?.accessToken;
-        console.log("token", token);
+        console.log("token====", token);
+        console.log("resultToken===", result);
+
         if (token) {
           if (token) {
             setCookie(KOSEI_TOKEN, token);
             router.replace("/");
           }
         }
-        console.log("result", result);
       },
       onError: (err: any) => {},
     }
@@ -51,7 +85,6 @@ const LoginForm = () => {
   const { loading, run } = useRequest(
     async (values: LoginParam) => {
       const result = await login(values);
-      console.log("result====", result);
       if (result?.code === 404) {
         toast(
           <ToastComponent type="error" content="Tài khoản không tồn tại" />
@@ -224,7 +257,6 @@ const LoginForm = () => {
             <FacebookLogin
               appId="1165803831114574"
               onSuccess={(response) => {
-                console.log("Login Success!", response);
                 if (response?.accessToken) {
                   runLoginFaceBook(response?.accessToken);
                 }
@@ -235,7 +267,6 @@ const LoginForm = () => {
               onProfileSuccess={(response) => {
                 setCookie("fullname", response.name);
                 setCookie("avt", response.picture?.data.url);
-                console.log("Get Profile Success!", response);
               }}
               style={{
                 backgroundColor: "#1877f2",
@@ -262,17 +293,34 @@ const LoginForm = () => {
             </FacebookLogin>
           </Box>
           <Box flex agileItem="agile-center" className={styles.google}>
-            <Image
-              src="/svg/google.svg"
-              alt="kosei-logo"
-              layout="fixed"
-              width={24}
-              height={24}
-              style={{ marginRight: 12 }}
-            />
-            <Text type="body-16-semibold" color="neutral-10">
-              Google
-            </Text>
+            <GoogleOAuthProvider clientId="14716222725-oajn4fpcmb9psa0d39475kji8qt5nvef.apps.googleusercontent.com">
+              <Image
+                src="/svg/google.svg"
+                alt="kosei-logo"
+                layout="fixed"
+                width={24}
+                height={24}
+                style={{ marginRight: 12 }}
+              />
+              <Text type="body-16-bold" color="neutral-10">
+                Google
+              </Text>
+              <div style={{ opacity: 0 }}>
+                <GoogleLogin
+                  onSuccess={(credentialResponse: any) => {
+                    const decoded = jwtDecode(credentialResponse?.credential);
+                    setCookie("fullname", decoded.name);
+                    setCookie("avt", credentialResponse.avatar_path);
+                    if (credentialResponse.credential) {
+                      runLoginGoogle(credentialResponse.credential);
+                    }
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+              </div>
+            </GoogleOAuthProvider>
           </Box>
         </Box>
       </Form>

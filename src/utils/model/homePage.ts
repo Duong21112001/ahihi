@@ -79,3 +79,24 @@ export interface SignWithFBResponse {
   avatar_path: string;
   accessToken: string;
 }
+
+export interface SignWithGGResponse {
+  id: number;
+  email: string;
+  name: string;
+  password: string;
+  status: number;
+  confirmation_code: null | string | number;
+  deleted_at: null;
+  phone: null | number;
+  avatar_path: StaticImageData;
+  gender: 0 | 1;
+  full_name: null | string;
+  address: null | string;
+  status_text: null;
+  user_type: string;
+  birthday: string;
+  created_at: string;
+  remember_token: string;
+  accessToken: string;
+}
