@@ -62,7 +62,6 @@ const Box: React.FC<BoxProps> = ({
         borderRadius: radius,
       }}
     >
-      {/* <Link href={href}></Link> */}
       {children}
     </div>
   );

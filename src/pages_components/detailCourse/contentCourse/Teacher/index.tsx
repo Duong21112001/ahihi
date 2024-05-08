@@ -75,7 +75,6 @@ const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
                 <Text type="body-14-regular" color="gray-500" bottom={4}>
                   {info.label}
                 </Text>
-                {/* {index === 0 && <Rating numberRating={4} />} */}
                 {
                   <Text type="body-16-semibold" color="dark-500">
                     {info?.value}

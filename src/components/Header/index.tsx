@@ -1,4 +1,4 @@
-import { i18n, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,11 +19,9 @@ import Box from "../Box";
 import "rc-tooltip/assets/bootstrap.css";
 import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
-import { log } from "console";
 
 const Header = () => {
   const { t } = useTranslation("header");
-  const { t: commonTrans } = useTranslation("common");
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
@@ -38,15 +36,12 @@ const Header = () => {
       async () => {
         if (token) {
           const result = await getUser();
-          console.log("result=========", result);
-
           return result;
         }
       },
 
       {
         onSuccess: (result) => {
-          console.log("result=============", result);
           setUser(result?.[0]?.user);
         },
       }
@@ -276,7 +271,7 @@ const Header = () => {
                           : "neutral-1"
                       }
                     >
-                      {t("header_what_we_do")}
+                      {t("KHÓA HỌC N2")}
                     </Text>
                   </Link>
                   <Link href="/press">
@@ -288,7 +283,31 @@ const Header = () => {
                           : "neutral-1"
                       }
                     >
-                      {t("header_press")}
+                      {t("KHÓA HỌC N3")}
+                    </Text>
+                  </Link>
+                  <Link href="/press">
+                    <Text
+                      type="body-16-regular"
+                      color={
+                        router.pathname === "/course"
+                          ? "primary-bule"
+                          : "neutral-1"
+                      }
+                    >
+                      {t("KHÓA HỌC N4")}
+                    </Text>
+                  </Link>
+                  <Link href="/press">
+                    <Text
+                      type="body-16-regular"
+                      color={
+                        router.pathname === "/course"
+                          ? "primary-bule"
+                          : "neutral-1"
+                      }
+                    >
+                      {t("KHÓA HỌC N5")}
                     </Text>
                   </Link>
                 </div>
@@ -364,14 +383,6 @@ const Header = () => {
                   style={{ marginRight: 24 }}
                   className={styles.iconSearch}
                   onClick={() => setIsSearch(true)}
-                />
-
-                <Image
-                  src="/svg/cart.svg"
-                  alt="cart"
-                  layout="fixed"
-                  width={24}
-                  height={24}
                 />
               </div>
 

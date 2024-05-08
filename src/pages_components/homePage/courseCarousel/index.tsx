@@ -1,23 +1,14 @@
-import { useTranslation } from "next-i18next";
-import Image from "next/image";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./index.module.scss";
 import Text from "@/components/Text";
-import Box from "@/components/Box";
 import Button from "@/components/Button";
 import { useRequest } from "@umijs/hooks";
 import { listCourse } from "./service";
-import PlaceholderBox from "@/components/placeholderBox";
-import classNames from "classnames";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import CourseCarouselComponent from "@/pages_components/component/carouselCourseComponent";
 
 const CourseCarousel = () => {
-  const { t } = useTranslation("common");
   const [tabActive, setTabActive] = useState(0);
-  const router = useRouter();
   const { loading, data } = useRequest(
     async () => {
       const result = await listCourse();

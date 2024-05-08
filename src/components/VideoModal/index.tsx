@@ -47,7 +47,6 @@ const VideoModal: React.FC<ModalVideoProps> = ({
         }
       >
         <iframe width="1000" height="600" src={url} />
-        {/* <ReactPlayer url={url} width="1000" height="600" /> */}
       </Dialog>
       {type === "play-image" && (
         <div className={styles.videoImage}>

@@ -1,18 +1,16 @@
+import { useRequest } from "@umijs/hooks";
 import { useTranslation } from "next-i18next";
 import Text from "@/components/Text";
 import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
 import styles from "./index.module.scss";
-import Video from "@/components/Video";
 import VideoModal from "@/components/VideoModal";
 import { ListFeedbackResponse } from "@/utils/model/homePage";
 import { getListFeedback } from "@/service/homePage";
-import { useRequest } from "@umijs/hooks";
 
 const StudentComments = () => {
   const { t } = useTranslation("common");
   const { data } = useRequest<ListFeedbackResponse[]>(() => getListFeedback());
-  console.log("item====", data);
   const itemNumber = data ? data.length : 0;
 
   const OneComment = () => {
@@ -59,7 +57,11 @@ const StudentComments = () => {
                     </Text>
                     <div className={styles.user}>
                       <Image
-                        src={item.user.avatar_path || ""}
+                        src={
+                          item.user.avatar_path
+                            ? item.user.avatar_path
+                            : "/svg/no-user.svg"
+                        }
                         alt="user-comment"
                         layout="fixed"
                         width={65}
@@ -80,16 +82,9 @@ const StudentComments = () => {
               </div>
             ))
           : null}
-
         <div className={styles.studentCommentsRight}>
           <div className={styles.boxBlue} />
           <div className={styles.videoComment}>
-            {/* <Video
-              url="https://www.youtube.com/watch?v=n-WbAWqZ7t4"
-              width="100%"
-              className={styles.videoComment}
-              height="560px"
-            /> */}
             <VideoModal url="https://youtube.com/embed/n-WbAWqZ7t4" />
           </div>
         </div>

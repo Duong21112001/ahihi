@@ -109,15 +109,6 @@ const ContentCourse = ({ course }: Courseprops) => {
           })}
         </div>
         <Box flex agileItem="agile-center">
-          {/* <div className={styles.heart}>
-            <Image
-              src="/svg/heart.svg"
-              alt="rating"
-              layout="fixed"
-              width={20}
-              height={20}
-            />
-          </div> */}
           <Button type="btn-blue-secondary" className={styles.share}>
             <Image
               src="/svg/share-icon.svg"

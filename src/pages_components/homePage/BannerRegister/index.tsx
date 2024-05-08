@@ -1,22 +1,32 @@
-import { useTranslation } from "next-i18next";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./index.module.scss";
 import RegisterForm from "../RegisterForm";
-import { useSaleCountdown } from "@/utils/hooks/countdown";
 import Text from "@/components/Text";
 import { useEffect, useState } from "react";
+import { getCookie, setCookie } from "cookies-next";
 
 const BannerRegister = () => {
-  const [time, setTime] = useState({
-    days: 2,
-    hours: 2,
-    minutes: 0,
-    seconds: 60,
-  });
+  const getTimeFromCookie = () => {
+    const cookieValue = getCookie("countdown_time");
+    if (cookieValue) {
+      return JSON.parse(cookieValue);
+    }
+    return null;
+  };
+  const [time, setTime] = useState(
+    getTimeFromCookie() || {
+      days: 2,
+      hours: 2,
+      minutes: 0,
+      seconds: 60,
+    }
+  );
 
   useEffect(() => {
+    setCookie("countdown_time", JSON.stringify(time));
+
     const interval = setInterval(() => {
-      setTime((prevTime) => {
+      setTime((prevTime: any) => {
         const { days, hours, minutes, seconds } = prevTime;
         let newSeconds = seconds - 1;
         let newMinutes = minutes;
@@ -39,6 +49,15 @@ const BannerRegister = () => {
           clearInterval(interval);
           return { days: 0, hours: 0, minutes: 0, seconds: 0 };
         }
+        setCookie(
+          "countdown_time",
+          JSON.stringify({
+            days: newDays,
+            hours: newHours,
+            minutes: newMinutes,
+            seconds: newSeconds,
+          })
+        );
 
         return {
           days: newDays,
@@ -53,7 +72,7 @@ const BannerRegister = () => {
   }, []);
 
   const formatTime = (value: number) => {
-    return value < 10 ? `0${value}` : value;
+    return value < 10 ? `0${value}` : value.toString();
   };
   return (
     <div className={styles.bannerRegisterWrap}>
@@ -76,8 +95,7 @@ const BannerRegister = () => {
                 color="neutral-10"
                 className={styles.countDownLabel}
               >
-                {" "}
-                {time.days === 1 ? "Ngày" : "Ngày"}
+                {time.days === 1}Ngày
               </Text>
             </div>
 
@@ -87,7 +105,6 @@ const BannerRegister = () => {
                 color="neutral-10"
                 className={styles.countDownTime}
               >
-                {" "}
                 {formatTime(time.hours)}
               </Text>
               <Text
@@ -95,7 +112,7 @@ const BannerRegister = () => {
                 color="neutral-10"
                 className={styles.countDownLabel}
               >
-                {time.hours === 1 ? "Giờ" : "Giờ"}
+                {time.hours === 1}Giờ
               </Text>
             </div>
 
@@ -105,15 +122,14 @@ const BannerRegister = () => {
                 color="neutral-10"
                 className={styles.countDownTime}
               >
-                {" "}
-                {formatTime(time.seconds)}{" "}
+                {formatTime(time.minutes)}
               </Text>
               <Text
                 type="body-16-semibold"
                 color="neutral-10"
                 className={styles.countDownLabel}
               >
-                {time.minutes === 1 ? "Phút" : "Phút"}
+                {time.minutes === 1}Phút
               </Text>
             </div>
           </div>

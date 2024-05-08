@@ -4,12 +4,9 @@ import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
 import Text from "@/components/Text";
 import styles from "./index.module.scss";
-import { LoginParam } from "@/utils/model/login";
-import { useState } from "react";
 import { NextPageContext } from "next";
 import LayoutAuth from "@/components/Layout/auth-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Box from "@/components/Box";
 import Image from "next/image";
 import { validateEmail } from "@/utils/validate";
 import { useRouter } from "next/router";
@@ -34,8 +31,6 @@ const ForgotPasswordForm = () => {
     }
   );
   const onFinish = (values: ForgotPasswordParam) => {
-    console.log("values=====", values);
-
     run(values);
   };
 
@@ -116,7 +111,7 @@ const ForgotPasswordForm = () => {
                   disabled={isError}
                   onClick={() =>
                     router.push({
-                      pathname: "forgot-password/identify-account",
+                      pathname: "/login",
                       query: { email: userEmail },
                     })
                   }

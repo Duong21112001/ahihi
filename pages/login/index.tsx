@@ -21,12 +21,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
-import { getCookie, setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 import FacebookLogin from "@greatsumini/react-facebook-login";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { KOSEI_TOKEN } from "@/api/constant";
 import { jwtDecode } from "jwt-decode";
-import { SignWithGGResponse } from "@/utils/model/homePage";
 
 const LoginForm = () => {
   const { t } = useTranslation("common");
@@ -34,33 +33,18 @@ const LoginForm = () => {
   const [form] = Form.useForm();
   const router = useRouter();
 
-  const { run: runLoginGoogle } = useRequest(
-    async (accessToken) => {
-      if (accessToken) {
-        const result = await loginWithGoogle(accessToken);
-        console.log("resultGet=====", result);
-        const token = result?.data?.accessToken;
-        if (token) {
-          setCookie(KOSEI_TOKEN, token);
-          router.replace("/");
-        }
-        console.log("resultGet=====", result?.data?.accessToken);
-
-        return result;
+  const { run: runLoginGoogle } = useRequest(async (accessToken) => {
+    if (accessToken) {
+      const result = await loginWithGoogle(accessToken);
+      const token = result?.data?.accessToken;
+      if (token) {
+        setCookie(KOSEI_TOKEN, token);
+        router.replace("/");
       }
-    }
-    // {
-    //   manual: true,
-    //   onSuccess: (result) => {
-    //     console.log("resultHIHI====", result);
 
-    //     const accessToken = result?.[0]?.accessToken;
-    //     console.log("accessToken=======", accessToken);
-    //     setCookie(KOSEI_TOKEN, accessToken);
-    //   },
-    //   onError: (error) => {},
-    // }
-  );
+      return result;
+    }
+  });
   const { run: runLoginFaceBook } = useRequest(
     async (accessToken) => {
       return await loginWithFaceBook(accessToken);
@@ -69,9 +53,6 @@ const LoginForm = () => {
       manual: true,
       onSuccess: (result) => {
         const token = result?.data?.accessToken;
-        console.log("token====", token);
-        console.log("resultToken===", result);
-
         if (token) {
           if (token) {
             setCookie(KOSEI_TOKEN, token);
@@ -265,8 +246,10 @@ const LoginForm = () => {
                 console.log("Login Failed!", error);
               }}
               onProfileSuccess={(response) => {
+                console.log("responseFb======", response);
+
                 setCookie("fullname", response.name);
-                setCookie("avt", response.picture?.data.url);
+                setCookie("avatar", response.picture?.data.url);
               }}
               style={{
                 backgroundColor: "#1877f2",
@@ -309,8 +292,10 @@ const LoginForm = () => {
                 <GoogleLogin
                   onSuccess={(credentialResponse: any) => {
                     const decoded = jwtDecode(credentialResponse?.credential);
+                    console.log("decoded====", decoded);
+
                     setCookie("fullname", decoded.name);
-                    setCookie("avt", credentialResponse.avatar_path);
+                    setCookie("avatar", credentialResponse.picture);
                     if (credentialResponse.credential) {
                       runLoginGoogle(credentialResponse.credential);
                     }

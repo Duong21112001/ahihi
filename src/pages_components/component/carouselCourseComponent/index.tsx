@@ -121,23 +121,6 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
                   {course?.expired_at} buổi
                 </Text>
               </Box>
-              {/* <Box
-                flex
-                agileItem="agile-center"
-                className={styles.infoCourseTime}
-              >
-                <Image
-                  src="/svg/calendar.svg"
-                  alt="calendar"
-                  layout="fixed"
-                  width={29}
-                  height={29}
-                  style={{ marginRight: 10 }}
-                />
-                <Text type="body-14-medium" color="neutral-1">
-                  20-06-2023
-                </Text>
-              </Box> */}
             </Box>
             <Box
               flex
