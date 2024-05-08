@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
 import Text from "@/components/Text";
@@ -152,4 +153,4 @@ const ContentCourse = ({ course }: Courseprops) => {
   );
 };
 
-export default ContentCourse;
+export default memo(ContentCourse);

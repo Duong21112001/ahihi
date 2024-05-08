@@ -13,18 +13,21 @@ const BannerRegister = () => {
     }
     return null;
   };
-  const [time, setTime] = useState(
-    getTimeFromCookie() || {
+  const [time, setTime] = useState({
+    days: 2,
+    hours: 2,
+    minutes: 0,
+    seconds: 60,
+  });
+
+  useEffect(() => {
+    const initialTime = getTimeFromCookie() || {
       days: 2,
       hours: 2,
       minutes: 0,
       seconds: 60,
-    }
-  );
-
-  useEffect(() => {
-    setCookie("countdown_time", JSON.stringify(time));
-
+    };
+    setTime(initialTime);
     const interval = setInterval(() => {
       setTime((prevTime: any) => {
         const { days, hours, minutes, seconds } = prevTime;
