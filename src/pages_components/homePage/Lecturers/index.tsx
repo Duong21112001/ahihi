@@ -1,16 +1,12 @@
 import Text from "@/components/Text";
-import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
-import Carousel, { StateCallBack } from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useRequest } from "@umijs/hooks";
 import { listTeacher } from "./service";
-import PlaceholderBox from "@/components/placeholderBox";
 import { IlistTeacher } from "@/utils/model/teacher";
 import Button from "@/components/Button";
-import classNames from "classnames";
 import { convert } from "html-to-text";
 import Slider from "react-slick";
 
@@ -197,8 +193,7 @@ const Lecturers = () => {
             Đội ngũ giảng viên tại Kosei
           </Text>
           <Text type="body-16-regular" color="neutral-3" center bottom={8}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
-            tempus felis vitae sit est quisque.
+            Bạn sẽ được học với giáo viên giỏi,tâm huyết
           </Text>
           <div>
             {!loading && data && data?.length > 0 && (

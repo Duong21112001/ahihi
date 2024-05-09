@@ -1,5 +1,4 @@
 import { useRequest } from "@umijs/hooks";
-import { useTranslation } from "next-i18next";
 import Text from "@/components/Text";
 import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
@@ -9,7 +8,6 @@ import { ListFeedbackResponse } from "@/utils/model/homePage";
 import { getListFeedback } from "@/service/homePage";
 
 const StudentComments = () => {
-  const { t } = useTranslation("common");
   const { data } = useRequest<ListFeedbackResponse[]>(() => getListFeedback());
   const itemNumber = data ? data.length : 0;
 

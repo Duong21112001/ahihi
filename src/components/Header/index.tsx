@@ -19,6 +19,7 @@ import Box from "../Box";
 import "rc-tooltip/assets/bootstrap.css";
 import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
+import Search from "../Search";
 
 const Header = () => {
   const { t } = useTranslation("header");
@@ -30,7 +31,6 @@ const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useRecoilState(userProfile);
   const [isShowDropdown, setIsShowDropdown] = useState(false);
-
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
     useRequest(
       async () => {
@@ -209,13 +209,7 @@ const Header = () => {
               </svg>
             </aside>
 
-            <aside
-              className={
-                !isSearch
-                  ? styles.link
-                  : classNames(styles.link, styles.displayNoneNav)
-              }
-            >
+            <aside className={styles.link}>
               <Link href="/">
                 <Text
                   type="body-16-regular"
@@ -347,45 +341,8 @@ const Header = () => {
                 </Text>
               </Link>
             </aside>
-
-            <div className={isSearch ? styles.inputSearch : styles.displayNone}>
-              <div className={styles.inputBackground}>
-                <Image
-                  src="/svg/search-header.svg"
-                  alt="close"
-                  width={24}
-                  height={24}
-                  className={styles.iconSearch}
-                />
-                <input placeholder="Nhập nội dung tìm kiếm" />
-              </div>
-
-              <Image
-                src="/svg/remove.svg"
-                alt="close"
-                width={24}
-                height={24}
-                onClick={() => setIsSearch(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-
             <div className={styles.menuRight}>
-              <div
-                className={!isSearch ? styles.icons : styles.displayNoneSearch}
-              >
-                <Image
-                  src="/svg/search.svg"
-                  alt="search"
-                  layout="fixed"
-                  width={24}
-                  height={24}
-                  style={{ marginRight: 24 }}
-                  className={styles.iconSearch}
-                  onClick={() => setIsSearch(true)}
-                />
-              </div>
-
+              <Search />
               {!user?.user_id && (
                 <div className={styles.auth}>
                   <Link href="/register">
