@@ -20,6 +20,7 @@ import "rc-tooltip/assets/bootstrap.css";
 import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
 import Search from "../Search";
+import Course from "./Course";
 
 const Header = () => {
   const { t } = useTranslation("header");
@@ -28,7 +29,6 @@ const Header = () => {
   const token = getCookie("kosei-token");
   const [fullname, setFullname] = useState("");
 
-  const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useRecoilState(userProfile);
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
@@ -209,7 +209,13 @@ const Header = () => {
               </svg>
             </aside>
 
-            <aside className={styles.link}>
+            <aside
+              className={
+                // !isSearch
+                styles.link
+                // : classNames(styles.link, styles.displayNoneNav)
+              }
+            >
               <Link href="/">
                 <Text
                   type="body-16-regular"
@@ -255,56 +261,7 @@ const Header = () => {
                     />
                   </svg>
                 </div>
-                <div className={styles.subNavbar}>
-                  <Link href="/about_us">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/course"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      {t("KHÓA HỌC N2")}
-                    </Text>
-                  </Link>
-                  <Link href="/press">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/course"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      {t("KHÓA HỌC N3")}
-                    </Text>
-                  </Link>
-                  <Link href="/press">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/course"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      {t("KHÓA HỌC N4")}
-                    </Text>
-                  </Link>
-                  <Link href="/press">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/course"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      {t("KHÓA HỌC N5")}
-                    </Text>
-                  </Link>
-                </div>
+                <Course />
               </div>
               <Link href="/auditions">
                 <Text
@@ -384,9 +341,17 @@ const Header = () => {
               height={24}
               style={{ marginRight: 12 }}
             />
-            <Text type="body-14-semibold" color="neutral-1" right={12}>
+            <div
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                fontSize: "14px",
+                fontWeight: "semibold",
+              }}
+            >
               {nameUser || fullname}
-            </Text>
+            </div>
             <Tooltip
               placement="bottomRight"
               overlay={<DropDown />}
@@ -401,7 +366,7 @@ const Header = () => {
                 layout="fixed"
                 width={12}
                 height={6}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginLeft: "12px" }}
                 className={isShowDropdown ? styles.arrow : styles.arrow_open}
               />
             </Tooltip>

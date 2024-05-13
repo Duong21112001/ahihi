@@ -1,0 +1,41 @@
+.embla {
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  gap: 20px;
+  .emblaItem {
+    overflow: hidden;
+  }
+  .item {
+    margin-left: -30px;
+    display: flex;
+    touch-action: pan-y;
+  }
+  .emblaActive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8;
+    .emblaActiveItem {
+      display: flex;
+      gap: 4px;
+    }
+    .dotActive {
+      width: 10px;
+      height: 10px;
+      border: 1px solid black;
+      border-radius: 100%;
+      background: black;
+    }
+    .dotNotActive {
+      width: 10px;
+      height: 10px;
+      border: 1px solid black;
+      border-radius: 100%;
+      background: white;
+    }
+  }
+}
+.itemSlide {
+  padding-left: 30px;
+}

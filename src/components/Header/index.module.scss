@@ -11,7 +11,17 @@
     background: #f2f8ff;
   }
 }
-
+.btn {
+  background: none;
+  padding: 0;
+  color: black;
+  font-weight: normal;
+  width: fit-content;
+  text-align: left;
+  .text:hover {
+    color: #1e73be;
+  }
+}
 .link {
   display: flex;
   justify-content: space-between;
@@ -87,6 +97,7 @@
       display: block;
       background: #ffffff;
       padding: 12px;
+      width: 300px;
       @include defaultsize {
         background: transparent;
         display: grid;
@@ -411,6 +422,11 @@
       padding-top: 16px;
       cursor: pointer;
     }
+  }
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .history {
     border-top: 1px solid #e7eff7;

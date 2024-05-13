@@ -15,7 +15,7 @@ const StudentComments = () => {
     return (
       <div className={styles.studentCommentsBox}>
         {data
-          ? data.map((item: ListFeedbackResponse) => (
+          ? data?.map((item: ListFeedbackResponse) => (
               <div className={styles.studentCommentsLeft} key={item.id}>
                 <div>
                   <Text type="heading-h2" bottom={10} className={styles.title}>
@@ -34,29 +34,20 @@ const StudentComments = () => {
                     trang theo học tại Kosei.
                   </Text>
                   <div className={styles.boxRating}>
-                    <div className={styles.rating}>
-                      {[...Array(5)].map((value, key) => {
-                        return (
-                          <div key={`rating-${key}`}>
-                            <Image
-                              src="/svg/rating.svg"
-                              alt="rating"
-                              layout="fixed"
-                              width={29}
-                              height={29}
-                              style={{ marginRight: 5 }}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
                     <Text type="title-18-regular" color="dark-500" bottom={41}>
-                      {item.message}
+                      “ Khóa học Online N3 của Kosei thực sự là một khóa học rất
+                      tuyệt vời với những bạn không có nhiều thời gian để đến
+                      lớp như mình. Sau khi hoàn thành xong chương trình N5 và
+                      N4 tại Kosei , mình không có nhiều thời gian để đi học vì
+                      phải đi làm rồi thường xuyên tăng ca...vậy nên mình đã
+                      đăng ký khóa N3 online tại Kosei luôn vì đã quá thiện cảm
+                      với các sensei dễ thương và giàu kinh nghiệm của Kosei
+                      rồi. Đúng là Kosei không làm.... ”
                     </Text>
                     <div className={styles.user}>
                       <Image
                         src={
-                          item.user.avatar_path
+                          item?.user?.avatar_path
                             ? item.user.avatar_path
                             : "/svg/no-user.svg"
                         }
@@ -68,10 +59,10 @@ const StudentComments = () => {
                       />
                       <div style={{ textTransform: "capitalize" }}>
                         <Text type="title-24-bold" color="dark-500" bottom={8}>
-                          {item.user.name}
+                          {item?.user?.name}
                         </Text>
                         <Text type="body-16-regular" color="gray-500">
-                          {item.user.address}
+                          {item?.user?.address}
                         </Text>
                       </div>
                     </div>

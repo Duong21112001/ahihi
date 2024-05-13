@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./index.module.scss";
 import { useRequest } from "@umijs/hooks";
@@ -9,14 +9,15 @@ import { CourseReponse } from "@/utils/model/courses";
 
 const Search = () => {
   const router = useRouter();
-  const { id } = router.query;
-  const [productData, setProductData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
   const { data }: { data: CourseReponse[] } = useRequest(async () => {
     const result = await listCourse();
+    console.log("result====", result);
+
     return result;
   });
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
