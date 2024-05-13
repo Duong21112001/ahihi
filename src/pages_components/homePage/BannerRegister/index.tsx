@@ -14,16 +14,14 @@ const BannerRegister = () => {
     return null;
   };
   const [time, setTime] = useState({
-    days: 2,
-    hours: 2,
+    hours: 48,
     minutes: 0,
     seconds: 60,
   });
 
   useEffect(() => {
     const initialTime = getTimeFromCookie() || {
-      days: 2,
-      hours: 2,
+      hours: 48,
       minutes: 0,
       seconds: 60,
     };
@@ -87,24 +85,7 @@ const BannerRegister = () => {
           <div className={styles.countDown}>
             <div className={styles.countDownItem}>
               <Text
-                type="title-20-semibold"
-                color="neutral-10"
-                className={styles.countDownTime}
-              >
-                {formatTime(time.days)}
-              </Text>
-              <Text
-                type="body-16-semibold"
-                color="neutral-10"
-                className={styles.countDownLabel}
-              >
-                {time.days === 1}Ngày
-              </Text>
-            </div>
-
-            <div className={styles.countDownItem}>
-              <Text
-                type="title-20-semibold"
+                type="title-57-bold"
                 color="neutral-10"
                 className={styles.countDownTime}
               >
@@ -121,7 +102,7 @@ const BannerRegister = () => {
 
             <div className={styles.countDownItem}>
               <Text
-                type="title-20-semibold"
+                type="title-57-bold"
                 color="neutral-10"
                 className={styles.countDownTime}
               >
@@ -137,7 +118,7 @@ const BannerRegister = () => {
             </div>
             <div className={styles.countDownItem}>
               <Text
-                type="title-20-semibold"
+                type="title-57-bold"
                 color="neutral-10"
                 className={styles.countDownTime}
               >
