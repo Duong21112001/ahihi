@@ -31,6 +31,7 @@ const Header = () => {
 
   const [user, setUser] = useRecoilState(userProfile);
   const [isShowDropdown, setIsShowDropdown] = useState(false);
+  const [isCourse, setIsCourse] = useState(false);
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
     useRequest(
       async () => {
@@ -209,13 +210,7 @@ const Header = () => {
               </svg>
             </aside>
 
-            <aside
-              className={
-                // !isSearch
-                styles.link
-                // : classNames(styles.link, styles.displayNoneNav)
-              }
-            >
+            <aside className={styles.link}>
               <Link href="/">
                 <Text
                   type="body-16-regular"
@@ -224,17 +219,11 @@ const Header = () => {
                   Trang chủ
                 </Text>
               </Link>
-              <div
-                className={classNames(
-                  {
-                    [styles.highlight]:
-                      router.asPath === "/about_us" ||
-                      router.asPath === "/press",
-                  },
-                  styles.a
-                )}
-              >
-                <div className={styles.subTitle}>
+              <div className={classNames(styles.a)}>
+                <div
+                  className={styles.subTitle}
+                  onClick={() => setIsCourse(!isCourse)}
+                >
                   <Text
                     type="body-16-regular"
                     color={
@@ -261,7 +250,7 @@ const Header = () => {
                     />
                   </svg>
                 </div>
-                <Course />
+                {!isCourse && <Course />}
               </div>
               <Link href="/auditions">
                 <Text

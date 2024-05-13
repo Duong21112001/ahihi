@@ -18,6 +18,7 @@ const CourseCarousel = () => {
       onError: () => {},
     }
   );
+  console.log("data=====", data);
 
   const tabs = [
     {

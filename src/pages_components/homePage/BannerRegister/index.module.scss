@@ -37,14 +37,16 @@
 
         .countDownItem {
           background-color: var(--main-color-secondary);
-          padding: 10px 38px;
+          padding: 10px 20px;
           margin-right: 17px;
           border-radius: 11px;
           border: 3px solid #a30c28;
           display: flex;
           flex-direction: column;
           align-items: center;
-          min-width: 156px;
+          // min-width: 156px;
+          // width: fit-content;
+          min-width: 100px;
 
           &:last-child {
             margin-right: 0;

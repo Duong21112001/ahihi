@@ -89,3 +89,11 @@
   color: var(--main-color-primary);
   border: 1px solid var(--main-color-primary);
 }
+.btn-ghost {
+  @extend .btn-default;
+  background-color: var(--neutral-10);
+  color: var(--main-color-primary);
+  border: none;
+  width: fit-content;
+  height: fit-content;
+}

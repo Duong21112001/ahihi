@@ -60,7 +60,7 @@ const ChooseKosei = () => {
                 >
                   {item.text}
                 </Text>
-                <Button type="btn-primary">Big button</Button>
+                <Button type="btn-primary">Nhận tư vấn ngay</Button>
               </div>
               <div className={styles.chooseKoseiRight}>
                 {item.content

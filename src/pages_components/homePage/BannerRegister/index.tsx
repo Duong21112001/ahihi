@@ -87,7 +87,7 @@ const BannerRegister = () => {
           <div className={styles.countDown}>
             <div className={styles.countDownItem}>
               <Text
-                type="title-57-bold"
+                type="title-20-semibold"
                 color="neutral-10"
                 className={styles.countDownTime}
               >
@@ -104,7 +104,7 @@ const BannerRegister = () => {
 
             <div className={styles.countDownItem}>
               <Text
-                type="title-57-bold"
+                type="title-20-semibold"
                 color="neutral-10"
                 className={styles.countDownTime}
               >
@@ -121,7 +121,7 @@ const BannerRegister = () => {
 
             <div className={styles.countDownItem}>
               <Text
-                type="title-57-bold"
+                type="title-20-semibold"
                 color="neutral-10"
                 className={styles.countDownTime}
               >
@@ -133,6 +133,22 @@ const BannerRegister = () => {
                 className={styles.countDownLabel}
               >
                 {time.minutes === 1}Phút
+              </Text>
+            </div>
+            <div className={styles.countDownItem}>
+              <Text
+                type="title-20-semibold"
+                color="neutral-10"
+                className={styles.countDownTime}
+              >
+                {formatTime(time.seconds)}
+              </Text>
+              <Text
+                type="body-16-semibold"
+                color="neutral-10"
+                className={styles.countDownLabel}
+              >
+                {time.seconds === 1}Giây
               </Text>
             </div>
           </div>
