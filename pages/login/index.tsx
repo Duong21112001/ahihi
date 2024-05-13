@@ -8,7 +8,11 @@ import Image from "next/image";
 import Box from "@/components/Box";
 import CheckBox from "@/components/CheckBox";
 import { useRequest } from "@umijs/hooks";
-import { login } from "../../src/service/login";
+import {
+  login,
+  loginWithFaceBook,
+  loginWithGoogle,
+} from "../../src/service/login";
 import { LoginParam } from "@/utils/model/login";
 import { useState } from "react";
 import { NextPageContext } from "next";
@@ -17,15 +21,49 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
-import { validateEmail } from "@/utils/validate";
 import { setCookie } from "cookies-next";
+import FacebookLogin from "@greatsumini/react-facebook-login";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { KOSEI_TOKEN } from "@/api/constant";
+import { jwtDecode } from "jwt-decode";
 
 const LoginForm = () => {
   const { t } = useTranslation("common");
   const [isRememberLogin, setIsRememberLogin] = useState(false);
   const [form] = Form.useForm();
   const router = useRouter();
-  const { loading, data, run } = useRequest(
+
+  const { run: runLoginGoogle } = useRequest(async (accessToken) => {
+    if (accessToken) {
+      const result = await loginWithGoogle(accessToken);
+      const token = result?.data?.accessToken;
+      if (token) {
+        setCookie(KOSEI_TOKEN, token);
+        router.replace("/");
+      }
+
+      return result;
+    }
+  });
+  const { run: runLoginFaceBook } = useRequest(
+    async (accessToken) => {
+      return await loginWithFaceBook(accessToken);
+    },
+    {
+      manual: true,
+      onSuccess: (result) => {
+        const token = result?.data?.accessToken;
+        if (token) {
+          if (token) {
+            setCookie(KOSEI_TOKEN, token);
+            router.replace("/");
+          }
+        }
+      },
+      onError: (err: any) => {},
+    }
+  );
+  const { loading, run } = useRequest(
     async (values: LoginParam) => {
       const result = await login(values);
       if (result?.code === 404) {
@@ -36,7 +74,7 @@ const LoginForm = () => {
       if (result?.code === 200) {
         const token = result?.data?.[0]?.user?.token;
         if (token) {
-          setCookie("kosei-token", token);
+          setCookie(KOSEI_TOKEN, token);
           router.replace("/");
         }
       }
@@ -197,30 +235,77 @@ const LoginForm = () => {
         </Box>
         <Box flex agileItem="agile-center" justContent="content-beetween">
           <Box flex agileItem="agile-center" className={styles.faceBook}>
-            <Image
-              src="/svg/_Facebook.svg"
-              alt="kosei-logo"
-              layout="fixed"
-              width={24}
-              height={24}
-              style={{ marginRight: 12 }}
-            />
-            <Text type="body-16-semibold" color="neutral-10">
+            <FacebookLogin
+              appId="1165803831114574"
+              onSuccess={(response) => {
+                if (response?.accessToken) {
+                  runLoginFaceBook(response?.accessToken);
+                }
+              }}
+              onFail={(error) => {
+                console.log("Login Failed!", error);
+              }}
+              onProfileSuccess={(response) => {
+                console.log("responseFb======", response);
+
+                setCookie("fullname", response.name);
+                setCookie("avatar", response.picture?.data.url);
+              }}
+              style={{
+                backgroundColor: "#1877f2",
+                color: "#fff",
+                fontSize: "16px",
+                border: "none",
+                borderRadius: "4px",
+                fontWeight: 600,
+                cursor: "pointer",
+                textAlign: "left",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                src="/svg/_Facebook.svg"
+                alt="kosei-logo"
+                layout="fixed"
+                width={24}
+                height={24}
+                style={{ marginRight: 12 }}
+              />
               Facebook
-            </Text>
+            </FacebookLogin>
           </Box>
           <Box flex agileItem="agile-center" className={styles.google}>
-            <Image
-              src="/svg/google.svg"
-              alt="kosei-logo"
-              layout="fixed"
-              width={24}
-              height={24}
-              style={{ marginRight: 12 }}
-            />
-            <Text type="body-16-semibold" color="neutral-10">
-              Google
-            </Text>
+            <GoogleOAuthProvider clientId="14716222725-oajn4fpcmb9psa0d39475kji8qt5nvef.apps.googleusercontent.com">
+              <Image
+                src="/svg/google.svg"
+                alt="kosei-logo"
+                layout="fixed"
+                width={24}
+                height={24}
+                style={{ marginRight: 12 }}
+              />
+              <Text type="body-16-bold" color="neutral-10">
+                Google
+              </Text>
+              <div style={{ opacity: 0 }}>
+                <GoogleLogin
+                  onSuccess={(credentialResponse: any) => {
+                    const decoded = jwtDecode(credentialResponse?.credential);
+                    console.log("decoded====", decoded);
+
+                    setCookie("fullname", decoded.name);
+                    setCookie("avatar", credentialResponse.picture);
+                    if (credentialResponse.credential) {
+                      runLoginGoogle(credentialResponse.credential);
+                    }
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+              </div>
+            </GoogleOAuthProvider>
           </Box>
         </Box>
       </Form>

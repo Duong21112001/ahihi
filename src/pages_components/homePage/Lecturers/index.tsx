@@ -94,8 +94,10 @@ const Lecturers = () => {
     arrows: true,
     infinite: true,
     rows: 1,
+    autoplay: true,
     variableWidth: true,
     dots: true,
+
     responsive: [
       {
         breakpoint: 1198,
@@ -197,36 +199,16 @@ const Lecturers = () => {
             Đội ngũ giảng viên tại Kosei
           </Text>
           <Text type="body-16-regular" color="neutral-3" center bottom={8}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
-            tempus felis vitae sit est quisque.
+            Đội ngũ giảng viên nhiều năm kinh nghiệm và được kiểm chứng bởi hơn
+            80.000+ học viên
           </Text>
           <div>
             {!loading && data && data?.length > 0 && (
-              // <Carousel
-              //   responsive={responsive}
-              //   showDots={true}
-              //   containerClass={classNames(
-              //     "container-class-course",
-              //     styles.carousel
-              //   )}
-              //   centerMode={false}
-              //   renderArrowsWhenDisabled={true}
-              //   arrows={true}
-              // >
-              //   {data?.map((teacher: IlistTeacher, index: number) => {
-              //     return (
-              //       <div key={`lecturer-${teacher?.id}`} className={`${index}`}>
-              //         <Lecturer active={false} teacher={teacher} />
-              //       </div>
-              //     );
-              //   })}
-              // </Carousel>
               <Slider
                 ref={ref}
                 {...settings}
                 className="slider-lecturer"
                 initialSlide={2}
-                // dotsClass="dotsClass-lecturer"
                 nextArrow={
                   <div onClick={next} className={styles.lecturersArrowsRight}>
                     <Image

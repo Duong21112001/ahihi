@@ -6,10 +6,7 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Box from "@/components/Box";
 import Button from "@/components/Button";
-import { useRequest } from "@umijs/hooks";
-import PlaceholderBox from "@/components/placeholderBox";
 import classNames from "classnames";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { Course } from "@/utils/model/courses";
 import { getCookie } from "cookies-next";
@@ -121,23 +118,6 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
                   {course?.expired_at} buổi
                 </Text>
               </Box>
-              {/* <Box
-                flex
-                agileItem="agile-center"
-                className={styles.infoCourseTime}
-              >
-                <Image
-                  src="/svg/calendar.svg"
-                  alt="calendar"
-                  layout="fixed"
-                  width={29}
-                  height={29}
-                  style={{ marginRight: 10 }}
-                />
-                <Text type="body-14-medium" color="neutral-1">
-                  20-06-2023
-                </Text>
-              </Box> */}
             </Box>
             <Box
               flex
@@ -182,8 +162,12 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
 
   return (
     <Carousel
+      autoPlay={true}
+      autoPlaySpeed={1000}
       responsive={responsive}
       showDots={true}
+      infinite={true}
+      transitionDuration={500}
       containerClass={classNames(
         "container-class-course",
         styles.containerClassCourse

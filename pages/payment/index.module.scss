@@ -82,11 +82,14 @@
     .directPayment {
       margin-bottom: 24px;
       .directPaymentPading {
-        display: flex;
+        display: grid;
+        margin-top: 24px;
+        grid-template-columns: repeat(2, 1fr);
         align-items: flex-start;
         justify-content: space-between;
+        gap: 20px;
         .item {
-          width: calc(50% - 10px);
+          width: 100%;
           background: var(--neutral-9);
           padding: 16px 24px;
           border-radius: 8px;

@@ -17,4 +17,23 @@ const registerConsultation = async (params: RegisterConsultationParam) => {
   });
   return result;
 };
-export { getLevelsList, registerConsultation, getCentersList };
+
+const getWebContent = async (type: string) => {
+  const result = await requestPist.get(API_PATH.WEB_CONTENT, {
+    params: { type },
+  });
+  return result?.data;
+};
+
+const getListFeedback = async () => {
+  const result = await requestPist.get(API_PATH.FEEDBACK);
+  return result?.data;
+};
+
+export {
+  getLevelsList,
+  registerConsultation,
+  getCentersList,
+  getWebContent,
+  getListFeedback,
+};

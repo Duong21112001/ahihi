@@ -20,6 +20,10 @@ export const API_PATH = {
   COURSES_QUESTIONS: "/courses/questions",
   COURSES_ACHIEVEMENT: "/courses/achievement",
   COURSES_SOCIALS: "/courses/socials",
+  WEB_CONTENT: "/web_contents/list",
+  FEEDBACK: "/feedbacks/list",
+  SIGNIN_WITH_FACEBOOK: "/users/signInWithFacebook",
+  SIGNIN_WITH_GOOGLE: "/users/signInWithGmail",
 };
 
 export const ROUTER = {
@@ -27,3 +31,5 @@ export const ROUTER = {
   REGISTER: "/register",
   HOME: "/",
 };
+
+export const KOSEI_TOKEN = "kosei-token";

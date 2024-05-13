@@ -11,6 +11,7 @@ const checkCode = async (code: string) => {
   const result = await requestPist.get(API_PATH.COURSES_CODE, {
     params: { code },
   });
+
   return result;
 };
 

@@ -4,12 +4,14 @@ import Link from "next/link";
 
 interface ButtonProps {
   type?:
+    | "btn-ghost"
     | "btn-primary"
     | "btn-secondary"
     | "btn-disable"
     | "btn-secondary-disable"
     | "btn-blue"
     | "btn-blue-secondary";
+
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;

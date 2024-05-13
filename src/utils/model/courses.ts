@@ -157,3 +157,36 @@ export interface ListCourseContent {
 export interface CoursePayments {
   data: CoursePayment[];
 }
+
+export interface CourseReponse {
+  cat_id: number;
+  name: string;
+  cou_summary: string;
+  detail: string;
+  cou_price: number;
+  price_jp: 2326;
+  image: string;
+  start: number;
+  updated_at: string;
+  intro_video_path: null;
+  youtube_link: string;
+  vimeo_link: string;
+  curriculum: null;
+  expired_at: number;
+  teacher_id: number;
+  hot: number;
+  status: number;
+  trans_state: null;
+  teacher_name: string;
+  teacher_desc: string;
+  teacher_image: string;
+  promo_title: null;
+  discount_type: null;
+  promotion_desc: null;
+  start_date: null;
+  end_date: null;
+  num_students: 0;
+  total_rate: 0;
+  cover_path: string;
+  state_name: string;
+}

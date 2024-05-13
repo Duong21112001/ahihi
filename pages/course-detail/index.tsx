@@ -89,11 +89,6 @@ const CourseDetail = () => {
           <div className={styles.contentCourse}>
             <ContentCourse course={data} />
           </div>
-          {/* <img
-            src="/Images/mascot-detail.png"
-            alt="mascot-detail"
-            className={styles.imagesDetail}
-          /> */}
         </div>
         <div className={styles.courseCarousel}>
           <Text type="title-40-bold" color="neutral-1" bottom={48}>

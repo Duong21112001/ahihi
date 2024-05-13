@@ -64,3 +64,11 @@ export const validateConfirmPassword = (form: any, name: string, t: any) => {
     },
   };
 };
+
+export const formatNumber = (number: number) => {
+  if (typeof number !== "undefined" && number !== null) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  } else {
+    return "";
+  }
+};

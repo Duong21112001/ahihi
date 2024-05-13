@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
 import Text from "@/components/Text";
@@ -109,15 +110,6 @@ const ContentCourse = ({ course }: Courseprops) => {
           })}
         </div>
         <Box flex agileItem="agile-center">
-          {/* <div className={styles.heart}>
-            <Image
-              src="/svg/heart.svg"
-              alt="rating"
-              layout="fixed"
-              width={20}
-              height={20}
-            />
-          </div> */}
           <Button type="btn-blue-secondary" className={styles.share}>
             <Image
               src="/svg/share-icon.svg"
@@ -161,4 +153,4 @@ const ContentCourse = ({ course }: Courseprops) => {
   );
 };
 
-export default ContentCourse;
+export default memo(ContentCourse);

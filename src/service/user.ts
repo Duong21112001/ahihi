@@ -6,6 +6,7 @@ const getUser = async () => {
     requestCommunity.get,
     API_PATH.USERS_PROFILE
   );
+
   return result?.data;
 };
 export { getUser };

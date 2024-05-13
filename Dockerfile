@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install npm install --save --legacy-peer-deps --only=development --only=production
+RUN npm install --save --legacy-peer-deps 
 
 RUN npm install -g pm2
 
@@ -22,5 +22,4 @@ RUN chown -R appuser:appgroup /app
 # Tell docker that all future commands should run as the appuser user
 USER appuser
 
-#CMD ["node", "dist/main", "pm2-runtime", "start", "ecosystem.config.js"]
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]

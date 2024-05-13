@@ -4,7 +4,6 @@ import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
 import Text from "@/components/Text";
 import styles from "./index.module.scss";
-import Image from "next/image";
 import Box from "@/components/Box";
 import CheckBox from "@/components/CheckBox";
 import Radio from "@/components/Radio";

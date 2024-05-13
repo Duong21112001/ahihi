@@ -14,6 +14,8 @@ const nextConfig = {
         hostname: "kosei.eupsolution.net",
       },
     ],
+    domains: ['upload.wikimedia.org'],
+
   },
 };
 

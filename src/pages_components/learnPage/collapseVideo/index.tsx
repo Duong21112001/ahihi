@@ -46,9 +46,6 @@ const CollapseVideo: React.FC<CollapseProps> = ({
       </div>
 
       <div className={styles.collapseItemRight}>
-        {/* <Text type="tag-12-regular" color="neutral-1">
-          {time}
-        </Text> */}
         <CircularProgressbarWithChildren
           value={50}
           maxValue={100}
