@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install npm install --save --legacy-peer-deps --only=development --only=production
+RUN npm install --save --legacy-peer-deps
 
 RUN npm install -g pm2
 
