@@ -29,16 +29,17 @@ pipeline {
                 }
             }
         }
-      
-        stage('Deploy Dev') {
-            when {
-                expression { target == 'dev' }
-            }
+        stage('Pre-deploy Setup') {
             steps {
                 script {
                     def hostIp = sh(script: "hostname -I | awk '{print $1}'", returnStdout: true).trim()
                     echo "Current server IP: ${hostIp}"
                 }
+            }
+        }
+        stage('Deploy Dev') {
+            when {
+                expression { target == 'dev' }
             }
             steps {
                 echo "deploy dev"
