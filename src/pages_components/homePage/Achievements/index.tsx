@@ -1,8 +1,5 @@
 import Text from "@/components/Text";
-import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
-import Image from "next/image";
-import CarouselComponent from "@/components/carousel";
 import Carousel from "react-multi-carousel";
 import classNames from "classnames";
 import { useRequest } from "@umijs/hooks";
@@ -11,10 +8,8 @@ import { AchievementResponse } from "@/utils/model/courses";
 import ImageModal from "@/components/ImageModal";
 
 const Achievements = () => {
-  const { t } = useTranslation("common");
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 3,
     },

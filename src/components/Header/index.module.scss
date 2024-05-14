@@ -69,7 +69,6 @@
     &:focus {
       .subNavbar {
         opacity: 1;
-        // height: 100px;
         @include defaultsize {
           height: initial;
         }
@@ -120,15 +119,6 @@
         line-height: 24px;
         &:hover {
           background-color: #efefef;
-        }
-        @include defaultsize {
-          // margin-bottom: 0.5em;
-          // padding: 0;
-          // &::before {
-          //   content: "";
-          //   padding-left: 1em;
-          //   margin-right: 0.5em;
-          // }
         }
       }
     }

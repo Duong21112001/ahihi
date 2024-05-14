@@ -7,13 +7,19 @@ import Button from "../Button";
 import { useRouter } from "next/router";
 import { CourseReponse } from "@/utils/model/courses";
 
-const Search = () => {
+const Search = ({
+  isSearchActive,
+  setIsSearchActive,
+  width,
+}: {
+  isSearchActive: boolean;
+  setIsSearchActive: (isActive: boolean) => void;
+  width?: string;
+}) => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const [isSearchActive, setIsSearchActive] = useState(false);
   const { data }: { data: CourseReponse[] } = useRequest(async () => {
     const result = await listCourse();
-    console.log("result====", result);
 
     return result;
   });
@@ -21,7 +27,6 @@ const Search = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
-    console.log("value====", searchTerm);
   };
 
   const handleSearchClick = () => {
@@ -38,8 +43,9 @@ const Search = () => {
       course.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
+
   return (
-    <div>
+    <div style={{ width }}>
       {!isSearchActive && (
         <Image
           src="/svg/search.svg"
@@ -54,7 +60,7 @@ const Search = () => {
       )}
       {isSearchActive && (
         <div className={styles.searchActive}>
-          <>
+          <div className={styles.searchIem}>
             <Image
               src="/svg/search-header.svg"
               alt="close"
@@ -85,12 +91,12 @@ const Search = () => {
                 ))}
               </ul>
             )}
-          </>
+          </div>
           <Image
             src="/svg/remove.svg"
             alt="close"
-            width={24}
-            height={24}
+            width={20}
+            height={20}
             onClick={handleCloseClick}
             style={{ cursor: "pointer" }}
           />

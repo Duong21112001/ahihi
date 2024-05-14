@@ -39,6 +39,7 @@
       border-radius: 4px;
       outline: none;
       border: 1px;
+      width: 100%;
       &::placeholder {
         font-size: 14px;
         font-weight: 500;
@@ -52,17 +53,27 @@
 }
 .searchActive {
   display: flex;
+  justify-content: space-between;
   position: relative;
-  border: 1px solid #f2f8ff;
-  padding: 16px;
-  background: #f2f8ff;
-  border-radius: 8px;
+  align-items: center;
+
+  width: 100%;
   input:focus {
     outline: none;
   }
   input {
     background: #f2f8ff;
     padding-left: 12px;
+  }
+  .searchIem {
+    display: flex;
+    align-items: center;
+    background: #f2f8ff;
+    border: 1px solid #f2f8ff;
+    padding: 16px;
+    width: 100%;
+    margin-right: 12px;
+    border-radius: 16px;
   }
 
   .boxSearch {
@@ -93,6 +104,5 @@
   }
 }
 .searchActive:focus-within {
-  // border: 1px;
   border-color: #0c4c8c;
 }

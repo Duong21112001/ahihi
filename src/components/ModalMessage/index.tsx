@@ -54,12 +54,9 @@ const ModalMessage = React.forwardRef<PopUpRef, ModalProps>((props, ref) => {
       width={width}
       wrapClassName={classNames(styles.modalMess, className)}
       animation=""
-      // maskAnimation="fade"
       onClose={onCloseModal}
       keyboard={false}
       destroyOnClose={true}
-
-      // {...rest}
     >
       {img && (
         <Image

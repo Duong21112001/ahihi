@@ -246,8 +246,6 @@ const LoginForm = () => {
                 console.log("Login Failed!", error);
               }}
               onProfileSuccess={(response) => {
-                console.log("responseFb======", response);
-
                 setCookie("fullname", response.name);
                 setCookie("avatar", response.picture?.data.url);
               }}
@@ -292,7 +290,6 @@ const LoginForm = () => {
                 <GoogleLogin
                   onSuccess={(credentialResponse: any) => {
                     const decoded = jwtDecode(credentialResponse?.credential);
-                    console.log("decoded====", decoded);
 
                     setCookie("fullname", decoded.name);
                     setCookie("avatar", credentialResponse.picture);
