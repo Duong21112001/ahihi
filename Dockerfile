@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps --force
 
 RUN npm install -g pm2
 RUN npm run build
