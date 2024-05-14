@@ -24,6 +24,7 @@ pipeline {
                         git checkout deployment/dev
                         git pull origin deployment/dev
                         docker build -t registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} .
+                        docker push registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} .
                         exit
                     EOF"""
                 }
