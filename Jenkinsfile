@@ -24,12 +24,12 @@ pipeline {
                         git checkout deployment/dev
                         git pull origin deployment/dev
                         docker build -t registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} .
+                        docker push registry.gitlab.com/eup/kosei-web:${GIT_COMMIT}
                         exit
                     EOF"""
                 }
             }
         }
-      
         stage('Deploy Dev') {
             when {
                 expression { target == 'dev' }
@@ -37,11 +37,13 @@ pipeline {
             steps {
                 echo "deploy dev"
                 sshagent(['0a39231d-d882-4824-ae7f-0d892c489685']) {
-                    sh """ssh -o StrictHostKeyChecking=no ansible@152.42.180.38 << EOF
+                    sh """ssh -o StrictHostKeyChecking=no ansible@128.199.191.107 << EOF
+                        cd /home/ansible/resource/kosei.eupsolution.net/web-client
+                        git pull origin deployment/dev
                         docker pull registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} 
                         exit
                     EOF"""
-                    sh """ssh -o StrictHostKeyChecking=no ansible@206.189.158.254 << EOF
+                    sh """ssh -o StrictHostKeyChecking=no ansible@128.199.189.121 << EOF
                         docker service scale kosei-web_web-release=2
                         docker service update --image registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} kosei-web_web-release
                         docker service scale kosei-web_web-release=1
