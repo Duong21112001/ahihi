@@ -63,7 +63,7 @@ const MyCoursePage: NextPageWithLayout = () => {
       <div className={styles.tabsWrap}>
         <div className={styles.tabsContainer}>
           <Text type="heading-h3" color="neutral-10" bottom={24}>
-            Xin chào, {user?.user_name}!
+            Xin chào, {user?.fullname}!
           </Text>
           <div className={styles.tabs}>
             {tabs?.map((tab) => {

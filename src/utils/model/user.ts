@@ -1,6 +1,8 @@
+import { StaticImageData } from "next/image";
+
 export interface User {
   address: string;
-  avatar: string;
+  avatar: StaticImageData;
   birthday: number;
   email: string;
   fullname: string;

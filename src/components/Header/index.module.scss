@@ -11,7 +11,17 @@
     background: #f2f8ff;
   }
 }
-
+.btn {
+  background: none;
+  padding: 0;
+  color: black;
+  font-weight: normal;
+  width: fit-content;
+  text-align: left;
+  .text:hover {
+    color: #1e73be;
+  }
+}
 .link {
   display: flex;
   justify-content: space-between;
@@ -59,7 +69,7 @@
     &:focus {
       .subNavbar {
         opacity: 1;
-        height: 100px;
+        // height: 100px;
         @include defaultsize {
           height: initial;
         }
@@ -72,9 +82,9 @@
       }
     }
     .subNavbar {
-      top: calc(100%);
+      top: calc(150%);
       left: 0;
-      height: 0px;
+      height: fit-content;
       position: absolute;
       opacity: 0;
       box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.12);
@@ -82,11 +92,12 @@
       gap: 8px;
       transition: 0.3s ease-in-out;
       box-sizing: border-box;
-      overflow: hidden;
+      overflow: auto;
       z-index: 99;
       display: block;
       background: #ffffff;
       padding: 12px;
+      width: 300px;
       @include defaultsize {
         background: transparent;
         display: grid;
@@ -411,6 +422,11 @@
       padding-top: 16px;
       cursor: pointer;
     }
+  }
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .history {
     border-top: 1px solid #e7eff7;

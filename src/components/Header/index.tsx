@@ -1,4 +1,4 @@
-import { i18n, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,16 +19,19 @@ import Box from "../Box";
 import "rc-tooltip/assets/bootstrap.css";
 import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
+import Search from "../Search";
+import Course from "./Course";
 
 const Header = () => {
   const { t } = useTranslation("header");
-  const { t: commonTrans } = useTranslation("common");
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
-  const [isSearch, setIsSearch] = useState(false);
+  const [fullname, setFullname] = useState("");
+
   const [user, setUser] = useRecoilState(userProfile);
   const [isShowDropdown, setIsShowDropdown] = useState(false);
+  const [isCourse, setIsCourse] = useState(false);
   const { loading, data }: { loading: boolean; data: UserResponse[] } =
     useRequest(
       async () => {
@@ -44,6 +47,7 @@ const Header = () => {
         },
       }
     );
+
   const { run: onDelete, loading: loadingLogOut } = useRequest(
     async () => {
       if (token) {
@@ -206,13 +210,7 @@ const Header = () => {
               </svg>
             </aside>
 
-            <aside
-              className={
-                !isSearch
-                  ? styles.link
-                  : classNames(styles.link, styles.displayNoneNav)
-              }
-            >
+            <aside className={styles.link}>
               <Link href="/">
                 <Text
                   type="body-16-regular"
@@ -221,17 +219,11 @@ const Header = () => {
                   Trang chủ
                 </Text>
               </Link>
-              <div
-                className={classNames(
-                  {
-                    [styles.highlight]:
-                      router.asPath === "/about_us" ||
-                      router.asPath === "/press",
-                  },
-                  styles.a
-                )}
-              >
-                <div className={styles.subTitle}>
+              <div className={classNames(styles.a)}>
+                <div
+                  className={styles.subTitle}
+                  onClick={() => setIsCourse(!isCourse)}
+                >
                   <Text
                     type="body-16-regular"
                     color={
@@ -258,32 +250,7 @@ const Header = () => {
                     />
                   </svg>
                 </div>
-                <div className={styles.subNavbar}>
-                  <Link href="/about_us">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/course"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      {t("header_what_we_do")}
-                    </Text>
-                  </Link>
-                  <Link href="/press">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/course"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      {t("header_press")}
-                    </Text>
-                  </Link>
-                </div>
+                {!isCourse && <Course />}
               </div>
               <Link href="/auditions">
                 <Text
@@ -320,61 +287,12 @@ const Header = () => {
                 </Text>
               </Link>
             </aside>
-
-            <div className={isSearch ? styles.inputSearch : styles.displayNone}>
-              <div className={styles.inputBackground}>
-                <Image
-                  src="/svg/search-header.svg"
-                  alt="close"
-                  width={24}
-                  height={24}
-                  className={styles.iconSearch}
-                />
-                <input placeholder="Nhập nội dung tìm kiếm" />
-              </div>
-
-              <Image
-                src="/svg/remove.svg"
-                alt="close"
-                width={24}
-                height={24}
-                onClick={() => setIsSearch(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-
             <div className={styles.menuRight}>
-              <div
-                className={!isSearch ? styles.icons : styles.displayNoneSearch}
-              >
-                <Image
-                  src="/svg/search.svg"
-                  alt="search"
-                  layout="fixed"
-                  width={24}
-                  height={24}
-                  style={{ marginRight: 24 }}
-                  className={styles.iconSearch}
-                  onClick={() => setIsSearch(true)}
-                />
-
-                <Image
-                  src="/svg/cart.svg"
-                  alt="cart"
-                  layout="fixed"
-                  width={24}
-                  height={24}
-                />
-              </div>
-
+              <Search />
               {!user?.user_id && (
                 <div className={styles.auth}>
                   <Link href="/register">
-                    <Button
-                      type="btn-secondary"
-                      className={styles.button}
-                      // onClick={() => router.push("/register")}
-                    >
+                    <Button type="btn-secondary" className={styles.button}>
                       <Text
                         type="body-16-semibold"
                         color="main-color-secondary"
@@ -385,17 +303,15 @@ const Header = () => {
                   </Link>
 
                   <div className={styles.space} />
-                  <Link href="/login">
-                    <Button
-                      type="btn-blue"
-                      className={styles.button}
-                      // onClick={() => router.push("/login")}
-                    >
-                      <Text type="body-16-semibold" color="neutral-10">
-                        Đăng nhập
-                      </Text>
-                    </Button>
-                  </Link>
+                  <Button
+                    type="btn-blue"
+                    className={styles.button}
+                    onClick={() => router.push("/login")}
+                  >
+                    <Text type="body-16-semibold" color="neutral-10">
+                      Đăng nhập
+                    </Text>
+                  </Button>
                 </div>
               )}
             </div>
@@ -414,9 +330,17 @@ const Header = () => {
               height={24}
               style={{ marginRight: 12 }}
             />
-            <Text type="body-14-semibold" color="neutral-1" right={12}>
-              {nameUser}
-            </Text>
+            <div
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                fontSize: "14px",
+                fontWeight: "semibold",
+              }}
+            >
+              {nameUser || fullname}
+            </div>
             <Tooltip
               placement="bottomRight"
               overlay={<DropDown />}
@@ -431,7 +355,7 @@ const Header = () => {
                 layout="fixed"
                 width={12}
                 height={6}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginLeft: "12px" }}
                 className={isShowDropdown ? styles.arrow : styles.arrow_open}
               />
             </Tooltip>

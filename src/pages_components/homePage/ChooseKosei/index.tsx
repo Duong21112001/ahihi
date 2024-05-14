@@ -60,38 +60,40 @@ const ChooseKosei = () => {
                 >
                   {item.text}
                 </Text>
-                <Button type="btn-primary">Big button</Button>
+                <Button type="btn-primary">Nhận tư vấn ngay</Button>
               </div>
               <div className={styles.chooseKoseiRight}>
-                {item.content.map((it: any, index: number) => (
-                  <div
-                    className={styles.oneChooseKosei}
-                    key={`choose-kosei-${it.title}-${index}`}
-                  >
-                    <div className={styles.border} />
-                    <div className={styles.content}>
-                      <div className={styles.icon}>
-                        <Image
-                          src={it.icon}
-                          alt="chooseKosei"
-                          layout="fixed"
-                          width={24}
-                          height={34}
-                        />
-                      </div>
-                      <Text
-                        type="title-20-semibold"
-                        color="neutral-1"
-                        bottom={12}
+                {item.content
+                  ? item.content.map((it: any, index: number) => (
+                      <div
+                        className={styles.oneChooseKosei}
+                        key={`choose-kosei-${it.title}-${index}`}
                       >
-                        {it.title}
-                      </Text>
-                      <Text type="body-14-regular" color="gray-500">
-                        {it.content}
-                      </Text>
-                    </div>
-                  </div>
-                ))}
+                        <div className={styles.border} />
+                        <div className={styles.content}>
+                          <div className={styles.icon}>
+                            <Image
+                              src={it.icon}
+                              alt="chooseKosei"
+                              layout="fixed"
+                              width={24}
+                              height={34}
+                            />
+                          </div>
+                          <Text
+                            type="title-20-semibold"
+                            color="neutral-1"
+                            bottom={12}
+                          >
+                            {it.title}
+                          </Text>
+                          <Text type="body-14-regular" color="gray-500">
+                            {it.content}
+                          </Text>
+                        </div>
+                      </div>
+                    ))
+                  : null}
               </div>
             </div>
           ))

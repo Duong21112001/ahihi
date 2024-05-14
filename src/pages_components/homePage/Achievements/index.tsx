@@ -98,13 +98,17 @@ const Achievements = () => {
             center
             className={styles.textContent}
           >
-            Lorem ipsum dolor sit amet
+            Những Kết quả xuất sắc của học viên Kosei đã đạt được sau bao nỗ lực
+            cố gắng chinh phục JLPT
           </Text>
           <div>
             {!loadingAchievement && dataAchievement?.length > 0 && (
               <Carousel
                 responsive={responsive}
-                showDots={false}
+                showDots={true}
+                autoPlay={true}
+                autoPlaySpeed={3000}
+                infinite={true}
                 containerClass={classNames(
                   "container-class-course",
                   styles.carousel
@@ -112,6 +116,7 @@ const Achievements = () => {
                 centerMode={false}
                 renderArrowsWhenDisabled={true}
                 arrows={true}
+                transitionDuration={500}
               >
                 {dataAchievement?.map((achievement) => {
                   return (

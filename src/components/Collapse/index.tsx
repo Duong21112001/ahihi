@@ -57,15 +57,7 @@ const Collapse: React.FC<CollapseProps> = ({
           />
         </div>
       </div>
-      {open && (
-        <>
-          {/* <div
-            dangerouslySetInnerHTML={{ __html: content }}
-            className={"body-1-regular"}
-          ></div> */}
-          {children}
-        </>
-      )}
+      {open && <>{children}</>}
     </div>
   );
 };

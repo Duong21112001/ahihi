@@ -19,7 +19,7 @@ import { checkCode, getPayment, orderCourses } from "@/service/payment";
 import { CoursesOrderParams, OnePaymentResponse } from "@/utils/model/payment";
 import { toast } from "react-toastify";
 import ToastComponent from "@/components/Toast";
-import { validateEmail } from "@/utils/validate";
+import { formatNumber, validateEmail } from "@/utils/validate";
 
 const PayMent: NextPageWithLayout = () => {
   const { t } = useTranslation("common");
@@ -46,9 +46,11 @@ const PayMent: NextPageWithLayout = () => {
     async () => {
       if (id) {
         const result = await getPayment();
+
         return result;
       }
     },
+
     {
       onError: () => {},
     }
@@ -180,6 +182,23 @@ const PayMent: NextPageWithLayout = () => {
                   {payment?.account_holder}
                 </Text>
               </Box>
+              <Box flex agileItem="agile-center">
+                <Text
+                  type="body-14-medium"
+                  color="neutral-3"
+                  bottom={8}
+                  right={5}
+                >
+                  Số tài khoản:
+                </Text>
+                <Text
+                  type="body-16-semibold"
+                  color="main-color-primary"
+                  bottom={8}
+                >
+                  {payment?.account_number}
+                </Text>
+              </Box>
             </div>
           );
         })}
@@ -241,7 +260,7 @@ const PayMent: NextPageWithLayout = () => {
                 Học phí:
               </Text>
               <Text type="body-16-semibold" color="neutral-1">
-                {data?.cou_price}VNĐ
+                {formatNumber(data?.cou_price)}VNĐ
               </Text>
             </Box>
             <Box flex agileItem="agile-center">
@@ -257,12 +276,12 @@ const PayMent: NextPageWithLayout = () => {
         <Text type="title-20-bold" color="neutral-1" bottom={8}>
           Điền thông tin đăng kí:
         </Text>
-        <Text type="body-14-regular" color="neutral-3" bottom={32}>
+        {/* <Text type="body-14-regular" color="neutral-3" bottom={32}>
           Lorem ipsum dolor sit amet consectetur. Sit pulvinar aliquet eu enim
           feugiat aliquam ut justo ornare. Neque neque id nunc eu vulputate
           nibh. Tortor cras et quam ipsum. Natoque vulputate suspendisse montes
           enim.
-        </Text>
+        </Text> */}
         <Form form={form} className={styles.paymentForm} onFinish={onFinish}>
           <div className={styles.form}>
             <div className={styles.paymentFormItem}>

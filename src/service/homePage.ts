@@ -29,6 +29,7 @@ const getListFeedback = async () => {
   const result = await requestPist.get(API_PATH.FEEDBACK);
   return result?.data;
 };
+
 export {
   getLevelsList,
   registerConsultation,

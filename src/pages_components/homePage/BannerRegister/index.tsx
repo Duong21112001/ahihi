@@ -1,63 +1,137 @@
-import { useTranslation } from "next-i18next";
 import "react-multi-carousel/lib/styles.css";
 import styles from "./index.module.scss";
 import RegisterForm from "../RegisterForm";
-import { useSaleCountdown } from "@/utils/hooks/countdown";
 import Text from "@/components/Text";
+import { useEffect, useState } from "react";
+import { getCookie, setCookie } from "cookies-next";
 
 const BannerRegister = () => {
-  const { t } = useTranslation("common");
-  const { remain } = useSaleCountdown({
-    startDate: new Date("02/27/2024"),
-    endDate: new Date("02/29/2024"),
+  const getTimeFromCookie = () => {
+    const cookieValue = getCookie("countdown_time");
+    if (cookieValue) {
+      return JSON.parse(cookieValue);
+    }
+    return null;
+  };
+  const [time, setTime] = useState({
+    hours: 48,
+    minutes: 0,
+    seconds: 60,
   });
-  const countDown = [
-    {
-      time: remain.days,
-      label: "Ngày",
-    },
-    {
-      time: remain.hours,
-      label: "Giờ",
-    },
-    {
-      time: remain.minutes,
-      label: "Phút",
-    },
-  ];
 
+  useEffect(() => {
+    const initialTime = getTimeFromCookie() || {
+      hours: 48,
+      minutes: 0,
+      seconds: 60,
+    };
+    setTime(initialTime);
+    const interval = setInterval(() => {
+      setTime((prevTime: any) => {
+        const { days, hours, minutes, seconds } = prevTime;
+        let newSeconds = seconds - 1;
+        let newMinutes = minutes;
+        let newHours = hours;
+        let newDays = days;
+
+        if (newSeconds === -1) {
+          newSeconds = 59;
+          newMinutes -= 1;
+        }
+        if (newMinutes === -1) {
+          newMinutes = 59;
+          newHours -= 1;
+        }
+        if (newHours === -1) {
+          newHours = 23;
+          newDays -= 1;
+        }
+        if (newDays === -1) {
+          clearInterval(interval);
+          return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+        }
+        setCookie(
+          "countdown_time",
+          JSON.stringify({
+            days: newDays,
+            hours: newHours,
+            minutes: newMinutes,
+            seconds: newSeconds,
+          })
+        );
+
+        return {
+          days: newDays,
+          hours: newHours,
+          minutes: newMinutes,
+          seconds: newSeconds,
+        };
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (value: number) => {
+    return value < 10 ? `0${value}` : value.toString();
+  };
   return (
     <div className={styles.bannerRegisterWrap}>
       <div className={styles.bannerRegisterContainer}>
         <div className={styles.form}>
-          {/* <div className={styles.icon}>
-            <img src="/Images/cotton-sheep.png" alt="cotton-sheep" />
-          </div> */}
-
           <RegisterForm />
         </div>
         <div className={styles.image}>
           <div className={styles.countDown}>
-            {countDown.map((item) => {
-              return (
-                <div className={styles.countDownItem} key={item.label}>
-                  <Text
-                    type="title-57-bold"
-                    color="neutral-10"
-                    className={styles.countDownTime}
-                  >
-                    {item.time}
-                  </Text>
-                  <Text
-                    type="body-16-semibold"
-                    color="neutral-10"
-                    className={styles.countDownLabel}
-                  >
-                    {item.label}
-                  </Text>
-                </div>
-              );
-            })}
+            <div className={styles.countDownItem}>
+              <Text
+                type="title-57-bold"
+                color="neutral-10"
+                className={styles.countDownTime}
+              >
+                {formatTime(time.hours)}
+              </Text>
+              <Text
+                type="body-16-semibold"
+                color="neutral-10"
+                className={styles.countDownLabel}
+              >
+                {time.hours === 1}Giờ
+              </Text>
+            </div>
+
+            <div className={styles.countDownItem}>
+              <Text
+                type="title-57-bold"
+                color="neutral-10"
+                className={styles.countDownTime}
+              >
+                {formatTime(time.minutes)}
+              </Text>
+              <Text
+                type="body-16-semibold"
+                color="neutral-10"
+                className={styles.countDownLabel}
+              >
+                {time.minutes === 1}Phút
+              </Text>
+            </div>
+            <div className={styles.countDownItem}>
+              <Text
+                type="title-57-bold"
+                color="neutral-10"
+                className={styles.countDownTime}
+              >
+                {formatTime(time.seconds)}
+              </Text>
+              <Text
+                type="body-16-semibold"
+                color="neutral-10"
+                className={styles.countDownLabel}
+              >
+                {time.seconds === 1}Giây
+              </Text>
+            </div>
           </div>
           <img src="/Images/banner-register-1.png" alt="banner-register" />
         </div>

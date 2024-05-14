@@ -27,15 +27,6 @@ const Video: React.FC<VideoProps> = ({ url, width, className, height }) => {
 
   return (
     <div className="player-wrapper">
-      {/* <ReactPlayer
-        className={classes}
-        url={url}
-        width={width}
-        height={height}
-        controls={true}
-        muted={true}
-        // light={<PlayIcon />}
-      /> */}
       <iframe src={url}></iframe>
     </div>
   );
