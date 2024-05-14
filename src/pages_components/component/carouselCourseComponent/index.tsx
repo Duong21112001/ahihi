@@ -25,7 +25,6 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 3,
     },
@@ -42,7 +41,6 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       items: 1,
     },
   };
-
   const CourseComponent = (props: { course: Course }) => {
     const { course } = props;
 
@@ -159,11 +157,10 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       </div>
     );
   };
-
   return (
     <Carousel
-      autoPlay={true}
-      autoPlaySpeed={1000}
+      autoPlay
+      autoPlaySpeed={3000}
       responsive={responsive}
       showDots={true}
       infinite={true}

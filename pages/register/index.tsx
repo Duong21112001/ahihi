@@ -410,7 +410,6 @@ const RegisterForm = () => {
               type="body-16-bold"
               color="main-color-primary"
               right={4}
-              // onClick={() => router.push(ROUTER.LOGIN)}
               cursorPoiter
             >
               Đăng nhập

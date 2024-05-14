@@ -65,9 +65,7 @@ const Select: React.FC<SelectProps> = ({
         <RCSelect
           disabled={disabled}
           id={name}
-          // aria-haspopup={name}
           aria-owns={name}
-          // aria-autocomplete={name}
           aria-controls={name}
           aria-activedescendant={name}
           aria-expanded="false"

@@ -10,26 +10,15 @@ import Image from "next/image";
 import Collapse from "@/components/Collapse";
 import { useRequest } from "@umijs/hooks";
 import { getCourseContent, getCourseQuestions } from "@/service/course";
-import {
-  CourseContent,
-  Lectures,
-  ListCourseContent,
-  Questions,
-  QuestionsResponse,
-} from "@/utils/model/courses";
+import { Lectures, ListCourseContent, Questions } from "@/utils/model/courses";
 import CollapseLearning from "@/pages_components/learnPage/collapse";
 import CollapseVideo from "@/pages_components/learnPage/collapseVideo";
-import { listTeacher } from "@/pages_components/homePage/Lecturers/service";
 import { useSearchParams } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import PlaceholderBox from "@/components/placeholderBox";
 import Text from "@/components/Text";
 import classNames from "classnames";
 import Studing from "@/pages_components/learnPage/studing";
-interface VideoInfo {
-  video: string;
-  parentId: number;
-}
 
 const LearnPage: NextPageWithLayout = () => {
   const [nav1, setNav1]: any = useState();
@@ -87,7 +76,6 @@ const LearnPage: NextPageWithLayout = () => {
       },
     }
   );
-  console.log("dataListCourse=====", dataListCourse);
 
   const {
     loading: loadingListQuestion,
@@ -164,9 +152,8 @@ const LearnPage: NextPageWithLayout = () => {
                         >
                           <PlaceholderBox loading={loadingListCourse}>
                             <Video
-                              // url={`https://player.vimeo.com/video/${Lecture?.video_id}`}
-                              width="200px"
-                              height="200px"
+                              width="100%"
+                              height="400px"
                               url={`https://youtube.com/embed/${Lecture?.youtube_id}`}
                             />
                           </PlaceholderBox>
@@ -221,10 +208,9 @@ const LearnPage: NextPageWithLayout = () => {
                         key={`video-2-${Lecture?.id}`}
                       >
                         <Video
-                          // url={`https://player.vimeo.com/video/${Lecture?.video_id}`}
-                          width="200px"
-                          height="200px"
-                          url={`https://youtube.com/embed/${Lecture?.youtube_id}`}
+                          width="100%"
+                          height="114px"
+                          url={`https://www.youtube.com/watch?v=${Lecture?.youtube_id}`}
                         />
                       </div>
                     );

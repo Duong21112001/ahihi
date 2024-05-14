@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import Link from "next/link";
 
 interface BoxProps {
   children: React.ReactNode;
@@ -20,7 +19,6 @@ interface BoxProps {
   paddingLeft?: number;
   paddingBottom?: number;
   paddingRight?: number;
-  // href: string;
 }
 
 const Box: React.FC<BoxProps> = ({
@@ -37,7 +35,6 @@ const Box: React.FC<BoxProps> = ({
   agileItem,
   justContent,
   radius,
-  // href,
 }) => {
   const classes = classNames(
     agileItem,

@@ -3,7 +3,6 @@ import styles from "./index.module.scss";
 import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";
-import Rating from "@/components/rating";
 import { IlistTeacher } from "@/utils/model/teacher";
 import { useRequest } from "@umijs/hooks";
 import { getTeacherDetailId } from "@/service/teacher";
@@ -30,10 +29,6 @@ const TeacherCourse = ({ idTeacher }: TeacherCourseProps) => {
   );
   const teacher = teacherData?.[0];
   const infos = [
-    // {
-    //   label: "Review",
-    //   value: "",
-    // },
     {
       label: "Số học sinh đang giảng dạy",
       value: teacher?.view || 0,

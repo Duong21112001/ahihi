@@ -190,15 +190,7 @@ const RegisterForm = () => {
             </Field>
           </div>
           <div className={styles.registerFormItem}>
-            <Field
-              name="address"
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: "",
-              //   },
-              // ]}
-            >
+            <Field name="address">
               {({ value, onChange }, meta) => {
                 return (
                   <Select

@@ -18,8 +18,8 @@ export const initUser = {
   user_name: "",
 };
 export const userProfile = atom({
-  key: "userProfile", // unique ID (with respect to other atoms/selectors)
-  default: initUser, // default value (aka initial value)
+  key: "userProfile",
+  default: initUser,
 });
 
 const UserProvider = ({ children }: { children: ReactNode }) => {

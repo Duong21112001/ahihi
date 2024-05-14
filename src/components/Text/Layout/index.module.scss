@@ -1,0 +1,51 @@
+.authWrap {
+  .authContainer {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-2);
+
+    .left {
+      width: 50%;
+      background-color: var(--background-2);
+      height: 100vh;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+    .right {
+      width: 50%;
+      display: grid;
+      align-items: center;
+      background: url("/Images/bg-login.png"), var(--neutral-10);
+      background-position: right -30px;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      padding: 0 20px;
+
+      .rightBackground {
+        max-width: 600px;
+        padding: 118px 0 118px 56px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .authContainer {
+      flex-direction: column;
+      .left {
+        height: 200px;
+        width: 100%;
+      }
+      .right {
+        height: unset;
+        width: 100%;
+        min-height: unset;
+        background-size: 300px, 300px;
+        background-position: right 0px;
+        .rightBackground {
+          padding: 50px 0;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
