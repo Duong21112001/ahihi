@@ -6,7 +6,7 @@ pipeline {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
                         target = 'production'
-                    } else if (env.GIT_BRANCH == 'deployment/dev') {
+                    } else if (env.GIT_BRANCH == 'origin/deployment/dev') {
                         target = 'dev'
                     }
                 }
