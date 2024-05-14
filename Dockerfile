@@ -13,6 +13,7 @@ RUN npm install --save --legacy-peer-deps
 RUN npm install -g pm2
 
 COPY . .
+COPY .next /app/.next
 
 # Bundle app source
 # Create a group and user
