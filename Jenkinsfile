@@ -35,6 +35,12 @@ pipeline {
                 expression { target == 'dev' }
             }
             steps {
+                script {
+                    def hostIp = sh(script: "hostname -I | awk '{print $1}'", returnStdout: true).trim()
+                    echo "Current server IP: ${hostIp}"
+                }
+            }
+            steps {
                 echo "deploy dev"
                 sshagent(['0a39231d-d882-4824-ae7f-0d892c489685']) {
                     sh """ssh -o StrictHostKeyChecking=no ansible@152.42.180.38 << EOF
