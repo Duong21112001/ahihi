@@ -46,113 +46,111 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
 
     return (
       <div className={styles.coursePadding}>
-        <div className={styles.courseWrap}>
-          <img
-            src={course?.image ? course?.image : "/Images/course.png"}
-            className={styles.images}
-            alt="course"
-          />
-          <div className={styles.courseContent}>
-            <Text
-              type="title-24-bold"
-              color="neutral-1"
-              className={styles.courseContentTitle}
-            >
-              {course.name}
+        <img
+          src={course?.image ? course?.image : "/Images/course.png"}
+          className={styles.images}
+          alt="course"
+        />
+        <div className={styles.courseContent}>
+          <Text
+            type="title-24-bold"
+            color="neutral-1"
+            className={styles.courseContentTitle}
+          >
+            {course.name}
+          </Text>
+          <Box flex agileItem="agile-center" className={styles.rate}>
+            <Box flex right={10} className={styles.rateIcon}>
+              {[...Array(4)].map((value, key) => {
+                return (
+                  <Image
+                    src="/svg/rating.svg"
+                    alt="rating"
+                    layout="fixed"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 2 }}
+                    key={`rating-${key}`}
+                  />
+                );
+              })}
+              {[...Array(1)].map((value, key) => {
+                return (
+                  <Image
+                    src="/svg/rating.svg"
+                    alt="rating"
+                    layout="fixed"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 2 }}
+                    key={`un-rating-${key}`}
+                  />
+                );
+              })}
+            </Box>
+            <Text type="body-16-regular" color="dark-500">
+              4.8 (120 đánh giá)
             </Text>
-            <Box flex agileItem="agile-center" className={styles.rate}>
-              <Box flex right={10} className={styles.rateIcon}>
-                {[...Array(4)].map((value, key) => {
-                  return (
-                    <Image
-                      src="/svg/rating.svg"
-                      alt="rating"
-                      layout="fixed"
-                      width={20}
-                      height={20}
-                      style={{ marginRight: 2 }}
-                      key={`rating-${key}`}
-                    />
-                  );
-                })}
-                {[...Array(1)].map((value, key) => {
-                  return (
-                    <Image
-                      src="/svg/rating.svg"
-                      alt="rating"
-                      layout="fixed"
-                      width={20}
-                      height={20}
-                      style={{ marginRight: 2 }}
-                      key={`un-rating-${key}`}
-                    />
-                  );
-                })}
-              </Box>
-              <Text type="body-16-regular" color="dark-500">
-                4.8 (120 đánh giá)
+          </Box>
+          <Box
+            flex
+            agileItem="agile-center"
+            justContent="content-beetween"
+            className={styles.infoCourse}
+          >
+            <Box
+              flex
+              agileItem="agile-center"
+              className={styles.infoCourseTime}
+            >
+              <Image
+                src="/svg/clock-circle.svg"
+                alt="clock-circle"
+                layout="fixed"
+                width={29}
+                height={29}
+                style={{ marginRight: 10 }}
+              />
+              <Text type="body-14-medium" color="neutral-1">
+                {course?.expired_at} buổi
               </Text>
             </Box>
-            <Box
-              flex
-              agileItem="agile-center"
-              justContent="content-beetween"
-              className={styles.infoCourse}
+          </Box>
+          <Box
+            flex
+            agileItem="agile-center"
+            justContent="content-beetween"
+            className={styles.buttons}
+          >
+            <Button
+              type="btn-blue-secondary"
+              onClick={() =>
+                router.push({
+                  pathname: "/course-detail",
+                  query: { id: course?.cat_id },
+                })
+              }
             >
-              <Box
-                flex
-                agileItem="agile-center"
-                className={styles.infoCourseTime}
-              >
-                <Image
-                  src="/svg/clock-circle.svg"
-                  alt="clock-circle"
-                  layout="fixed"
-                  width={29}
-                  height={29}
-                  style={{ marginRight: 10 }}
-                />
-                <Text type="body-14-medium" color="neutral-1">
-                  {course?.expired_at} buổi
-                </Text>
-              </Box>
-            </Box>
-            <Box
-              flex
-              agileItem="agile-center"
-              justContent="content-beetween"
-              className={styles.buttons}
+              Xem chi tiết
+            </Button>
+            <Button
+              type="btn-blue"
+              onClick={() =>
+                router.push(
+                  token
+                    ? {
+                        pathname: "/payment",
+                        query: { id: course?.cat_id },
+                      }
+                    : {
+                        pathname: "/login",
+                      }
+                )
+              }
             >
-              <Button
-                type="btn-blue-secondary"
-                onClick={() =>
-                  router.push({
-                    pathname: "/course-detail",
-                    query: { id: course?.cat_id },
-                  })
-                }
-              >
-                Xem chi tiết
-              </Button>
-              <Button
-                type="btn-blue"
-                onClick={() =>
-                  router.push(
-                    token
-                      ? {
-                          pathname: "/payment",
-                          query: { id: course?.cat_id },
-                        }
-                      : {
-                          pathname: "/login",
-                        }
-                  )
-                }
-              >
-                Mua ngay
-              </Button>
-            </Box>
-          </div>
+              Mua ngay
+            </Button>
+          </Box>
         </div>
       </div>
     );

@@ -60,7 +60,7 @@ const Search = ({
       )}
       {isSearchActive && (
         <div className={styles.searchActive}>
-          <div className={styles.searchIem}>
+          <label htmlFor="searchInput" className={styles.searchIem}>
             <Image
               src="/svg/search-header.svg"
               alt="close"
@@ -69,6 +69,7 @@ const Search = ({
               className={styles.iconSearch}
             />
             <input
+              id="searchInput"
               placeholder="Nhập nội dung tìm kiếm"
               value={searchTerm}
               onChange={handleChange}
@@ -91,7 +92,7 @@ const Search = ({
                 ))}
               </ul>
             )}
-          </div>
+          </label>
           <Image
             src="/svg/remove.svg"
             alt="close"

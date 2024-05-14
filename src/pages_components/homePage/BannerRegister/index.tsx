@@ -6,25 +6,21 @@ import { useEffect, useState } from "react";
 import { getCookie, setCookie } from "cookies-next";
 
 const BannerRegister = () => {
-  const getTimeFromCookie = () => {
-    const cookieValue = getCookie("countdown_time");
-    if (cookieValue) {
-      return JSON.parse(cookieValue);
-    }
-    return null;
-  };
   const [time, setTime] = useState({
     hours: 48,
     minutes: 0,
     seconds: 60,
   });
+  const getTimeFromCookie = () => {
+    const cookieValue = getCookie("countdown_time");
+    if (cookieValue) {
+      return JSON.parse(cookieValue);
+    }
+    return setTime;
+  };
 
   useEffect(() => {
-    const initialTime = getTimeFromCookie() || {
-      hours: 48,
-      minutes: 0,
-      seconds: 60,
-    };
+    const initialTime = getTimeFromCookie();
     setTime(initialTime);
     const interval = setInterval(() => {
       setTime((prevTime: any) => {
