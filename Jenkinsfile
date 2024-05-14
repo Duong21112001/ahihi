@@ -29,14 +29,6 @@ pipeline {
                 }
             }
         }
-        stage('Pre-deploy Setup') {
-            steps {
-                script {
-                    def hostIp = sh(script: "hostname -I", returnStdout: true).trim()
-                    echo "Current server IP: ${hostIp}"
-                }
-            }
-        }
         stage('Deploy Dev') {
             when {
                 expression { target == 'dev' }
@@ -45,6 +37,8 @@ pipeline {
                 echo "deploy dev"
                 sshagent(['0a39231d-d882-4824-ae7f-0d892c489685']) {
                     sh """ssh -o StrictHostKeyChecking=no ansible@152.42.180.38 << EOF
+                        cd /home/ansible/resource/kosei.eupsolution.net/web-client
+                        git pull origin deployment/dev
                         docker pull registry.gitlab.com/eup/kosei-web:${GIT_COMMIT} 
                         exit
                     EOF"""
