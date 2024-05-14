@@ -32,7 +32,7 @@ pipeline {
         stage('Pre-deploy Setup') {
             steps {
                 script {
-                    def hostIp = sh(script: "hostname -I | awk '{print \\$1}'", returnStdout: true).trim()
+                    def hostIp = sh(script: "hostname -I", returnStdout: true).trim()
                     echo "Current server IP: ${hostIp}"
                 }
             }
