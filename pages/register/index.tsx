@@ -65,7 +65,6 @@ const RegisterForm = () => {
   const onFinish = (values: any) => {
     run(values);
   };
-
   return (
     <div className={styles.registerWrap}>
       <Text type="heading-h3" color="neutral-1" bottom={4}>

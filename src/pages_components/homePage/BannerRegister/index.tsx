@@ -9,14 +9,14 @@ const BannerRegister = () => {
   const [time, setTime] = useState({
     hours: 48,
     minutes: 0,
-    seconds: 60,
+    seconds: 0,
   });
   const getTimeFromCookie = () => {
     const cookieValue = getCookie("countdown_time");
     if (cookieValue) {
       return JSON.parse(cookieValue);
     }
-    return setTime;
+    return { hours: 48, minutes: 0, seconds: 0 };
   };
 
   useEffect(() => {
@@ -24,11 +24,10 @@ const BannerRegister = () => {
     setTime(initialTime);
     const interval = setInterval(() => {
       setTime((prevTime: any) => {
-        const { days, hours, minutes, seconds } = prevTime;
+        const { hours, minutes, seconds } = prevTime;
         let newSeconds = seconds - 1;
         let newMinutes = minutes;
         let newHours = hours;
-        let newDays = days;
 
         if (newSeconds === -1) {
           newSeconds = 59;
@@ -39,17 +38,13 @@ const BannerRegister = () => {
           newHours -= 1;
         }
         if (newHours === -1) {
-          newHours = 23;
-          newDays -= 1;
-        }
-        if (newDays === -1) {
           clearInterval(interval);
-          return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+          return { hours: 0, minutes: 0, seconds: 0 };
         }
+
         setCookie(
           "countdown_time",
           JSON.stringify({
-            days: newDays,
             hours: newHours,
             minutes: newMinutes,
             seconds: newSeconds,
@@ -57,7 +52,6 @@ const BannerRegister = () => {
         );
 
         return {
-          days: newDays,
           hours: newHours,
           minutes: newMinutes,
           seconds: newSeconds,
