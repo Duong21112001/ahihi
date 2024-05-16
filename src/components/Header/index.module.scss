@@ -449,3 +449,42 @@
 .arrow_open {
   transform: rotate(0deg);
 }
+.modalImage {
+  display: flex;
+  align-items: center;
+  :global {
+    .rc-dialog {
+      margin: 0 auto;
+      width: calc(100% - 20px);
+      max-width: 390px;
+
+      .rc-dialog-content {
+        width: 100%;
+        background: #e7eff7;
+        .rc-dialog-close {
+          top: 5px;
+          right: 0;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+.iconClose {
+  background: #00000080;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.textBtn {
+  cursor: pointer;
+}
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}

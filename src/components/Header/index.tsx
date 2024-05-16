@@ -21,8 +21,17 @@ import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
 import Search from "../Search";
 import Course from "./Course";
+import Dialog from "rc-dialog";
 
 const Header = () => {
+  const [visible, setVisible] = useState(false);
+  const open = () => {
+    setVisible(true);
+  };
+
+  const onCloseModal = () => {
+    setVisible(false);
+  };
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
@@ -86,7 +95,7 @@ const Header = () => {
           <div className={styles.dropDownUser}>
             <Box flex agileItem="agile-center">
               <Image
-                src={avatar ? avatar : "/svg/no-user.svg"}
+                src="/svg/no-user.svg"
                 alt="no-user"
                 layout="fixed"
                 width={24}
@@ -258,42 +267,53 @@ const Header = () => {
                     </div>
                     {!isCourse && <Course />}
                   </div>
-                  <Link href="/auditions">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/auditions"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      Thi thử
-                    </Text>
-                  </Link>
-                  <Link href="/about">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/about"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      Về chúng tôi
-                    </Text>
-                  </Link>
-                  <Link href="/contact">
-                    <Text
-                      type="body-16-regular"
-                      color={
-                        router.pathname === "/contact"
-                          ? "primary-bule"
-                          : "neutral-1"
-                      }
-                    >
-                      Liên hệ
-                    </Text>
-                  </Link>
+                  <Text
+                    type="body-16-regular"
+                    onClick={open}
+                    className={styles.textBtn}
+                  >
+                    Thi thử
+                  </Text>
+                  <Dialog
+                    visible={visible}
+                    wrapClassName={classNames(styles.modalImage)}
+                    animation=""
+                    onClose={onCloseModal}
+                    keyboard={false}
+                    destroyOnClose={true}
+                    closeIcon={
+                      <div className={styles.iconClose}>
+                        <Image
+                          src="/svg/close.svg"
+                          alt="heart"
+                          layout="fixed"
+                          width={14}
+                          height={16}
+                        />
+                      </div>
+                    }
+                  >
+                    <div className={styles.dialog}>
+                      <Text type="heading-h3">Coming Soon</Text>
+                      <Link href="/" onClick={onCloseModal}>
+                        <Button type="btn-blue">Tiếp tục</Button>
+                      </Link>
+                    </div>
+                  </Dialog>
+                  <Text
+                    type="body-16-regular"
+                    onClick={open}
+                    className={styles.textBtn}
+                  >
+                    Về chúng tôi
+                  </Text>
+                  <Text
+                    type="body-16-regular"
+                    onClick={open}
+                    className={styles.textBtn}
+                  >
+                    Liên hệ
+                  </Text>
                 </>
               )}
               <Search
@@ -338,7 +358,7 @@ const Header = () => {
             onClick={() => setIsShowDropdown(!isShowDropdown)}
           >
             <Image
-              src={avatar ? avatar : "/svg/no-user.svg"}
+              src="/svg/no-user.svg"
               alt="no-user"
               layout="fixed"
               width={24}
