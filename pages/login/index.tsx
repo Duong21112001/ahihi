@@ -283,12 +283,12 @@ const LoginForm = () => {
                 layout="fixed"
                 width={24}
                 height={24}
-                style={{ marginRight: 12 }}
+                style={{ marginRight: 12, position: "relative" }}
               />
               <Text type="body-16-bold" color="neutral-10">
                 Google
               </Text>
-              <div style={{ opacity: 0 }}>
+              <div style={{ position: "absolute", opacity: 0 }}>
                 <GoogleLogin
                   onSuccess={(credentialResponse: any) => {
                     const decoded = jwtDecode(
