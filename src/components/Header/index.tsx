@@ -21,17 +21,8 @@ import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
 import Search from "../Search";
 import Course from "./Course";
-import Dialog from "rc-dialog";
 
 const Header = () => {
-  const [visible, setVisible] = useState(false);
-  const open = () => {
-    setVisible(true);
-  };
-
-  const onCloseModal = () => {
-    setVisible(false);
-  };
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
   const token = getCookie("kosei-token");
@@ -269,47 +260,34 @@ const Header = () => {
                   </div>
                   <Text
                     type="body-16-regular"
-                    onClick={open}
+                    onClick={() =>
+                      router.push({
+                        pathname: "/exam",
+                      })
+                    }
                     className={styles.textBtn}
                   >
                     Thi thử
                   </Text>
-                  <Dialog
-                    visible={visible}
-                    wrapClassName={classNames(styles.modalImage)}
-                    animation=""
-                    onClose={onCloseModal}
-                    keyboard={false}
-                    destroyOnClose={true}
-                    closeIcon={
-                      <div className={styles.iconClose}>
-                        <Image
-                          src="/svg/close.svg"
-                          alt="heart"
-                          layout="fixed"
-                          width={14}
-                          height={16}
-                        />
-                      </div>
-                    }
-                  >
-                    <div className={styles.dialog}>
-                      <Text type="heading-h3">Coming Soon</Text>
-                      <Link href="/" onClick={onCloseModal}>
-                        <Button type="btn-blue">Tiếp tục</Button>
-                      </Link>
-                    </div>
-                  </Dialog>
+
                   <Text
                     type="body-16-regular"
-                    onClick={open}
+                    onClick={() =>
+                      router.push({
+                        pathname: "/about-us",
+                      })
+                    }
                     className={styles.textBtn}
                   >
                     Về chúng tôi
                   </Text>
                   <Text
                     type="body-16-regular"
-                    onClick={open}
+                    onClick={() =>
+                      router.push({
+                        pathname: "/contact",
+                      })
+                    }
                     className={styles.textBtn}
                   >
                     Liên hệ

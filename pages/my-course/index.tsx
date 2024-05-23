@@ -7,7 +7,6 @@ import styles from "./index.module.scss";
 import Breadcrumb from "@/components/Breadcrumb";
 import Text from "@/components/Text";
 import classNames from "classnames";
-import CourseVideo from "@/pages_components/detailCourse/contentCourse/Course";
 import MyCourseCarousel from "@/pages_components/myCourse/course";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";

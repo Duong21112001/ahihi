@@ -1,0 +1,53 @@
+.imgAbout {
+  transform: scaleX(-1);
+}
+.contentOverview {
+  display: flex;
+  justify-content: space-between;
+  gap: 120px;
+  align-items: center;
+}
+.contentAbout {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bg {
+  background: url("../../public/Images/banner-register-3.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: fit-content;
+  padding: 60px 80px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+// .textBig {
+//   font-size: 100px; /* Phóng to số */
+//   color: transparent; /* Màu bên trong trong suốt */
+//   -webkit-text-stroke: 2px black;
+//   opacity: 0.5;
+// }
+.title {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.text {
+  max-width: 568px;
+  line-height: 24px;
+}
