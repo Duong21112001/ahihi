@@ -4,11 +4,29 @@ import styles from "./index.module.scss";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Breadcrumb from "@/components/Breadcrumb";
-import { CONTEST } from "./data";
+// import { CONTEST } from "./data";
 import Button from "@/components/Button";
 import ListExam from "./ListExam";
-import ReactPaginate from "react-paginate";
-
+const CONTEST = [
+  {
+    name: "Tất cả",
+  },
+  {
+    name: "N1",
+  },
+  {
+    name: "N2",
+  },
+  {
+    name: "N3",
+  },
+  {
+    name: "N4",
+  },
+  {
+    name: "N5",
+  },
+];
 const breadcrumb = [
   {
     label: "Trang chủ",

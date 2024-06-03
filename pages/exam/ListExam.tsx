@@ -1,10 +1,201 @@
 import React, { useState } from "react";
 import styles from "./index.module.scss";
-import { EXAM } from "./data";
+// import { EXAM } from "./data";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import ReactPaginate from "react-paginate";
 
+const EXAM = [
+  {
+    title: "Đề thi 01",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N1",
+  },
+  {
+    title: "Đề thi 02",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N1",
+  },
+  {
+    title: "Đề thi 03",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N1",
+  },
+  {
+    title: "Đề thi 04",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N1",
+  },
+  {
+    title: "Đề thi 05",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N1",
+  },
+  {
+    title: "Đề thi 01",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N2",
+  },
+  {
+    title: "Đề thi 02",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N2",
+  },
+  {
+    title: "Đề thi 03",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N2",
+  },
+  {
+    title: "Đề thi 04",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N2",
+  },
+  {
+    title: "Đề thi 05",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N2",
+  },
+  {
+    title: "Đề thi 01",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N3",
+  },
+  {
+    title: "Đề thi 02",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N3",
+  },
+  {
+    title: "Đề thi 03",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N3",
+  },
+  {
+    title: "Đề thi 04",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N3",
+  },
+  {
+    title: "Đề thi 05",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N3",
+  },
+  {
+    title: "Đề thi 06",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N2",
+  },
+  {
+    title: "Đề thi 01",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N4",
+  },
+  {
+    title: "Đề thi 02",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N4",
+  },
+  {
+    title: "Đề thi 03",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N4",
+  },
+  {
+    title: "Đề thi 04",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N4",
+  },
+  {
+    title: "Đề thi 05",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N4",
+  },
+  {
+    title: "Đề thi 01",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N5",
+  },
+  {
+    title: "Đề thi 02",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N5",
+  },
+  {
+    title: "Đề thi 03",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N5",
+  },
+  {
+    title: "Đề thi 04",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N5",
+  },
+  {
+    title: "Đề thi 05",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N5",
+  },
+  {
+    title: "Đề thi 06",
+    time: 120,
+    contest: 7,
+    question: 200,
+    type: "N5",
+  },
+];
 const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 15;
