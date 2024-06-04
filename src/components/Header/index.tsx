@@ -219,7 +219,7 @@ const Header = () => {
                     <Text
                       type="body-16-regular"
                       color={
-                        router.pathname === "/" ? "primary-bule" : "neutral-1"
+                        router.pathname === "/" ? "primary-blue" : "neutral-1"
                       }
                     >
                       Trang chủ
@@ -234,7 +234,7 @@ const Header = () => {
                         type="body-16-regular"
                         color={
                           router.pathname === "/course"
-                            ? "primary-bule"
+                            ? "primary-blue"
                             : "neutral-1"
                         }
                         right={5}
@@ -256,7 +256,10 @@ const Header = () => {
                         />
                       </svg>
                     </div>
-                    {!isCourse && <Course />}
+                    <div className={styles.position}>
+                      {" "}
+                      {isCourse && <Course />}
+                    </div>
                   </div>
                   <Text
                     type="body-16-regular"

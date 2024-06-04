@@ -227,16 +227,6 @@ const PayMent: NextPageWithLayout = () => {
 
   return (
     <div className={styles.payMentWrap}>
-      <img
-        src="/Images/cloud-sun-right.png"
-        alt="cloud-sun-right"
-        className={styles.cloudSunLeft}
-      />
-      <img
-        src="/Images/cloud-sun-left.png"
-        alt="cloud-sun-left"
-        className={styles.cloudSunRight}
-      />
       <div className={styles.payMentContainer}>
         <Text
           type="heading-h3"
@@ -276,12 +266,7 @@ const PayMent: NextPageWithLayout = () => {
         <Text type="title-20-bold" color="neutral-1" bottom={8}>
           Điền thông tin đăng kí:
         </Text>
-        {/* <Text type="body-14-regular" color="neutral-3" bottom={32}>
-          Lorem ipsum dolor sit amet consectetur. Sit pulvinar aliquet eu enim
-          feugiat aliquam ut justo ornare. Neque neque id nunc eu vulputate
-          nibh. Tortor cras et quam ipsum. Natoque vulputate suspendisse montes
-          enim.
-        </Text> */}
+
         <Form form={form} className={styles.paymentForm} onFinish={onFinish}>
           <div className={styles.form}>
             <div className={styles.paymentFormItem}>

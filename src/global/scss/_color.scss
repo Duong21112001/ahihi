@@ -62,13 +62,13 @@
   --shade-secondary-3: #b04d2e;
   --shade-secondary-2: #c95834;
   --shade-secondary-1: #e2633b;
-  --bule-1: #003b9f;
-  --bule-2: #114b91;
-  --bule-3: #0055e5;
-  --bule-4: #6ba3ff;
-  --bule-5: #aec7e5;
-  --bule-6: #f0f5ff;
-  --primary-bule: #1e73be;
+  --blue-1: #003b9f;
+  --blue-2: #114b91;
+  --blue-3: #0055e5;
+  --blue-4: #6ba3ff;
+  --blue-5: #aec7e5;
+  --blue-6: #f0f5ff;
+  --primary-blue: #1e73be;
   --primary-base: #052a45;
   --primary-light: #637177;
   --primary-lighter: #d0cdcd;
@@ -85,8 +85,8 @@
 .primary-base {
   color: var(--primary-base);
 }
-.primary-bule {
-  color: var(--primary-bule);
+.primary-blue {
+  color: var(--primary-blue);
 }
 .neutral-1 {
   color: var(--neutral-1);
@@ -127,11 +127,11 @@
 .shade-primary-5 {
   color: var(--shade-primary-5);
 }
-.bule-4 {
-  color: var(--bule-4);
+.blue-4 {
+  color: var(--blue-4);
 }
-.bule-5 {
-  color: var(--bule-5);
+.blue-5 {
+  color: var(--blue-5);
 }
 .tint-primary-3 {
   color: var(--tint-primary-3);

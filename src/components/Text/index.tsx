@@ -51,7 +51,7 @@ interface TextProps {
     | "title-40-semiBold"
     | undefined;
   color?:
-    | "primary-bule"
+    | "primary-blue"
     | "neutral-1"
     | "neutral-2"
     | "neutral-3"
@@ -65,8 +65,8 @@ interface TextProps {
     | "main-color-primary"
     | "shade-primary-4"
     | "shade-primary-5"
-    | "bule-4"
-    | "bule-5"
+    | "blue-4"
+    | "blue-5"
     | "tint-primary-3"
     | "sematic-1"
     | "gray-500"

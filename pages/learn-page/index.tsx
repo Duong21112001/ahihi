@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -328,7 +328,7 @@ const LearnPage: NextPageWithLayout = () => {
     </div>
   );
 };
-export default memo(LearnPage);
+export default LearnPage;
 
 LearnPage.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;

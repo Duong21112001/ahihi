@@ -51,12 +51,8 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     flex-wrap: wrap;
-    .courseCarousel {
-      width: calc(33.33% - 10px);
-    }
   }
 }
