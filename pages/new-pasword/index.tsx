@@ -3,23 +3,14 @@ import Form, { Field } from "rc-field-form";
 import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
 import Text from "@/components/Text";
-import styles from "./index.module.scss";
-import { LoginParam } from "@/utils/model/login";
-import { useRef, useState } from "react";
+import styles from "./index.module.css";
+import { useRef } from "react";
 import { NextPageContext } from "next";
 import LayoutAuth from "@/components/Layout/auth-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import {
-  validateConfirmPassword,
-  validateEmail,
-  validatePassword,
-} from "@/utils/validate";
-import { useRouter } from "next/router";
+import { validateConfirmPassword, validatePassword } from "@/utils/validate";
 import { useRequest } from "@umijs/hooks";
-import {
-  ForgotPasswordParam,
-  NewPasswordParam,
-} from "@/utils/model/forgotPassword";
+import { NewPasswordParam } from "@/utils/model/forgotPassword";
 import { newPassword } from "../../src/service/newPassword";
 import { useSearchParams } from "next/navigation";
 import ModalMessage, { PopUpRef } from "@/components/ModalMessage";

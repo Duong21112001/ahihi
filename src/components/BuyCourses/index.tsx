@@ -1,10 +1,9 @@
 import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";
 import Button from "../Button";
-import Video from "../Video";
 import { useRouter } from "next/router";
 import { Course } from "@/utils/model/courses";
 import { getCookie } from "cookies-next";

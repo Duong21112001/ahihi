@@ -1,0 +1,61 @@
+.downloadAppWrap {
+  background: var(--background-1);
+  position: relative;
+}
+.downloadAppWrap .container {
+  display: flex;
+  align-items: flex-end;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 48px 20px 0px 20px;
+}
+.downloadAppWrap .container .left {
+  margin-bottom: 50px;
+}
+.downloadAppWrap .container .appleStore {
+  margin-right: 12px;
+}
+.downloadAppWrap .container .qrCode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1024px) {
+  .downloadAppWrap .container .phones {
+    width: 250px;
+    height: unset;
+  }
+  .downloadAppWrap .container .qrCode {
+    width: 100px;
+    height: unset;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .downloadAppWrap .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .downloadAppWrap .container .left {
+    margin-bottom: 20px;
+  }
+  .downloadAppWrap .container .right {
+    width: 100%;
+  }
+  .downloadAppWrap .container .qrCode {
+    position: static;
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .downloadAppWrap .container .qrCode {
+    width: 60px;
+  }
+  .downloadAppWrap .container .phones {
+    width: 150px;
+  }
+}

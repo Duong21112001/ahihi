@@ -1,0 +1,134 @@
+.bannerRegisterWrap {
+  background: url(/Images/banner-register-3.png), var(--main-color-primary);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right top 0;
+  margin-bottom: 120px;
+  padding: 65px 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .bannerRegisterWrap {
+    margin-bottom: 50px;
+  }
+}
+.bannerRegisterWrap .bannerRegisterContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.bannerRegisterWrap .bannerRegisterContainer .form {
+  position: relative;
+  margin-right: 20px;
+  width: calc(50% - 20px);
+}
+.bannerRegisterWrap .bannerRegisterContainer .form .icon {
+  position: absolute;
+  top: -62px;
+  z-index: 1;
+  left: 30px;
+  height: 143px;
+  overflow: hidden;
+}
+.bannerRegisterWrap .bannerRegisterContainer .image {
+  width: calc(50% - 20px);
+}
+.bannerRegisterWrap .bannerRegisterContainer .image .countDown {
+  display: flex;
+  align-items: center;
+  margin-left: 60px;
+}
+.bannerRegisterWrap .bannerRegisterContainer .image .countDown .countDownItem {
+  background-color: var(--main-color-secondary);
+  padding: 10px 38px;
+  margin-right: 17px;
+  border-radius: 11px;
+  border: 3px solid #a30c28;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 156px;
+}
+.bannerRegisterWrap
+  .bannerRegisterContainer
+  .image
+  .countDown
+  .countDownItem:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .bannerRegisterWrap
+    .bannerRegisterContainer
+    .image
+    .countDown
+    .countDownItem {
+    min-width: fit-content;
+    max-width: fit-content;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .bannerRegisterWrap .bannerRegisterContainer .image .countDown {
+    margin-left: 0;
+    justify-content: center;
+  }
+  .bannerRegisterWrap
+    .bannerRegisterContainer
+    .image
+    .countDown
+    .countDownItem {
+    padding: 5px 20px;
+  }
+  .bannerRegisterWrap
+    .bannerRegisterContainer
+    .image
+    .countDown
+    .countDownTime {
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .bannerRegisterWrap
+    .bannerRegisterContainer
+    .image
+    .countDown
+    .countDownLabel {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+.bannerRegisterWrap .bannerRegisterContainer .image img {
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .bannerRegisterWrap .bannerRegisterContainer .form {
+    width: calc(60% - 20px);
+  }
+  .bannerRegisterWrap .bannerRegisterContainer .image {
+    width: calc(40% - 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bannerRegisterWrap .bannerRegisterContainer {
+    flex-direction: column-reverse;
+  }
+  .bannerRegisterWrap .bannerRegisterContainer .form {
+    width: 100%;
+    margin-right: 0;
+  }
+  .bannerRegisterWrap .bannerRegisterContainer .form .icon {
+    width: 60px;
+    left: 0;
+  }
+  .bannerRegisterWrap .bannerRegisterContainer .form .icon img {
+    width: 100%;
+  }
+  .bannerRegisterWrap .bannerRegisterContainer .image {
+    width: 50%;
+    margin-bottom: 20px;
+  }
+}

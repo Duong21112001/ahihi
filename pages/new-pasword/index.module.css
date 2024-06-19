@@ -1,0 +1,21 @@
+.newPasswordWrap .newPasswordForm .newPasswordItem {
+  margin-bottom: 30px;
+}
+.newPasswordWrap .newPasswordForm .newPasswordItem .input {
+  background: var(--background-2);
+}
+
+.newPasswordWrap .newPasswordForm button {
+  width: 100%;
+}
+
+.newPasswordWrap .newPasswordForm .border {
+  width: calc(50% - 90px);
+  border: 1px solid var(--neutral-5);
+}
+
+.newPasswordWrap .newPasswordForm .textBottom::before {
+  content: "";
+  width: 100%;
+  border-bottom: 1px solid;
+}

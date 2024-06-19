@@ -1,6 +1,5 @@
 import React from "react";
-import styles from "./index.module.scss";
-import Text from "../Text";
+import styles from "./index.module.css";
 import Box from "../Box";
 import Image from "next/image";
 interface RatingProps {

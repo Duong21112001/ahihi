@@ -1,0 +1,115 @@
+.buyCourseWrap {
+  background: var(--background-3);
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #a8a7ae33;
+  box-shadow: 0px 54.999996185302734px 70px 0px #00000008;
+}
+
+.buyCourseWrap .buyCourse {
+  position: relative;
+}
+
+.buyCourseWrap .buyCourse .img {
+  width: 100%;
+  height: 218px;
+  object-fit: cover;
+}
+
+.buyCourseWrap .buyCourse .video {
+  margin-bottom: 16px;
+}
+
+.buyCourseWrap .buyCourse .price {
+  text-decoration: line-through;
+}
+
+.buyCourseWrap .buyCourse .sale {
+  background: var(--accent-9);
+  width: 116px;
+  height: 24px;
+  text-align: center;
+  display: grid;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.buyCourseWrap .buyCourse .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buyCourseWrap .buyCourse button {
+  width: 100%;
+}
+
+.buyCourseWrap .buyCourse .cloudLeft {
+  position: absolute;
+  bottom: 22px;
+  right: -50px;
+}
+
+.buyCourseWrap .buyCourse .cloudRight {
+  position: absolute;
+  left: -20px;
+  bottom: -20px;
+}
+
+.buyCourseWrap .infos {
+  border-top: 1px solid #a8a7ae33;
+  padding-top: 20px;
+}
+
+.buyCourseWrap .infos .listInfo .infoItem {
+  border-bottom: 1px solid #a8a7ae33;
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.buyCourseWrap .infos .listInfo .infoItem:last-child {
+  border-bottom: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .buyCourseWrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .buyCourseWrap .buyCourse {
+    width: calc(60% - 10px);
+  }
+
+  .buyCourseWrap .buyCourse .cloudLeft {
+    width: 100px;
+    right: -20px;
+  }
+
+  .buyCourseWrap .buyCourse .cloudRight {
+    width: 100px;
+  }
+
+  .buyCourseWrap .infos {
+    width: calc(40% - 10px);
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .buyCourseWrap {
+    flex-direction: column;
+  }
+
+  .buyCourseWrap .buyCourse {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .buyCourseWrap .infos {
+    width: 100%;
+  }
+}

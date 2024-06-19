@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "..";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

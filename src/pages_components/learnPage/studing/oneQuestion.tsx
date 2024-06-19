@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { useState } from "react";
-import styles from "./index.module.scss";
-import Form, { Field } from "rc-field-form";
+import styles from "./index.module.css";
+import { Field } from "rc-field-form";
 import Radio from "@/components/Radio";
 import Text from "@/components/Text";
 import { Questions } from "@/utils/model/courses";

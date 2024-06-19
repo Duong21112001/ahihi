@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

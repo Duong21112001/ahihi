@@ -1,0 +1,133 @@
+/* // @import "../../global/scss/responsive"; */
+
+.container {
+  background-color: var(--main-color-primary);
+  padding-top: 50px;
+}
+
+.container .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.container .content .top {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #100f141a;
+  padding-bottom: 15px;
+}
+
+.container .content .top .contact {
+  width: 30%;
+}
+
+.container .content .top .contact .icons .iconItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.container .content .top .contact .icons .iconItem:last-child {
+  margin-bottom: 0;
+}
+
+.container .content .top .menu {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .content .top .menu .menuItem {
+  width: 17.5%;
+  padding: 0 10px;
+}
+
+.container .content .top .menu .menuItem .menuText:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content .top {
+    flex-direction: column;
+  }
+
+  .container .content .top .contact {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container .content .top .menu {
+    width: 100%;
+  }
+
+  .container .content .top .menu .menuItem {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .container .content .top .menu {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .container .content .top .menu .menuItem {
+    width: 50%;
+    margin-bottom: 15px;
+  }
+}
+
+.container .content .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 60px;
+}
+
+.container .content .bottom .TextFooter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.container .content .bottom .socialWrap {
+  display: flex;
+  align-items: center;
+}
+
+.container .content .bottom .socialWrap .social {
+  margin-right: 20px;
+}
+
+.container .content .bottom .socialWrap .social:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container .content .bottom {
+    height: 70px;
+  }
+
+  .container .content .bottom .TextFooter {
+    bottom: 0px;
+    font-size: 10px;
+    line-height: 18px;
+    top: unset;
+  }
+
+  .container .content .bottom .socialWrap,
+  .container .content .bottom .cardImage {
+    margin-top: -20px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0;
+  }
+}

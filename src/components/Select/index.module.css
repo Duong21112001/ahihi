@@ -1,0 +1,28 @@
+.select {
+  position: relative;
+}
+.select .iconLeft {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 1;
+}
+.select :global .rc-select {
+  height: 48px;
+  border-radius: 12px;
+  position: relative;
+  background-color: var(--neutral-10);
+}
+.select :global .rc-select-arrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+.label {
+  margin-bottom: 4px;
+  display: block;
+}

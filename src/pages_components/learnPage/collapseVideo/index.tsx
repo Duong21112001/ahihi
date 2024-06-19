@@ -1,11 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
-import {
-  CircularProgressbar,
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
+import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 interface CollapseProps {

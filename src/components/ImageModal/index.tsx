@@ -3,9 +3,8 @@ import Dialog from "rc-dialog";
 import "rc-dialog/assets/index.css";
 import classNames from "classnames";
 
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Image from "next/image";
-import ReactPlayer from "react-player";
 
 interface ModalVideoProps {
   url: string;

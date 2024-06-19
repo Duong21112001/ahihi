@@ -1,0 +1,47 @@
+.content {
+  display: flex;
+  gap: 30px;
+}
+
+.contentAuditions {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+
+}
+
+.exam {
+  background: #0c4c8c;
+  color: #fff;
+  width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 8px;
+}
+
+.btn {
+  border: 1px solid #fff;
+  padding: 8px 16px;
+}
+
+.start {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.showExam {
+  margin: 0;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,0 +1,166 @@
+.test {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.testItem {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.5);
+}
+
+.testItem:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.item {
+  display: flex;
+  gap: 4px;
+}
+
+.type {
+  background: var(--main-color-secondary);
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  width: fit-content;
+  height: fit-content;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* font-size: 12px; */
+}
+
+.btn {
+  padding: 6px 12px !important;
+  border: 1px solid #0c4c8c;
+  width: fit-content;
+  height: fit-content;
+  background: #ffff;
+  color: #0c4c8c;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #0c4c8c;
+  color: #fff;
+}
+
+.btnType {
+  padding: 10px 20px;
+}
+
+.active {
+  border-bottom: 2px solid #0c4c8c;
+  border-radius: 0;
+  color: #0c4c8c;
+}
+
+.btnType:hover {
+  color: #0c4c8c;
+}
+
+.pagination {
+  display: flex;
+  margin-top: 40px;
+}
+
+.pageNum {
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageLink {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.activeP {
+  background-color: #0c4c8c;
+  color: #fff;
+}
+
+.pageLink.previous {
+  margin-right: 10px;
+}
+
+.pageLink.next {
+  margin-left: 10px;
+}
+
+.paginationContainer {
+  display: flex;
+}
+
+.paginationContainer .pageLink {
+  margin: 0 5px;
+}
+
+.paginationContainer .previous {
+  margin-right: 10px;
+}
+
+.paginationContainer .next {
+  margin-left: 10px;
+}
+
+.headerExam {
+  display: flex;
+  justify-content: space-between;
+}
+
+.free {
+  display: flex;
+  padding: 0 12px;
+  background: var(--main-color-secondary);
+  color: #fff;
+  width: fit-content;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.human {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.amountHuman {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerExam {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}

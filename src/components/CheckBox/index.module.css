@@ -1,0 +1,29 @@
+.circleCheck {
+  display: flex;
+  align-items: center;
+}
+.circleCheck .checkbox {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--neutral-6);
+  position: relative;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.circleCheck input {
+  display: none;
+}
+.circleCheck input .iconCheckbox {
+  display: none;
+}
+.circleCheck input:checked + .checkbox {
+  border: none;
+  background: var(--sematic-2);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.circleCheck input:checked + .checkbox .iconCheckbox {
+  display: block;
+}

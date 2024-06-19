@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextPageWithLayout } from "../_app";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Slider from "react-slick";
 import Video from "@/components/Video";
 import Image from "next/image";

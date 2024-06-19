@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Breadcrumb from "@/components/Breadcrumb";
-// import { CONTEST } from "./data";
 import Button from "@/components/Button";
 import ListExam from "./ListExam";
 const CONTEST = [

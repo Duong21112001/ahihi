@@ -1,0 +1,37 @@
+.LandingPageCourse {
+  width: 100%;
+  padding-top: 35%;
+  position: relative;
+}
+.LandingPageCourse .LandingPageImage {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 100%;
+  padding-top: 35%;
+}
+.LandingPageCourse .LandingPageImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+.LandingPageCourse .cloud {
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  z-index: 1;
+}

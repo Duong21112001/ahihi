@@ -10,7 +10,7 @@ import Lecturers from "@/pages_components/homePage/Lecturers";
 import Community from "@/pages_components/homePage/Community";
 import Achievements from "@/pages_components/homePage/Achievements";
 import StudentComments from "@/pages_components/homePage/StudentComments";
-import styles from "./page.module.scss";
+import styles from "./styles.module.css";
 import DownloadApp from "@/pages_components/homePage/DownloadApp";
 import ChooseKosei from "@/pages_components/homePage/ChooseKosei";
 import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";

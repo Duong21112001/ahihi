@@ -1,16 +1,12 @@
 import Text from "@/components/Text";
-import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
-import Carousel, { StateCallBack } from "react-multi-carousel";
+import styles from "./index.module.css";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useRequest } from "@umijs/hooks";
 import { listTeacher } from "./service";
-import PlaceholderBox from "@/components/placeholderBox";
 import { IlistTeacher } from "@/utils/model/teacher";
 import Button from "@/components/Button";
-import classNames from "classnames";
 import { convert } from "html-to-text";
 import Slider from "react-slick";
 
@@ -27,7 +23,6 @@ const Lecturers = () => {
 
   const Lecturer = ({
     teacher,
-    active,
   }: {
     teacher: IlistTeacher;
     active: boolean;

@@ -1,0 +1,16 @@
+.modalMess {
+  display: flex;
+  align-items: center;
+}
+
+.modalMess .button {
+  width: 100%;
+}
+
+.modalMess :global .rc-dialog {
+  margin: 0 auto;
+}
+
+.modalMess :global .rc-dialog .rc-dialog-content {
+  margin: 0 20px;
+}

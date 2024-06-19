@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Text from "../Text";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
 
 const Footer = () => {
   const { t } = useTranslation(["footer"]);

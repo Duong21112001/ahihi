@@ -3,7 +3,7 @@ import Form, { Field } from "rc-field-form";
 import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
 import Text from "@/components/Text";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { NextPageContext } from "next";
 import LayoutAuth from "@/components/Layout/auth-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

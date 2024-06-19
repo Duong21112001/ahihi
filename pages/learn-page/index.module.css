@@ -1,0 +1,104 @@
+.lecturersArrowsLeft {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translate(0, 50%);
+  cursor: pointer;
+  background: #767f8c4d;
+}
+
+.lecturersArrowsRight {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, 50%);
+  cursor: pointer;
+  background: #767f8c4d;
+}
+
+.videoBottom {
+  pointer-events: none;
+}
+
+.learnPageContainer {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+.learnPageContainer .learnPage {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  gap: 40px;
+}
+.learnPageContainer .learnPage .learnPageLeft {
+  width: 60%;
+}
+.learnPageContainer .learnPage .learnPageLeft .caroselTop iframe {
+  width: 100%;
+  height: 400px;
+}
+.learnPageContainer .learnPage .learnPageLeft .caroselBottom {
+  margin-bottom: 48px;
+}
+.learnPageContainer .learnPage .learnPageLeft .caroselBottom iframe {
+  width: 100%;
+}
+.learnPageContainer .learnPage .learnPageRight {
+  width: 40%;
+  background: #fbfbfb;
+  height: 100%;
+}
+.learnPageContainer .learnPage .learnPageRight .collapseItem {
+  border-bottom: 1px solid #edf2f7;
+}
+.learnPageContainer .learnPage .learnPageRight .collapseItem .collapseTitle {
+  border-bottom: 1px solid #edf2f7;
+}
+.learnPageContainer
+  .learnPage
+  .learnPageRight
+  .collapseItem
+  .collapseTitle
+  .collapseLessonWrap {
+  padding-top: 16px;
+}
+.learnPageContainer
+  .learnPage
+  .learnPageRight
+  .collapseItem
+  .collapseTitle
+  .collapseLesson {
+  margin: 0 16px 0 32px;
+}
+.learnPageContainer
+  .learnPage
+  .learnPageRight
+  .collapseItem
+  .collapseTitle
+  .collapseLesson
+  .collapseLectures {
+  margin-left: 25px;
+  border-left: 1px solid var(--neutral-5);
+}
+.learnPageContainer .learnTabs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.learnPageContainer .learnTabs .tabItem {
+  margin-right: 32px;
+}
+.learnPageContainer .learnTabs .tabItem:last-child {
+  margin-right: 0;
+}
+.learnPageContainer .learnTabs .tabItem .tab {
+  height: 40px;
+  cursor: pointer;
+}
+.learnPageContainer .learnTabs .tabItem .tabActive {
+  border-bottom: 4px solid var(--main-color-primary);
+}
+.learnPageContainer .contentTabs {
+  overflow: hidden;
+}

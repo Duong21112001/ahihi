@@ -1,16 +1,13 @@
-import Image from "next/image";
-import { useState } from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import classNames from "classnames";
-import { Lectures, Questions, QuestionsResponse } from "@/utils/model/courses";
+import { Questions } from "@/utils/model/courses";
 import Form, { Field } from "rc-field-form";
 import Button from "@/components/Button";
 import OneQuestion from "./oneQuestion";
-import { compile, convert } from "html-to-text";
 
 interface StudingProps {
-  ListQuestion: Questions[];
+  ListQuestion?: Questions[];
 }
 
 const Studing: React.FC<StudingProps> = ({ ListQuestion }) => {
@@ -51,7 +48,7 @@ const Studing: React.FC<StudingProps> = ({ ListQuestion }) => {
           })}
         </div>
         <div>
-          {ListQuestion?.length > 0 && (
+          {Array.isArray(ListQuestion) && ListQuestion?.length > 0 && (
             <Field shouldUpdate>
               {(_, __, { getFieldsValue, getFieldsError }) => {
                 return (

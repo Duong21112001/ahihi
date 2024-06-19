@@ -3,18 +3,13 @@ import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextPageWithLayout } from "../_app";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Breadcrumb from "@/components/Breadcrumb";
 import Text from "@/components/Text";
 import classNames from "classnames";
 import MyCourseCarousel from "@/pages_components/myCourse/course";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
-
-interface VideoInfo {
-  video: string;
-  parentId: number;
-}
 
 const MyCoursePage: NextPageWithLayout = () => {
   const [tabActive, setTabActive] = useState("1");

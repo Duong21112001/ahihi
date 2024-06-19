@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Image from "next/image";
 import * as React from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 interface ImageContentProps {
   image: { src: string; alt: string };
   children: React.ReactNode;
@@ -28,10 +28,10 @@ const ImageContent: React.FunctionComponent<ImageContentProps> = ({
         <aside>
           <figure>
             <div>
-              <Image alt={image.alt} layout="fill" src={image.src} priority/>
+              <Image alt={image.alt} layout="fill" src={image.src} priority />
             </div>
           </figure>
-            <p>{caption}</p>
+          <p>{caption}</p>
         </aside>
       </div>
     </section>

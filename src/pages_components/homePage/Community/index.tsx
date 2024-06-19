@@ -1,7 +1,6 @@
 import React from "react";
 import Text from "@/components/Text";
-import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
 import Link from "next/link";

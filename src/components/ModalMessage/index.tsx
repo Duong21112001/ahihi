@@ -6,7 +6,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import Button from "../Button";
 import { useRouter } from "next/router";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 interface ModalProps {
   title?: String | React.ReactElement | undefined;
@@ -27,7 +27,6 @@ export interface PopUpRef {
 }
 const ModalMessage = React.forwardRef<PopUpRef, ModalProps>((props, ref) => {
   const {
-    closeIcon,
     className,
     title,
     content,

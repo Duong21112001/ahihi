@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import img from "../../public/Images/Rectangle 34624235.png";
 import avt from "../../public/Images/avatar-lecturers.png";
 const Overview = () => {
   return (
-    <div className={styles.contentOverview}>
+    <div className="flex">
       <Image
         src={img}
         alt=""

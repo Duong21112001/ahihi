@@ -1,0 +1,116 @@
+.payMentWrap {
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .payMentWrap .cloudSunRight {
+    width: 100px;
+    height: unset;
+  }
+}
+.payMentWrap .cloudSunRight {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+}
+.payMentWrap .cloudSunLeft {
+  position: absolute;
+  top: 212px;
+  left: 0;
+}
+.payMentWrap .payMentContainer {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.payMentWrap .payMentContainer .title {
+  padding: 48px 0;
+}
+.payMentWrap .payMentContainer .about {
+  border: 1px solid var(--neutral-6);
+  position: relative;
+  margin-bottom: 48px;
+  border-radius: 12px;
+  background: var(--neutral-10);
+}
+.payMentWrap .payMentContainer .about .border {
+  height: 100%;
+  width: 16px;
+  position: absolute;
+  background: linear-gradient(135deg, #64c590 0%, #40a76f 100%);
+  left: 0;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.payMentWrap .payMentContainer .about .aboutPadding {
+  padding: 24px 10px 24px 52px;
+}
+.payMentWrap .payMentContainer .paymentForm {
+  margin-bottom: 360px;
+}
+.payMentWrap .payMentContainer .paymentForm .paymentFormItem {
+  margin-bottom: 24px;
+}
+.payMentWrap .payMentContainer .paymentForm .paymentFormItem input,
+.payMentWrap .payMentContainer .paymentForm .paymentFormItem textarea,
+.payMentWrap .payMentContainer .paymentForm .paymentFormItem .selectPayment {
+  background: var(--background-2);
+}
+.payMentWrap .payMentContainer .paymentForm .paymentFormItem .note {
+  height: 200px;
+}
+.payMentWrap .payMentContainer .paymentForm .paymentFormItem .buttonRight {
+  width: 106px;
+  height: 56px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #0f5faf;
+  border: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  cursor: pointer;
+}
+.payMentWrap
+  .payMentContainer
+  .paymentForm
+  .paymentFormItem
+  .buttonRight:disabled {
+  background: var(--neutral-6);
+}
+.payMentWrap .payMentContainer .paymentForm .button {
+  width: 100%;
+}
+.payMentWrap .payMentContainer .directPayment {
+  margin-bottom: 24px;
+}
+.payMentWrap .payMentContainer .directPayment .directPaymentPading {
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.payMentWrap .payMentContainer .directPayment .directPaymentPading .item {
+  width: 100%;
+  background: var(--neutral-9);
+  padding: 16px 24px;
+  border-radius: 8px;
+}
+.payMentWrap .payMentContainer .bankPayment {
+  margin-bottom: 24px;
+}
+.payMentWrap .payMentContainer .bankPayment .item {
+  margin-bottom: 24px;
+}
+.payMentWrap .payMentContainer .bankPayment .notWrap {
+  background: var(--sematic-10);
+  padding: 16px 24px;
+  border: 1px dashed #87afd7;
+  border-radius: 8px;
+}

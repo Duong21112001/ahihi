@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 const ImageHeader = ({
   url,
@@ -15,7 +15,7 @@ const ImageHeader = ({
     <div className={classNames(styles.container, className)}>
       <h1>{title}</h1>
       <div className="image">
-        <Image src={url} layout="fill" alt={url}  priority/>
+        <Image src={url} layout="fill" alt={url} priority />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { useRequest } from "@umijs/hooks";
 import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
 import Button from "../Button";
@@ -12,12 +12,14 @@ const Search = ({
   setIsSearchActive,
   width,
 }: {
-  isSearchActive: boolean;
-  setIsSearchActive: (isActive: boolean) => void;
+  isSearchActive?: boolean;
+  setIsSearchActive?: (isActive: boolean) => void;
   width?: string;
 }) => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
+
   const { data }: { data: CourseReponse[] } = useRequest(async () => {
     const result = await listCourse();
 
@@ -30,13 +32,29 @@ const Search = ({
   };
 
   const handleSearchClick = () => {
-    setIsSearchActive(true);
+    if (setIsSearchActive) {
+      setIsSearchActive(true);
+    }
   };
 
   const handleCloseClick = () => {
-    setIsSearchActive(false);
+    if (setIsSearchActive) {
+      setIsSearchActive(false);
+    }
     setSearchTerm("");
   };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   let filterCourses: CourseReponse[] = [];
   if (searchTerm) {
     filterCourses = data.filter((course) =>
@@ -46,7 +64,7 @@ const Search = ({
 
   return (
     <div style={{ width }}>
-      {!isSearchActive && (
+      {!isSearchActive && !isMobile && (
         <Image
           src="/svg/search.svg"
           alt="search"
@@ -58,7 +76,7 @@ const Search = ({
           onClick={handleSearchClick}
         />
       )}
-      {isSearchActive && (
+      {(isSearchActive || isMobile) && (
         <div className={styles.searchActive}>
           <label htmlFor="searchInput" className={styles.searchIem}>
             <Image
@@ -99,7 +117,7 @@ const Search = ({
             width={20}
             height={20}
             onClick={handleCloseClick}
-            style={{ cursor: "pointer" }}
+            className={styles.close}
           />
         </div>
       )}

@@ -1,0 +1,39 @@
+.modalImage {
+  display: flex;
+  align-items: center;
+}
+.modalImage :global .rc-dialog {
+  margin: 0 auto;
+  width: calc(100% - 20px);
+  max-width: 1200px;
+}
+.modalImage :global .rc-dialog .rc-dialog-content {
+  width: 100%;
+  background: #0f0f0f;
+}
+.modalImage :global .rc-dialog .rc-dialog-content .rc-dialog-close {
+  top: 5px;
+  left: 0;
+  opacity: 1;
+}
+
+.modalContent img {
+  height: 400px;
+}
+
+@media screen and (max-width: 768px) {
+  .modalContent img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.iconClose {
+  background: #00000080;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}

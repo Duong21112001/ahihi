@@ -5,7 +5,7 @@ import Image from "next/image";
 import Text from "../Text";
 import Box from "../Box";
 import classNames from "classnames";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 interface toastProps {
   type: "success" | "error" | "warning" | "noti";
   content?: string;

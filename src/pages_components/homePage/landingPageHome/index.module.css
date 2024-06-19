@@ -1,0 +1,173 @@
+.LandingPage {
+  width: 100%;
+  padding-top: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.LandingPage .LandingPageImage {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 100%;
+  padding-top: 50%;
+}
+.LandingPage .LandingPageImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+.LandingPage .textContent {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  z-index: 1;
+}
+.LandingPage .textContent .title {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--neutral-10);
+  max-width: 560px;
+  line-height: 96px;
+  margin-bottom: 8px;
+}
+.LandingPage .textContent .buttons button {
+  width: 170px;
+  height: 56px;
+}
+
+.infoContainer {
+  background: url("/svg/_homePage/flowerLeft.svg"),
+    url("/svg/_homePage/flowerRight.svg") var(--shade-primary-6);
+  background-repeat: no-repeat;
+  background-position: left 56px top 50%, right 56px top 50%;
+  margin-top: 0;
+  height: 180px;
+}
+.infoContainer .infoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.infoContainer .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 90px;
+}
+.infoContainer .info:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .LandingPage {
+    padding-top: 40%;
+  }
+  .LandingPage .LandingPageImage {
+    padding-top: 44%;
+  }
+  .LandingPage .textContent {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .LandingPage .textContent .title {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .LandingPage .textContent .contentText {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .LandingPage .textContent .descriptionText {
+    display: none;
+  }
+  .LandingPage .textContent .buttons button {
+    width: 140px;
+    font-size: 14px;
+    line-height: 20px;
+    height: 40px;
+  }
+  .infoContainer {
+    margin-top: 0;
+    height: 100px;
+    background-size: 40px;
+    background-position: left 20px top 50%, right 20px top 50%;
+  }
+  .infoContainer .infoWrap .info {
+    margin-right: 20px;
+  }
+  .infoContainer .infoWrap .info:last-child {
+    margin-right: 0;
+  }
+  .infoContainer .infoWrap .info img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px !important;
+  }
+  .infoContainer .infoWrap .info .textInfo {
+    font-size: 12px;
+    line-height: 20px;
+    max-width: 120px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .infoContainer {
+    padding: 0 5px;
+    background-size: 30px;
+    background-position: left 10px top 50%, right 10px top 50%;
+  }
+  .infoContainer .infoWrap .info {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .LandingPage .textContent .title {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 0px;
+  }
+  .LandingPage .textContent .contentText {
+    font-size: 10px;
+    line-height: 18px;
+  }
+  .LandingPage .textContent .buttons button {
+    width: 110px;
+    font-size: 12px;
+  }
+  .infoContainer .infoWrap .info {
+    margin-right: 5px;
+  }
+  .infoContainer .infoWrap .info:last-child {
+    margin-right: 0;
+  }
+  .infoContainer .infoWrap .info img {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px !important;
+  }
+  .infoContainer .infoWrap .info .textInfo {
+    font-size: 10px;
+    line-height: 16px;
+    max-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

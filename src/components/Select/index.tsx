@@ -1,6 +1,5 @@
-import classNames from "classnames";
 import RCSelect, { Option } from "rc-select";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Image from "next/image";
 import Text from "../Text";
 

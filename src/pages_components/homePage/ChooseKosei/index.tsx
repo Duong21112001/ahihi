@@ -1,8 +1,6 @@
 import { useTranslation } from "next-i18next";
 import "react-multi-carousel/lib/styles.css";
-import styles from "./index.module.scss";
-import RegisterForm from "../RegisterForm";
-import { useSaleCountdown } from "@/utils/hooks/countdown";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import Image from "next/image";

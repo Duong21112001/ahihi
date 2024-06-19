@@ -1,0 +1,581 @@
+@keyframes inputSearch {
+  0% {
+    background: white;
+  }
+
+  100% {
+    background: #f2f8ff;
+  }
+}
+
+.btn {
+  background: none;
+  padding: 0;
+  color: black;
+  font-weight: normal;
+  width: fit-content;
+  text-align: left;
+}
+
+.btn .text:hover {
+  color: #1e73be;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 55px;
+  gap: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .link {
+    width: 100%;
+    flex-direction: column;
+    padding: 16px 16px 0 16px;
+  }
+}
+
+.link p:hover {
+  color: var(--primary-blue);
+}
+
+.subTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .subTitle {
+    justify-content: flex-start;
+  }
+}
+
+.subTitle:hover svg path {
+  fill: var(--primary-blue);
+}
+
+.a {
+  color: var(--white);
+  display: inline;
+  align-items: center;
+  border-style: solid;
+  border-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .a {
+    position: static;
+  }
+}
+
+.a .position {
+  display: block;
+  position: absolute;
+  top: 10%;
+  height: 15px;
+  width: 100%;
+  left: 30%;
+  background-color: transparent;
+  z-index: 9999;
+}
+
+@media screen and (max-width: 768px) {
+  .a .position {
+    position: static;
+    height: unset;
+  }
+}
+
+.a .subNavbar {
+  height: fit-content;
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  gap: 8px;
+  transition: 0.3s ease-in-out;
+  box-sizing: border-box;
+  overflow: auto;
+  display: block;
+  background: #ffffff;
+  padding: 12px;
+  width: 300px;
+
+  z-index: 1000;
+}
+
+@media screen and (max-width: 768px) {
+  .a .subNavbar {
+    background: none;
+    padding: 8px;
+    box-shadow: none;
+  }
+}
+
+.inputSearch {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.inputSearch .inputBackground {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-right: 24px;
+}
+
+.inputSearch .inputBackground .iconSearch {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+.inputSearch .inputBackground input {
+  display: flex;
+  justify-content: space-between;
+  animation-name: inputSearch;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  padding-left: 52px;
+  border-radius: 4px;
+}
+
+.inputSearch .inputBackground input::placeholder {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--blue-5);
+}
+
+.container {
+  align-items: center;
+  width: 100vw;
+  z-index: 3000;
+  background: var(--neutral-10);
+  box-shadow: 0px 8px 10px 0px #14518929;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.container .content {
+  max-width: 1200px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  height: 80px;
+  margin: auto;
+}
+
+.container .content .displayNone,
+.container .content .displayNoneNav,
+.container .content .displayNoneSearch {
+  display: none;
+}
+
+.container .content .menuRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.container .content .menuRight .icons {
+  display: flex;
+  align-items: center;
+}
+
+.container .content .menuRight .icons img {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content .menuRight {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container .content {
+    padding: 0 16px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content .menuRight {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .container .content .menuRight .icons {
+    margin-bottom: 20px;
+    height: 50px;
+  }
+
+  .container .content .menuRight .auth {
+    padding: 0;
+  }
+
+  .container .content .inputSearch {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 16px;
+  }
+
+  .container .content .displayNoneNav {
+    display: flex;
+  }
+
+  .container .content .inputBackground {
+    margin-right: 5px;
+  }
+
+  .container .content .mobileNavbar {
+    border-bottom: 1px solid var(--gray-100);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content {
+    height: 44px;
+    background-color: white;
+    padding: 6px 16px;
+  }
+}
+
+.container .content .headerMobile {
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+}
+
+.container .content .headerMobile .logoGroup {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.container .content .headerMobile .logoGroup svg {
+  width: 24px;
+  height: 24px;
+}
+
+.container .content .headerMobile button {
+  line-height: 24px;
+  height: auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content .headerMobile {
+    display: flex;
+  }
+}
+
+.container .content main {
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content main {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .container .content main::before {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    display: none;
+  }
+
+  .container .content main[class~="open"]::before {
+    display: block;
+  }
+}
+
+.container .content main .containerLink {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content main .containerLink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 324px;
+    height: 100vh;
+    transition: 0.3s ease-in-out;
+    transform: translateX(-100%);
+    background-color: white;
+    display: block;
+    overflow: auto;
+  }
+
+  .container .content main .containerLink[class~="open"] {
+    transform: translateX(0%);
+  }
+}
+
+.container .content main .mobileNavbar {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  margin-right: 73px;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content main .mobileNavbar {
+    padding: 0 16px;
+  }
+}
+
+.container .content main .mobileNavbar .closeIcon {
+  display: none;
+}
+
+.container .content main .mobileNavbar .logo {
+  cursor: pointer;
+  width: 140px;
+}
+
+@media (max-width: 1024px) {
+  .container .content main .mobileNavbar .logo img {
+    width: 60px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content main .mobileNavbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .container .content main .mobileNavbar .closeIcon {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.container .content main .auth {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  white-space: nowrap;
+}
+
+.container .content main .auth button {
+  width: 110px;
+  height: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+  .container .content main .auth {
+    margin-left: 0;
+    padding: 0 16px;
+  }
+}
+
+.container .content main .auth .space {
+  padding: 0 8px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .user {
+    margin-left: 0;
+  }
+}
+
+.dropDown {
+  padding: 24px 16px;
+  box-shadow: 0px 8px 10px 0px #14518929;
+  border-radius: 12px;
+  background: var(--neutral-10);
+  width: 339px;
+  max-width: 100%;
+}
+
+.dropDown .dropDownShadow {
+  box-shadow: 0px 4px 40px 0px #7575751f;
+  padding: 12px 16px;
+  background: var(--neutral-10);
+  border: 1px solid #edf2f7;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.dropDown .dropDownShadow .dropDownUser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e7eff7;
+}
+
+.dropDown .dropDownShadow .course {
+  padding-top: 16px;
+  cursor: pointer;
+}
+
+.dropDown .truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropDown .history {
+  border-top: 1px solid #e7eff7;
+  padding: 16px 0;
+  border-bottom: 1px solid #e7eff7;
+  cursor: pointer;
+}
+
+.dropDown .logout {
+  padding-top: 16px;
+  cursor: pointer;
+}
+
+.overlayClassName {
+  opacity: 1 !important;
+  top: 72px !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .overlayClassName {
+    top: 37px !important;
+  }
+}
+
+.overlayClassName :global .rc-tooltip-inner {
+  background: transparent;
+  padding: 0;
+}
+
+.arrow {
+  transform: rotate(180deg);
+}
+
+.arrow_open {
+  transform: rotate(0deg);
+}
+
+.modalImage {
+  display: flex;
+  align-items: center;
+}
+
+.modalImage :global .rc-dialog {
+  margin: 0 auto;
+  width: calc(100% - 20px);
+  max-width: 390px;
+}
+
+.modalImage :global .rc-dialog .rc-dialog-content {
+  width: 100%;
+  background: #e7eff7;
+}
+
+.modalImage :global .rc-dialog .rc-dialog-content .rc-dialog-close {
+  top: 5px;
+  right: 0;
+  opacity: 1;
+}
+
+.iconClose {
+  background: #00000080;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.textBtn {
+  cursor: pointer;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.btnCourse {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnCourse:hover svg path {
+  fill: var(--primary-blue);
+}
+
+@media screen and (max-width: 1024px) {
+  .searchBottom {
+    display: none;
+  }
+}
+
+.searchTop {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .searchTop {
+    display: block;
+  }
+}
+
+.textCourse {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .textCourse {
+    font-size: 14px;
+  }
+}

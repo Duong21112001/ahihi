@@ -1,6 +1,6 @@
 import Text from "@/components/Text";
 import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import CarouselComponent from "@/components/carousel";
 import Video from "@/components/Video";
 

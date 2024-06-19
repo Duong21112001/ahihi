@@ -1,0 +1,33 @@
+.container .collapseItem {
+  display: flex;
+  align-items: center;
+  background: var(--background-2);
+  border: 1px solid var(--main-color-primary);
+  padding: 20px 16px;
+  position: relative;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.container .collapseItem .collapseItemLeft {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  width: calc(100% - 64px);
+}
+.container .collapseItem .collapseItemRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  background: var(--sematic-2);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.margin {
+  margin-bottom: 16px;
+}

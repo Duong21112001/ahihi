@@ -1,0 +1,8 @@
+.placeholderItem {
+  padding: 20px;
+  height: 400px;
+}
+
+.placeholderItem .rectShape {
+  border-radius: 12px;
+}

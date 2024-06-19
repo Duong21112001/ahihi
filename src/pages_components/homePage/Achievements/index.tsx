@@ -1,5 +1,5 @@
 import Text from "@/components/Text";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Carousel from "react-multi-carousel";
 import classNames from "classnames";
 import { useRequest } from "@umijs/hooks";

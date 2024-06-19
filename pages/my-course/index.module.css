@@ -1,0 +1,35 @@
+.myCoursePage {
+  margin-bottom: 100px;
+}
+.myCoursePage .tabsWrap {
+  background: url("/svg/_homePage/flowerLeft.svg"),
+    url("/svg/_homePage/flowerRight.svg") var(--shade-primary-6);
+  background-repeat: no-repeat;
+  background-position: left 56px top 50%, right 56px top 50%;
+  margin-top: 0;
+  margin-bottom: 48px;
+}
+.myCoursePage .tabsWrap .tabsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 0px 20px;
+}
+.myCoursePage .tabsWrap .tabsContainer .tabs {
+  display: flex;
+  align-items: center;
+}
+.myCoursePage .tabsWrap .tabsContainer .tabs .tab {
+  margin-right: 32px;
+  height: 40px;
+  cursor: pointer;
+}
+.myCoursePage .tabsWrap .tabsContainer .tabs .tab:last-child {
+  margin-right: 0;
+}
+.myCoursePage .tabsWrap .tabsContainer .tabs .tabActive {
+  border-bottom: 4px solid var(--neutral-10);
+}
+.myCoursePage .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

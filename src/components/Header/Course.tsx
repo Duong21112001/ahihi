@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
-import Link from "next/link";
 import Text from "../Text";
 import Button from "../Button";
 import { CourseReponse } from "@/utils/model/courses";
@@ -12,7 +10,6 @@ import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
 const Course = () => {
   const [showAll, setShowAll] = useState(false);
   const router = useRouter();
-  const { t } = useTranslation("header");
   const { data = [] }: { data: CourseReponse[] } = useRequest(async () => {
     const result = await listCourse();
     return result;
@@ -31,7 +28,9 @@ const Course = () => {
               })
             }
           >
-            <Text type="body-16-regular">{item.name}</Text>
+            <Text type="body-16-regular" className={styles.textCourse}>
+              {item.name}
+            </Text>
           </Button>
         ))
       )}

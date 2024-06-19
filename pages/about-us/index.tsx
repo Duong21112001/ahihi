@@ -4,7 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 import Overview from "./Overview";
 import Amount from "./Amount";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 const AboutUs = () => {
   return (

@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";

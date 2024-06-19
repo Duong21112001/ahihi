@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import classNames from "classnames";
 import { Lectures } from "@/utils/model/courses";

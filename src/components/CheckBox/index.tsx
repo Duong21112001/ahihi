@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Image from "next/image";
 import Text from "../Text";
 interface CheckBoxProps {

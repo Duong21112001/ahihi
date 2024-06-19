@@ -1,0 +1,198 @@
+.buttonActive {
+  background-color: var(--main-color-secondary);
+  color: var(--neutral-10);
+  width: 115px;
+  height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.lecturersPadding {
+  padding: 120px 0px;
+}
+.lecturersPadding .lecturersWrap {
+  position: relative;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower1 {
+  position: absolute;
+  top: 0;
+  left: 66px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower2 {
+  position: absolute;
+  top: 20px;
+  left: 103px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower3 {
+  position: absolute;
+  top: 164px;
+  left: 79px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower4 {
+  position: absolute;
+  bottom: 0;
+  left: 79px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower5 {
+  position: absolute;
+  top: 0;
+  right: 144px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower6 {
+  position: absolute;
+  top: 26px;
+  right: 34px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower7 {
+  position: absolute;
+  top: 91px;
+  right: 86px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersImage .teacherFlower8 {
+  position: absolute;
+  top: 222px;
+  right: 61px;
+  z-index: 0;
+}
+.lecturersPadding .lecturersWrap .lecturersContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .lecturersPadding .lecturersWrap .lecturersContainer .lecturersTitle {
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+.lecturersPadding .lecturersWrap .oneLecturers {
+  padding: 30px 20px;
+}
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers {
+  background-color: var(--background-2);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0px 16px 24px 0px #dfe0e5;
+}
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers .button {
+  width: 116px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-lighter);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers .name {
+  margin-bottom: 13px;
+}
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers img {
+  margin: 0 auto;
+}
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers .content {
+  min-height: 50px;
+}
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers .content span,
+.lecturersPadding .lecturersWrap .oneLecturers .lecturers .content p {
+  font-family: "BeVietnamPro-Medium" !important;
+  margin-bottom: 24px;
+  color: var(--neutral-4) !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lecturersPadding .lecturersWrap .cloudImage {
+  position: absolute;
+  top: -80px;
+}
+.lecturersPadding .lecturersWrap .lecturersArrowsLeft {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translate(0, 50%);
+  cursor: pointer;
+  background: #767f8c4d;
+}
+.lecturersPadding .lecturersWrap .lecturersArrowsRight {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, 50%);
+  cursor: pointer;
+  background: #767f8c4d;
+}
+.lecturersPadding .lecturersWrap .active {
+  margin-top: 40px;
+}
+.lecturersPadding .lecturersWrap .unActive {
+  width: 70%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .lecturersPadding .lecturersWrap .active {
+    margin-top: 0;
+  }
+  .lecturersPadding .lecturersWrap .unActive {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .lecturersPadding {
+    padding: 50px 0;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower1 {
+    left: 10px;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower2 {
+    left: 30px;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower3 {
+    left: 10px;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower4 {
+    left: 30px;
+    bottom: 30px;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower5 {
+    right: 80px;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower6 {
+    right: 10px;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower7 {
+    right: 50px;
+    width: 50px;
+    height: unset;
+  }
+  .lecturersPadding .lecturersWrap .lecturersImage .teacherFlower8 {
+    right: 10px;
+  }
+  .lecturersPadding .imgAvatar {
+    width: 100px;
+    height: 100px;
+  }
+  .lecturersPadding .name {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.carousel {
+  position: relative;
+  padding-bottom: 32px;
+}

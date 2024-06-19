@@ -1,9 +1,8 @@
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import classNames from "classnames";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { useEffect, useState } from "react";
 import Text from "../Text";
 import React from "react";
@@ -213,6 +212,9 @@ const Header = () => {
             </aside>
 
             <aside className={styles.link}>
+              <div className={styles.searchTop}>
+                <Search width={searchWidth} />
+              </div>
               {!isSearchActive && (
                 <>
                   <Link href="/">
@@ -257,7 +259,6 @@ const Header = () => {
                       </svg>
                     </div>
                     <div className={styles.position}>
-                      {" "}
                       {isCourse && <Course />}
                     </div>
                   </div>
@@ -297,11 +298,13 @@ const Header = () => {
                   </Text>
                 </>
               )}
-              <Search
-                isSearchActive={isSearchActive}
-                setIsSearchActive={setIsSearchActive}
-                width={searchWidth}
-              />
+              <div className={styles.searchBottom}>
+                <Search
+                  isSearchActive={isSearchActive}
+                  setIsSearchActive={setIsSearchActive}
+                  width={searchWidth}
+                />
+              </div>
             </aside>
 
             <div className={styles.menuRight}>

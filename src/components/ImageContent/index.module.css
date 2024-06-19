@@ -1,0 +1,66 @@
+/* @import "../../global/scss/responsive"; */
+.section {
+  display: flex;
+}
+
+.section .container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: calc(55% - 60px) calc(45% - 60px);
+  gap: 120px;
+  /* @include defaultsize {
+      grid-template-columns: auto;
+      margin: 40px 16px;
+      gap: 45px;
+    } */
+}
+
+.section .container[class~="image-first"] {
+  grid-template-columns: calc(45% - 60px) calc(55% - 60px);
+  /* @include defaultsize {
+        grid-template-columns: auto;
+      } */
+}
+
+.section .container[class~="image-first"] aside:last-child {
+  order: -1;
+}
+
+.section .container aside {
+  box-sizing: border-box;
+  position: relative;
+  /* @include defaultsize {
+        &:last-child {
+          order: -1;
+        }
+      } */
+}
+
+.section .container aside figure {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.section .container aside figure div {
+  height: 120%;
+  width: 149%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.section .container aside:last-child p {
+  margin-top: 1em;
+  text-align: justify;
+  font-style: italic;
+  font-size: 0.75em;
+}
+
+.section .container aside p {
+  text-align: justify;
+}

@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Box from "@/components/Box";
 import Button from "@/components/Button";
@@ -17,8 +17,6 @@ interface CourseCarouselProps {
 }
 
 const CourseCarouselComponent = (props: CourseCarouselProps) => {
-  const { t } = useTranslation("common");
-  0;
   const router = useRouter();
   const { dataCarousel, loading } = props;
   const token = getCookie("kosei-token");
@@ -33,7 +31,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 768, min: 480 },
+      breakpoint: { max: 1024, min: 480 },
       items: 2,
     },
     mobile: {
@@ -173,7 +171,10 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       {!loading &&
         dataCarousel?.map((course: Course, index: number) => {
           return (
-            <div key={`lecturer-${course?.cat_id}-${index}`}>
+            <div
+              key={`lecturer-${course?.cat_id}-${index}`}
+              className={styles.courseContainer}
+            >
               <CourseComponent course={course} />
             </div>
           );

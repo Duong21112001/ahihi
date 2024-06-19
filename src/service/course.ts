@@ -37,7 +37,7 @@ const getCourseStuding = async () => {
   return result?.data;
 };
 
-const getCourseQuestions = async (course_id: string) => {
+const getCourseQuestions = async (course_id: string | number) => {
   const result = await privateRequest(
     requestCommunity.get,
     API_PATH.COURSES_QUESTIONS,

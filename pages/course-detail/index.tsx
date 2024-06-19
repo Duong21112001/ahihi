@@ -3,20 +3,17 @@ import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import LandingPageCourse from "@/pages_components/detailCourse/LandingPageCourse";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Breadcrumb from "@/components/Breadcrumb";
 import ContentCourse from "@/pages_components/detailCourse/contentCourse";
-import CourseCarousel from "@/pages_components/homePage/courseCarousel";
 import CourseCarouselComponent from "@/pages_components/component/carouselCourseComponent";
 import Text from "@/components/Text";
 import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
 import { useSearchParams } from "next/navigation";
-import { useRequest } from "@umijs/hooks";
 import { getCourseId } from "@/service/course";
 import { Course } from "@/utils/model/courses";
 import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
 import BuyCourses from "@/components/BuyCourses";
-import Image from "next/image";
 
 const CourseDetail = () => {
   const params = useSearchParams();

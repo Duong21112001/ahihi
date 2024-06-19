@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import { IlistTeacher } from "@/utils/model/teacher";

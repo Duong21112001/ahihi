@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.container .collapseItemLeft {
+  display: flex;
+  align-items: center;
+}
+
+.container .collapseItemLeft .border {
+  width: 12px;
+  height: 1px;
+  border: 1px solid var(--neutral-5);
+  margin-right: 22px;
+}
+
+.container .collapseItemRight {
+  display: flex;
+  align-items: center;
+}
+
+.container .collapseItemRight .percent,
+.container .collapseItemRight svg,
+.container .collapseItemRight circle {
+  width: 24px;
+  height: 24px;
+}
+
+.container .collapseItemRight circle {
+  position: absolute;
+  fill: none;
+  stroke-width: 10;
+  transform: translate(10px, 10px);
+  stroke-dasharray: 50;
+  stroke-linecap: round;
+}
+
+.container .collapseItemRight circle:nth-child(1) {
+  stroke-dashoffset: 0;
+  stroke: #424242;
+}
+
+.container .collapseItemRight .percent circle:nth-child(1) {
+  stroke-dashoffset: calc(50 - (50 * 75) / 100);
+  stroke: gold;
+  animation: percent 1.5s linear;
+  animation-delay: 1s;
+}
+
+.container .collapseItemRight .number {
+  position: relative;
+  bottom: 190px;
+  right: -50px;
+  color: red;
+}

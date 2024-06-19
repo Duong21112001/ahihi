@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Text from "../Text";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 interface CollapseProps {
   title: string;

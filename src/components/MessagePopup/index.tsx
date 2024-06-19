@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
 import Button from "../Button";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 interface MessagePopupI {
   message?: string;
   onClose?: () => void;

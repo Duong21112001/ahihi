@@ -1,212 +1,24 @@
 import React, { useState } from "react";
-import styles from "./index.module.scss";
-// import { EXAM } from "./data";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import ReactPaginate from "react-paginate";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { EXAM } from "./data";
 
-const EXAM = [
-  {
-    title: "Đề thi 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    title: "Đề thi 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    title: "Đề thi 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    title: "Đề thi 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    title: "Đề thi 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    title: "Đề thi 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    title: "Đề thi 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    title: "Đề thi 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    title: "Đề thi 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    title: "Đề thi 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    title: "Đề thi 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    title: "Đề thi 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    title: "Đề thi 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    title: "Đề thi 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    title: "Đề thi 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    title: "Đề thi 06",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    title: "Đề thi 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    title: "Đề thi 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    title: "Đề thi 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    title: "Đề thi 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    title: "Đề thi 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    title: "Đề thi 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    title: "Đề thi 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    title: "Đề thi 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    title: "Đề thi 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    title: "Đề thi 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    title: "Đề thi 06",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-];
 const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 15;
   const filterExam =
     setSelectedContest !== "Tất cả"
-      ? EXAM.filter((exam) => exam.type === setSelectedContest)
+      ? EXAM.filter((exam: { type: any }) => exam.type === setSelectedContest)
       : EXAM;
 
   const handlePageClick = (event: any) => {
     setCurrentPage(event.selected);
   };
+  const router = useRouter();
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -214,25 +26,54 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
 
   return (
     <div className="container">
-      <div className={`${styles.test} `}>
+      <Text type="heading-h2">Danh sách Thi thử JLPT</Text>
+      <div className={styles.test}>
         {React.Children.toArray(
           currentExams.map((item) => (
             <div className={styles.testItem}>
-              <Text type="body-16-bold" color="dark-500">
-                {item.title}
-              </Text>
-              <div>
-                <Text type="body-14-regular" color="gray-500">
-                  {item.time} phút
+              <div className={styles.headerExam}>
+                <Text type="body-16-bold" color="dark-500">
+                  {item.title}
                 </Text>
-                <div className={`${styles.item} gray-500 body-14-regular`}>
-                  <p>{item.contest} phần thi </p>|{" "}
-                  <p>{item.question} câu hỏi</p>
-                </div>
+                <Text type="tag-10-medium" className={styles.free}>
+                  Miễn phí
+                </Text>
               </div>
 
-              <p className={`${styles.type} body-14-medium`}>#{item.type}</p>
-              <Button className={styles.btn}>Chi tiết</Button>
+              <div className={styles.human}>
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <Image
+                    key={index}
+                    src="https://koseionline.vn/themes/template/images/user.png"
+                    alt=""
+                    width={50}
+                    height={50}
+                  />
+                ))}
+                <Text
+                  type="body-14-medium"
+                  color="blue-4"
+                  className={styles.amountHuman}
+                >
+                  +9558
+                </Text>
+              </div>
+
+              <div className={`${styles.item} gray-500 body-14-regular`}>
+                <p>{item.contest} phần thi </p>
+                <p>{item.question} câu hỏi</p>
+              </div>
+              <div className={styles.footerExam}>
+                <p className={styles.type}>{item.type}</p>
+                <Button
+                  className={styles.btn}
+                  onClick={() => {
+                    router.push("/auditions");
+                  }}
+                >
+                  Thi thử
+                </Button>
+              </div>
             </div>
           ))
         )}

@@ -1,5 +1,5 @@
 import "react-multi-carousel/lib/styles.css";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import { useRequest } from "@umijs/hooks";

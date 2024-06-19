@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "../Text";
 interface RadioProps {
   onChange: (value: string) => void;

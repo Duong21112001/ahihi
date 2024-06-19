@@ -1,0 +1,147 @@
+.studentCommentsPadding {
+  padding-top: 120px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper {
+  background-image: url(/svg/cloud-small-2.svg), url(/svg/cloud-small-2.svg);
+  background-repeat: no-repeat;
+  background-position: left 72px top, right 56px bottom;
+  background-size: 168px, 244px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentComments {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  padding-bottom: 2px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentComments .studentCommentsButton {
+  width: calc(50% - 80px);
+  justify-content: flex-end;
+  right: unset;
+}
+
+@media screen and (max-width: 1200px) {
+  .studentCommentsPadding .studentCommentsWrapper .studentComments {
+    padding: 0 20px;
+  }
+}
+
+.studentCommentsPadding .studentCommentsWrapper .boxRating {
+  background-color: var(--blue-6);
+  border-radius: 20px;
+  border: 1px solid #a8a7ae33;
+  max-width: 500px;
+  padding: 30px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .boxRating .rating {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .user {
+  display: flex;
+  align-items: center;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsLeft {
+  width: calc(50% - 25px);
+  padding-bottom: 74px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight {
+  width: calc(50% - 25px);
+  position: relative;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .cloud {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .boxBlue {
+  height: 282px;
+  width: 100%;
+  border-radius: 12px;
+  background-color: var(--main-color-primary);
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  z-index: -1;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .videoComment {
+  height: 560px;
+  margin-bottom: 20px;
+}
+
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .videoComment iframe,
+.studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .videoComment img {
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 1024px) {
+  .studentCommentsPadding {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .studentCommentsPadding .studentCommentsWrapper {
+    background-size: 100px;
+    background-position: left 10px top, right 10px bottom;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox {
+    flex-direction: column;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsLeft {
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsLeft .title {
+    font-size: 22px;
+    line-height: 32px;
+    text-align: center;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsLeft .textContent {
+    margin: 0 auto;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsLeft .boxRating {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight {
+    width: calc(100% - 50px);
+    margin: 0 auto;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .videoComment {
+    height: 300px !important;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .videoComment iframe,
+  .studentCommentsPadding .studentCommentsWrapper .studentCommentsBox .studentCommentsRight .videoComment img {
+    border-radius: 20px;
+  }
+
+  .studentCommentsPadding .studentCommentsWrapper .studentComments .studentCommentsButton {
+    width: 100%;
+    justify-content: center;
+    bottom: -50px;
+  }
+}

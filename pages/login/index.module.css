@@ -1,0 +1,41 @@
+.loginWrap .loginForm .loginFormItem {
+  margin-bottom: 30px;
+}
+.loginWrap .loginForm .loginFormItem .input {
+  background: var(--background-2);
+}
+
+.loginWrap .loginForm button {
+  width: 100%;
+}
+
+.loginWrap .loginForm .border {
+  width: calc(50% - 90px);
+  border: 1px solid var(--neutral-5);
+}
+
+.loginWrap .loginForm .textBottom::before {
+  content: "";
+  width: 100%;
+  border-bottom: 1px solid;
+}
+
+.loginWrap .loginForm .faceBook {
+  margin-right: 12px;
+  width: calc(50% - 12px);
+  background: #1877f2;
+  height: 48px;
+  border-radius: 8px;
+  padding-left: 23px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.loginWrap .loginForm .google {
+  width: calc(50% - 12px);
+  background: #de4b39;
+  height: 48px;
+  border-radius: 8px;
+  padding-left: 23px;
+  cursor: pointer;
+}

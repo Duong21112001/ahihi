@@ -1,5 +1,5 @@
 import "react-multi-carousel/lib/styles.css";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import RegisterForm from "../RegisterForm";
 import Text from "@/components/Text";
 import { useEffect, useState } from "react";

@@ -1,0 +1,105 @@
+.containerClass {
+  height: unset;
+  width: calc(100% - 80px);
+  margin: 0 auto;
+  overflow: hidden;
+}
+.containerClass .react-multiple-carousel__arrow--right {
+  right: 0;
+}
+
+.courseCarouselPadding {
+  padding-bottom: 104px;
+}
+.courseCarouselPadding .courseCarouselWrap {
+  background-image: url(/Images/background-comment.png),
+    url(/Images/cloud-left.png), url(/Images/cloud-right.png),
+    url(/svg/_homePage/wave1.svg);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: left top, left bottom, right 116px, right bottom;
+  padding: 120px 0 70px 0;
+}
+.courseCarouselPadding .courseCarouselWrap .courseCarouselContainer {
+  min-width: 1304px;
+  max-width: 1304px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 1280px) {
+  .courseCarouselPadding .courseCarouselWrap .courseCarouselContainer {
+    min-width: 768px;
+    flex: 1 1 auto;
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .courseCarouselPadding .courseCarouselWrap .courseCarouselContainer {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 390px;
+  }
+}
+.courseCarouselPadding .courseCarouselWrap .courseCarouselContainer .title {
+  margin-bottom: 24px;
+}
+.courseCarouselPadding .courseCarouselWrap .courseCarouselContainer .tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 38px;
+}
+.courseCarouselPadding
+  .courseCarouselWrap
+  .courseCarouselContainer
+  .tabs
+  .buttonTab {
+  width: unset;
+  padding: 0 16px;
+  margin-right: 16px;
+}
+.courseCarouselPadding
+  .courseCarouselWrap
+  .courseCarouselContainer
+  .tabs
+  .buttonTab:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .courseCarouselPadding {
+    padding-bottom: 50px;
+  }
+  .courseCarouselPadding .courseCarouselWrap {
+    background-size: 500px, 100px, 100px, 500px;
+    background-position: left top, left bottom, right 60px, right bottom;
+    padding-top: 50px;
+  }
+  .courseCarouselPadding .courseCarouselWrap .courseCarouselContainer .title {
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) and (max-width: 480px) {
+  .courseCarouselPadding .courseCarouselWrap .courseCarouselContainer .title {
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 10px;
+  }
+  .courseCarouselPadding
+    .courseCarouselWrap
+    .courseCarouselContainer
+    .tabs
+    .buttonTab {
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 0 5px;
+  }
+}

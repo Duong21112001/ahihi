@@ -1,14 +1,8 @@
 import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-import {
-  TextBlock,
-  MediaBlock,
-  TextRow,
-  RectShape,
-  RoundShape,
-} from "react-placeholder/lib/placeholders";
+import { RectShape } from "react-placeholder/lib/placeholders";
 
 interface PlaceholderBoxProps {
   children: any;

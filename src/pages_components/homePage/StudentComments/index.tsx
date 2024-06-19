@@ -2,7 +2,7 @@ import { useRequest } from "@umijs/hooks";
 import Text from "@/components/Text";
 import Image from "next/image";
 import CarouselComponent from "@/components/carousel";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import VideoModal from "@/components/VideoModal";
 import { ListFeedbackResponse } from "@/utils/model/homePage";
 import { getListFeedback } from "@/service/homePage";

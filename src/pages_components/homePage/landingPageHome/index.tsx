@@ -1,17 +1,13 @@
-import { useTranslation } from "next-i18next";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import Image from "next/image";
-import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { ROUTER } from "@/api/constant";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
 
 const LandingPageHome = () => {
-  const { t } = useTranslation("common");
-  const token = getCookie("kosei-token");
   const [user, setUser] = useRecoilState(userProfile);
   const router = useRouter();
   const infos = [
