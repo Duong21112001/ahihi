@@ -212,7 +212,7 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.bottom}>
-            <div className={styles.cardImage}>
+            <div className="flex">
               {cards.map((card) => {
                 return (
                   <Image

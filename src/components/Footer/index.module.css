@@ -120,10 +120,7 @@
     top: unset;
   }
 
-  .container .content .bottom .socialWrap,
-  .container .content .bottom .cardImage {
-    margin-top: -20px;
-  }
+
 }
 
 @media screen and (max-width: 1024px) {

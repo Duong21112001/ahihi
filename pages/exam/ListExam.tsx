@@ -27,7 +27,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   return (
     <div className="container">
       <Text type="heading-h2">Danh sách Thi thử JLPT</Text>
-      <div className={styles.test}>
+      <div className="grid grid-cols-4 max-md:grid-cols-1 gap-5">
         {React.Children.toArray(
           currentExams.map((item) => (
             <div className={styles.testItem}>
