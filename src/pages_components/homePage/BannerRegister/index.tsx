@@ -22,7 +22,7 @@ const BannerRegister = () => {
   useEffect(() => {
     const initialTime = getTimeFromCookie();
     setTime(initialTime);
-    const interval = setInterval(() => {
+    const interval: NodeJS.Timeout = setInterval(() => {
       setTime((prevTime: any) => {
         const { hours, minutes, seconds } = prevTime;
         let newSeconds = seconds - 1;
