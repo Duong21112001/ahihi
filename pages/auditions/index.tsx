@@ -20,7 +20,7 @@ import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const ExamPage: React.FC = () => {
+const ExamPage = () => {
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [result, setResult] = useState<string | null>(null);
