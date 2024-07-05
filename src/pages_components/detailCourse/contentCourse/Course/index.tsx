@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import VideoModal from "@/components/VideoModal";
 import { compile, convert } from "html-to-text";
 import { Course } from "@/utils/model/courses";
+import Text from "@/components/Text";
 
 interface AboutCourseProps {
   data: Course;
