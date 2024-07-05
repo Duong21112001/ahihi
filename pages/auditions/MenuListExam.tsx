@@ -31,7 +31,7 @@ const MenuListExam = ({
       </div>
       <div className="text-center p-2.5 mb-5">
         <Text className="mt-2.5 mb-2.5">Thời gian còn lại</Text>
-        <CountDown />
+        <CountDown isPaused={false} />
       </div>
       <div className="p-[15px]">
         <Text type="body-16-bold">Câu hỏi đã làm</Text>
