@@ -22,8 +22,8 @@ const BannerRegister = () => {
   useEffect(() => {
     const initialTime = getTimeFromCookie();
     setTime(initialTime);
-    const interval: NodeJS.Timeout = setInterval(() => {
-      setTime((prevTime: any) => {
+    const interval = setInterval(() => {
+      setTime((prevTime) => {
         const { hours, minutes, seconds } = prevTime;
         let newSeconds = seconds - 1;
         let newMinutes = minutes;
@@ -38,7 +38,7 @@ const BannerRegister = () => {
           newHours -= 1;
         }
         if (newHours === -1) {
-          clearInterval(interval);
+          clearInterval(interval as NodeJS.Timeout);
           return { hours: 0, minutes: 0, seconds: 0 };
         }
 
@@ -59,7 +59,7 @@ const BannerRegister = () => {
       });
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval as NodeJS.Timeout);
   }, []);
 
   const formatTime = (value: number) => {
