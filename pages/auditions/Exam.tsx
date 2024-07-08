@@ -75,7 +75,7 @@ const Question: React.FC<QuestionProps> = ({
                   className="grid grid-cols-2 gap-5"
                   disabled={disable}
                 >
-                  {options.map((option, index) => (
+                  {options?.map((option, index) => (
                     <FormItem
                       key={index}
                       className={cn(
