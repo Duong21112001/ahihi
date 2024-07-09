@@ -72,14 +72,14 @@ const Question: React.FC<QuestionProps> = ({
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="grid grid-cols-2 gap-5"
+                  className="grid grid-cols-2 gap-x-20 gap-y-5"
                   disabled={disable}
                 >
                   {options?.map((option, index) => (
                     <FormItem
                       key={index}
                       className={cn(
-                        "outline outline-1 outline-[#c9d2d8] rounded-[40px] flex items-center w-[70%]",
+                        "outline outline-1 outline-[#c9d2d8] rounded-[40px] flex items-center w-full",
                         selectedAnswer === option
                           ? "outline-[#0F5FAF] bg-[#E7EFF7]"
                           : ""

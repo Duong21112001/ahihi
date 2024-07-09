@@ -285,7 +285,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    router.push("/auditions");
+                    router.push("/exams");
                   }}
                 >
                   Thi thử

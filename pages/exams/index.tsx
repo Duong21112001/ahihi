@@ -43,9 +43,11 @@ const ExamPage = () => {
     return result;
   });
 
+  const sliceData = data?.slice(0, 7) || [];
+
   useEffect(() => {
-    if (data) {
-      const totalQuestions = data.flatMap((exam) => exam.question).length;
+    if (sliceData) {
+      const totalQuestions = sliceData.flatMap((exam) => exam.question).length;
       const answeredQuestions = Object.keys(answers).length;
       const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
       if (answeredPercentage >= 80) {
@@ -54,15 +56,15 @@ const ExamPage = () => {
         setIsButtonDisabled(true);
       }
     }
-  }, [answers, data]);
+  }, [answers, sliceData]);
 
   let questionIndex = 1;
 
   const handleSubmit = () => {
-    if (data) {
+    if (sliceData) {
       let correctCount = 0;
       let answeredCount = 0;
-      data
+      sliceData
         .flatMap((exam) => exam.questions)
         .forEach((q) => {
           if (answers[q?.id] !== undefined) {
@@ -86,7 +88,7 @@ const ExamPage = () => {
   return (
     <div className="flex">
       <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5">
-        {data?.map((exam, examIndex) => (
+        {sliceData?.map((exam, examIndex) => (
           <div
             key={exam.id}
             className="flex flex-col gap-5 pr-20"
@@ -131,8 +133,8 @@ const ExamPage = () => {
           <div className="mt-5 my-2.5">
             <Text type="body-16-semibold">Câu hỏi đã làm</Text>
           </div>
-          <div className="grid grid-cols-10 gap-2 pr-10 cursor-pointer">
-            {data
+          <div className="grid grid-cols-8 gap-2 pr-10 cursor-pointer">
+            {sliceData
               ?.flatMap((exam) => exam.questions)
               .map((q, index) => (
                 <div
@@ -152,7 +154,7 @@ const ExamPage = () => {
             {!disable && (
               <Button
                 disabled={isButtonDisabled}
-                className="bottom-0"
+                className="bottom-0 ml-4"
                 onClick={handleSubmit}
               >
                 Nộp bài
