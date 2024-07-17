@@ -2,15 +2,23 @@ import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
-import Overview from "./Overview";
-import Amount from "./Amount";
-import styles from "./index.module.css";
+import Banner from "./Banner";
+import Introduce from "./Introduce";
+import Service from "./Service";
+import Different from "./Different";
+import Image from "next/image";
+import img from "../../public/Images/Group 1597882875.png";
+import Download from "./Download";
 
 const AboutUs = () => {
   return (
-    <div className={`${styles.contentAbout} container`}>
-      <Overview />
-      <Amount />
+    <div className="text-center">
+      <Banner />
+      <Introduce />
+      <Service />
+      <Different />
+      <Image src={img} alt="" className="max-md:hidden" />
+      <Download />
     </div>
   );
 };

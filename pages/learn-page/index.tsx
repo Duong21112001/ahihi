@@ -78,7 +78,6 @@ const LearnPage: NextPageWithLayout = () => {
   );
 
   const {
-    loading: loadingListQuestion,
     data: dataListQuestion,
   }: {
     loading: boolean;

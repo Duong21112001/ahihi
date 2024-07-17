@@ -285,17 +285,6 @@ const Header = () => {
                   >
                     Về chúng tôi
                   </Text>
-                  <Text
-                    type="body-16-regular"
-                    onClick={() =>
-                      router.push({
-                        pathname: "/contact",
-                      })
-                    }
-                    className={styles.textBtn}
-                  >
-                    Liên hệ
-                  </Text>
                 </>
               )}
               <div className={styles.searchBottom}>

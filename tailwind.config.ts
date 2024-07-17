@@ -18,6 +18,13 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        blueStart: "#0D5ADE",
+        blueEnd: "#4589FF",
+      },
+      backgroundImage: {
+        "gradient-to-b-custom": "linear-gradient(to bottom, #4589FF, #0D5ADE)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

@@ -1,258 +1,179 @@
 import Image from "next/image";
 import Text from "../Text";
 import styles from "./index.module.css";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
-
+import Logo from "../../../public/Images/Logo.png";
+import call from "../../../public/Images/call.png";
+import gmail from "../../../public/Images/gmail.png";
+import location from "../../../public/Images/location.png";
+import React from "react";
+import facebook from "../../../public/Images/_Facebook.png";
+import youtube from "../../../public/Images/YouTube - Original.png";
+import tiktok from "../../../public/Images/image 8.png";
+import mess from "../../../public/Images/messenger icon.png";
+import zalo from "../../../public/Images/image 10.png";
+const data = [
+  {
+    title: "Liên hệ",
+    styles: "w-auto",
+    content: [
+      {
+        img: call,
+        hotline: "Hotline cơ sở 1: 0969 694 098",
+      },
+      {
+        img: call,
+        hotline: "Hotline cơ sở 2: 0965 130 415",
+      },
+      {
+        img: call,
+        hotline: "Hotline khoá Online: 0966 026 133",
+      },
+      {
+        img: gmail,
+        hotline: "nhatngukosei@gmail.com",
+      },
+    ],
+  },
+  {
+    title: "Địa chỉ",
+    styles: "w-[220px]",
+    content: [
+      {
+        img: location,
+        hotline: "CS1: Số 136 Lê Trọng Tấn, Khương Mai,Thanh Xuân, Hà Nội",
+      },
+      {
+        img: location,
+        hotline:
+          "CS2: Số 3 Ngõ 6, Đặng Thuỳ Trâm, Hoàng Quốc Việt, Cầu giấy, Hà Nội",
+      },
+    ],
+  },
+];
+const ABOUTUS = [
+  {
+    title: "Giới thiệu trung tâm",
+  },
+  {
+    title: "Tuyển dụng",
+  },
+  {
+    title: "Chia sẻ",
+  },
+  {
+    title: "Sự kiện",
+  },
+  {
+    title: "Chính sách bảo mật",
+  },
+  {
+    title: "Điều khoản & Điều kiện",
+  },
+];
+const SOCIAL = [
+  {
+    title: "Kết nối với chúng tôi",
+    social: [
+      {
+        img: facebook,
+      },
+      {
+        img: youtube,
+      },
+      {
+        img: tiktok,
+      },
+    ],
+  },
+  {
+    title: "Nhận tư vấn",
+    social: [
+      {
+        img: mess,
+      },
+      {
+        img: zalo,
+      },
+    ],
+  },
+];
 const Footer = () => {
-  const { t } = useTranslation(["footer"]);
-  const menuFooter = [
-    {
-      title: "Company",
-      menu: [
-        {
-          label: "Home",
-          link: "/",
-        },
-        {
-          label: "About Us",
-          link: "/",
-        },
-        {
-          label: "Our Services",
-          link: "/",
-        },
-        {
-          label: "Testimonial",
-          link: "/",
-        },
-        {
-          label: "Book a meeting",
-          link: "/",
-        },
-      ],
-    },
-    {
-      title: "Company",
-      menu: [
-        {
-          label: "Home",
-          link: "/",
-        },
-        {
-          label: "About Us",
-          link: "/",
-        },
-        {
-          label: "Our Services",
-          link: "/",
-        },
-        {
-          label: "Testimonial",
-          link: "/",
-        },
-        {
-          label: "Book a meeting",
-          link: "/",
-        },
-      ],
-    },
-    {
-      title: "Company",
-      menu: [
-        {
-          label: "Home",
-          link: "/",
-        },
-        {
-          label: "About Us",
-          link: "/",
-        },
-        {
-          label: "Our Services",
-          link: "/",
-        },
-        {
-          label: "Testimonial",
-          link: "/",
-        },
-        {
-          label: "Book a meeting",
-          link: "/",
-        },
-      ],
-    },
-    {
-      title: "Company",
-      menu: [
-        {
-          label: "Home",
-          link: "/",
-        },
-        {
-          label: "About Us",
-          link: "/",
-        },
-        {
-          label: "Our Services",
-          link: "/",
-        },
-        {
-          label: "Testimonial",
-          link: "/",
-        },
-        {
-          label: "Book a meeting",
-          link: "/",
-        },
-      ],
-    },
-  ];
-
-  const contacts = [
-    {
-      icon: "/svg/phone-footer.svg",
-      label: "(704) 555-0127",
-    },
-    {
-      icon: "/svg/gmail.svg",
-      label: "excellent@example.com",
-    },
-    {
-      icon: "/svg/location.svg",
-      label: "3891 Ranchview Dr. Richardson,California 62639",
-    },
-  ];
-  const cards = [
-    "/Images/Visa.png",
-    "/Images/Mastercard.png",
-    "/Images/GooglePay.png",
-    "/Images/Amex.png",
-    "/Images/PayPal.png",
-  ];
-
-  const socials = [
-    {
-      icon: "/svg/facebook.svg",
-      link: "",
-    },
-    {
-      icon: "/svg/instagram.svg",
-      link: "",
-    },
-    {
-      icon: "/svg/twitter.svg",
-      link: "",
-    },
-  ];
-
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.top}>
-            <div className={styles.contact}>
-              <Image
-                src="/Images/kosei-logo-footer.png"
-                alt="logo"
-                layout="fixed"
-                width={128}
-                height={128}
-              />
-              <div className={styles.icons}>
-                {contacts?.map((contact) => {
-                  return (
-                    <div key={contact.label} className={styles.iconItem}>
-                      <Image
-                        src={contact.icon}
-                        alt={contact.label}
-                        layout="fixed"
-                        width={24}
-                        height={24}
-                        style={{ marginRight: 10 }}
-                      />
-                      <Text type="body-16-regular" color="neutral-10">
-                        {contact.label}
-                      </Text>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className={styles.menu}>
-              {menuFooter.map((item) => {
-                return (
-                  <div className={styles.menuItem} key={item.title}>
-                    <Text
-                      type="title-18-bold"
-                      color="neutral-10"
-                      bottom={20}
-                      className={styles.menuText}
-                    >
-                      {item.title}
-                    </Text>
-                    <div>
-                      {item.menu.map((menuItem) => {
-                        return (
-                          <Link href={menuItem.link} key={menuItem.link}>
-                            <Text
-                              type="body-16-regular"
-                              color="neutral-10"
-                              bottom={16}
+        <div className=" container !p-0">
+          <div
+            className={`${styles.top} flex flex-col border-b-[1px] border-[#EDF2F7] pb-8`}
+          >
+            <Image src={Logo} alt="" width={128} height={128} />
+            <div className="ml-7 text-white">
+              <div className="flex gap-5 justify-between max-lg:flex-col">
+                <>
+                  {React.Children.toArray(
+                    data.map((item) => (
+                      <div className="flex flex-col gap-5">
+                        <Text type="title-18-bold">{item.title}</Text>
+                        {React.Children.toArray(
+                          item.content.map((it) => (
+                            <div
+                              className={`flex gap-2 items-start ${item.styles}`}
                             >
-                              {menuItem.label}
-                            </Text>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
+                              <Image
+                                src={it.img}
+                                alt=""
+                                width={24}
+                                height={24}
+                                className="w-6 h-6"
+                              />
+                              <Text type="body-16-medium">{it.hotline}</Text>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    ))
+                  )}
+                </>
+                <div className="flex flex-col gap-5">
+                  <Text type="title-18-bold">Về chúng tôi</Text>
+                  {React.Children.toArray(
+                    ABOUTUS.map((item) => (
+                      <Text type="body-16-medium">{item.title}</Text>
+                    ))
+                  )}
+                </div>
+                <div className="flex flex-col gap-8">
+                  {React.Children.toArray(
+                    SOCIAL.map((item) => (
+                      <div className="flex flex-col gap-5">
+                        <Text type="body-16-medium">{item.title}</Text>
+                        <div className="flex gap-4">
+                          {React.Children.toArray(
+                            item.social.map((it) => (
+                              <Image
+                                src={it.img}
+                                alt=""
+                                width={35}
+                                height={35}
+                              />
+                            ))
+                          )}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           <div className={styles.bottom}>
-            <div className="flex">
-              {cards.map((card) => {
-                return (
-                  <Image
-                    src={card}
-                    alt={card}
-                    layout="fixed"
-                    width={36}
-                    height={24}
-                    style={{ marginRight: 10 }}
-                    key={card}
-                  />
-                );
-              })}
-            </div>
             <Text
               type="body-16-regular"
               color="neutral-10"
-              className={styles.TextFooter}
+              className="text-center py-6 max-lg:py-3 "
             >
               ©2023 Kosei All Rights are reserved️
             </Text>
-            <div className={styles.socialWrap}>
-              {socials.map((social) => {
-                return (
-                  <Link
-                    href={social.link}
-                    key={social.link}
-                    className={styles.social}
-                  >
-                    <Image
-                      src={social.icon}
-                      alt={social.icon}
-                      layout="fixed"
-                      width={20}
-                      height={20}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ body {
   margin: 0;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  color: #041F4A;
 }
 
 a {
@@ -1071,9 +1072,10 @@ a:focus {
 }
 
 .container {
-  min-width: 1440px;
-  max-width: 1440px;
-  margin: 60px auto;
+  min-width: 1200px;
+  max-width: 1200px;
+  padding: 60px 0;
+  margin: 0 auto;
 }
 
 .rc-dialog {

@@ -10,9 +10,19 @@ interface StudingProps {
   form: any;
   id: number;
   questions: Questions;
+  onAnswerChange: (questionId: number, answer: string) => void;
+  showDetails: boolean;
+  answered: boolean;
 }
 
-const OneQuestion: React.FC<StudingProps> = ({ form, id, questions }) => {
+const OneQuestion: React.FC<StudingProps> = ({
+  form,
+  id,
+  questions,
+  onAnswerChange,
+  showDetails,
+  answered,
+}) => {
   const [question, setQuestion] = useState<string | null>(null);
   const listQuestion = [
     {
@@ -55,6 +65,7 @@ const OneQuestion: React.FC<StudingProps> = ({ form, id, questions }) => {
                 errors: [],
               },
             ]);
+            onAnswerChange(id, value);
           };
           return (
             <div>
@@ -78,6 +89,9 @@ const OneQuestion: React.FC<StudingProps> = ({ form, id, questions }) => {
                   );
                 })}
               </div>
+              {showDetails && answered && (
+                <Text type="body-16-regular">Câu trả lời là...</Text>
+              )}
             </div>
           );
         }}
