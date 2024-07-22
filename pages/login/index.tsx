@@ -8,6 +8,7 @@ import Image from "next/image";
 import Box from "@/components/Box";
 import CheckBox from "@/components/CheckBox";
 import { useRequest } from "@umijs/hooks";
+import logo from "../../public/Images/logo-kosei.png";
 import {
   login,
   loginWithFaceBook,
@@ -26,6 +27,8 @@ import FacebookLogin from "@greatsumini/react-facebook-login";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { KOSEI_TOKEN } from "@/api/constant";
 import { jwtDecode } from "jwt-decode";
+import { cn } from "@/utils";
+import Link from "next/link";
 
 const LoginForm = () => {
   const { t } = useTranslation("common");
@@ -91,16 +94,26 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={styles.loginWrap}>
+    <div className={cn("", styles.loginWrap)}>
+      <Link href={"/"}>
+        <Text type="body-16-regular" color="neutral-5">
+          {" "}
+          {"< Quay lại trang chủ"}
+        </Text>
+      </Link>
       <Image
-        src="/Images/kosei-logo.png"
+        src={logo}
         alt="kosei-logo"
-        layout="fixed"
-        width={76}
-        height={76}
-        style={{ marginBottom: 32 }}
+        width={150}
+        height={80}
+        className="mx-auto my-7"
       />
-      <Text type="heading-h3" color="neutral-1" bottom={4}>
+      <Text
+        type="title-32-bold"
+        color="neutral-1"
+        bottom={4}
+        className="leading-10"
+      >
         Chào mừng đến với Kosei 👋
       </Text>
       <Text type="body-16-regular" color="neutral-5" bottom={32}>
@@ -149,6 +162,7 @@ const LoginForm = () => {
               {({ value, onChange }, meta) => {
                 return (
                   <TextInput
+                    label="Mật khẩu"
                     placeholder="Nhập mật khẩu"
                     required
                     name="password"
@@ -309,6 +323,12 @@ const LoginForm = () => {
             </GoogleOAuthProvider>
           </Box>
         </Box>
+        <div className="flex items-center gap-1 mt-8">
+          <Text type="body-16-regular">Lần đầu bạn tới Kosei?</Text>
+          <Link href={"/register"} className="text-[#0F5FAF]">
+            {"Đăng ký ngay >"}
+          </Link>
+        </div>
       </Form>
     </div>
   );

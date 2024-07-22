@@ -66,36 +66,65 @@ const ChooseKosei = () => {
   return (
     <div className={`text-center ${styles.bgWhy} py-20`}>
       <Text type="title-40-bold">Vì sao nên chọn Kosei?</Text>
-      <div className="container flex flex-col gap-20 items-center">
+      <div className="container flex flex-col gap-20 max-lg:gap-10 items-center max-xl:min-w-[300px] max-lg:px-5">
         {React.Children.toArray(
           data.map((item, index) => (
-            <motion.div
-              initial={{ x: -800 }}
-              whileInView={{ x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, type: "spring", delay: 0.1 }}
-              className={cn(
-                "flex gap-7 items-center",
-                index % 2 === 0 ? "" : "flex-row-reverse"
-              )}
-            >
-              <motion.div>
+            <div>
+              <motion.div
+                initial={{ x: -800 }}
+                whileInView={{ x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, type: "spring", delay: 0.1 }}
+                className={cn(
+                  "flex gap-7 items-center max-lg:hidden",
+                  index % 2 === 0 ? "" : "flex-row-reverse"
+                )}
+              >
                 <Image src={item.img} alt="" className="w-[378px] h-[263px]" />
-              </motion.div>
-              <motion.div>
-                <div className="flex items-center">
-                  <Image src={item.icon} alt="" className="w-[57px] h-[58px]" />
-                  <Image
-                    src={item.text}
-                    alt=""
-                    className="w-[323px] h-[50px]"
-                  />
+                <div>
+                  <div className="flex items-center">
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      className="w-[57px] h-[58px]"
+                    />
+                    <Image
+                      src={item.text}
+                      alt=""
+                      className="w-[323px] h-[50px]"
+                    />
+                  </div>
+                  <Text className="w-[261px] text-left ml-14 mt-4 leading-5">
+                    {item.description}
+                  </Text>
                 </div>
-                <Text className="w-[261px] text-left ml-14 mt-4 leading-5">
-                  {item.description}
-                </Text>
               </motion.div>
-            </motion.div>
+              <div
+                className={cn(
+                  "hidden gap-5 items-center max-lg:flex max-lg:flex-col ",
+                  index % 2 === 0 ? "" : "flex-row-reverse"
+                )}
+              >
+                <Image src={item.img} alt="" className="w-[378px] h-[263px]" />
+                <div>
+                  <div className="flex items-center">
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      className="w-[57px] h-[58px]"
+                    />
+                    <Image
+                      src={item.text}
+                      alt=""
+                      className="w-[223px] h-[50px]"
+                    />
+                  </div>
+                  <Text className="w-[261px] text-left mt-4 leading-5">
+                    {item.description}
+                  </Text>
+                </div>
+              </div>
+            </div>
           ))
         )}
       </div>

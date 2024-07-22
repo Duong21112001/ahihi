@@ -24,6 +24,8 @@ export const API_PATH = {
   FEEDBACK: "/feedbacks/list",
   SIGNIN_WITH_FACEBOOK: "/users/signInWithFacebook",
   SIGNIN_WITH_GOOGLE: "/users/signInWithGmail",
+  BANNERS: "/banners",
+  FANPAGES: "fanpages",
 };
 
 export const ROUTER = {

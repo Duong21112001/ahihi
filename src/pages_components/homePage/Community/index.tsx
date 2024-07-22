@@ -10,6 +10,7 @@ import Tiktok from "../../../../public/Images/TikTok - Original.png";
 import bgFb from "../../../../public/Images/bg-fb.png";
 import bgYt from "../../../../public/Images/bg-youtube.png";
 import bgTt from "../../../../public/Images/bg-tiktok.png";
+import { cn } from "@/utils";
 
 const data = [
   {
@@ -51,7 +52,7 @@ const Community = () => {
               height={48}
             />
             <Text type="heading-h2" color="neutral-1" center>
-              Cồng đồng tiếng nhật cùng Kosei
+              Cộng đồng tiếng nhật cùng Kosei
             </Text>
             <Image
               src="/Images/fish-right.png"
@@ -70,7 +71,12 @@ const Community = () => {
           >
             Gần 999+ Video học miễn phí được đăng lên Kosei Youtube channel
           </Text>
-          <div className={styles.communityContent}>
+          <div
+            className={cn(
+              "max-md:flex-col max-lg:items-center max-mds:w-full !max-lg:grid max-lg:grid-cols-2",
+              styles.communityContent
+            )}
+          >
             {React.Children.toArray(
               data?.map((item) => (
                 <Link target="_blank" href={item.link} className={styles.new}>

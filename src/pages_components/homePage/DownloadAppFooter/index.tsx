@@ -4,6 +4,8 @@ import "react-multi-carousel/lib/styles.css";
 import Text from "@/components/Text";
 import Image from "next/image";
 import Box from "@/components/Box";
+import Link from "next/link";
+import qr from "../../../../public/Images/Kosei_qrcode.png";
 
 const DownloadAppFooter = () => {
   const { t } = useTranslation("common");
@@ -19,21 +21,36 @@ const DownloadAppFooter = () => {
             Đã có sẵn trên App Store và Google Play
           </Text>
           <Box flex agileItem="agile-center">
-            <Image
-              src="/svg/appleStore.svg"
-              alt="zoom-out"
-              layout="fixed"
-              width={142}
-              height={48}
-              className={styles.appleStore}
-            />
-            <Image
-              src="/Images/google-play.png"
-              alt="zoom-out"
-              layout="fixed"
-              width={142}
-              height={48}
-            />
+            <Link
+              href={
+                "https://apps.apple.com/vn/app/kosei-online/id6502620494?l=vi"
+              }
+              target="_blank"
+            >
+              <Image
+                src="/svg/appleStore.svg"
+                alt="zoom-out"
+                layout="fixed"
+                width={142}
+                height={48}
+                className={styles.appleStore}
+              />
+            </Link>
+            <Link
+              href={
+                "https://play.google.com/store/search?q=kosei&c=apps&hl=vi-VN"
+              }
+              target="_blank"
+            >
+              {" "}
+              <Image
+                src="/Images/google-play.png"
+                alt="zoom-out"
+                layout="fixed"
+                width={142}
+                height={48}
+              />
+            </Link>
           </Box>
         </div>
         <Box
@@ -43,7 +60,7 @@ const DownloadAppFooter = () => {
           className={styles.right}
         >
           <Image
-            src="/Images/qr-code.png"
+            src={qr}
             alt="zoom-out"
             layout="fixed"
             width={132}

@@ -3,37 +3,43 @@
   align-items: center;
   background-color: var(--background-2);
 }
-.authWrap .authContainer .left {
-  width: 50%;
-  background-color: var(--background-2);
-  height: 100vh;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-.authWrap .authContainer .right {
-  width: 50%;
-  display: grid;
-  align-items: center;
-  background: url("/Images/bg-login.png"), var(--neutral-10);
-  background-position: right -30px;
-  background-repeat: no-repeat;
+
+.authWrap .authContainer {
   min-height: 100vh;
-  padding: 0 20px;
+  background: url('../../../public/Images/Default.png');
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px 92px;
 }
-.authWrap .authContainer .right .rightBackground {
-  max-width: 600px;
-  padding: 118px 0 118px 56px;
+
+
+.authWrap .authContainer .right {
+
+  background: #ffff;
+  border-radius: 50px;
+  display: grid;
+  align-items: center;
+  padding: 40px;
+  min-width: 578px;
+  position: relative;
+  z-index: 10;
 }
+
 
 @media screen and (max-width: 768px) {
   .authWrap .authContainer {
     flex-direction: column;
   }
+
   .authWrap .authContainer .left {
     height: 200px;
     width: 100%;
   }
+
   .authWrap .authContainer .right {
     height: unset;
     width: 100%;
@@ -41,6 +47,7 @@
     background-size: 300px, 300px;
     background-position: right 0px;
   }
+
   .authWrap .authContainer .right .rightBackground {
     padding: 50px 0;
     margin: 0 auto;

@@ -33,6 +33,7 @@ const RegisterForm = () => {
   }: { loading: boolean; data: LevelListResponse[] } = useRequest(
     async () => {
       const result = await getLevelsList();
+
       return result;
     },
     {
@@ -46,6 +47,7 @@ const RegisterForm = () => {
   }: { loading: boolean; data: CentersResponse[] } = useRequest(
     async () => {
       const result = await getCentersList();
+
       return result;
     },
     {
@@ -75,7 +77,7 @@ const RegisterForm = () => {
   const convertListLevel = listLevel?.map((level) => {
     return {
       label: level?.name,
-      value: level?.id,
+      value: level?.code,
     };
   });
 
@@ -95,7 +97,7 @@ const RegisterForm = () => {
     <>
       <Form form={form} className={styles.registerForm} onFinish={onFinish}>
         <Text type="title-24-bold" color="neutral-1" center bottom={20}>
-          Thông tin đăng ký
+          Nhận thông tin tư vấn
         </Text>
 
         <div className={styles.form}>

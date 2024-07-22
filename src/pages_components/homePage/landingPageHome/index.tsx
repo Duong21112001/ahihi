@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { ROUTER } from "@/api/constant";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
+import Banner from "./Banner";
 
 const LandingPageHome = () => {
   const [user, setUser] = useRecoilState(userProfile);
@@ -31,50 +32,7 @@ const LandingPageHome = () => {
 
   return (
     <div>
-      <div className={styles.LandingPage}>
-        <div className={styles.LandingPageImage}>
-          <img
-            src="/Images/landingpage-background.png"
-            alt="landingpage-background"
-          />
-        </div>
-        <div className={styles.textContent}>
-          <p className={styles.title}>Trung tâm tiếng nhật Kosei</p>
-          <Text
-            type="title-20-bold"
-            color="neutral-10"
-            maxWidth={587}
-            bottom={16}
-            className={styles.contentText}
-          >
-            Hệ thống đào tạo Nhật Ngữ toàn diện hàng đầu Việt Nam
-          </Text>
-          <Text
-            type="body-14-regular"
-            color="neutral-9"
-            maxWidth={560}
-            bottom={32}
-            className={styles.descriptionText}
-          >
-            Lorem ipsum dolor sit amet consectetur. Sagittis tortor enim egestas
-            vitae gravida justo. Mi ut eget placerat tellus cras platea. Urna
-            euismod egestas augue adipiscing pellentesque vitae id pellentesque.
-            Ultricies maecenas quis sed purus dui. Rhoncus montes aliquam
-            bibendum egestas pellentesque in diam sit. Purus est placerat
-            iaculis.
-          </Text>
-          {!user?.user_id && (
-            <div className={styles.buttons}>
-              <Button
-                type="btn-primary"
-                onClick={() => router.push(ROUTER.REGISTER)}
-              >
-                Đăng ký ngay!
-              </Button>
-            </div>
-          )}
-        </div>
-      </div>
+      <Banner />
       <div className={styles.infoContainer}>
         <div className={styles.infoWrap}>
           {infos.map((info) => {

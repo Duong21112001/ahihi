@@ -8,7 +8,7 @@ import Service from "./Service";
 import Different from "./Different";
 import Image from "next/image";
 import img from "../../public/Images/Group 1597882875.png";
-import Download from "./Download";
+import DownloadAppFooter from "@/pages_components/homePage/DownloadAppFooter";
 
 const AboutUs = () => {
   return (
@@ -18,7 +18,7 @@ const AboutUs = () => {
       <Service />
       <Different />
       <Image src={img} alt="" className="max-md:hidden" />
-      <Download />
+      <DownloadAppFooter />
     </div>
   );
 };

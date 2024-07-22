@@ -70,7 +70,7 @@ const data = [
 ];
 const Lecturers = () => {
   return (
-    <div className="container max-lg:min-w-fit max-lg:max-w-fit max-lg:px-5">
+    <div className="container max-lg:min-w-fit max-lg:max-w-fit max-lg:flex max-lg:flex-col max-lg:items-center max-lg:px-5">
       <div className="">
         <Text
           type="heading-h2"

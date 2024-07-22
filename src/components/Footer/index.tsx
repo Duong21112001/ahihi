@@ -108,11 +108,11 @@ const Footer = () => {
           >
             <Image src={Logo} alt="" width={128} height={128} />
             <div className="ml-7 text-white">
-              <div className="flex gap-5 justify-between max-lg:flex-col">
+              <div className="flex gap-5 justify-between max-md:flex-col max-lg:grid max-lg:grid-cols-2">
                 <>
                   {React.Children.toArray(
                     data.map((item) => (
-                      <div className="flex flex-col gap-5">
+                      <div className="flex flex-col gap-5 ">
                         <Text type="title-18-bold">{item.title}</Text>
                         {React.Children.toArray(
                           item.content.map((it) => (
@@ -166,15 +166,11 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className={styles.bottom}>
-            <Text
-              type="body-16-regular"
-              color="neutral-10"
-              className="text-center py-6 max-lg:py-3 "
-            >
+          <>
+            <p className="text-white text-center py-4">
               ©2023 Kosei All Rights are reserved️
-            </Text>
-          </div>
+            </p>
+          </>
         </div>
       </div>
     </>
