@@ -15,11 +15,15 @@ const LayoutAuth: React.FC<LayoutProps> = ({ children }) => {
     <>
       <div className={styles.authWrap}>
         <div className={cn("max-lg: justify-between", styles.authContainer)}>
-          <div className="bg-white py-3 px-2 rounded-br-[20px] rounded-bl-[20px] w-fit fixed top-0 ">
+          <div className="bg-white py-3 px-2 rounded-br-[20px] rounded-bl-[20px] w-fit fixed top-0 max-lg:hidden block">
             <Image src={logo} alt="" width={122} />
           </div>
           <div className={styles.left}>
-            <Image src={img} alt="" className="max-w-[813px] max-lg:hidden" />
+            <Image
+              src={img}
+              alt=""
+              className="max-w-[813px] max-lg:hidden max-2xl:w-[583px]"
+            />
           </div>
           <div className={styles.right}>
             <div className={styles.rightBackground}>{children}</div>

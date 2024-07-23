@@ -97,7 +97,6 @@ const LoginForm = () => {
     <div className={cn("", styles.loginWrap)}>
       <Link href={"/"}>
         <Text type="body-16-regular" color="neutral-5">
-          {" "}
           {"< Quay lại trang chủ"}
         </Text>
       </Link>
@@ -106,13 +105,13 @@ const LoginForm = () => {
         alt="kosei-logo"
         width={150}
         height={80}
-        className="mx-auto my-7"
+        className="mx-auto my-7 "
       />
       <Text
         type="title-32-bold"
         color="neutral-1"
         bottom={4}
-        className="leading-10"
+        className="leading-10 max-md:text-xl max-xl:text-2xl"
       >
         Chào mừng đến với Kosei 👋
       </Text>
@@ -247,7 +246,12 @@ const LoginForm = () => {
           </Text>
           <div className={styles.border} />
         </Box>
-        <Box flex agileItem="agile-center" justContent="content-beetween">
+        <Box
+          flex
+          agileItem="agile-center"
+          justContent="content-beetween"
+          className="max-md:flex max-md:flex-col max-md:items-center max-md:gap-4 max-md:w-full"
+        >
           <Box flex agileItem="agile-center" className={styles.faceBook}>
             <FacebookLogin
               appId="1165803831114574"
@@ -289,7 +293,11 @@ const LoginForm = () => {
               Facebook
             </FacebookLogin>
           </Box>
-          <Box flex agileItem="agile-center" className={styles.google}>
+          <Box
+            flex
+            agileItem="agile-center"
+            className={cn("w-full", styles.google)}
+          >
             <GoogleOAuthProvider clientId="14716222725-oajn4fpcmb9psa0d39475kji8qt5nvef.apps.googleusercontent.com">
               <Image
                 src="/svg/google.svg"
@@ -323,7 +331,7 @@ const LoginForm = () => {
             </GoogleOAuthProvider>
           </Box>
         </Box>
-        <div className="flex items-center gap-1 mt-8">
+        <div className="flex items-center gap-1 mt-8 max-md:text-sm">
           <Text type="body-16-regular">Lần đầu bạn tới Kosei?</Text>
           <Link href={"/register"} className="text-[#0F5FAF]">
             {"Đăng ký ngay >"}

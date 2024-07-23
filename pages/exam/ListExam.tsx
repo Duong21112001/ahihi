@@ -242,7 +242,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const currentExams = filterExam.slice(startIndex, endIndex);
 
   return (
-    <div className="container">
+    <div className="container !pt-10">
       <Text type="heading-h2">Danh sách Thi thử JLPT</Text>
       <div className="grid grid-cols-4 max-md:grid-cols-1 gap-5">
         {React.Children.toArray(

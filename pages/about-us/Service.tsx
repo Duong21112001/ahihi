@@ -51,7 +51,10 @@ const data = [
 const Service = () => {
   return (
     <div className="bg-[#F7FBFF] text-center relative">
-      <Text type="title-40-bold" className=" mb-[190px] pt-8 max-lg:mb-0">
+      <Text
+        type="title-40-bold"
+        className=" mb-[190px] pt-8 max-lg:mb-5 max-lg:text-3xl max-md:text-xl"
+      >
         CÁC DỊCH VỤ – HOẠT ĐỘNG CỦA KOSEI
       </Text>
       <div className={styles.bgFilter}>

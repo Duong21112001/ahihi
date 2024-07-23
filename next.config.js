@@ -13,6 +13,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "kosei.eupsolution.net",
       },
+      {
+        protocol: "https",
+        hostname: "kosei-web.eupsolution.net",
+      },
+
+
     ],
     domains: ['upload.wikimedia.org'],
 

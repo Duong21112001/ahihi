@@ -27,6 +27,16 @@
 }
 
 
+@media only screen and (max-width:1024px) {
+  .bg {
+    height: auto;
+  }
+
+  .bgFilter {
+    height: fit-content !important;
+    border-radius: 0 !important
+  }
+}
 
 /* .bgFilter {
   background-color: #DFECFF;

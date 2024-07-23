@@ -51,7 +51,9 @@ const data = [
 const Different = () => {
   return (
     <div className="container flex flex-col items-center max-lg:min-w-[380px] max-lg:px-6">
-      <Text type="title-40-bold">SỰ KHÁC BIỆT</Text>
+      <Text type="title-40-bold" className="max-lg:text-3xl">
+        SỰ KHÁC BIỆT
+      </Text>
       <Text
         type="body-16-medium"
         className="w-[70%] text-center mt-3 max-lg:w-full"

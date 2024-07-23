@@ -46,11 +46,10 @@ const Exam = () => {
       <div
         style={{
           background: "#F9F9F9",
-          padding: "40px 0 0 0",
         }}
       >
         <div
-          className="container"
+          className="container !py-5"
           style={{ margin: "0 auto", display: "flex" }}
         >
           {React.Children.toArray(

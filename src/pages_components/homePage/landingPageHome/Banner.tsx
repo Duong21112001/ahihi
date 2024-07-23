@@ -87,22 +87,19 @@ const Banner = () => {
       responsive={responsive}
       infinite={true}
       transitionDuration={500}
-      // containerClass={cn("container-class-course", styles.containerClassCourse)}
       centerMode={false}
       renderArrowsWhenDisabled={true}
     >
-      {/* <> */}
       {banners.map((item) => (
         <Image
-          src={item.path}
+          src={`https://kosei-web.eupsolution.net${item.path}`}
           alt=""
           key={item.id}
-          className="w-full h-[70vh]"
-          width={1440}
-          height={712}
+          className="w-full h-[70vh] object-contain"
+          width={500}
+          height={500}
         />
       ))}
-      {/* </> */}
     </Carousel>
   );
 };

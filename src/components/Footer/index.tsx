@@ -102,7 +102,7 @@ const Footer = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className=" container !p-0">
+        <div className=" container !p-0 max-lg:min-w-fit">
           <div
             className={`${styles.top} flex flex-col border-b-[1px] border-[#EDF2F7] pb-8`}
           >
