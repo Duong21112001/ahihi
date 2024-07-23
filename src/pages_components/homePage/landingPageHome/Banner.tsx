@@ -2,11 +2,7 @@ import { useRequest } from "@umijs/hooks";
 import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
-import styles from "../../../pages_components/component/carouselCourseComponent/index.module.css";
-import { cn } from "@/utils";
-import img from "../../../../public/Images/Default.png";
 
-// const data = [
 //   {
 //     id: 1,
 //     img: img,

@@ -8,9 +8,46 @@ import { ListFeedbackResponse } from "@/utils/model/homePage";
 import { getListFeedback } from "@/service/homePage";
 import avt from "../../../../public/Images/avtcmt.png";
 import { cn } from "@/utils";
+import { useEffect, useState } from "react";
+import Carousel from "react-multi-carousel";
 
+interface CommentProps {
+  id: number;
+  user_id: null;
+  message: string;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  job: string;
+  avatar: string;
+  status: number;
+}
 const StudentComments = () => {
+  const [listComment, setListComment] = useState<CommentProps[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
   const OneComment = () => {
+    useEffect(() => {
+      const fetchBanners = async () => {
+        try {
+          const response = await fetch(
+            "https://kosei-web.eupsolution.net/api/feedbacks"
+          );
+          const data = await response.json();
+          console.log("data=====", data.data);
+
+          if (Array.isArray(data.data)) {
+            setListComment(data.data);
+          } else {
+            setError("Data received is not an array");
+          }
+        } catch (err) {
+          setError("Failed to fetch banners");
+        }
+      };
+
+      fetchBanners();
+    }, []);
     return (
       <div className={cn("flex items-center", styles.studentCommentsBox)}>
         <div className={styles.studentCommentsLeft}>
@@ -29,35 +66,30 @@ const StudentComments = () => {
             nghiệm học tập và kết quả đạt được trong suốt hành trang theo học
             tại Kosei.
           </Text>
-          <div className={styles.boxRating}>
-            <Text type="title-18-regular" color="dark-500" bottom={41}>
-              “ Khóa học Online N3 của Kosei thực sự là một khóa học rất tuyệt
-              vời với những bạn không có nhiều thời gian để đến lớp như mình.
-              Sau khi hoàn thành xong chương trình N5 và N4 tại Kosei , mình
-              không có nhiều thời gian để đi học vì phải đi làm rồi thường xuyên
-              tăng ca...vậy nên mình đã đăng ký khóa N3 online tại Kosei luôn vì
-              đã quá thiện cảm với các sensei dễ thương và giàu kinh nghiệm của
-              Kosei rồi. Đúng là Kosei không làm.... ”
-            </Text>
-            <div className={styles.user}>
-              <Image
-                src={avt}
-                alt="user-comment"
-                layout="fixed"
-                width={65}
-                height={65}
-                style={{ marginRight: 20 }}
-              />
-              <div style={{ textTransform: "capitalize" }}>
-                <Text type="title-24-bold" color="dark-500" bottom={8}>
-                  Smith Johnson
+          <CarouselComponent numberItemShow={1} itemNumber={1}>
+            {listComment.map((item) => (
+              <div className={styles.boxRating} key={item.id}>
+                <Text type="title-18-regular" color="dark-500" bottom={41}>
+                  {item.message}
                 </Text>
-                <Text type="body-16-regular" color="gray-500">
-                  London, United Kingdom
-                </Text>
+                <div className={styles.user}>
+                  <Image
+                    src={item.avatar}
+                    alt="user-comment"
+                    layout="fixed"
+                    width={65}
+                    height={65}
+                    style={{ marginRight: 20 }}
+                  />
+                  <div style={{ textTransform: "capitalize" }}>
+                    <Text type="title-24-bold" color="dark-500" bottom={8}>
+                      {item.name}
+                    </Text>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ))}
+          </CarouselComponent>
         </div>
         <div className={styles.studentCommentsRight}>
           <div className={styles.boxBlue} />
