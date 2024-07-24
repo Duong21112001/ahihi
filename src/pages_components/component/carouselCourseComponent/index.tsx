@@ -31,7 +31,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 480 },
+      breakpoint: { max: 1300, min: 480 },
       items: 2,
     },
     mobile: {

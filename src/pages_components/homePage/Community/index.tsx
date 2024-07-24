@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Text from "@/components/Text";
 import styles from "./index.module.css";
 import "react-multi-carousel/lib/styles.css";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import Facebook from "../../../../public/Images/Facebook - Original.png";
 import Youtube from "../../../../public/Images/YouTube - Original.png";
@@ -11,34 +11,55 @@ import bgFb from "../../../../public/Images/bg-fb.png";
 import bgYt from "../../../../public/Images/bg-youtube.png";
 import bgTt from "../../../../public/Images/bg-tiktok.png";
 import { cn } from "@/utils";
+interface FanpageProps {
+  id: number;
+  name: string;
+  description: null;
+  url: string;
+  type: string;
+  thumbnail: string;
+  status: number;
+  created_at: string;
+  updated_at: string;
+}
 
-const data = [
-  {
-    title: "Facebook",
-    link: "https://www.facebook.com/NhatNguKosei/",
-    icon: Facebook,
-    img: bgFb,
-    desciption:
-      "Fanpage Tiếng Nhật Kosei là nơi chia sẻ kiến thức, các sự kiện của Kosei được cập nhật mỗi ngày.",
-  },
-  {
-    title: "Youtube",
-    link: "https://www.youtube.com/@TrungtamtiengNhatKoseiVN",
-    icon: Youtube,
-    img: bgYt,
-    desciption:
-      "Kênh Youtube Kosei, với 999+ nội dung chia sẻ các kiến thức tiếng Nhật, bí quyết thi đỗ JLPT.",
-  },
-  {
-    title: "Tiktok",
-    link: "https://www.facebook.com/NhatNguKosei/",
-    icon: Tiktok,
-    img: bgTt,
-    desciption:
-      "Kênh Tiktok Kosei, nơi chia sẽ các tips thi JLPT hiệu quả, nhanh chóng.",
-  },
-];
 const Community = () => {
+  const [fanpage, setFanpage] = useState<FanpageProps[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const response = await fetch(
+          "https://kosei-web.eupsolution.net/api/fanpages"
+        );
+        const data = await response.json();
+        console.log("fanpage", fanpage);
+
+        if (Array.isArray(data.data)) {
+          setFanpage(data.data);
+        } else {
+          setError("Data received is not an array");
+        }
+      } catch (err) {
+        setError("Failed to fetch banners");
+      }
+    };
+
+    fetchBanners();
+  }, []);
+
+  const getImageByType = (type: string): StaticImageData => {
+    switch (type.toLowerCase()) {
+      case "facebook":
+        return Facebook;
+      case "youtube":
+        return Youtube;
+      case "tiktok":
+        return Tiktok;
+      default:
+        return Facebook;
+    }
+  };
   return (
     <>
       <div className={styles.communityWrap}>
@@ -78,13 +99,19 @@ const Community = () => {
             )}
           >
             {React.Children.toArray(
-              data?.map((item) => (
-                <Link target="_blank" href={item.link} className={styles.new}>
-                  <Image src={item.img} className={styles.img} alt={""} />
+              fanpage?.map((item) => (
+                <Link target="_blank" href={item.url} className={styles.new}>
+                  <Image
+                    src={`https://kosei-web.eupsolution.net${item.thumbnail}`}
+                    className={cn("object-cover", styles.img)}
+                    alt={""}
+                    width={50}
+                    height={50}
+                  />
                   <div className={styles.tag}>
                     <div className={styles.tagRing}>
                       <Image
-                        src={item.icon}
+                        src={getImageByType(item.type)}
                         alt=""
                         layout="fixed"
                         width={48}
@@ -93,7 +120,7 @@ const Community = () => {
                     </div>
                     <div className={styles.tagText}>
                       <Text type="title-18-semibold" color="dark-500">
-                        {item.title}
+                        {item.type}
                       </Text>
                     </div>
                   </div>
@@ -102,7 +129,7 @@ const Community = () => {
                     color="neutral-1"
                     className={styles.textNew}
                   >
-                    {item.desciption}
+                    {item.description}
                   </Text>
                 </Link>
               ))

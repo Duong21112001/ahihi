@@ -25,7 +25,24 @@ interface CommentProps {
 const StudentComments = () => {
   const [listComment, setListComment] = useState<CommentProps[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 769 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 480 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 540, min: 0 },
+      items: 1,
+    },
+  };
   const OneComment = () => {
     useEffect(() => {
       const fetchBanners = async () => {
@@ -66,7 +83,18 @@ const StudentComments = () => {
             nghiệm học tập và kết quả đạt được trong suốt hành trang theo học
             tại Kosei.
           </Text>
-          <CarouselComponent numberItemShow={1} itemNumber={1}>
+          <Carousel
+            autoPlay
+            autoPlaySpeed={8000}
+            responsive={responsive}
+            infinite={true}
+            transitionDuration={500}
+            centerMode={false}
+            renderArrowsWhenDisabled={true}
+            showDots={true}
+            arrows={false}
+            dotListClass="dot"
+          >
             {listComment.map((item) => (
               <div className={styles.boxRating} key={item.id}>
                 <Text type="title-18-regular" color="dark-500" bottom={41}>
@@ -74,7 +102,7 @@ const StudentComments = () => {
                 </Text>
                 <div className={styles.user}>
                   <Image
-                    src={item.avatar}
+                    src={`https://kosei-web.eupsolution.net${item.avatar}`}
                     alt="user-comment"
                     layout="fixed"
                     width={65}
@@ -89,7 +117,7 @@ const StudentComments = () => {
                 </div>
               </div>
             ))}
-          </CarouselComponent>
+          </Carousel>
         </div>
         <div className={styles.studentCommentsRight}>
           <div className={styles.boxBlue} />

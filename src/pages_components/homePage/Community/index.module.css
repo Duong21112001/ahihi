@@ -1,11 +1,13 @@
 .communityWrap {
   padding: 128px 0 166px 0;
 }
+
 .communityWrap .communityContainer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
+
 .communityWrap .communityContainer .title {
   max-width: 670px;
   display: flex;
@@ -15,12 +17,15 @@
   margin: 0 auto;
   margin-bottom: 10px;
 }
+
 .communityWrap .communityContainer .title p {
   margin: 0 16px;
 }
+
 .communityWrap .communityContainer .textContent {
   margin-bottom: 64px;
 }
+
 .communityWrap .new {
   background-color: var(--background-3);
   padding: 20px 16px;
@@ -29,18 +34,21 @@
   width: calc(33.33% - 10px);
   cursor: pointer;
 }
+
 .communityWrap .new .img {
   height: 156px;
   width: 100%;
   background-color: var(--tint-primary-9);
   border-radius: 8px;
 }
+
 .communityWrap .new .tag {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
   margin-top: -32px;
 }
+
 .communityWrap .new .tag .tagRing {
   height: 65px;
   width: 65px;
@@ -52,6 +60,7 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25098);
   z-index: 2;
 }
+
 .communityWrap .new .tagText {
   width: 140px;
   height: 40px;
@@ -64,15 +73,18 @@
   margin-left: -8px;
   padding-left: 10px;
 }
+
 .communityWrap .communityContent {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
 }
 
 @media screen and (max-width: 768px) {
   .communityWrap {
     padding: 50px 0;
   }
+
   .communityWrap .communityContainer .title p {
     margin: 0 5px;
   }
@@ -89,9 +101,11 @@
   .communityWrap .communityContainer .textContent {
     margin-bottom: 40px;
   }
+
   .communityWrap .communityContainer .communityContent {
     flex-wrap: wrap;
   }
+
   .communityWrap .communityContainer .communityContent .new {
     width: calc(50% - 10px);
     margin-bottom: 10px;
@@ -103,6 +117,7 @@
     width: 100%;
     margin-right: 0;
   }
+
   .communityWrap .communityContainer .communityContent .new .textNew {
     font-size: 14px;
     line-height: 20px;

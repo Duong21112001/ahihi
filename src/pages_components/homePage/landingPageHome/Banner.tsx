@@ -3,27 +3,6 @@ import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 
-//   {
-//     id: 1,
-//     img: img,
-//   },
-//   {
-//     id: 3,
-//     img: img,
-//   },
-//   {
-//     id: 4,
-//     img: img,
-//   },
-//   {
-//     id: 5,
-//     img: img,
-//   },
-//   {
-//     id: 6,
-//     img: img,
-//   },
-// ];
 interface BannerProps {
   id: number;
   path: string;
