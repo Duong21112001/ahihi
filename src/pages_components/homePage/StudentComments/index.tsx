@@ -84,19 +84,19 @@ const StudentComments = () => {
             tại Kosei.
           </Text>
           <Carousel
-            autoPlay
-            autoPlaySpeed={8000}
+            autoPlay={true}
+            autoPlaySpeed={3000}
             responsive={responsive}
+            showDots={true}
             infinite={true}
             transitionDuration={500}
             centerMode={false}
             renderArrowsWhenDisabled={true}
-            showDots={true}
             arrows={false}
             dotListClass="dot"
           >
             {listComment.map((item) => (
-              <div className={styles.boxRating} key={item.id}>
+              <div className={cn(styles.boxRating)} key={item.id}>
                 <Text type="title-18-regular" color="dark-500" bottom={41}>
                   {item.message}
                 </Text>

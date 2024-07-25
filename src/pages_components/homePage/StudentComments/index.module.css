@@ -34,6 +34,7 @@
   border: 1px solid #a8a7ae33;
   max-width: 500px;
   padding: 30px;
+  height: 100%;
 }
 
 .studentCommentsPadding .studentCommentsWrapper .boxRating .rating {

@@ -64,13 +64,14 @@ const Banner = () => {
       transitionDuration={500}
       centerMode={false}
       renderArrowsWhenDisabled={true}
+      showDots={false}
     >
       {banners.map((item) => (
         <Image
           src={`https://kosei-web.eupsolution.net${item.path}`}
           alt=""
           key={item.id}
-          className="w-full h-[70vh] object-contain"
+          className="w-full h-[70vh] object-cover"
           width={500}
           height={500}
         />

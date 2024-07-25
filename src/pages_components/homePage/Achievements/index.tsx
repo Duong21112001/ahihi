@@ -99,19 +99,19 @@ const Achievements = () => {
           <div>
             {!loadingAchievement && dataAchievement?.length > 0 && (
               <Carousel
-                responsive={responsive}
-                showDots={true}
                 autoPlay={true}
                 autoPlaySpeed={3000}
+                responsive={responsive}
+                showDots={true}
                 infinite={true}
                 containerClass={classNames(
                   "container-class-course",
                   styles.carousel
                 )}
+                transitionDuration={500}
                 centerMode={false}
                 renderArrowsWhenDisabled={true}
                 arrows={true}
-                transitionDuration={500}
               >
                 {dataAchievement?.map((achievement) => {
                   return (
