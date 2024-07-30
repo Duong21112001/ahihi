@@ -6,6 +6,7 @@ import img2 from "../../public/Images/Frame (5).png";
 import img3 from "../../public/Images/Frame (6).png";
 import img4 from "../../public/Images/Asset 6 1.png";
 import Image from "next/image";
+import { cn } from "@/utils";
 const data = [
   {
     id: 1,
@@ -57,8 +58,8 @@ const Service = () => {
       >
         CÁC DỊCH VỤ – HOẠT ĐỘNG CỦA KOSEI
       </Text>
-      <div className={styles.bgFilter}>
-        <div className="absolute top-32 z-10 grid grid-cols-2 gap-10 max-lg:static max-lg:p-6 max-lg:grid-cols-1">
+      <div className={cn("  ", styles.bgFilter)}>
+        <div className="absolute top-[15%] z-10 grid grid-cols-2 gap-10 max-lg:static max-lg:p-6 max-lg:grid-cols-1">
           {data.map((item) => (
             <div
               key={item.id}

@@ -190,3 +190,17 @@ export interface CourseReponse {
   cover_path: string;
   state_name: string;
 }
+
+export interface TrialTests {
+  id: number;
+  name: string;
+  slug: string;
+  image: string;
+  des: null;
+  lang_code: string;
+  start_date: string;
+  end_date: string;
+  is_online: number;
+  created_at: string;
+  updated_at: string;
+}
