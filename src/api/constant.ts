@@ -26,6 +26,7 @@ export const API_PATH = {
   SIGNIN_WITH_GOOGLE: "/users/signInWithGmail",
   BANNERS: "/banners",
   FANPAGES: "fanpages",
+  REGISTER_TRIAL_TEST: "/trial_tests/register",
 };
 
 export const ROUTER = {

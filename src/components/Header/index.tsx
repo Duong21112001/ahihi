@@ -266,7 +266,7 @@ const Header = () => {
                     type="body-16-regular"
                     onClick={() =>
                       router.push({
-                        pathname: "/exam",
+                        pathname: "/register-trial-tests",
                       })
                     }
                     className={styles.textBtn}

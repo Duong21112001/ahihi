@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Question from "./Exam";
 import Text from "@/components/Text";
 import CountDown from "./CountDown";
-import img from "../../public/Images/test-failed 1.png";
+import img from "../../public/Images/cotton-sheep.png";
 import Image from "next/image";
 import { Questions } from "@/utils/model/courses";
 import { useRequest } from "@umijs/hooks";
@@ -19,6 +19,9 @@ import { DialogDescription } from "@radix-ui/react-dialog";
 import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import arrow from "../../public/Images/right.png";
+import Link from "next/link";
 
 const ExamPage = () => {
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
@@ -27,10 +30,20 @@ const ExamPage = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [disable, setDisable] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [answerResults, setAnswerResults] = useState<{
+    [key: number]: boolean;
+  }>({});
+  const [correctAnswers, setCorrectAnswers] = useState<{
+    [key: number]: string;
+  }>({});
+
+  const [question, setQuestion] = useState<Questions[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
   const { convert } = require("html-to-text");
-
+  const router = useRouter();
+  const { id } = router.query;
   const handleAnswer = (questionId: number, answer: string) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -38,43 +51,83 @@ const ExamPage = () => {
     }));
   };
 
-  const { data }: { data: Questions[] } = useRequest(async () => {
-    const result = await getCourseQuestions(1);
-    return result;
-  });
+  // const { data }: { data: Questions[] } = useRequest(async () => {
+  //   const result = await getCourseQuestions(1);
+  //   return result;
+  // });
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      if (id) {
+        try {
+          const response = await fetch(
+            `https://kosei-web.eupsolution.net/api/trial-tests/${id}/questions`
+          );
+          const data = await response.json();
+          if (Array.isArray(data)) {
+            setQuestion(data);
+          } else {
+            setError("Data empry");
+          }
+        } catch (err) {
+          setError("Failed");
+        }
+      }
+    };
+    fetchQuestion();
+  }, [id]);
 
-  const sliceData = data?.slice(0, 7) || [];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const sliceData = data?.slice(0, 7) || [];
 
   useEffect(() => {
-    if (sliceData) {
-      const totalQuestions = sliceData.flatMap((exam) => exam.question).length;
+    if (question) {
+      const totalQuestions = question.flatMap((exam) => exam.question).length;
       const answeredQuestions = Object.keys(answers).length;
       const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
-      if (answeredPercentage >= 80) {
+      if (answeredPercentage >= 50) {
         setIsButtonDisabled(false);
       } else {
         setIsButtonDisabled(true);
       }
     }
-  }, [answers, sliceData]);
+  }, [answers, question]);
 
   let questionIndex = 1;
 
   const handleSubmit = () => {
-    if (sliceData) {
+    if (question) {
       let correctCount = 0;
       let answeredCount = 0;
-      sliceData
+      let tempAnswerResults: { [key: number]: boolean } = {};
+      let tempCorrectAnswers: { [key: number]: string } = {};
+
+      question
         .flatMap((exam) => exam.questions)
         .forEach((q) => {
           if (answers[q?.id] !== undefined) {
             answeredCount++;
-            if ((answers[q.id] = q.correct_answer)) {
+            const correctAnswerMap = {
+              "1": q.answer_a,
+              "2": q.answer_b,
+              "3": q.answer_c,
+              "4": q.answer_d,
+            };
+            const correctAnswer =
+              correctAnswerMap[
+                q.correct_answer as keyof typeof correctAnswerMap
+              ];
+            tempCorrectAnswers[q.id] = correctAnswer;
+            if (answers[q.id] === correctAnswer) {
               correctCount++;
+              tempAnswerResults[q.id] = true;
+            } else {
+              tempAnswerResults[q.id] = false;
             }
           }
         });
       setResult(`Số câu trả lời đúng: ${correctCount} / ${answeredCount}`);
+      setAnswerResults(tempAnswerResults);
+      setCorrectAnswers(tempCorrectAnswers);
       setDisable(true);
       setIsButtonDisabled(true);
       setIsPaused(true);
@@ -88,7 +141,10 @@ const ExamPage = () => {
   return (
     <div className="flex">
       <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5">
-        {sliceData?.map((exam, examIndex) => (
+        <Link href="/exam">
+          <Image src={arrow} alt="" width={38} height={38} />
+        </Link>
+        {question?.map((exam, examIndex) => (
           <div
             key={exam.id}
             className="flex flex-col gap-5 pr-20"
@@ -97,7 +153,7 @@ const ExamPage = () => {
             <Text type="body-16-bold">
               {exam.name}: {convert(convert(exam.question))}
             </Text>
-            {exam.questions?.map((q) => (
+            {exam.questions?.map((q, index) => (
               <Question
                 key={q.id}
                 questionId={q.id}
@@ -107,6 +163,8 @@ const ExamPage = () => {
                 name={`${questionIndex++}`}
                 showDetail={showDetail}
                 disable={disable}
+                answerResults={answerResults}
+                correctAnswer={correctAnswers[q.id]}
               />
             ))}
           </div>
@@ -125,7 +183,12 @@ const ExamPage = () => {
             <Text type="body-16-bold">
               JLPT - N1 - Thi thử JLPT N1 mùa 7 - đợt 1
             </Text>
-            <Text>文字語彙ー文法ー読解</Text>
+            <Text
+              type="body-16-regular"
+              className="border-2 w-fit px-3 py-1 border-[#0F5FAF] rounded-md"
+            >
+              Ngữ pháp
+            </Text>
           </div>
         </div>
         <CountDown isPaused={isPaused} />
@@ -134,7 +197,7 @@ const ExamPage = () => {
             <Text type="body-16-semibold">Câu hỏi đã làm</Text>
           </div>
           <div className="grid grid-cols-8 gap-2 pr-10 cursor-pointer">
-            {sliceData
+            {question
               ?.flatMap((exam) => exam.questions)
               .map((q, index) => (
                 <div

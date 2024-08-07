@@ -7,243 +7,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { TrialTests } from "@/utils/model/courses";
 
-const EXAM = [
-  {
-    id: 1,
-    title: "Thi thử JLPT 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    id: 2,
-    title: "Thi thử JLPT 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    id: 3,
-    title: "Thi thử JLPT 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    id: 4,
-    title: "Thi thử JLPT 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    id: 5,
-    title: "Thi thử JLPT 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N1",
-  },
-  {
-    id: 6,
-    title: "Thi thử JLPT 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    id: 7,
-    title: "Thi thử JLPT 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    id: 8,
-    title: "Thi thử JLPT 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    id: 9,
-    title: "Thi thử JLPT 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    id: 10,
-    title: "Thi thử JLPT 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    id: 11,
-    title: "Thi thử JLPT 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    id: 12,
-    title: "Thi thử JLPT 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    id: 13,
-    title: "Thi thử JLPT 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    id: 14,
-    title: "Thi thử JLPT 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    id: 15,
-    title: "Thi thử JLPT 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N3",
-  },
-  {
-    id: 16,
-    title: "Thi thử JLPT 06",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N2",
-  },
-  {
-    id: 17,
-    title: "Thi thử JLPT 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    id: 18,
-    title: "Thi thử JLPT 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    id: 19,
-    title: "Thi thử JLPT 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    id: 20,
-    title: "Thi thử JLPT 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    id: 21,
-    title: "Thi thử JLPT 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N4",
-  },
-  {
-    id: 22,
-    title: "Thi thử JLPT 01",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    id: 23,
-    title: "Thi thử JLPT 02",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    id: 24,
-    title: "Thi thử JLPT 03",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    id: 25,
-    title: "Thi thử JLPT 04",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    id: 26,
-    title: "Thi thử JLPT 05",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-  {
-    id: 27,
-    title: "Thi thử JLPT 06",
-    time: 120,
-    contest: 7,
-    question: 200,
-    type: "N5",
-  },
-];
 const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [trialTest, setTrialTest] = useState<TrialTests[]>([]);
   const [error, setError] = useState<string | null>(null);
-
-  const itemsPerPage = 15;
-  const filterExam =
-    setSelectedContest !== "Tất cả"
-      ? EXAM.filter((exam: { type: any }) => exam.type === setSelectedContest)
-      : EXAM;
-
-  const handlePageClick = (event: any) => {
-    setCurrentPage(event.selected);
-  };
-  const router = useRouter();
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentExams = filterExam.slice(startIndex, endIndex);
   useEffect(() => {
     const fetchTrial = async () => {
       try {
@@ -263,11 +30,28 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
     };
     fetchTrial();
   }, []);
+  const itemsPerPage = 15;
+  const filterExam =
+    setSelectedContest !== "Tất cả"
+      ? trialTest.filter(
+          (exam: { slug: string }) => exam.slug === setSelectedContest
+        )
+      : trialTest;
+
+  const handlePageClick = (event: any) => {
+    setCurrentPage(event.selected);
+  };
+  const router = useRouter();
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentExams = filterExam.slice(startIndex, endIndex);
+
   return (
     <div className="container !pt-10">
       <Text type="heading-h2">Danh sách Thi thử JLPT</Text>
       <div className="grid grid-cols-4 max-md:grid-cols-1 gap-5">
-        {trialTest.map((item) => (
+        {currentExams.map((item) => (
           <div className={styles.testItem} key={item.id}>
             <div className={styles.headerExam}>
               <Text type="body-16-bold" color="dark-500">
@@ -306,7 +90,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
               <Button
                 className={styles.btn}
                 onClick={() => {
-                  router.push("/exams");
+                  router.push(`/exams?id=${item.id}`);
                 }}
               >
                 Thi thử

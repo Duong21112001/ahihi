@@ -28,6 +28,8 @@ interface QuestionProps {
   name: string;
   showDetail: boolean;
   disable: boolean;
+  answerResults?: { [key: number]: boolean };
+  correctAnswer?: string;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -38,6 +40,8 @@ const Question: React.FC<QuestionProps> = ({
   name,
   showDetail,
   disable,
+  answerResults,
+  correctAnswer,
 }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -55,18 +59,37 @@ const Question: React.FC<QuestionProps> = ({
   }, [selectedAnswer, questionId, onAnswer]);
   const { convert } = require("html-to-text");
 
+  const getFormItemClass = (option: string) => {
+    if (disable && answerResults) {
+      if (answerResults[questionId] === false && selectedAnswer === option) {
+        return "outline-[#FF0000] bg-[#FFE5E5]";
+      }
+      if (correctAnswer === option) {
+        return "outline-[#0a8328] bg-[#E7EFF7]";
+      }
+    }
+    return selectedAnswer === option ? "outline-[#0F5FAF] bg-[#E7EFF7]" : "";
+  };
+
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    console.log("hihi");
+  };
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="answer"
           render={({ field }) => (
             <FormItem className="space-y-3 ">
-              <FormLabel>
-                <Text type="body-16-medium">
-                  {name}.{convert(convert(question))}
+              <FormLabel className="flex items-center gap-1">
+                <Text
+                  type="body-16-medium"
+                  className="bg-[#d5e5f7] rounded-md px-2 py-[2px] "
+                >
+                  {name}.
                 </Text>
+                <Text type="body-16-medium">{convert(convert(question))}</Text>
               </FormLabel>
               <FormControl>
                 <RadioGroup
@@ -76,47 +99,54 @@ const Question: React.FC<QuestionProps> = ({
                   disabled={disable}
                 >
                   {options?.map((option, index) => (
-                    <FormItem
+                    <label
                       key={index}
-                      className={cn(
-                        "outline outline-1 outline-[#c9d2d8] rounded-[40px] flex items-center w-full",
-                        selectedAnswer === option
-                          ? "outline-[#0F5FAF] bg-[#E7EFF7]"
-                          : ""
-                      )}
+                      htmlFor={`option-${questionId}-${index}`}
+                      className="cursor-pointer w-full"
                     >
-                      <FormControl>
-                        <div
-                          className={cn(
-                            "bg-[#f5f5f5] p-4 rounded-tl-[40px] rounded-bl-[40px] mr-2.5",
-                            selectedAnswer === option ? "!bg-[#B7CFE7]" : ""
-                          )}
-                        >
-                          <RadioGroupItem
-                            disabled={disable}
-                            value={option}
+                      <FormItem
+                        className={cn(
+                          "outline outline-1 outline-[#c9d2d8] rounded-[40px] flex items-center w-full cursor-pointer",
+                          getFormItemClass(option) // Sửa: Gọi hàm getFormItemClass
+                        )}
+                      >
+                        <FormControl>
+                          <div
                             className={cn(
-                              "w-5 h-5 border-[#c9d2d8]",
-                              selectedAnswer === option
-                                ? "bg-[#0F5FAF] text-white border-6 w"
-                                : ""
+                              "bg-[#f5f5f5] p-4 rounded-tl-[40px] rounded-bl-[40px] mr-2.5 ",
+                              selectedAnswer === option ? "!bg-[#B7CFE7]" : ""
+                              // getOptionColor(option)
                             )}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormLabel className="!mt-0 px-2">
-                        <Text type="body-16-medium">
-                          {index + 1}. {convert(convert(option))}
-                        </Text>
-                      </FormLabel>
-                    </FormItem>
+                          >
+                            <RadioGroupItem
+                              disabled={disable}
+                              value={option}
+                              className={cn(
+                                "w-5 h-5 border-[#c9d2d8]",
+                                selectedAnswer === option
+                                  ? "bg-[#0F5FAF] text-white border-6"
+                                  : ""
+                              )}
+                              id={`option-${questionId}-${index}`}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormLabel className="!mt-0 px-2">
+                          <Text type="body-16-medium">
+                            {index + 1}. {convert(convert(option))}
+                          </Text>
+                        </FormLabel>
+                      </FormItem>
+                    </label>
                   ))}
                 </RadioGroup>
               </FormControl>
               <FormMessage />
-              <Text type="body-16-medium" color="main-color-primary ">
-                {showDetail && "Xem chi tiết đáp án hihi"}
-              </Text>
+              {showDetail && (
+                <Text type="body-16-medium" color="main-color-primary">
+                  Đáp án đúng: {correctAnswer}
+                </Text>
+              )}
             </FormItem>
           )}
         />

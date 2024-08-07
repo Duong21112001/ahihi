@@ -8,3 +8,9 @@ export interface RegisterParam {
   rePassword?: string;
   rules?: string;
 }
+export interface RegisterTrial {
+  name: string;
+  mobile: string;
+  email: string;
+  level_id: number;
+}

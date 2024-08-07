@@ -9,21 +9,27 @@ import ListExam from "./ListExam";
 const CONTEST = [
   {
     name: "Tất cả",
+    value: "Tất cả",
   },
   {
     name: "N1",
+    value: "thi-thu-n1",
   },
   {
     name: "N2",
+    value: "thi-thu-n2",
   },
   {
     name: "N3",
+    value: "thi-thu-n3",
   },
   {
     name: "N4",
+    value: "thi-thu-n4",
   },
   {
     name: "N5",
+    value: "thi-thu-n5",
   },
 ];
 const breadcrumb = [
@@ -56,9 +62,9 @@ const Exam = () => {
             CONTEST.map((item) => (
               <Button
                 type="btn-ghost"
-                onClick={() => setSelectedContest(item.name)}
+                onClick={() => setSelectedContest(item.value)}
                 className={`${styles.btnType} ${
-                  selectedContest === item.name ? styles.active : ""
+                  selectedContest === item.value ? styles.active : ""
                 }`}
               >
                 {item.name}
