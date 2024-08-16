@@ -24,13 +24,27 @@ const Time = () => {
     };
     fetchTrial();
   }, []);
-  const names = trialTest.map((item) => item.name).join(" ,");
+  const formatDateTime = (dateTimeString: any) => {
+    const [date, time] = dateTimeString.split(" ");
+    return `${time} ${date}`;
+  };
+  const names = trialTest.map((item) => item.level).join(" ,");
+  const start = trialTest.map((item) => formatDateTime(item.start_date));
+  const end = trialTest.map((item) => formatDateTime(item.end_date));
   return (
-    <div className="bg-white border-[#0F5FAF] border-4 w-[30%] flex items-center justify-center py-10 rounded-2xl">
+    <div className="bg-white border-[#0F5FAF] border-2 w-[30%] flex items-center justify-center py-10 rounded-2xl px-5">
       {trialTest.length > 0 ? (
-        <>
-          <Text>Hiện tại đang có kì {names}</Text>
-        </>
+        <div className="flex flex-col items-center">
+          <Text className="text-[#003B9F]" type="title-18-bold">
+            Kỳ thi {names}.
+          </Text>
+          <div className="text-[#003B9F] flex flex-col items-center">
+            <Text type="title-18-bold">Thời gian diễn ra kỳ thi:</Text>
+            <Text type="title-18-bold">
+              {start} - {end}
+            </Text>
+          </div>
+        </div>
       ) : (
         "Hong có bài thi đâu"
       )}

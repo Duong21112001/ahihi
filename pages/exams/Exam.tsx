@@ -19,6 +19,7 @@ import Text from "@/components/Text";
 const FormSchema = z.object({
   answer: z.string(),
 });
+const { convert } = require("html-to-text");
 
 interface QuestionProps {
   question: string;
@@ -30,6 +31,7 @@ interface QuestionProps {
   disable: boolean;
   answerResults?: { [key: number]: boolean };
   correctAnswer?: string;
+  point: number;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -42,6 +44,7 @@ const Question: React.FC<QuestionProps> = ({
   disable,
   answerResults,
   correctAnswer,
+  point,
 }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -89,7 +92,9 @@ const Question: React.FC<QuestionProps> = ({
                 >
                   {name}.
                 </Text>
-                <Text type="body-16-medium">{convert(convert(question))}</Text>
+                <Text type="body-16-medium">
+                  {convert(convert(question))} ({point})
+                </Text>
               </FormLabel>
               <FormControl>
                 <RadioGroup
@@ -107,7 +112,7 @@ const Question: React.FC<QuestionProps> = ({
                       <FormItem
                         className={cn(
                           "outline outline-1 outline-[#c9d2d8] rounded-[40px] flex items-center w-full cursor-pointer",
-                          getFormItemClass(option) // Sửa: Gọi hàm getFormItemClass
+                          getFormItemClass(option)
                         )}
                       >
                         <FormControl>
@@ -115,7 +120,6 @@ const Question: React.FC<QuestionProps> = ({
                             className={cn(
                               "bg-[#f5f5f5] p-4 rounded-tl-[40px] rounded-bl-[40px] mr-2.5 ",
                               selectedAnswer === option ? "!bg-[#B7CFE7]" : ""
-                              // getOptionColor(option)
                             )}
                           >
                             <RadioGroupItem
@@ -144,7 +148,7 @@ const Question: React.FC<QuestionProps> = ({
               <FormMessage />
               {showDetail && (
                 <Text type="body-16-medium" color="main-color-primary">
-                  Đáp án đúng: {correctAnswer}
+                  {convert(correctAnswer)}
                 </Text>
               )}
             </FormItem>

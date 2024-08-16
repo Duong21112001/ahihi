@@ -5,12 +5,15 @@ import Button from "@/components/Button";
 import ReactPaginate from "react-paginate";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { TrialTests } from "@/utils/model/courses";
-
+import { Test, TrialTests } from "@/utils/model/courses";
+import vector from "../../public/svg/Vector.svg";
+import { cn } from "@/utils";
+import cloud from "../../public/Images/Group 1597882862.png";
 const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [trialTest, setTrialTest] = useState<TrialTests[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [selectedSkillId, setSelectedSkillId] = useState<number | null>(null);
   useEffect(() => {
     const fetchTrial = async () => {
       try {
@@ -34,7 +37,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const filterExam =
     setSelectedContest !== "Tất cả"
       ? trialTest.filter(
-          (exam: { slug: string }) => exam.slug === setSelectedContest
+          (exam: { level: string }) => exam.level === setSelectedContest
         )
       : trialTest;
 
@@ -48,75 +51,86 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const currentExams = filterExam.slice(startIndex, endIndex);
 
   return (
-    <div className="container !pt-10">
-      <Text type="heading-h2">Danh sách Thi thử JLPT</Text>
-      <div className="grid grid-cols-4 max-md:grid-cols-1 gap-5">
-        {currentExams.map((item) => (
-          <div className={styles.testItem} key={item.id}>
-            <div className={styles.headerExam}>
-              <Text type="body-16-bold" color="dark-500">
-                {item.name}
-              </Text>
-              <Text type="tag-10-medium" className={styles.free}>
+    <div className="relative">
+      <Image src={cloud} alt="" className="absolute top-[25%] left-0" />
+      <Image src={cloud} alt="" className="absolute top-0 right-0 rotate-180" />
+
+      <div className="container !pt-10">
+        <div className="flex justify-center gap-5 relative">
+          {currentExams.map((item) => (
+            <div
+              className={cn(
+                "w-[366px] h-[324px] relative flex flex-col items-center justify-between shadow-md",
+                styles.testItem
+              )}
+              key={item.id}
+            >
+              <Text
+                type="tag-12-bold"
+                className="text-[#2D32A4]  bg-[#ECF9FF] rounded-lg py-2 px-3 absolute top-0 left-0"
+              >
                 Miễn phí
               </Text>
-            </div>
+              <div className="w-[96px] h-[96px] rounded-full bg-[#E7EFF7] flex items-center justify-center">
+                <div className="w-[79px] h-[79px] rounded-full bg-gradient-to-b-custom flex items-center justify-center text-[32px] text-white">
+                  {item.level}
+                </div>
+              </div>
 
-            <div className={styles.human}>
-              {Array.from({ length: 3 }).map((_, index) => (
-                <Image
-                  key={index}
-                  src="https://koseionline.vn/themes/template/images/user.png"
-                  alt=""
-                  width={50}
-                  height={50}
-                />
-              ))}
-              <Text
-                type="body-14-medium"
-                color="blue-4"
-                className={styles.amountHuman}
-              >
-                +9558
-              </Text>
-            </div>
+              <div className="flex flex-col gap-2">
+                {item.test.map((it: Test) => (
+                  <div
+                    key={it.id}
+                    className={cn(
+                      "border border-[#0F5FAF] bg-[#EDF2F7] rounded-full px-4 py-2 flex items-center justify-center gap-2 cursor-pointer",
+                      {
+                        ["bg-blue-100"]: selectedSkillId === it.id,
+                      }
+                    )}
+                    onClick={() => setSelectedSkillId(it.id)}
+                  >
+                    <Text className="text-[#2D3748]" type="body-14-semibold">
+                      {it.name}
+                    </Text>
 
-            {/* <div className={`${styles.item} gray-500 body-14-regular`}>
-              <p>{item.contest} phần thi </p>
-              <p>{item.question} câu hỏi</p>
-            </div> */}
-            <div className={styles.footerExam}>
-              <p className={styles.type}>{item.slug}</p>
+                    <div className="flex items-center gap-1">
+                      <Image src={vector} alt="" />
+                      <Text type="tag-10-medium" className="text-[#4A5568]">
+                        {it.pass_score}
+                      </Text>
+                    </div>
+                  </div>
+                ))}
+              </div>
               <Button
-                className={styles.btn}
+                className={cn("w-full uppercase", styles.btn)}
                 onClick={() => {
-                  router.push(`/exams?id=${item.id}`);
+                  const examName = item.name;
+                  const level = item.level;
+                  const query = {
+                    id: item.id.toString(),
+                    exam_name: examName,
+                    level: level,
+                    tests: JSON.stringify(
+                      item.test.map((test: Test) => ({
+                        test_id: test.id,
+                        test_name: test.name,
+                        pass_score: test.pass_score,
+                      }))
+                    ),
+                  };
+
+                  router.push({
+                    pathname: "/exams",
+                    query: query,
+                  });
                 }}
               >
                 Thi thử
               </Button>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className={styles.paginationContainer}>
-        <ReactPaginate
-          pageCount={Math.ceil(filterExam.length / itemsPerPage)}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
-          onPageChange={handlePageClick}
-          previousLabel={<span>{"<"}</span>}
-          nextLabel={<span>{">"}</span>}
-          breakLabel={<span>...</span>}
-          containerClassName={styles.pagination}
-          activeClassName={styles.activeP}
-          pageClassName={styles.pageNum}
-          previousClassName={styles.pageLink}
-          nextClassName={styles.pageLink}
-          breakClassName={styles.pageLink}
-          breakLinkClassName={styles.pageLink}
-          forcePage={currentPage}
-        />
+          ))}
+        </div>
       </div>
     </div>
   );

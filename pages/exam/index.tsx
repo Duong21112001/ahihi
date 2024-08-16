@@ -4,34 +4,12 @@ import styles from "./index.module.css";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Breadcrumb from "@/components/Breadcrumb";
-import Button from "@/components/Button";
 import ListExam from "./ListExam";
-const CONTEST = [
-  {
-    name: "Tất cả",
-    value: "Tất cả",
-  },
-  {
-    name: "N1",
-    value: "thi-thu-n1",
-  },
-  {
-    name: "N2",
-    value: "thi-thu-n2",
-  },
-  {
-    name: "N3",
-    value: "thi-thu-n3",
-  },
-  {
-    name: "N4",
-    value: "thi-thu-n4",
-  },
-  {
-    name: "N5",
-    value: "thi-thu-n5",
-  },
-];
+import { cn } from "@/utils";
+import Text from "@/components/Text";
+import Image from "next/image";
+import img from "../../public/Images/cloud-sun-right.png";
+
 const breadcrumb = [
   {
     label: "Trang chủ",
@@ -50,27 +28,40 @@ const Exam = () => {
         <Breadcrumb breadcrumbs={breadcrumb} />
       </div>
       <div
-        style={{
-          background: "#F9F9F9",
-        }}
+        className={cn(
+          "flex flex-col items-center justify-center gap-10 relative",
+          styles.bg
+        )}
       >
-        <div
-          className="container !py-5"
-          style={{ margin: "0 auto", display: "flex" }}
-        >
-          {React.Children.toArray(
-            CONTEST.map((item) => (
-              <Button
-                type="btn-ghost"
-                onClick={() => setSelectedContest(item.value)}
-                className={`${styles.btnType} ${
-                  selectedContest === item.value ? styles.active : ""
-                }`}
-              >
-                {item.name}
-              </Button>
-            ))
-          )}
+        <Image src={img} alt="" className="absolute top-0 left-0" />
+        <div style={{ margin: "0 auto", display: "flex" }}>
+          <Text type="title-32-bold">THI THỬ JLPT</Text>
+        </div>
+        <div className="flex gap-10 items-center">
+          <div className="bg-white px-8 py-6 rounded-[40px] flex flex-col items-center gap-1 shadow-md">
+            <Text type="title-20-regular" color="main-color-primary">
+              Học viên đang thi
+            </Text>
+            <Text type="title-32-bold" color="main-color-primary">
+              1000
+            </Text>
+          </div>
+          <div className="bg-[#003B9F] px-8 py-6 rounded-[40px] flex flex-col items-center gap-1">
+            <Text type="title-32-bold" color="neutral-10">
+              10.000 +
+            </Text>
+            <Text type="title-20-regular" color="neutral-10">
+              Thí sinh đã tham gia thi
+            </Text>
+          </div>
+          <div className="bg-[#003B9F] px-8 py-6 rounded-[40px] flex flex-col items-center gap-1">
+            <Text type="title-32-bold" color="neutral-10">
+              90 ~ 95%
+            </Text>
+            <Text type="title-20-regular" color="neutral-10">
+              Tỷ lệ sát đề thi
+            </Text>
+          </div>
         </div>
       </div>
       <ListExam setSelectedContest={selectedContest} />

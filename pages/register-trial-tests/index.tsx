@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -15,7 +15,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -30,8 +29,14 @@ import { useRouter } from "next/router";
 import { cn } from "@/utils";
 import Time from "./Time";
 import Text from "@/components/Text";
-import { PopUpRef } from "@/components/ModalMessage";
 import { registerTrialTest } from "@/service/register";
+import Breadcrumb from "@/components/Breadcrumb";
+import Image from "next/image";
+import img from "../../public/Images/cloud-sun-right.png";
+import user from "../../public/Images/user-circle.png";
+import sdt from "../../public/Images/sdt.png";
+import mail from "../../public/Images/mail.png";
+import rank from "../../public/Images/rank.png";
 const REQUIRED = "Không được bỏ trống trường này";
 const INVALID_PHONE = "Số điện thoại không hợp lệ";
 const FormSchema = z.object({
@@ -69,6 +74,16 @@ const LEVEL = [
     value: 5,
   },
 ];
+const breadcrumb = [
+  {
+    label: "Trang chủ",
+    link: "/",
+  },
+  {
+    label: "Thư viện đề thi",
+    link: "/my-course",
+  },
+];
 const RegisterTrialTests = () => {
   const [apiError, setApiError] = useState<string | null>(null);
   const router = useRouter();
@@ -95,8 +110,16 @@ const RegisterTrialTests = () => {
       email: data.email,
       level_id: level_id,
     };
+    console.log("Dữ liệu gửi đi:", params);
+
     try {
       await registerTrialTest(params);
+      localStorage.setItem("isRegistered", "true");
+      console.log(
+        "Đã lưu vào localStorage:",
+        localStorage.getItem("isRegistered")
+      );
+
       alert("Đăng ký thành công!");
       router.push({ pathname: "/exam" });
     } catch (error) {
@@ -111,102 +134,159 @@ const RegisterTrialTests = () => {
   const isFormFilled = level && username && phone && email;
 
   return (
-    <div className={cn("flex  items-center justify-center", styles.bg)}>
-      <div className="w-full flex-col flex items-center gap-10">
-        <Time />
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="bg-white w-[30%] p-6 rounded-xl"
-          >
-            <div className="flex flex-col gap-5">
-              <Text type="title-32-bold" className="text-center">
-                Đăng ký thi thử
+    <div>
+      <div className={styles.breadcrumb}>
+        <Breadcrumb breadcrumbs={breadcrumb} />
+      </div>
+      <div
+        className={cn("flex  items-center justify-center relative", styles.bg)}
+      >
+        <Image src={img} alt="" className="absolute top-0 left-0" />
+
+        <div className="w-full flex-col flex items-center gap-10">
+          <div style={{ margin: "0 auto", display: "flex" }}>
+            <Text type="title-32-bold">THI THỬ JLPT</Text>
+          </div>
+          <div className="flex gap-10 items-center">
+            <div className="bg-white px-8 py-6 rounded-[40px] flex flex-col items-center gap-1 shadow-md">
+              <Text type="title-20-regular" color="main-color-primary">
+                Học viên đang thi
               </Text>
-              <FormField
-                control={form.control}
-                name="level"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Trình độ</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Trình độ" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {React.Children.toArray(
-                          LEVEL.map((item) => (
-                            <SelectItem value={String(item.value)}>
-                              {item.level}
-                            </SelectItem>
-                          ))
-                        )}
-                      </SelectContent>
-                    </Select>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Họ và tên</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Họ và tên" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Số điện thoại</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Số điện thoại" {...field} />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Email" {...field} />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <Text type="title-32-bold" color="main-color-primary">
+                1000
+              </Text>
             </div>
-            {apiError && <p className="text-red-500">{apiError}</p>}
-
-            <Button
-              type="submit"
-              className="w-full mt-5"
-              // onClick={() => router.push({ pathname: "/exam" })}
-              disabled={!isFormFilled}
+            <div className="bg-[#003B9F] px-8 py-6 rounded-[40px] flex flex-col items-center gap-1">
+              <Text type="title-32-bold" color="neutral-10">
+                10.000 +
+              </Text>
+              <Text type="title-20-regular" color="neutral-10">
+                Thí sinh đã tham gia thi
+              </Text>
+            </div>
+            <div className="bg-[#003B9F] px-8 py-6 rounded-[40px] flex flex-col items-center gap-1">
+              <Text type="title-32-bold" color="neutral-10">
+                90 ~ 95%
+              </Text>
+              <Text type="title-20-regular" color="neutral-10">
+                Tỷ lệ sát đề thi
+              </Text>
+            </div>
+          </div>
+          <Time />
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="bg-white w-[30%] p-6 rounded-xl shadow-lg"
             >
-              {loading ? "Đang đăng ký..." : "Đăng ký thi thử"}
-            </Button>
-          </form>
-        </Form>
+              <div className="flex flex-col gap-4">
+                <Text type="title-32-bold" className="text-center">
+                  Đăng ký thi thử
+                </Text>
+
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="bg-[#F2F8FF] flex items-center py-1 px-3 rounded-lg ">
+                          <Image src={user} alt="" width={20} height={20} />
+                          <Input
+                            placeholder="Họ và tên"
+                            {...field}
+                            className="bg-[#F2F8FF] border-none placeholder:text-[#AEC7E5] placeholder:text-sm focus-visible:ring-offset-0 focus-visible:ring-0 outline-none"
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="bg-[#F2F8FF] flex items-center py-1 px-3 rounded-lg">
+                          <Image src={sdt} alt="" width={20} height={20} />
+                          <Input
+                            placeholder="Số điện thoại"
+                            {...field}
+                            className=" border-none placeholder:text-[#AEC7E5] placeholder:text-sm focus-visible:ring-offset-0 focus-visible:ring-0 outline-none"
+                          />
+                        </div>
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="bg-[#F2F8FF] flex items-center py-1 px-3 rounded-lg">
+                          <Image src={mail} alt="" width={20} height={20} />
+                          <Input
+                            placeholder="Email"
+                            {...field}
+                            className="bg-[#F2F8FF] border-none placeholder:text-[#AEC7E5] placeholder:text-sm focus-visible:ring-offset-0 focus-visible:ring-0 outline-none"
+                          />
+                        </div>
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="level"
+                  render={({ field }) => (
+                    <FormItem>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl className="border-none bg-[#F2F8FF]">
+                          <SelectTrigger className="text-[#AEC7E5] placeholder:text-[#AEC7E5] focus-visible:ring-offset-0 focus-visible:ring-0 outline-none">
+                            <Image src={rank} alt="" width={20} height={20} />
+                            <SelectValue placeholder="Trình độ" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {React.Children.toArray(
+                            LEVEL.map((item) => (
+                              <SelectItem value={String(item.value)}>
+                                {item.level}
+                              </SelectItem>
+                            ))
+                          )}
+                        </SelectContent>
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              {apiError && <p className="text-red-500">{apiError}</p>}
+
+              <Button
+                type="submit"
+                className="w-full mt-5"
+                // onClick={() => router.push({ pathname: "/exam" })}
+                disabled={!isFormFilled}
+              >
+                {loading ? "Đang đăng ký..." : "Đăng ký thi thử"}
+              </Button>
+            </form>
+          </Form>
+        </div>
       </div>
     </div>
   );

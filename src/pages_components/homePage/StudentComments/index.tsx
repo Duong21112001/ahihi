@@ -25,6 +25,8 @@ interface CommentProps {
 const StudentComments = () => {
   const [listComment, setListComment] = useState<CommentProps[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -46,20 +48,23 @@ const StudentComments = () => {
   const OneComment = () => {
     useEffect(() => {
       const fetchBanners = async () => {
-        try {
-          const response = await fetch(
-            "https://kosei-web.eupsolution.net/api/feedbacks"
-          );
-          const data = await response.json();
-          console.log("data=====", data.data);
+        if (!loading) {
+          setLoading(true);
+          try {
+            const response = await fetch(
+              "https://kosei-web.eupsolution.net/api/feedbacks"
+            );
+            const data = await response.json();
+            console.log("data=====", data.data);
 
-          if (Array.isArray(data.data)) {
-            setListComment(data.data);
-          } else {
-            setError("Data received is not an array");
+            if (Array.isArray(data.data)) {
+              setListComment(data.data);
+            } else {
+              setError("Data received is not an array");
+            }
+          } catch (err) {
+            setError("Failed to fetch banners");
           }
-        } catch (err) {
-          setError("Failed to fetch banners");
         }
       };
 

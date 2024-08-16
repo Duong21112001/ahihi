@@ -1,6 +1,7 @@
 .breadcrumb {
-  background: var(--shade-primary-4);
+  background: #0F5FAF;
 }
+
 .breadcrumb .breadcrumbContainer {
   padding: 20px;
   max-width: 1200px;
@@ -8,12 +9,15 @@
   display: flex;
   align-items: center;
 }
+
 .breadcrumb .text {
   color: var(--neutral-5);
 }
+
 .breadcrumb .textActive {
   color: var(--neutral-10);
 }
+
 .breadcrumb .dot {
   width: 4px;
   height: 4px;

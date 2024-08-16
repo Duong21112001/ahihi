@@ -20,7 +20,7 @@ import { logout } from "@/service/login";
 import { ROUTER } from "@/api/constant";
 import Search from "../Search";
 import Course from "./Course";
-
+import Document from "../../../pages/document/Document";
 const Header = () => {
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
@@ -78,6 +78,7 @@ const Header = () => {
   }, [router]);
   const nameUser = data?.[0]?.user?.fullname;
   const avatar = data?.[0]?.user?.avatar;
+  const paths = ["/register-trial-tests", "/exams", "/exam"];
   const DropDown = () => {
     return (
       <div className={styles.dropDown}>
@@ -264,16 +265,31 @@ const Header = () => {
                   </div>
                   <Text
                     type="body-16-regular"
-                    onClick={() =>
-                      router.push({
-                        pathname: "/register-trial-tests",
-                      })
-                    }
+                    onClick={() => {
+                      const isRegistered = localStorage.getItem("isRegistered");
+
+                      if (!user?.user_id) {
+                        router.push("/login");
+                      } else if (isRegistered === "true") {
+                        router.push("/exam");
+                      } else {
+                        router.push({
+                          pathname: "/register-trial-tests",
+                        });
+                      }
+                    }}
                     className={styles.textBtn}
+                    color={
+                      paths.includes(router.pathname)
+                        ? "primary-blue"
+                        : "neutral-1"
+                    }
                   >
                     Thi thử
                   </Text>
-
+                  <div className={styles.textBtn}>
+                    <Document />
+                  </div>
                   <Text
                     type="body-16-regular"
                     onClick={() =>
@@ -282,6 +298,11 @@ const Header = () => {
                       })
                     }
                     className={styles.textBtn}
+                    color={
+                      router.pathname === "/about-us"
+                        ? "primary-blue"
+                        : "neutral-1"
+                    }
                   >
                     Về chúng tôi
                   </Text>

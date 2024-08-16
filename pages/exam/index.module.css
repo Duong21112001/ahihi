@@ -5,7 +5,12 @@
 }
 
 .testItem {
-  border: 1px solid #e5e7eb;
+  background-color: #C5E2FF !important;
+  background-blend-mode: overlay;
+  background: url('../../public/Images/Vector\ 3025.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -16,7 +21,7 @@
   transition-duration: 0.3s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.5);
+
 }
 
 .testItem:hover {
@@ -39,18 +44,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
   /* font-size: 12px; */
 }
 
 .btn {
-  padding: 6px 12px !important;
+  padding: 14px 12px !important;
   border: 1px solid #0c4c8c;
-  width: fit-content;
-  height: fit-content;
   background: #ffff;
   color: #0c4c8c;
-  border-radius: 4px;
+  border-radius: 8px;
   margin-top: 10px;
+  width: 100%;
 }
 
 .btn:hover {
@@ -163,4 +168,13 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
+}
+
+.bg {
+  background: url('../../public/Images/Title.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 40px 0;
+
 }

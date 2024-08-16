@@ -20,7 +20,10 @@ const nextConfig = {
 
 
     ],
-    domains: ['upload.wikimedia.org'],
+    domains: ['upload.wikimedia.org', "koseionline.vn",
+      "kosei.eupsolution.net",
+      "kosei-web.eupsolution.net",
+    ],
 
   },
 };

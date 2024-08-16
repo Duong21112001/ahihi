@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface Course {
   id: number;
   name: string;
@@ -203,4 +205,45 @@ export interface TrialTests {
   is_online: number;
   created_at: string;
   updated_at: string;
+  level: string;
+  test: Test[];
+  point: number;
+}
+export interface Test {
+  id: number;
+  tt_id: number;
+  level_id: number;
+  name: string;
+  slug: string;
+  image: string;
+  pass_score: number;
+  des: string;
+  lang: string;
+  is_online: number;
+  created_at: string;
+  updated_at: string;
+}
+export interface CategoriesProp {
+  id: number;
+  name: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  is_new: number;
+}
+export interface DocumentProps {
+  id: number;
+  title: string;
+  content: string;
+  thumbnail: string;
+  category: number;
+  created_by: string;
+  status: number;
+  meta_title: null;
+  meta_description: null;
+  meta_keywords: null;
+  deleted_at: null;
+  created_at: string;
+  updated_at: string;
+  views: number;
 }

@@ -30,12 +30,14 @@ const ExamPage = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [disable, setDisable] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [answerResults, setAnswerResults] = useState<{
     [key: number]: boolean;
   }>({});
   const [correctAnswers, setCorrectAnswers] = useState<{
     [key: number]: string;
   }>({});
+  const [currentTestIndex, setCurrentTestIndex] = useState(0);
 
   const [question, setQuestion] = useState<Questions[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +45,22 @@ const ExamPage = () => {
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
   const { convert } = require("html-to-text");
   const router = useRouter();
-  const { id } = router.query;
+  const { id, exam_name, tests, level } = router.query;
+  const parsedTests = tests ? JSON.parse(tests as string) : [];
+  const currentExam = parsedTests[currentTestIndex];
+  const testId = currentExam?.test_id;
+  const name = currentExam?.test_name || "";
+  const [isResting, setIsResting] = useState(false);
+  const [restTime, setRestTime] = useState(5 * 60);
+  const [countdownActive, setCountdownActive] = useState(false);
+  const [countdownTime, setCountdownTime] = useState(0);
+
+  useEffect(() => {
+    if (exam_name && level) {
+      console.log("Exam Name:", exam_name);
+      console.log("Exam Name:", level);
+    }
+  }, [exam_name, level]);
   const handleAnswer = (questionId: number, answer: string) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -51,33 +68,35 @@ const ExamPage = () => {
     }));
   };
 
-  // const { data }: { data: Questions[] } = useRequest(async () => {
-  //   const result = await getCourseQuestions(1);
-  //   return result;
-  // });
   useEffect(() => {
     const fetchQuestion = async () => {
-      if (id) {
+      if (id && parsedTests[currentTestIndex]?.test_id && !loading) {
+        setLoading(true);
+
         try {
           const response = await fetch(
-            `https://kosei-web.eupsolution.net/api/trial-tests/${id}/questions`
+            `https://kosei-web.eupsolution.net/api/trial-tests/${id}/questions?test_id=${parsedTests[currentTestIndex].test_id}`
           );
           const data = await response.json();
           if (Array.isArray(data)) {
-            setQuestion(data);
+            const filteredQuestions = data.filter(
+              // (q) => q.test_id === parsedTests[currentTestIndex]?.test_id
+              (q) => q.test_id === testId
+            );
+            setQuestion(filteredQuestions);
           } else {
-            setError("Data empry");
+            setError("Data empty");
           }
         } catch (err) {
           setError("Failed");
+        } finally {
+          setLoading(false);
         }
       }
     };
-    fetchQuestion();
-  }, [id]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const sliceData = data?.slice(0, 7) || [];
+    fetchQuestion();
+  }, [id, currentTestIndex]);
 
   useEffect(() => {
     if (question) {
@@ -91,13 +110,29 @@ const ExamPage = () => {
       }
     }
   }, [answers, question]);
+  useEffect(() => {
+    if (countdownActive && countdownTime > 0) {
+      const timer = setInterval(() => {
+        setCountdownTime((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(timer as unknown as number);
+    } else if (countdownTime === 0) {
+      setCountdownActive(false);
+      setCountdownTime(5 * 60);
+      setIsResting(true);
+    }
+  }, [countdownActive, countdownTime]);
 
   let questionIndex = 1;
 
   const handleSubmit = () => {
-    if (question) {
+    const currentTest = parsedTests[currentTestIndex];
+
+    if (question && currentTest) {
       let correctCount = 0;
       let answeredCount = 0;
+      let totalScore = 0;
       let tempAnswerResults: { [key: number]: boolean } = {};
       let tempCorrectAnswers: { [key: number]: string } = {};
 
@@ -119,18 +154,30 @@ const ExamPage = () => {
             tempCorrectAnswers[q.id] = correctAnswer;
             if (answers[q.id] === correctAnswer) {
               correctCount++;
+              totalScore += q.point;
               tempAnswerResults[q.id] = true;
             } else {
               tempAnswerResults[q.id] = false;
             }
           }
         });
-      setResult(`Số câu trả lời đúng: ${correctCount} / ${answeredCount}`);
+      const passScore = currentTest.pass_score || 0;
+
+      setResult(
+        `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`
+      );
       setAnswerResults(tempAnswerResults);
       setCorrectAnswers(tempCorrectAnswers);
       setDisable(true);
       setIsButtonDisabled(true);
       setIsPaused(true);
+      setCountdownActive(true);
+      if (currentTestIndex < parsedTests.length - 1) {
+        setIsResting(true);
+      } else {
+        setIsResting(false);
+        console.log("Đã hoàn thành tất cả các bài thi");
+      }
     }
   };
   const scrollQuestion = (index: number) => {
@@ -138,6 +185,46 @@ const ExamPage = () => {
       questionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
     }
   };
+  useEffect(() => {
+    if (isResting) {
+      if (restTime === 0) {
+        if (currentTestIndex < parsedTests.length - 1) {
+          setCurrentTestIndex(currentTestIndex + 1);
+          setAnswers({});
+          setDisable(false);
+          setIsButtonDisabled(true);
+          setIsPaused(false);
+          setRestTime(5 * 60);
+          setIsResting(false);
+          setCountdownActive(false);
+        } else {
+          console.log("Đã hoàn thành tất cả các bài thi");
+        }
+      } else {
+        const restTimer = setInterval(() => {
+          setRestTime((prev) => prev - 1);
+        }, 1000);
+
+        return () => clearInterval(restTimer as unknown as number);
+      }
+    }
+  }, [isResting, restTime, currentTestIndex, parsedTests.length]);
+
+  const handleSkipRest = () => {
+    if (currentTestIndex < parsedTests.length - 1) {
+      setCurrentTestIndex(currentTestIndex + 1);
+      setAnswers({});
+      setDisable(false);
+      setIsButtonDisabled(true);
+      setIsPaused(false);
+      setCountdownActive(false);
+      setRestTime(5 * 60);
+      setIsResting(false);
+    } else {
+      console.log("Đã hoàn thành tất cả các bài thi");
+    }
+  };
+
   return (
     <div className="flex">
       <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5">
@@ -151,7 +238,7 @@ const ExamPage = () => {
             ref={(el) => (questionRefs.current[examIndex] = el)}
           >
             <Text type="body-16-bold">
-              {exam.name}: {convert(convert(exam.question))}
+              {exam.name}:({exam.point}) {convert(convert(exam.question))}
             </Text>
             {exam.questions?.map((q, index) => (
               <Question
@@ -165,6 +252,7 @@ const ExamPage = () => {
                 disable={disable}
                 answerResults={answerResults}
                 correctAnswer={correctAnswers[q.id]}
+                point={q.point}
               />
             ))}
           </div>
@@ -180,18 +268,29 @@ const ExamPage = () => {
             className="min-w-[45px] max-w-[45px]"
           />
           <div className="flex flex-col gap-2">
-            <Text type="body-16-bold">
-              JLPT - N1 - Thi thử JLPT N1 mùa 7 - đợt 1
-            </Text>
+            <div className="flex items-center gap-2">
+              <Text type="body-16-bold">{exam_name}</Text>
+              <Text
+                type="body-14-bold"
+                className="bg-[#0F5FAF] text-white px-2 py-[2px] rounded-xl"
+              >
+                {level}
+              </Text>
+            </div>
+
             <Text
               type="body-16-regular"
               className="border-2 w-fit px-3 py-1 border-[#0F5FAF] rounded-md"
             >
-              Ngữ pháp
+              {name}
             </Text>
           </div>
         </div>
-        <CountDown isPaused={isPaused} />
+        <CountDown
+          isPaused={isPaused}
+          timeR={60 * 60}
+          name="Thời gian còn lại"
+        />
         <div className="p-4 ">
           <div className="mt-5 my-2.5">
             <Text type="body-16-semibold">Câu hỏi đã làm</Text>
@@ -211,6 +310,25 @@ const ExamPage = () => {
                 </div>
               ))}
           </div>
+          {isResting && currentTestIndex < parsedTests.length - 1 && (
+            <>
+              {countdownActive && (
+                <div className="mt-6">
+                  <CountDown
+                    timeR={countdownTime}
+                    isPaused={false}
+                    name="Thời gian nghỉ giải lao"
+                  />
+                  <Button
+                    className="w-full bg-red-500 text-white mt-4"
+                    onClick={handleSkipRest}
+                  >
+                    Bỏ qua giờ nghỉ
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
         </div>
         <Dialog>
           <DialogTrigger asChild>
