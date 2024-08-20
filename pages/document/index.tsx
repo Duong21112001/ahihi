@@ -48,7 +48,9 @@ const DocumentList = () => {
     router.push(`/document-detail/${id}`);
   };
   const { convert } = require("html-to-text");
-
+  const formatDate = (dateTimeString: any) => {
+    return dateTimeString.split("T")[0];
+  };
   return (
     <div>
       {sliceData.map((item) => (
@@ -76,12 +78,13 @@ const DocumentList = () => {
                 <Image src={arrow} alt="" width={11.5} height={5.5} />
               </Button>
             </div>
-            <Image
+            <img
               src={`https://kosei-web.eupsolution.net${item.thumbnail}`}
+              // src={img}
               alt=""
               width={632}
               height={420}
-              className="min-w-[632px] h-[420px] object-fill"
+              className="min-w-[632px] h-[420px] object-cover"
             />
           </div>
         </div>
@@ -99,7 +102,7 @@ const DocumentList = () => {
                 alt=""
                 height={212}
                 width={360}
-                className="max-h-[212px]"
+                className="max-h-[212px] object-cover"
               />
 
               <div className="p-4">
@@ -118,7 +121,7 @@ const DocumentList = () => {
                   <div className="flex items-center gap-1">
                     <Image src={clock} alt="" />
                     <Text type="body-14-regular" className="text-[#A0AEC0]">
-                      {it.created_at}
+                      {it.created_at ? formatDate(it.created_at) : ""}
                     </Text>
                   </div>
                   <div className="flex items-center gap-1">

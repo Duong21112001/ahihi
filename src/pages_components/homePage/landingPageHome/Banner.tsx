@@ -71,7 +71,7 @@ const Banner = () => {
           src={`https://kosei-web.eupsolution.net${item.path}`}
           alt=""
           key={item.id}
-          className="w-full h-[70vh] object-cover"
+          className="w-full h-[70vh] object-cover max-lg:h-[30vh] max-lg:object-fill"
           width={500}
           height={500}
         />

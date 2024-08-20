@@ -55,12 +55,12 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
       <Image src={cloud} alt="" className="absolute top-[25%] left-0" />
       <Image src={cloud} alt="" className="absolute top-0 right-0 rotate-180" />
 
-      <div className="container !pt-10">
-        <div className="flex justify-center gap-5 relative">
+      <div className="container !pt-10 max-lg:py-0">
+        <div className="flex justify-center gap-5 relative max-lg:flex-col ">
           {currentExams.map((item) => (
             <div
               className={cn(
-                "w-[366px] h-[324px] relative flex flex-col items-center justify-between shadow-md",
+                "w-[366px] relative flex flex-col items-center justify-between shadow-md h-auto",
                 styles.testItem
               )}
               key={item.id}

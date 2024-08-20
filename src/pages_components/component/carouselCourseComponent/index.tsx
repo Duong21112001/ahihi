@@ -57,7 +57,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
           >
             {course.name}
           </Text>
-          <Box flex agileItem="agile-center" className={styles.rate}>
+          {/* <Box flex agileItem="agile-center" className={styles.rate}>
             <Box flex right={10} className={styles.rateIcon}>
               {[...Array(4)].map((value, key) => {
                 return (
@@ -89,7 +89,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
             <Text type="body-16-regular" color="dark-500">
               4.8 (120 đánh giá)
             </Text>
-          </Box>
+          </Box> */}
           <Box
             flex
             agileItem="agile-center"
@@ -110,7 +110,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
                 style={{ marginRight: 10 }}
               />
               <Text type="body-14-medium" color="neutral-1">
-                {course?.expired_at} buổi
+                {course?.expired_at} tháng
               </Text>
             </Box>
           </Box>

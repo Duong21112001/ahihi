@@ -126,89 +126,89 @@ const ExamPage = () => {
 
   let questionIndex = 1;
 
-  const handleSubmit = () => {
-    const currentTest = parsedTests[currentTestIndex];
+  // const handleSubmit = () => {
+  //   const currentTest = parsedTests[currentTestIndex];
 
-    if (question && currentTest) {
-      let correctCount = 0;
-      let answeredCount = 0;
-      let totalScore = 0;
-      let tempAnswerResults: { [key: number]: boolean } = {};
-      let tempCorrectAnswers: { [key: number]: string } = {};
+  //   if (question && currentTest) {
+  //     let correctCount = 0;
+  //     let answeredCount = 0;
+  //     let totalScore = 0;
+  //     let tempAnswerResults: { [key: number]: boolean } = {};
+  //     let tempCorrectAnswers: { [key: number]: string } = {};
 
-      question
-        .flatMap((exam) => exam.questions)
-        .forEach((q) => {
-          if (answers[q?.id] !== undefined) {
-            answeredCount++;
-            const correctAnswerMap = {
-              "1": q.answer_a,
-              "2": q.answer_b,
-              "3": q.answer_c,
-              "4": q.answer_d,
-            };
-            const correctAnswer =
-              correctAnswerMap[
-                q.correct_answer as keyof typeof correctAnswerMap
-              ];
-            tempCorrectAnswers[q.id] = correctAnswer;
-            if (answers[q.id] === correctAnswer) {
-              correctCount++;
-              totalScore += q.point;
-              tempAnswerResults[q.id] = true;
-            } else {
-              tempAnswerResults[q.id] = false;
-            }
-          }
-        });
-      const passScore = currentTest.pass_score || 0;
+  //     question
+  //       .flatMap((exam) => exam.questions)
+  //       .forEach((q) => {
+  //         if (answers[q?.id] !== undefined) {
+  //           answeredCount++;
+  //           const correctAnswerMap = {
+  //             "1": q.answer_a,
+  //             "2": q.answer_b,
+  //             "3": q.answer_c,
+  //             "4": q.answer_d,
+  //           };
+  //           const correctAnswer =
+  //             correctAnswerMap[
+  //               q.correct_answer as keyof typeof correctAnswerMap
+  //             ];
+  //           tempCorrectAnswers[q.id] = correctAnswer;
+  //           if (answers[q.id] === correctAnswer) {
+  //             correctCount++;
+  //             totalScore += q.point;
+  //             tempAnswerResults[q.id] = true;
+  //           } else {
+  //             tempAnswerResults[q.id] = false;
+  //           }
+  //         }
+  //       });
+  //     const passScore = currentTest.pass_score || 0;
 
-      setResult(
-        `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`
-      );
-      setAnswerResults(tempAnswerResults);
-      setCorrectAnswers(tempCorrectAnswers);
-      setDisable(true);
-      setIsButtonDisabled(true);
-      setIsPaused(true);
-      setCountdownActive(true);
-      if (currentTestIndex < parsedTests.length - 1) {
-        setIsResting(true);
-      } else {
-        setIsResting(false);
-        console.log("Đã hoàn thành tất cả các bài thi");
-      }
-    }
-  };
-  const scrollQuestion = (index: number) => {
-    if (questionRefs.current[index]) {
-      questionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-  useEffect(() => {
-    if (isResting) {
-      if (restTime === 0) {
-        if (currentTestIndex < parsedTests.length - 1) {
-          setCurrentTestIndex(currentTestIndex + 1);
-          setAnswers({});
-          setDisable(false);
-          setIsButtonDisabled(true);
-          setIsPaused(false);
-          setRestTime(5 * 60);
-          setIsResting(false);
-          setCountdownActive(false);
-        } else {
-          console.log("Đã hoàn thành tất cả các bài thi");
-        }
-      } else {
-        const restTimer = setInterval(() => {
-          setRestTime((prev) => prev - 1);
-        }, 1000);
+  //     setResult(
+  //       `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`
+  //     );
+  //     setAnswerResults(tempAnswerResults);
+  //     setCorrectAnswers(tempCorrectAnswers);
+  //     setDisable(true);
+  //     setIsButtonDisabled(true);
+  //     setIsPaused(true);
+  //     setCountdownActive(true);
+  //     if (currentTestIndex < parsedTests.length - 1) {
+  //       setIsResting(true);
+  //     } else {
+  //       setIsResting(false);
+  //       console.log("Đã hoàn thành tất cả các bài thi");
+  //     }
+  //   }
+  // };
+  // const scrollQuestion = (index: number) => {
+  //   if (questionRefs.current[index]) {
+  //     questionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (isResting) {
+  //     if (restTime === 0) {
+  //       if (currentTestIndex < parsedTests.length - 1) {
+  //         setCurrentTestIndex(currentTestIndex + 1);
+  //         setAnswers({});
+  //         setDisable(false);
+  //         setIsButtonDisabled(true);
+  //         setIsPaused(false);
+  //         setRestTime(5 * 60);
+  //         setIsResting(false);
+  //         setCountdownActive(false);
+  //       } else {
+  //         console.log("Đã hoàn thành tất cả các bài thi");
+  //       }
+  //     } else {
+  //       const restTimer = setInterval(() => {
+  //         setRestTime((prev) => prev - 1);
+  //       }, 1000);
 
-        return () => clearInterval(restTimer as unknown as number);
-      }
-    }
-  }, [isResting, restTime, currentTestIndex, parsedTests.length]);
+  //       return () => clearInterval(restTimer as unknown as number);
+  //     }
+  //   }
+  // }, [isResting, restTime, currentTestIndex, parsedTests.length]);
 
   const handleSkipRest = () => {
     if (currentTestIndex < parsedTests.length - 1) {
@@ -224,7 +224,72 @@ const ExamPage = () => {
       console.log("Đã hoàn thành tất cả các bài thi");
     }
   };
+  const handleSubmit = () => {
+    const currentTest = parsedTests[currentTestIndex];
+    if (!question || !currentTest) return;
 
+    let totalScore = 0;
+    const tempAnswerResults: { [key: number]: boolean } = {};
+    const tempCorrectAnswers: { [key: number]: string } = {};
+    let answeredCount = 0;
+    let correctCount = 0;
+
+    question
+      .flatMap((exam) => exam.questions)
+      .forEach((q) => {
+        const userAnswer = answers[q.id];
+        if (userAnswer !== undefined) {
+          answeredCount++;
+          const correctAnswerMap = {
+            "1": q.answer_a,
+            "2": q.answer_b,
+            "3": q.answer_c,
+            "4": q.answer_d,
+          };
+          const correctAnswer =
+            correctAnswerMap[q.correct_answer as keyof typeof correctAnswerMap];
+          tempCorrectAnswers[q.id] = correctAnswer;
+
+          if (userAnswer === correctAnswer) {
+            correctCount++;
+            totalScore += q.point;
+            tempAnswerResults[q.id] = true;
+          } else {
+            tempAnswerResults[q.id] = false;
+          }
+        }
+      });
+
+    const passScore = currentTest.pass_score || 0;
+    const resultMessage = `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`;
+    setResult(resultMessage);
+    setAnswerResults(tempAnswerResults);
+    setCorrectAnswers(tempCorrectAnswers);
+    setDisable(true);
+    setIsButtonDisabled(true);
+    setIsPaused(true);
+    setCountdownActive(true);
+    const storedResults = JSON.parse(
+      localStorage.getItem("examResults") || "[]"
+    );
+    const newResult = {
+      testName: name,
+      score: totalScore,
+      passScore,
+      correctAnswers: correctCount,
+      answeredQuestions: answeredCount,
+    };
+
+    storedResults.push(newResult);
+    localStorage.setItem("examResults", JSON.stringify(storedResults));
+
+    if (currentTestIndex < parsedTests.length - 1) {
+      setIsResting(true);
+    } else {
+      setIsResting(false);
+      console.log("Đã hoàn thành tất cả các bài thi");
+    }
+  };
   return (
     <div className="flex">
       <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5">
@@ -253,6 +318,7 @@ const ExamPage = () => {
                 answerResults={answerResults}
                 correctAnswer={correctAnswers[q.id]}
                 point={q.point}
+                img={q?.image}
               />
             ))}
           </div>
@@ -304,7 +370,7 @@ const ExamPage = () => {
                   className={`p-2 border w-8 h-8 flex items-center justify-center rounded ${
                     answers[q?.id] ? "bg-[#0F5FAF] text-white" : "bg-white"
                   }`}
-                  onClick={() => scrollQuestion(index)}
+                  // onClick={() => scrollQuestion(index)}
                 >
                   {index + 1}
                 </div>
