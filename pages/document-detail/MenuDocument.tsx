@@ -35,7 +35,7 @@ const MenuDocument = ({
       </Text>
       <div className=" px-8 pb-6">
         <div className="flex flex-col ">
-          {items.map((item) => (
+          {items?.map((item) => (
             <div
               key={item.id}
               className="flex items-center justify-between w-full border-b gap-2 border-[#CBD5E0] py-6 cursor-pointer"
