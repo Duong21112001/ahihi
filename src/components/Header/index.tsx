@@ -72,7 +72,18 @@ const Header = () => {
     });
     setIsShowDropdown(false);
   };
-
+  const handleChange = () => {
+    router.push({
+      pathname: "history",
+    });
+    setIsShowDropdown(false);
+  };
+  const handleEdit = () => {
+    router.push({
+      pathname: "update-profile",
+    });
+    setIsShowDropdown(false);
+  };
   useEffect(() => {
     setnavBarOpen(false);
   }, [router]);
@@ -104,6 +115,7 @@ const Header = () => {
               width={20}
               height={20}
               style={{ cursor: "pointer" }}
+              onClick={handleEdit}
             />
           </div>
           <Text
@@ -120,8 +132,9 @@ const Header = () => {
           type="body-16-medium"
           color="neutral-2"
           className={styles.history}
+          onClick={handleChange}
         >
-          Lịch sử học tập
+          Lịch sử thi
         </Text>
         <Text
           type="body-16-medium"

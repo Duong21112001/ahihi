@@ -15,8 +15,12 @@ const DocumentPage = ({ children }: { children: ReactElement }) => {
       link: "/",
     },
     {
-      label: course?.name || "",
-      link: "/",
+      label: "Tài liệu",
+      link: "/my-course",
+    },
+    {
+      label: "Giáo trình học tiếng Nhật",
+      link: "/my-course",
     },
   ];
   return (

@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { number, z } from "zod";
 
 import { Button } from "@/components/ui/button";
-
+import avt from "../../public/Images/congrats you join the e-course successfully.png";
 import {
   Form,
   FormControl,
@@ -37,6 +37,7 @@ import user from "../../public/Images/user-circle.png";
 import sdt from "../../public/Images/sdt.png";
 import mail from "../../public/Images/mail.png";
 import rank from "../../public/Images/rank.png";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 const REQUIRED = "Không được bỏ trống trường này";
 const INVALID_PHONE = "Số điện thoại không hợp lệ";
 const FormSchema = z.object({
@@ -145,7 +146,9 @@ const RegisterTrialTests = () => {
 
         <div className="w-full flex-col flex items-center gap-10">
           <div style={{ margin: "0 auto", display: "flex" }}>
-            <Text type="title-32-bold">THI THỬ JLPT</Text>
+            <Text type="title-32-bold" className="relative z-50">
+              THI THỬ JLPT
+            </Text>
           </div>
           <div className="flex gap-10 items-center">
             <div className="bg-white px-8 py-6 rounded-[40px] flex flex-col items-center gap-1 shadow-md">
@@ -191,7 +194,13 @@ const RegisterTrialTests = () => {
                     <FormItem>
                       <FormControl>
                         <div className="bg-[#F2F8FF] flex items-center py-1 px-3 rounded-lg ">
-                          <Image src={user} alt="" width={20} height={20} />
+                          <Image
+                            src={user}
+                            alt=""
+                            width={20}
+                            height={20}
+                            className="mr-2"
+                          />
                           <Input
                             placeholder="Họ và tên"
                             {...field}
@@ -210,11 +219,17 @@ const RegisterTrialTests = () => {
                     <FormItem>
                       <FormControl>
                         <div className="bg-[#F2F8FF] flex items-center py-1 px-3 rounded-lg">
-                          <Image src={sdt} alt="" width={20} height={20} />
+                          <Image
+                            src={sdt}
+                            alt=""
+                            width={20}
+                            height={20}
+                            className="mr-2"
+                          />
                           <Input
                             placeholder="Số điện thoại"
                             {...field}
-                            className=" border-none placeholder:text-[#AEC7E5] placeholder:text-sm focus-visible:ring-offset-0 focus-visible:ring-0 outline-none"
+                            className="bg-[#F2F8FF] border-none placeholder:text-[#AEC7E5] placeholder:text-sm focus-visible:ring-offset-0 focus-visible:ring-0 outline-none"
                           />
                         </div>
                       </FormControl>
@@ -230,7 +245,13 @@ const RegisterTrialTests = () => {
                     <FormItem>
                       <FormControl>
                         <div className="bg-[#F2F8FF] flex items-center py-1 px-3 rounded-lg">
-                          <Image src={mail} alt="" width={20} height={20} />
+                          <Image
+                            src={mail}
+                            alt=""
+                            width={20}
+                            height={20}
+                            mr-2
+                          />
                           <Input
                             placeholder="Email"
                             {...field}
@@ -253,9 +274,11 @@ const RegisterTrialTests = () => {
                         defaultValue={field.value}
                       >
                         <FormControl className="border-none bg-[#F2F8FF]">
-                          <SelectTrigger className="text-[#AEC7E5] placeholder:text-[#AEC7E5] focus-visible:ring-offset-0 focus-visible:ring-0 outline-none">
-                            <Image src={rank} alt="" width={20} height={20} />
-                            <SelectValue placeholder="Trình độ" />
+                          <SelectTrigger className=" focus-visible:ring-offset-0 focus-visible:ring-0 outline-none">
+                            <div className="flex items-center gap-3">
+                              <Image src={rank} alt="" width={20} height={20} />
+                              <SelectValue placeholder="Trình độ" />
+                            </div>
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -275,15 +298,45 @@ const RegisterTrialTests = () => {
                 />
               </div>
               {apiError && <p className="text-red-500">{apiError}</p>}
-
-              <Button
-                type="submit"
-                className="w-full mt-5"
-                // onClick={() => router.push({ pathname: "/exam" })}
-                disabled={!isFormFilled}
-              >
-                {loading ? "Đang đăng ký..." : "Đăng ký thi thử"}
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    // type="submit"
+                    className="w-full mt-5"
+                    disabled={!isFormFilled}
+                  >
+                    {loading ? "Đang đăng ký..." : "Đăng ký thi thử"}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="flex flex-col items-center">
+                  <Text type="title-24-bold" className="text-[#0F5FAF]">
+                    Đăng ký thành công
+                  </Text>
+                  <Text type="body-14-semibold" className="text-[#718096]">
+                    Bạn đã đăng ký thông tin thành công. Hãy chuẩn bị cho kì thi
+                    nào!
+                  </Text>
+                  <Image src={avt} alt="" width={192} height={140} />
+                  <div className="flex gap-2">
+                    <Button
+                      // type="submit"
+                      className="w-full mt-5 border border-[#0F5FAF] text-[#0F5FAF]"
+                      disabled={!isFormFilled}
+                      variant="outline"
+                    >
+                      Để sau
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="w-full mt-5"
+                      disabled={!isFormFilled}
+                      onClick={() => router.push("/exam")}
+                    >
+                      Vào thi
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </form>
           </Form>
         </div>

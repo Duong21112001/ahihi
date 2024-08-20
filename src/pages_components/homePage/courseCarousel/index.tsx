@@ -19,21 +19,6 @@ const CourseCarousel = () => {
     }
   );
 
-  const tabs = [
-    {
-      label: "Khoá học OFFLINE",
-      value: 0,
-    },
-    {
-      label: "Khoá học ONLINE SKYPE",
-      value: 1,
-    },
-    {
-      label: "Khoá học ONLINE WEBSITE",
-      value: 2,
-    },
-  ];
-
   return (
     <div className={styles.courseCarouselPadding}>
       <div className={styles.courseCarouselWrap}>
@@ -48,20 +33,7 @@ const CourseCarousel = () => {
           >
             KHOÁ HỌC TIẾNG NHẬT ONLINE APP VÀ WEBSITE
           </Text>
-          <div className={styles.tabs}>
-            {tabs.map((tab) => {
-              return (
-                <Button
-                  key={tab.value}
-                  className={styles.buttonTab}
-                  onClick={() => setTabActive(tab.value)}
-                  type={tab.value === tabActive ? "btn-blue" : "btn-disable"}
-                >
-                  {tab.label}
-                </Button>
-              );
-            })}
-          </div>
+
           {!loading && data && data?.length > 0 && (
             <CourseCarouselComponent dataCarousel={data} loading={loading} />
           )}

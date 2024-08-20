@@ -14,6 +14,8 @@ import Comment from ".././Comment";
 import DocumentPage from "../../document/DocumentPage";
 import Menu from "../../document/Menu";
 import Search from "../Search";
+import { useRecoilState } from "recoil";
+import { userProfile } from "@/context/User";
 interface Category {
   id: number;
   name: string;
@@ -79,7 +81,7 @@ const DocumentDetail = () => {
       }
     };
     fetchDocuments();
-  }, []);
+  }, [id]);
 
   const formatDate = (dateTimeString: any) => {
     return dateTimeString.split("T")[0];
@@ -145,16 +147,15 @@ const DocumentDetail = () => {
             <Text type="title-18-regular" color="neutral-3" className="my-6">
               {convert(convert(document?.content))}
             </Text>
-            <Image
+            <img
               src={`https://kosei-web.eupsolution.net${document?.thumbnail}`}
+              // src={img}
               alt=""
-              className="mt-8"
-              width={212}
-              height={212}
+              className="mt-8 w-full h-[422px] object-cover"
             />
           </div>
 
-          <Comment className="w-full" />
+          <Comment className="w-full" documentId={document?.id ?? 0} />
         </div>
         <div className="w-[30%] flex flex-col items-center gap-8">
           <Search />

@@ -32,6 +32,7 @@ interface QuestionProps {
   answerResults?: { [key: number]: boolean };
   correctAnswer?: string;
   point: number;
+  img: string;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -45,6 +46,7 @@ const Question: React.FC<QuestionProps> = ({
   answerResults,
   correctAnswer,
   point,
+  img,
 }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -95,6 +97,7 @@ const Question: React.FC<QuestionProps> = ({
                 <Text type="body-16-medium">
                   {convert(convert(question))} ({point})
                 </Text>
+                <img src={img} alt="" />
               </FormLabel>
               <FormControl>
                 <RadioGroup

@@ -3,6 +3,7 @@ import React from "react";
 import Text from "@/components/Text";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
+import img from "../../public/Images/1.png";
 
 interface MenuDocumentItem {
   id: number;
@@ -40,12 +41,11 @@ const MenuDocument = ({
               className="flex items-center justify-between w-full border-b gap-2 border-[#CBD5E0] py-6 cursor-pointer"
               onClick={() => handleDocumentClick(item.id)}
             >
-              <Image
+              <img
                 src={`https://kosei-web.eupsolution.net${item.img}`}
+                // src={img}
                 alt={item.name}
-                width={94}
-                height={64}
-                className="rounded-lg w-[94px] h-[64px]"
+                className="rounded-lg min-w-[94px] h-[64px] object-cover"
               />
               <Text
                 className="text-[#2D3748] line-clamp-3"

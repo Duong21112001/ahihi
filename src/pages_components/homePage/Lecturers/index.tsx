@@ -118,7 +118,7 @@ const Lecturers = () => {
           80.000+ học viên
         </Text>
       </div>
-      <div className="grid grid-cols-3 gap-y-[240px] mt-[190px] max-lg:grid-cols-1 max-xl:gap-y-[140px] max-xl:mt-[150px] max-xl:grid-cols-2 max-xl:gap-x-10">
+      <div className="grid grid-cols-3 gap-y-[140px] gap-x-[33px] mt-[190px] max-lg:grid-cols-1 max-xl:gap-y-[140px] max-xl:mt-[150px] max-xl:grid-cols-2 max-xl:gap-x-10">
         {React.Children.toArray(
           listTeacher.map((item) => (
             <div className={cn("relative", styles.bg)}>
