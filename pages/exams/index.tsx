@@ -80,11 +80,8 @@ const ExamPage = () => {
             setError(null);
 
             try {
-                // const response = await fetch(
-                //     `https://kosei-web.eupsolution.net/api/trial-tests/${id}/questions?test_id=${parsedTests[currentTestIndex].test_id}`
-                // );
                 const response = await fetch(
-                    `http://localhost:8000/api/trial-tests/${testId}/questions`
+                    `https://kosei-web.eupsolution.net/api/trial-tests/${testId}/questions?test_id=${parsedTests[currentTestIndex].test_id}`
                 );
 
                 if (!response.ok) {
