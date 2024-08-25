@@ -14,3 +14,11 @@ export interface RegisterTrial {
   email: string;
   level_id: number;
 }
+export interface UpdateProps {
+  fullname: string;
+  birthday: string;
+  gender: string;
+  address: string;
+  mobile: string;
+  email: string;
+}

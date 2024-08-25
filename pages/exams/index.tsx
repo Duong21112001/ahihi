@@ -54,6 +54,8 @@ const ExamPage = () => {
   const [restTime, setRestTime] = useState(5 * 60);
   const [countdownActive, setCountdownActive] = useState(false);
   const [countdownTime, setCountdownTime] = useState(0);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const [endTime, setEndTime] = useState<number | null>(null);
 
   useEffect(() => {
     if (exam_name && level) {
@@ -79,10 +81,8 @@ const ExamPage = () => {
           );
           const data = await response.json();
           if (Array.isArray(data)) {
-            const filteredQuestions = data.filter(
-              // (q) => q.test_id === parsedTests[currentTestIndex]?.test_id
-              (q) => q.test_id === testId
-            );
+            const filteredQuestions = data.filter((q) => q.test_id === testId);
+            console.log("Test ID:", testId);
             setQuestion(filteredQuestions);
           } else {
             setError("Data empty");
@@ -103,7 +103,9 @@ const ExamPage = () => {
       const totalQuestions = question.flatMap((exam) => exam.question).length;
       const answeredQuestions = Object.keys(answers).length;
       const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
-      if (answeredPercentage >= 50) {
+      // setIsButtonDisabled(answeredPercentage > 80);
+
+      if (answeredPercentage > 300) {
         setIsButtonDisabled(false);
       } else {
         setIsButtonDisabled(true);
@@ -125,92 +127,8 @@ const ExamPage = () => {
   }, [countdownActive, countdownTime]);
 
   let questionIndex = 1;
-
-  // const handleSubmit = () => {
-  //   const currentTest = parsedTests[currentTestIndex];
-
-  //   if (question && currentTest) {
-  //     let correctCount = 0;
-  //     let answeredCount = 0;
-  //     let totalScore = 0;
-  //     let tempAnswerResults: { [key: number]: boolean } = {};
-  //     let tempCorrectAnswers: { [key: number]: string } = {};
-
-  //     question
-  //       .flatMap((exam) => exam.questions)
-  //       .forEach((q) => {
-  //         if (answers[q?.id] !== undefined) {
-  //           answeredCount++;
-  //           const correctAnswerMap = {
-  //             "1": q.answer_a,
-  //             "2": q.answer_b,
-  //             "3": q.answer_c,
-  //             "4": q.answer_d,
-  //           };
-  //           const correctAnswer =
-  //             correctAnswerMap[
-  //               q.correct_answer as keyof typeof correctAnswerMap
-  //             ];
-  //           tempCorrectAnswers[q.id] = correctAnswer;
-  //           if (answers[q.id] === correctAnswer) {
-  //             correctCount++;
-  //             totalScore += q.point;
-  //             tempAnswerResults[q.id] = true;
-  //           } else {
-  //             tempAnswerResults[q.id] = false;
-  //           }
-  //         }
-  //       });
-  //     const passScore = currentTest.pass_score || 0;
-
-  //     setResult(
-  //       `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`
-  //     );
-  //     setAnswerResults(tempAnswerResults);
-  //     setCorrectAnswers(tempCorrectAnswers);
-  //     setDisable(true);
-  //     setIsButtonDisabled(true);
-  //     setIsPaused(true);
-  //     setCountdownActive(true);
-  //     if (currentTestIndex < parsedTests.length - 1) {
-  //       setIsResting(true);
-  //     } else {
-  //       setIsResting(false);
-  //       console.log("Đã hoàn thành tất cả các bài thi");
-  //     }
-  //   }
-  // };
-  // const scrollQuestion = (index: number) => {
-  //   if (questionRefs.current[index]) {
-  //     questionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
-  // useEffect(() => {
-  //   if (isResting) {
-  //     if (restTime === 0) {
-  //       if (currentTestIndex < parsedTests.length - 1) {
-  //         setCurrentTestIndex(currentTestIndex + 1);
-  //         setAnswers({});
-  //         setDisable(false);
-  //         setIsButtonDisabled(true);
-  //         setIsPaused(false);
-  //         setRestTime(5 * 60);
-  //         setIsResting(false);
-  //         setCountdownActive(false);
-  //       } else {
-  //         console.log("Đã hoàn thành tất cả các bài thi");
-  //       }
-  //     } else {
-  //       const restTimer = setInterval(() => {
-  //         setRestTime((prev) => prev - 1);
-  //       }, 1000);
-
-  //       return () => clearInterval(restTimer as unknown as number);
-  //     }
-  //   }
-  // }, [isResting, restTime, currentTestIndex, parsedTests.length]);
-
   const handleSkipRest = () => {
+    setEndTime(Date.now());
     if (currentTestIndex < parsedTests.length - 1) {
       setCurrentTestIndex(currentTestIndex + 1);
       setAnswers({});
@@ -220,6 +138,7 @@ const ExamPage = () => {
       setCountdownActive(false);
       setRestTime(5 * 60);
       setIsResting(false);
+      setEndTime(Date.now());
     } else {
       console.log("Đã hoàn thành tất cả các bài thi");
     }
@@ -272,16 +191,24 @@ const ExamPage = () => {
     const storedResults = JSON.parse(
       localStorage.getItem("examResults") || "[]"
     );
-    const newResult = {
-      testName: name,
-      score: totalScore,
-      passScore,
-      correctAnswers: correctCount,
-      answeredQuestions: answeredCount,
-    };
 
-    storedResults.push(newResult);
-    localStorage.setItem("examResults", JSON.stringify(storedResults));
+    if (startTime && endTime) {
+      const timeSpent = (endTime - startTime) / 1000;
+      const storedResults = JSON.parse(
+        localStorage.getItem("examResults") || "[]"
+      );
+      const newResult = {
+        testName: name,
+        score: totalScore,
+        passScore,
+        correctAnswers: correctCount,
+        answeredQuestions: answeredCount,
+        timeSpent,
+      };
+
+      storedResults.push(newResult);
+      localStorage.setItem("examResults", JSON.stringify(storedResults));
+    }
 
     if (currentTestIndex < parsedTests.length - 1) {
       setIsResting(true);
@@ -290,16 +217,20 @@ const ExamPage = () => {
       console.log("Đã hoàn thành tất cả các bài thi");
     }
   };
+  useEffect(() => {
+    setStartTime(Date.now());
+    setEndTime(null);
+  }, [currentTestIndex]);
   return (
-    <div className="flex">
-      <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5">
+    <div className="flex max-xl:flex-col-reverse">
+      <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5 max-xl:w-full max-xl:px-8 ">
         <Link href="/exam">
           <Image src={arrow} alt="" width={38} height={38} />
         </Link>
         {question?.map((exam, examIndex) => (
           <div
             key={exam.id}
-            className="flex flex-col gap-5 pr-20"
+            className="flex flex-col gap-5 pr-20 max-xl:pr-0"
             ref={(el) => (questionRefs.current[examIndex] = el)}
           >
             <Text type="body-16-bold">
@@ -319,12 +250,13 @@ const ExamPage = () => {
                 correctAnswer={correctAnswers[q.id]}
                 point={q.point}
                 img={q?.image}
+                attachment={q.attachment}
               />
             ))}
           </div>
         ))}
       </div>
-      <div className="w-1/4 border-l bg-[#f5f5f5] ">
+      <div className="w-1/4 border-l bg-[#f5f5f5] max-xl:w-full ">
         <div className="flex p-5 gap-4 border-b">
           <Image
             src={img}
@@ -370,7 +302,6 @@ const ExamPage = () => {
                   className={`p-2 border w-8 h-8 flex items-center justify-center rounded ${
                     answers[q?.id] ? "bg-[#0F5FAF] text-white" : "bg-white"
                   }`}
-                  // onClick={() => scrollQuestion(index)}
                 >
                   {index + 1}
                 </div>

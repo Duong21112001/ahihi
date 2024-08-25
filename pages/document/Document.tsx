@@ -57,7 +57,7 @@ const Document = () => {
         </svg>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="relative z-[9999]">
+      <DropdownMenuContent className="relative z-[9999] flex flex-col gap-4">
         {categories.map((item) => (
           <div
             key={item.id}

@@ -55,8 +55,8 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
       <Image src={cloud} alt="" className="absolute top-[25%] left-0" />
       <Image src={cloud} alt="" className="absolute top-0 right-0 rotate-180" />
 
-      <div className="container !pt-10 max-lg:py-0">
-        <div className="flex justify-center gap-5 relative max-lg:flex-col ">
+      <div className="container !pt-10 max-lg:py-0 max-lg:min-w-0">
+        <div className="flex justify-center gap-5 relative ">
           {currentExams.map((item) => (
             <div
               className={cn(
@@ -123,6 +123,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
                   router.push({
                     pathname: "/exams",
                     query: query,
+                    // query: { trialTestId: item.id },
                   });
                 }}
               >

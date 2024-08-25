@@ -6,6 +6,7 @@ import Button from "../Button";
 import { CourseReponse } from "@/utils/model/courses";
 import { useRequest } from "@umijs/hooks";
 import { listCourse } from "@/pages_components/homePage/courseCarousel/service";
+import { cn } from "@/utils";
 
 const Course = () => {
   const [showAll, setShowAll] = useState(false);
@@ -16,7 +17,7 @@ const Course = () => {
   });
   const displayCourse = showAll ? data : data.slice(0, 4);
   return (
-    <div className={styles.subNavbar}>
+    <div className={cn("shadow-md !bg-white", styles.subNavbar)}>
       {React.Children.toArray(
         displayCourse?.map((item) => (
           <Button
@@ -28,7 +29,7 @@ const Course = () => {
               })
             }
           >
-            <Text type="body-16-regular" className={styles.textCourse}>
+            <Text type="body-14-medium" className={styles.textCourse}>
               {item.name}
             </Text>
           </Button>
@@ -37,7 +38,7 @@ const Course = () => {
       {!showAll && data.length > 5 && (
         <Button
           type="btn-ghost"
-          className={styles.btnCourse}
+          className={cn(styles.btnCourse)}
           onClick={() => setShowAll(true)}
         >
           <svg

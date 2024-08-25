@@ -1,6 +1,10 @@
 import { API_PATH } from "@/api/constant";
-import { requestPist } from "@/api/request";
-import { RegisterParam, RegisterTrial } from "@/utils/model/register";
+import { privateRequest, requestCommunity, requestPist } from "@/api/request";
+import {
+  RegisterParam,
+  RegisterTrial,
+  UpdateProps,
+} from "@/utils/model/register";
 
 const register = async (params: RegisterParam) => {
   const result = await requestPist.post(API_PATH.REGISTER, {
@@ -14,4 +18,12 @@ const registerTrialTest = async (params: RegisterTrial) => {
   });
   return result;
 };
-export { register, registerTrialTest };
+const update = async (param: UpdateProps) => {
+  const result = await privateRequest(
+    requestCommunity.post,
+    API_PATH.UPDATE_PROFILE,
+    { param }
+  );
+  return result;
+};
+export { register, registerTrialTest, update };

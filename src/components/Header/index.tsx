@@ -255,7 +255,7 @@ const Header = () => {
                         }
                         right={5}
                       >
-                        Khoá học
+                        Khóa học
                       </Text>
                       <svg
                         width="12"

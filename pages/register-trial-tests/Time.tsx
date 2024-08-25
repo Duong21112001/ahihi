@@ -32,7 +32,7 @@ const Time = () => {
   const start = trialTest.map((item) => formatDateTime(item.start_date));
   const end = trialTest.map((item) => formatDateTime(item.end_date));
   return (
-    <div className="bg-white border-[#0F5FAF] border-2 w-[30%] flex items-center justify-center py-10 rounded-2xl px-5">
+    <div className="bg-white border-[#0F5FAF] border-2 w-[30%] flex items-center justify-center py-10 rounded-2xl px-5 max-lg:w-full">
       {trialTest.length > 0 ? (
         <div className="flex flex-col items-center">
           <Text className="text-[#003B9F]" type="title-18-bold">

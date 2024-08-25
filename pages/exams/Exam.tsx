@@ -23,6 +23,7 @@ const { convert } = require("html-to-text");
 
 interface QuestionProps {
   question: string;
+  attachment: string;
   options: string[];
   questionId: number;
   onAnswer: (questionId: number, selectedOption: string) => void;
@@ -36,6 +37,7 @@ interface QuestionProps {
 }
 
 const Question: React.FC<QuestionProps> = ({
+  attachment,
   question,
   options,
   questionId,
@@ -99,11 +101,22 @@ const Question: React.FC<QuestionProps> = ({
                 </Text>
                 <img src={img} alt="" />
               </FormLabel>
+              <div className="my-4">
+                {/* <Text className="text-lg font-semibold">Audio Player</Text> */}
+                {attachment ? (
+                  <audio controls className="mt-2 w-full">
+                    <source src={attachment} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                ) : (
+                  ""
+                )}
+              </div>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="grid grid-cols-2 gap-x-20 gap-y-5"
+                  className="grid grid-cols-2 gap-x-20 gap-y-5 max-lg:grid-cols-1 "
                   disabled={disable}
                 >
                   {options?.map((option, index) => (
@@ -151,7 +164,7 @@ const Question: React.FC<QuestionProps> = ({
               <FormMessage />
               {showDetail && (
                 <Text type="body-16-medium" color="main-color-primary">
-                  {convert(correctAnswer)}
+                  Giải thích:{convert(convert(correctAnswer))}
                 </Text>
               )}
             </FormItem>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import Text from "@/components/Text";
 import { cn } from "@/utils";
@@ -8,6 +8,8 @@ import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
 import { useSearchParams } from "next/navigation";
 import { getCookie } from "cookies-next";
+import axios from "axios";
+import GetComment from "./GetComment";
 
 const Comment = ({
   className,
@@ -18,6 +20,9 @@ const Comment = ({
 }) => {
   const [comment, setComment] = useState<string>("");
   const [user, setUser] = useRecoilState(userProfile);
+  const [comments, setComments] = useState<any[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRefreshApi, setIsRefreshApi] = useState(false);
   const searchParams = useSearchParams();
   const token = getCookie("kosei-token");
 
@@ -27,30 +32,32 @@ const Comment = ({
       return;
     }
     console.log("token====", token);
-
+    setIsSubmitting(true);
     try {
-      const response = await fetch(
+      const response = await axios.post(
         "https://kosei-web.eupsolution.net/api/comments",
         {
-          method: "POST",
+          content: comment,
+          type: "document",
+          document_id: documentId,
+          user_id: user?.user_id,
+          image_path: user?.avatar,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            content: comment,
-            type: "document",
-            document_id: documentId,
-            user_id: user?.user_id,
-            // image_path: user?.avatar,
-          }),
-          credentials: "include",
+          withCredentials: false,
         }
       );
+      console.log("Response", response);
 
-      if (response.ok) {
+      if (response.status === 200) {
+        setIsRefreshApi(!isRefreshApi);
         alert("Bình luận đã được gửi thành công!");
         setComment("");
+        setComments((prevComments) => [response.data, ...prevComments]);
       } else {
         alert("Gửi bình luận thất bại. Vui lòng thử lại sau.");
       }
@@ -59,11 +66,13 @@ const Comment = ({
       alert("Có lỗi xảy ra khi gửi bình luận.");
     }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setComment(value);
     console.log("Comment====", value);
   };
+
   return (
     <div className={cn("", className)}>
       <div className="border-b pb-10">
@@ -80,44 +89,8 @@ const Comment = ({
           Gửi
         </Button>
       </div>
-      <div>
-        <div className="flex items-center gap-2 mt-5">
-          <Image
-            src={avt}
-            alt=""
-            width={50}
-            height={50}
-            className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
-          />
-          <div className="flex flex-col gap-1">
-            <Text type="body-14-bold" color="main-color-primary">
-              Name
-            </Text>
-            <Text type="body-14-regular">Comment</Text>
-            <div>
-              <div className="flex gap-3">
-                <Text
-                  type="body-14-regular"
-                  color="main-color-primary"
-                  className="cursor-pointer"
-                >
-                  Thích
-                </Text>
-                <Text
-                  type="body-14-regular"
-                  color="main-color-primary"
-                  className="cursor-pointer"
-                >
-                  Phản hồi
-                </Text>
-                <Text type="body-14-regular" color="neutral-5">
-                  1 phut
-                </Text>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <GetComment isRefreshApi={isRefreshApi} documentId={documentId} />
     </div>
   );
 };

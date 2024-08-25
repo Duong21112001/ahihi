@@ -33,7 +33,7 @@ const Menu = ({ className }: { className?: string }) => {
     router.push(`/document?category=${categoryId}`);
   };
   return (
-    <div className={cn("bg-[#EEF5FF] rounded-lg h-fit w-[30%]", className)}>
+    <div className={cn("bg-[#EEF5FF] rounded-lg h-fit", className)}>
       <Text
         className="bg-[#0F5FAF] py-4 px-8 rounded-tl-lg rounded-tr-lg"
         type="title-18-bold"

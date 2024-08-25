@@ -40,6 +40,8 @@ const LoginForm = () => {
     if (accessToken) {
       const result = await loginWithGoogle(accessToken);
       const token = result?.data?.accessToken;
+      console.log("tokenLogin======", token);
+
       if (token) {
         setCookie(KOSEI_TOKEN, token);
         router.replace("/");

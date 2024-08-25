@@ -27,6 +27,7 @@ export const API_PATH = {
   BANNERS: "/banners",
   FANPAGES: "fanpages",
   REGISTER_TRIAL_TEST: "/trial_tests/register",
+  UPDATE_PROFILE: "/users/updateprofile",
 };
 
 export const ROUTER = {

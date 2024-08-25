@@ -6,16 +6,17 @@ import clock from "../../../public/svg/clock-circle.svg";
 import eye from "../../../public/svg/eye.svg";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/router";
-import MenuDocument from ".././MenuDocument";
+import MenuDocument from "../MenuDocument";
 import img from "../../../public/Images/Image.png";
 import link from "../../../public/svg/combo shape.svg";
 import Link from "next/link";
-import Comment from ".././Comment";
+import Comment from "../Comment";
 import DocumentPage from "../../document/DocumentPage";
 import Menu from "../../document/Menu";
 import Search from "../Search";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
+import HtmlToReact from "html-to-react";
 interface Category {
   id: number;
   name: string;
@@ -116,10 +117,16 @@ const DocumentDetail = () => {
     name: doc.title,
     img: doc.thumbnail,
   }));
+
+  const htmlToReactParser = new HtmlToReact.Parser();
+
+  const parseHtmlContent = (html: string) => {
+    return htmlToReactParser.parse(html);
+  };
   return (
     <>
-      <div className="container flex justify-between">
-        <div className="w-[60%] flex flex-col gap-4">
+      <div className="container flex justify-between max-xl:px-6 max-xl:min-w-0 max-lg:gap-0">
+        <div className="w-[60%] flex flex-col gap-4 max-xl:w-full">
           <Text className="text-[#0A427A]" type="title-24-bold">
             {document?.category.name}
           </Text>
@@ -145,19 +152,20 @@ const DocumentDetail = () => {
               {document?.category?.description}
             </Text>
             <Text type="title-18-regular" color="neutral-3" className="my-6">
-              {convert(convert(document?.content))}
+              {/* {convert(convert(document?.content))} */}
+              {document ? parseHtmlContent(document.content) : "Loading..."}
             </Text>
             <img
               src={`https://kosei-web.eupsolution.net${document?.thumbnail}`}
               // src={img}
               alt=""
-              className="mt-8 w-full h-[422px] object-cover"
+              className="mt-8 w-full h-[422px] object-cover max-lg:w-auto max-lg:h-fit"
             />
           </div>
 
           <Comment className="w-full" documentId={document?.id ?? 0} />
         </div>
-        <div className="w-[30%] flex flex-col items-center gap-8">
+        <div className="w-[30%] flex flex-col items-center gap-8 max-lg:hidden">
           <Search />
           <Menu className="w-full" />
           <MenuDocument title={"BÀI VIẾT MỚI"} items={latestDocument} />

@@ -55,12 +55,12 @@ const DocumentList = () => {
     <div>
       {sliceData.map((item) => (
         <div
-          className="container flex flex-col items-center gap-[60px]"
+          className="container flex flex-col items-center gap-[60px] max-xl:min-w-0 max-xl:px-6"
           key={item.id}
         >
           <Text type="title-32-bold">{item.title}</Text>
-          <div className="flex items-center gap-10 justify-between w-full">
-            <div>
+          <div className="flex items-center gap-10 justify-between w-full max-lg:flex-col">
+            <div className="w-[40%] max-lg:w-full">
               <Text
                 type="title-32-bold"
                 className="tracking-[.2px] leading-[48px] mb-2"
@@ -84,13 +84,16 @@ const DocumentList = () => {
               alt=""
               width={632}
               height={420}
-              className="min-w-[632px] h-[420px] object-cover"
+              className="w-[60%] h-[420px] object-cover max-lg:w-full"
             />
           </div>
         </div>
       ))}
-      <div className="flex justify-between w-full container">
-        <div className="grid grid-cols-2 gap-8">
+      <div className="flex justify-between w-full container max-xl:min-w-0 max-lg:flex-col max-xl:px-6">
+        <div className="grid grid-cols-2 gap-8 max-lg:grid-cols-1">
+          <Text type="title-28-bold" className="hidden max-lg:block">
+            Bài viết liên quan
+          </Text>
           {documents.map((it) => (
             <div
               className="border border-[#EDF2F7] rounded-lg w-[357px]"
@@ -135,7 +138,9 @@ const DocumentList = () => {
             </div>
           ))}
         </div>
-        <Menu />
+        <div className="max-lg:hidden">
+          <Menu />
+        </div>
       </div>
     </div>
   );

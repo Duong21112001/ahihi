@@ -11,6 +11,7 @@ interface HistoryItem {
   testName: string;
   score: number;
   passScore: number;
+  timeSpent: string;
 }
 const History = () => {
   const [historyData, setHistoryData] = useState<HistoryItem[] | null>(null);
@@ -31,10 +32,10 @@ const History = () => {
         {historyData ? (
           historyData.map((item, index) => (
             <div className="p-5 bg-[#f6f6f6] rounded-xl w-full" key={index}>
-              <Text type="title-18-semibold">Thi thử JLPT N4</Text>
+              <Text type="title-18-semibold">{item.testName}</Text>
               <div className="flex gap-1 items-center mt-2">
                 <Image src={clock} alt="" />
-                <Text color="neutral-5"> 06/15/24 10:38:58 AM</Text>
+                <Text color="neutral-5"> {item.timeSpent}</Text>
               </div>
               <div className="mt-5 flex flex-col gap-2">
                 <div className="flex justify-between items-end">

@@ -9,4 +9,5 @@ const getUser = async () => {
 
   return result?.data;
 };
+
 export { getUser };
