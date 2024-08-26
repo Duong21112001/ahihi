@@ -16,7 +16,9 @@ import Menu from "../../document/Menu";
 import Search from "../Search";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
-import HtmlToReact from "html-to-react";
+// import HtmlToReact, { Parser } from "html-to-react";
+import parse from "html-react-parser";
+
 interface Category {
   id: number;
   name: string;
@@ -118,11 +120,15 @@ const DocumentDetail = () => {
     img: doc.thumbnail,
   }));
 
-  const htmlToReactParser = new HtmlToReact.Parser();
+  // const htmlToReactParser = new HtmlToReact.Parser();
 
+  // const parseHtmlContent = (html: string) => {
+  //   return htmlToReactParser.parse(html);
+  // };
   const parseHtmlContent = (html: string) => {
-    return htmlToReactParser.parse(html);
+    return parse(html);
   };
+
   return (
     <>
       <div className="container flex justify-between max-xl:px-6 max-xl:min-w-0 max-lg:gap-0">
