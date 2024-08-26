@@ -27,7 +27,7 @@ interface QuestionProps {
   options: string[];
   questionId: number;
   onAnswer: (questionId: number, selectedOption: string) => void;
-  name: string;
+  name?: string;
   showDetail: boolean;
   disable: boolean;
   answerResults?: { [key: number]: boolean };

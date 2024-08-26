@@ -101,25 +101,9 @@ const GetComment = ({
       console.log("Reply=========", response);
 
       if (response.status === 201) {
-        alert("Phản hồi thành công!");
-
         setReplyCommentId(null);
         setReplyContent("");
-        // setComments((prevComments) => [...prevComments, response.data]);
         fetchComments();
-        // setComments((prevComments) => {
-        //   const updatedComments = prevComments.map((comment) => {
-        //     if (comment.id === commentId) {
-        //       const updatedComment = {
-        //         ...comment,
-        //         replies: [...(comment.replies || []), response.data],
-        //       };
-        //       return updatedComment;
-        //     }
-        //     return comment;
-        //   });
-        //   return updatedComments;
-        // });
       } else {
         alert("Phản hồi thất bại. Vui lòng thử lại sau.");
       }
@@ -202,17 +186,20 @@ const GetComment = ({
     <div>
       {comments.map((comment) => (
         <div className="flex gap-2 mt-5 flex-col" key={comment.id}>
-          <Image
-            src={avt}
-            alt=""
-            width={50}
-            height={50}
-            className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
-          />
           <div className="flex flex-col gap-1">
-            <Text type="body-14-bold" color="main-color-primary">
-              {comment.user?.name}
-            </Text>
+            <div className="flex gap-2 items-center">
+              <Image
+                src={avt}
+                alt=""
+                width={50}
+                height={50}
+                className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
+              />
+              <Text type="body-14-bold" color="main-color-primary">
+                {comment.user?.name}
+              </Text>
+            </div>
+
             <Text type="body-14-regular">{comment.content}</Text>
             <div>
               <div className="flex gap-3">
@@ -305,17 +292,20 @@ const GetComment = ({
                   created_at: string;
                 }) => (
                   <div key={reply.id} className="flex gap-2 mt-2 flex-col">
-                    <Image
-                      src={avt}
-                      alt=""
-                      width={50}
-                      height={50}
-                      className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
-                    />
                     <div className="flex flex-col gap-1">
-                      <Text type="body-14-bold" color="main-color-primary">
-                        {reply.user?.name}
-                      </Text>
+                      <div className="flex gap-2 items-center">
+                        <Image
+                          src={avt}
+                          alt=""
+                          width={50}
+                          height={50}
+                          className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
+                        />
+                        <Text type="body-14-bold" color="main-color-primary">
+                          {reply.user?.name}
+                        </Text>
+                      </div>
+
                       <Text type="body-14-regular">{reply.content}</Text>
                       <Text type="body-14-regular" color="neutral-5">
                         {timeAgo(reply.created_at)}

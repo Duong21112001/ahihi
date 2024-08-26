@@ -146,6 +146,40 @@ export interface Questions {
   updated_at: string;
   trial_test_id: string;
   test_id: string;
+  questions: SubSubQuestions[];
+}
+export interface SubSubQuestions {
+  index: number;
+  id: number;
+  parent_id: number;
+  course_id: number;
+  exam_id: number;
+  lecture_id: number;
+  ctype: string;
+  name: string;
+  point: number;
+  question_limit: number;
+  question: string;
+  attachment: string;
+  image: string;
+  video_id: string;
+  translate: string;
+  answer_a: string;
+  answer_b: string;
+  answer_c: string;
+  answer_d: string;
+  correct_answer: string;
+  lang_code: string;
+  active: number;
+  created_at: string;
+  updated_at: string;
+  trial_test_id: string;
+  test_id: string;
+  questions: SubSubQuestions[];
+}
+export interface Exam {
+  name: string;
+  point: number;
   questions: Questions[];
 }
 

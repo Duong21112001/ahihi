@@ -55,7 +55,7 @@ const Comment = ({
 
       if (response.status === 200) {
         setIsRefreshApi(!isRefreshApi);
-        alert("Bình luận đã được gửi thành công!");
+        // alert("Bình luận đã được gửi thành công!");
         setComment("");
         setComments((prevComments) => [response.data, ...prevComments]);
       } else {

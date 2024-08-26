@@ -13,7 +13,7 @@ export const isEmail = (value: any) => {
   );
 };
 export const isPassword = (value: any) => {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.{6,})/.test(value);
+  return value.length >= 6;
 };
 export const validatePhone = (t: any) => {
   return {

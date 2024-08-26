@@ -4,7 +4,7 @@ import Text from "@/components/Text";
 import CountDown from "./CountDown";
 import img from "../../public/Images/cotton-sheep.png";
 import Image from "next/image";
-import { Questions } from "@/utils/model/courses";
+import { Questions, SubSubQuestions } from "@/utils/model/courses";
 import { useRequest } from "@umijs/hooks";
 import { getCourseQuestions } from "@/service/course";
 import { Button } from "@/components/ui/button";
@@ -54,15 +54,13 @@ const ExamPage = () => {
   const [restTime, setRestTime] = useState(5 * 60);
   const [countdownActive, setCountdownActive] = useState(false);
   const [countdownTime, setCountdownTime] = useState(0);
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [endTime, setEndTime] = useState<number | null>(null);
 
   useEffect(() => {
-    if (exam_name && level) {
+    if (id && exam_name && level && tests) {
       console.log("Exam Name:", exam_name);
       console.log("Exam Name:", level);
     }
-  }, [exam_name, level]);
+  }, [id, exam_name, level, tests]);
   const handleAnswer = (questionId: number, answer: string) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -72,26 +70,31 @@ const ExamPage = () => {
 
   useEffect(() => {
     const fetchQuestion = async () => {
-      if (id && parsedTests[currentTestIndex]?.test_id && !loading) {
-        setLoading(true);
+      if (!id || !parsedTests[currentTestIndex]?.test_id || loading) return;
 
-        try {
-          const response = await fetch(
-            `https://kosei-web.eupsolution.net/api/trial-tests/${id}/questions?test_id=${parsedTests[currentTestIndex].test_id}`
-          );
-          const data = await response.json();
-          if (Array.isArray(data)) {
-            const filteredQuestions = data.filter((q) => q.test_id === testId);
-            console.log("Test ID:", testId);
-            setQuestion(filteredQuestions);
-          } else {
-            setError("Data empty");
-          }
-        } catch (err) {
-          setError("Failed");
-        } finally {
-          setLoading(false);
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `https://kosei-web.eupsolution.net/api/trial-tests/${testId}/questions?test_id=${parsedTests[currentTestIndex].test_id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          const filteredQuestions = data.filter((q) => q.test_id === testId);
+          setQuestion(filteredQuestions);
+        } else {
+          setError("No questions found");
+        }
+      } catch (err) {
+        setError("Failed to load questions");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -100,12 +103,10 @@ const ExamPage = () => {
 
   useEffect(() => {
     if (question) {
-      const totalQuestions = question.flatMap((exam) => exam.question).length;
+      const totalQuestions = question.flatMap((exam) => exam.questions).length;
       const answeredQuestions = Object.keys(answers).length;
       const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
-      // setIsButtonDisabled(answeredPercentage > 80);
-
-      if (answeredPercentage > 300) {
+      if (answeredPercentage >= 50) {
         setIsButtonDisabled(false);
       } else {
         setIsButtonDisabled(true);
@@ -127,8 +128,8 @@ const ExamPage = () => {
   }, [countdownActive, countdownTime]);
 
   let questionIndex = 1;
+
   const handleSkipRest = () => {
-    setEndTime(Date.now());
     if (currentTestIndex < parsedTests.length - 1) {
       setCurrentTestIndex(currentTestIndex + 1);
       setAnswers({});
@@ -138,7 +139,6 @@ const ExamPage = () => {
       setCountdownActive(false);
       setRestTime(5 * 60);
       setIsResting(false);
-      setEndTime(Date.now());
     } else {
       console.log("Đã hoàn thành tất cả các bài thi");
     }
@@ -153,31 +153,64 @@ const ExamPage = () => {
     let answeredCount = 0;
     let correctCount = 0;
 
-    question
-      .flatMap((exam) => exam.questions)
-      .forEach((q) => {
-        const userAnswer = answers[q.id];
-        if (userAnswer !== undefined) {
-          answeredCount++;
-          const correctAnswerMap = {
-            "1": q.answer_a,
-            "2": q.answer_b,
-            "3": q.answer_c,
-            "4": q.answer_d,
-          };
-          const correctAnswer =
-            correctAnswerMap[q.correct_answer as keyof typeof correctAnswerMap];
-          tempCorrectAnswers[q.id] = correctAnswer;
+    // Duyệt qua tất cả các câu hỏi và câu hỏi con
+    question.forEach((exam) => {
+      exam.questions.forEach((q) => {
+        // Nếu có câu hỏi con
+        if (q.questions && q.questions.length > 0) {
+          q.questions.forEach((subQ) => {
+            const userAnswer = answers[subQ.id];
+            if (userAnswer !== undefined) {
+              answeredCount++;
+              const correctAnswerMap = {
+                "1": subQ.answer_a,
+                "2": subQ.answer_b,
+                "3": subQ.answer_c,
+                "4": subQ.answer_d,
+              };
+              const correctAnswer =
+                correctAnswerMap[
+                  subQ.correct_answer as keyof typeof correctAnswerMap
+                ];
+              tempCorrectAnswers[subQ.id] = correctAnswer;
 
-          if (userAnswer === correctAnswer) {
-            correctCount++;
-            totalScore += q.point;
-            tempAnswerResults[q.id] = true;
-          } else {
-            tempAnswerResults[q.id] = false;
+              if (userAnswer === correctAnswer) {
+                correctCount++;
+                totalScore += subQ.point;
+                tempAnswerResults[subQ.id] = true;
+              } else {
+                tempAnswerResults[subQ.id] = false;
+              }
+            }
+          });
+        } else {
+          // Nếu không có câu hỏi con
+          const userAnswer = answers[q.id];
+          if (userAnswer !== undefined) {
+            answeredCount++;
+            const correctAnswerMap = {
+              "1": q.answer_a,
+              "2": q.answer_b,
+              "3": q.answer_c,
+              "4": q.answer_d,
+            };
+            const correctAnswer =
+              correctAnswerMap[
+                q.correct_answer as keyof typeof correctAnswerMap
+              ];
+            tempCorrectAnswers[q.id] = correctAnswer;
+
+            if (userAnswer === correctAnswer) {
+              correctCount++;
+              totalScore += q.point;
+              tempAnswerResults[q.id] = true;
+            } else {
+              tempAnswerResults[q.id] = false;
+            }
           }
         }
       });
+    });
 
     const passScore = currentTest.pass_score || 0;
     const resultMessage = `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`;
@@ -191,24 +224,16 @@ const ExamPage = () => {
     const storedResults = JSON.parse(
       localStorage.getItem("examResults") || "[]"
     );
+    const newResult = {
+      testName: name,
+      score: totalScore,
+      passScore,
+      correctAnswers: correctCount,
+      answeredQuestions: answeredCount,
+    };
 
-    if (startTime && endTime) {
-      const timeSpent = (endTime - startTime) / 1000;
-      const storedResults = JSON.parse(
-        localStorage.getItem("examResults") || "[]"
-      );
-      const newResult = {
-        testName: name,
-        score: totalScore,
-        passScore,
-        correctAnswers: correctCount,
-        answeredQuestions: answeredCount,
-        timeSpent,
-      };
-
-      storedResults.push(newResult);
-      localStorage.setItem("examResults", JSON.stringify(storedResults));
-    }
+    storedResults.push(newResult);
+    localStorage.setItem("examResults", JSON.stringify(storedResults));
 
     if (currentTestIndex < parsedTests.length - 1) {
       setIsResting(true);
@@ -217,46 +242,87 @@ const ExamPage = () => {
       console.log("Đã hoàn thành tất cả các bài thi");
     }
   };
-  useEffect(() => {
-    setStartTime(Date.now());
-    setEndTime(null);
-  }, [currentTestIndex]);
+
   return (
-    <div className="flex max-xl:flex-col-reverse">
-      <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5 max-xl:w-full max-xl:px-8 ">
+    <div className="flex">
+      <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5">
         <Link href="/exam">
           <Image src={arrow} alt="" width={38} height={38} />
         </Link>
         {question?.map((exam, examIndex) => (
           <div
             key={exam.id}
-            className="flex flex-col gap-5 pr-20 max-xl:pr-0"
+            className="flex flex-col gap-5 pr-20"
             ref={(el) => (questionRefs.current[examIndex] = el)}
           >
             <Text type="body-16-bold">
               {exam.name}:({exam.point}) {convert(convert(exam.question))}
             </Text>
-            {exam.questions?.map((q, index) => (
-              <Question
-                key={q.id}
-                questionId={q.id}
-                question={q.question}
-                options={[q.answer_a, q.answer_b, q.answer_c, q.answer_d]}
-                onAnswer={handleAnswer}
-                name={`${questionIndex++}`}
-                showDetail={showDetail}
-                disable={disable}
-                answerResults={answerResults}
-                correctAnswer={correctAnswers[q.id]}
-                point={q.point}
-                img={q?.image}
-                attachment={q.attachment}
-              />
-            ))}
+            {exam.questions?.map((q, index) => {
+              console.log("exam.questions:", exam.questions);
+              console.log("Sub questions (if any):", q.questions);
+              if (q.questions && q.questions.length > 0) {
+                // Nếu có từ 1 object trở lên trong `questions`
+                return (
+                  <div key={q.id}>
+                    <Text type="body-16-bold">
+                      {convert(convert(q.question))}
+                    </Text>
+                    <div>
+                      {q.questions.map((subQ, subIndex) => (
+                        <Question
+                          key={subQ.id}
+                          questionId={subQ.id}
+                          question={subQ.question}
+                          options={[
+                            subQ.answer_a,
+                            subQ.answer_b,
+                            subQ.answer_c,
+                            subQ.answer_d,
+                          ]}
+                          onAnswer={handleAnswer}
+                          name={`${questionIndex++}`}
+                          showDetail={showDetail}
+                          disable={disable}
+                          answerResults={answerResults}
+                          correctAnswer={correctAnswers[subQ.id]}
+                          point={subQ.point}
+                          img={subQ?.image}
+                          attachment={""}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              } else {
+                // Nếu không có object nào trong `questions`
+                return (
+                  <div key={q.id}>
+                    <Text type="body-16-bold">
+                      {convert(convert(q.question))}
+                    </Text>
+                    <Question
+                      questionId={q.id}
+                      question={q.question}
+                      options={[q.answer_a, q.answer_b, q.answer_c, q.answer_d]}
+                      onAnswer={handleAnswer}
+                      name={`${questionIndex++}`}
+                      showDetail={showDetail}
+                      disable={disable}
+                      answerResults={answerResults}
+                      correctAnswer={correctAnswers[q.id]}
+                      point={q.point}
+                      img={q?.image}
+                      attachment={""}
+                    />
+                  </div>
+                );
+              }
+            })}
           </div>
         ))}
       </div>
-      <div className="w-1/4 border-l bg-[#f5f5f5] max-xl:w-full ">
+      <div className="w-1/4 border-l bg-[#f5f5f5] ">
         <div className="flex p-5 gap-4 border-b">
           <Image
             src={img}
@@ -302,6 +368,8 @@ const ExamPage = () => {
                   className={`p-2 border w-8 h-8 flex items-center justify-center rounded ${
                     answers[q?.id] ? "bg-[#0F5FAF] text-white" : "bg-white"
                   }`}
+                  // onClick={() => scrollQuestion(index)}
+                  // onClick={() => scrollQuestion(q?.id)}
                 >
                   {index + 1}
                 </div>
