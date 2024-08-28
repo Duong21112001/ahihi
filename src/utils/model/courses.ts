@@ -243,7 +243,34 @@ export interface TrialTests {
   test: Test[];
   point: number;
 }
+export interface ExamProps {
+  id: number;
+  skill_id: number;
+  course_id: number;
+  test_id: number;
+  name: string;
+  slug: string;
+  attachment: null;
+  video_id: null;
+  des: null;
+  time_end: number;
+  pass_score: number;
+  lang_code: string;
+  order_no: number;
+  is_online: boolean;
+  created_at: string;
+  updated_at: string;
+}
 export interface Test {
+  exam: any;
+  map(
+    arg0: (test: Test) => {
+      test_id: number;
+      test_name: string;
+      pass_score: number;
+    }
+  ): any;
+  level: any;
   id: number;
   tt_id: number;
   level_id: number;

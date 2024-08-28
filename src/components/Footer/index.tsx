@@ -125,7 +125,7 @@ const Footer = () => {
                       <Text type="body-16-medium">{footerData.email}</Text>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-5 max-w-[466px]">
                     <Text type="title-18-bold">Địa chỉ</Text>
                     <div className="flex gap-2 items-start">
                       <Image

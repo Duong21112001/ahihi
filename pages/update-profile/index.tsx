@@ -18,6 +18,7 @@ interface UserProfileProps {
   gender: string;
   mobile: string;
   email: string;
+  avt: string;
 }
 
 const UpdateProfile = () => {
@@ -30,7 +31,9 @@ const UpdateProfile = () => {
     gender: "",
     mobile: "",
     email: "",
+    avt: "",
   });
+  const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
   const token = getCookie("kosei-token");
 
@@ -51,6 +54,7 @@ const UpdateProfile = () => {
       gender: getCookie("gender") || "Nam",
       mobile: getCookie("mobile") || "",
       email: getCookie("email") || "",
+      avt: getCookie("avatar") || "",
     });
   };
 
@@ -62,6 +66,43 @@ const UpdateProfile = () => {
       ...prevProfile,
       [name]: value,
     }));
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setProfilePicture(file);
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch(
+          "https://kosei-web.eupsolution.net/api/upload",
+          {
+            method: "POST",
+            body: formData,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setCookie("avatar", data.url);
+
+          setUserProfile((prevProfile) => ({
+            ...prevProfile,
+            avt: data.url,
+          }));
+        } else {
+          console.error("Upload failed:", response.status);
+        }
+      } catch (error) {
+        console.error("Upload error:", error);
+      }
+    }
   };
 
   const handleUpdate = async () => {
@@ -86,68 +127,80 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className={cn("flex flex-col items-center ", styles.bg)}>
-      <div className="flex flex-col items-center gap-20 w-full container">
-        {/* <div className="mr-8">
-          <img
-            src="/path/to/default/profile/pic.png"
-            alt="Profile"
-            className="w-32 h-32 rounded-md object-cover"
-          />
-          <input type="file" className="mt-2" />
-        </div> */}
-        <Text type="title-28-bold">Thông tin cá nhân</Text>
-        <div className="w-[60%] mx-auto">
-          <div className="mb-4">
-            <Text type="body-16-semibold">Họ và tên</Text>
-            <input
-              name="fullname"
-              value={userProfile.fullname}
-              onChange={handleChange} // <-- Thêm sự kiện này
-              className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
-              type="text"
-            />
-          </div>
-          <div className="mb-4">
-            <Text type="body-16-semibold">Ngày sinh</Text>
-            <input
-              name="birthday"
-              value={userProfile.birthday}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
-              type="date"
-            />
-          </div>
+    <div className={cn("flex gap-10", styles.bg)}>
+      <div className="container flex">
+        <div className="flex flex-col items-center"></div>
+        <div className="flex flex-col items-center gap-5 w-full">
+          <Text type="title-28-bold">Thông tin cá nhân</Text>
+          <div className="w-full mx-auto">
+            <div className="flex flex-col items-center gap-4">
+              <img
+                src={
+                  profilePicture
+                    ? URL.createObjectURL(profilePicture)
+                    : "/path/to/default/profile/pic.png"
+                }
+                alt="Profile"
+                className="w-32 h-32 rounded-md object-cover"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="mt-2"
+              />
+            </div>
+            <div className="mb-4">
+              <Text type="body-16-semibold">Họ và tên</Text>
+              <input
+                name="fullname"
+                value={userProfile.fullname}
+                onChange={handleChange} // <-- Thêm sự kiện này
+                className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+                type="text"
+              />
+            </div>
+            <div className="mb-4">
+              <Text type="body-16-semibold">Ngày sinh</Text>
+              <input
+                name="birthday"
+                value={userProfile.birthday}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+                type="date"
+              />
+            </div>
 
-          <div className="mb-4">
-            <Text type="body-16-semibold">Địa chỉ</Text>
-            <input
-              name="address"
-              value={userProfile.address}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
-              type="text"
-            />
-          </div>
-          <div className="mb-4">
-            <Text type="body-16-semibold">Giới tính</Text>
-            <select
-              name="gender"
-              value={userProfile.gender}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+            <div className="mb-4">
+              <Text type="body-16-semibold">Địa chỉ</Text>
+              <input
+                name="address"
+                value={userProfile.address}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+                type="text"
+              />
+            </div>
+            <div className="mb-4">
+              <Text type="body-16-semibold">Giới tính</Text>
+              <select
+                name="gender"
+                value={userProfile.gender}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+              >
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </div>
+            <button
+              className="w-full px-4 py-2 bg-blue-500 text-white rounded-md mt-2 outline-blue-500"
+              onClick={handleUpdate}
             >
-              <option value="Nam">Nam</option>
-              <option value="Nữ">Nữ</option>
-              <option value="Khác">Khác</option>
-            </select>
+              Cập nhật
+            </button>
           </div>
-          <button
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded-md mt-2 outline-blue-500"
-            onClick={handleUpdate}
-          >
-            Cập nhật
-          </button>
         </div>
       </div>
     </div>

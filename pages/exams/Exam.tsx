@@ -32,7 +32,7 @@ interface QuestionProps {
   disable: boolean;
   answerResults?: { [key: number]: boolean };
   correctAnswer?: string;
-  point: number;
+  point?: number;
   img: string;
 }
 
@@ -89,7 +89,7 @@ const Question: React.FC<QuestionProps> = ({
           name="answer"
           render={({ field }) => (
             <FormItem className="space-y-3 ">
-              <FormLabel className="flex items-center gap-1">
+              <FormLabel className="flex items-center gap-1 mt-5">
                 <Text
                   type="body-16-medium"
                   className="bg-[#d5e5f7] rounded-md px-2 py-[2px] "
@@ -97,7 +97,7 @@ const Question: React.FC<QuestionProps> = ({
                   {name}.
                 </Text>
                 <Text type="body-16-medium">
-                  {convert(convert(question))} ({point})
+                  {convert(convert(question))} {point}
                 </Text>
                 <img src={img} alt="" />
               </FormLabel>
