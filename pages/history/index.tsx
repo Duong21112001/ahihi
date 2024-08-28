@@ -57,7 +57,6 @@ const History = () => {
               <div className="flex gap-1 items-center mt-2">
                 <Image src={clock} alt="" />
                 <Text color="neutral-5">
-                  {" "}
                   {format(new Date(item.updated_at), "dd/MM/yyyy HH:mm")}
                 </Text>
               </div>

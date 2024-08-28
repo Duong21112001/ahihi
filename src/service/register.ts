@@ -18,11 +18,13 @@ const registerTrialTest = async (params: RegisterTrial) => {
   });
   return result;
 };
-const update = async (param: UpdateProps) => {
+const update = async (params: UpdateProps) => {
+  console.log("param======", params);
+
   const result = await privateRequest(
     requestCommunity.post,
     API_PATH.UPDATE_PROFILE,
-    { param }
+    { params }
   );
   return result;
 };
