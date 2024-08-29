@@ -129,7 +129,6 @@ const RegisterTrialTests = () => {
         localStorage.getItem("isRegistered")
       );
 
-      alert("Đăng ký thành công!");
       router.push({ pathname: "/exam" });
     } catch (error) {
       console.error("Đăng ký thất bại:", error);

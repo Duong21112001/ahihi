@@ -281,6 +281,10 @@ const Header = () => {
                     onClick={() => {
                       if (!user?.user_id) {
                         router.push("/login");
+                      } else {
+                        router.push({
+                          pathname: "/register-trial-tests",
+                        });
                       }
                     }}
                     className={styles.textBtn}

@@ -25,6 +25,7 @@ interface HistoryItem {
   updated_at: string;
   status: 0 | 1;
   test: Test;
+  grammar_score: number;
 }
 interface Test {
   id: number;
@@ -141,6 +142,14 @@ const History = () => {
 
                   <Text type="body-16-semibold" className="text-[#dd2328]">
                     {item.vocab_score}
+                  </Text>
+                </div>
+                <div className="flex justify-between items-end">
+                  <Text>Grammar</Text>
+                  <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>
+
+                  <Text type="body-16-semibold" className="text-[#dd2328]">
+                    {item.grammar_score}
                   </Text>
                 </div>
                 <div className="flex justify-between items-end">
