@@ -100,10 +100,11 @@ const RegisterTrialTests = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const converData = JSON.stringify(data, null, 2) as any;
     setLoading(true);
     setApiError(null);
 
-    const level_id = Number(data.level);
+    const level_id = Number(data?.level);
 
     const params = {
       name: data.username,
@@ -111,7 +112,14 @@ const RegisterTrialTests = () => {
       email: data.email,
       level_id: level_id,
     };
-    console.log("Dữ liệu gửi đi:", params);
+    console.log(
+      "Dữ liệu gửi đi:",
+      params,
+      data,
+      data?.level,
+      typeof data?.level,
+      Number(data?.level)
+    );
 
     try {
       await registerTrialTest(params);
@@ -320,9 +328,10 @@ const RegisterTrialTests = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button
-                    // type="submit"
+                    type="submit"
                     className="w-full mt-5"
                     disabled={!isFormFilled}
+                    // onClick={onSubmit}
                   >
                     {loading ? "Đang đăng ký..." : "Đăng ký thi thử"}
                   </Button>

@@ -18,7 +18,7 @@ interface UserProfileProps {
   gender: string;
   mobile: string;
   email: string;
-  avt: string;
+  // avt: string;
 }
 
 const UpdateProfile = () => {
@@ -31,7 +31,7 @@ const UpdateProfile = () => {
     gender: "",
     mobile: "",
     email: "",
-    avt: "",
+    // avt: "",
   });
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
@@ -54,7 +54,7 @@ const UpdateProfile = () => {
       gender: getCookie("gender") || "Nam",
       mobile: getCookie("mobile") || "",
       email: getCookie("email") || "",
-      avt: getCookie("avatar") || "",
+      // avt: getCookie("avatar") || "",
     });
   };
 
@@ -149,6 +149,16 @@ const UpdateProfile = () => {
                 onChange={handleFileChange}
                 className="mt-2"
               />
+              <div className="mb-4">
+                <Text type="body-16-semibold">Email</Text>
+                <input
+                  name="email"
+                  value={userProfile.email}
+                  onChange={handleChange} // <-- Thêm sự kiện này
+                  className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+                  type="text"
+                />
+              </div>
             </div>
             <div className="mb-4">
               <Text type="body-16-semibold">Họ và tên</Text>
@@ -170,7 +180,16 @@ const UpdateProfile = () => {
                 type="date"
               />
             </div>
-
+            <div className="mb-4">
+              <Text type="body-16-semibold">Họ và tên</Text>
+              <input
+                name="mobile"
+                value={userProfile.mobile}
+                onChange={handleChange} // <-- Thêm sự kiện này
+                className="w-full px-4 py-2 border rounded-md mt-2 outline-blue-500"
+                type="text"
+              />
+            </div>
             <div className="mb-4">
               <Text type="body-16-semibold">Địa chỉ</Text>
               <input

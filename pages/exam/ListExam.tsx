@@ -114,6 +114,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
                       item.exam.map((test: ExamProps) => ({
                         time: test.time_end,
                         name: test.name,
+                        id: test.id,
                       }))
                     ),
                   };

@@ -49,38 +49,41 @@ const ExamPage = () => {
   const [correctAnswers, setCorrectAnswers] = useState<{
     [key: number]: string;
   }>({});
-  const [currentTestIndex, setCurrentTestIndex] = useState(0);
-
   const [question, setQuestion] = useState<Questions[]>([]);
   const [error, setError] = useState<string | null>(null);
   const questionRefs = useRef<Array<HTMLDivElement | null>>([]);
   const { convert } = require("html-to-text");
   const router = useRouter();
   const { id, exam } = router.query;
+  const [currentExamIndex, setCurrentExamIndex] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(0);
   const parsedExam = exam ? JSON.parse(exam as string) : [];
+  const currentExam =
+    parsedExam.length > 0 ? parsedExam[currentExamIndex] : null;
+  console.log("currentExam=====", currentExam);
+
+  const examName = currentExam ? currentExam.name : "Exam";
+  // const [validTimeEnd, setValidTimeEnd] = useState(
+  //   parsedExam.length > 0 ? parsedExam[0].time * 60 : 0
+  // );
+  const validTimeEnd = currentExam ? currentExam.time * 60 : 0;
+  console.log("ValidTime===========", validTimeEnd);
+
+  // const validTimeEnd =
+  //   parsedExam.length > 0 ? parsedExam[currentExamIndex].time * 60 : 0;
   console.log("parsedExam=========", parsedExam);
-
   const parsedTests = id ? JSON.parse(id as string) : [];
-  console.log("parsedTests=========", parsedTests);
-
-  // const currentExam = parsedTests[currentTestIndex];
-  // console.log("currentExam===========", currentExam);
-
-  // const testId = currentExam?.test_id;
+  console.log("question=========", parsedTests);
   const testId = id;
-  // console.log("testId=====", testId);
-  // const name = currentExam?.test_name || "";
-  const [isResting, setIsResting] = useState(false);
-  const [restTime, setRestTime] = useState(5 * 60);
-  const [countdownActive, setCountdownActive] = useState(false);
-  const [countdownTime, setCountdownTime] = useState(0);
   const token = getCookie("kosei-token");
-  const [user, setUser] = useRecoilState(userProfile);
+  const [user] = useRecoilState(userProfile);
   const [trialTestId, setTrialTestId] = useState(null);
   const [type, setType] = useState("");
-  const [trialTest, setTrialTest] = useState<TrialTests[]>([]);
-  const [timeEnd, setTimeEnd] = useState<string | null>(null);
-
+  const [showNextButton, setShowNextButton] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showBreak, setShowBreak] = useState(false); // Trạng thái hiển thị nghỉ giải lao
+  const [breakTimeLeft, setBreakTimeLeft] = useState(5 * 60); // Thời gian nghỉ giải lao (5 phút)
+  const [isBreakPaused, setIsBreakPaused] = useState(false);
   const handleAnswer = (questionId: number, answer: string) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -102,8 +105,6 @@ const ExamPage = () => {
 
           if (firstObject && Array.isArray(firstObject.test)) {
             const testData = firstObject.test;
-
-            // Lấy ra name và level của mỗi object trong mảng test
             const nameAndLevel = testData.map((item: Test) => ({
               id: item.id,
               name: item.name,
@@ -150,16 +151,24 @@ const ExamPage = () => {
         console.log("dataExam===", data);
 
         if (Array.isArray(data)) {
+          const examIds = data.map((item) => item.exam_id);
+          const id = parsedExam.map((item: { id: number }) => item.id);
+          const currentExamId = id[currentExamIndex];
+
+          const filteredData = data.filter(
+            (item) => item.exam_id === currentExamId
+          );
+          console.log("filteredData====", filteredData);
+
+          console.log("examIds====", examIds);
+          console.log("Ids====", id);
+
           const trialTestId = data[0].trial_test_id;
+
           const cType = data[0].ctype;
           setTrialTestId(trialTestId);
           setType(cType);
-
-          // console.log("trialTestId===========", trialTestId);
-          // const filteredQuestions = data.filter((q) => q.test_id === testId);
-          // console.log("filteredQuestions========", filteredQuestions);
-
-          setQuestion(data);
+          setQuestion(filteredData);
         } else {
           setError("No questions found");
         }
@@ -171,7 +180,7 @@ const ExamPage = () => {
     };
 
     fetchQuestion();
-  }, [testId]);
+  }, [testId, currentExamIndex]);
 
   useEffect(() => {
     if (question) {
@@ -187,39 +196,10 @@ const ExamPage = () => {
       }
     }
   }, [answers, question]);
-  useEffect(() => {
-    if (countdownActive && countdownTime > 0) {
-      const timer = setInterval(() => {
-        setCountdownTime((prev) => prev - 1);
-      }, 1000);
-
-      return () => clearInterval(timer as unknown as number);
-    } else if (countdownTime === 0) {
-      setCountdownActive(false);
-      setCountdownTime(5 * 60);
-      setIsResting(true);
-    }
-  }, [countdownActive, countdownTime]);
 
   let questionIndex = 1;
 
-  const handleSkipRest = () => {
-    if (currentTestIndex < parsedTests.length - 1) {
-      setCurrentTestIndex(currentTestIndex + 1);
-      setAnswers({});
-      setDisable(false);
-      setIsButtonDisabled(true);
-      setIsPaused(false);
-      setCountdownActive(false);
-      setRestTime(5 * 60);
-      setIsResting(false);
-    } else {
-      console.log("Đã hoàn thành tất cả các bài thi");
-    }
-  };
-
   const handleSubmit = async () => {
-    // const currentTest = testId;
     if (!question || !testId) return;
 
     let totalScore = 0;
@@ -385,28 +365,54 @@ const ExamPage = () => {
     setDisable(true);
     setIsButtonDisabled(true);
     setIsPaused(true);
-    setCountdownActive(true);
-    const storedResults = JSON.parse(
-      localStorage.getItem("examResults") || "[]"
-    );
-    const newResult = {
-      testName: name,
-      score: totalScore,
-      passScore,
-      correctAnswers: correctCount,
-      answeredQuestions: answeredCount,
-    };
-
-    storedResults.push(newResult);
-    localStorage.setItem("examResults", JSON.stringify(storedResults));
-
-    if (currentTestIndex < parsedTests.length - 1) {
-      setIsResting(true);
+    setShowNextButton(true);
+    if (currentExamIndex === parsedExam.length - 1) {
+      setShowNextButton(false);
+      setShowBreak(false);
+    }
+    setShowBreak(true);
+  };
+  const handleNext = () => {
+    if (parsedExam.length > 0 && currentExamIndex < parsedExam.length - 1) {
+      setCurrentExamIndex(currentExamIndex + 1);
+      setShowNextButton(false);
+      setIsSubmitted(false);
+      setDisable(false);
+      setIsPaused(false);
+      setShowBreak(false);
+      // const newValidTimeEnd = parsedExam[currentExamIndex + 1].time * 60;
+      // setValidTimeEnd(parsedExam[currentExamIndex + 1].time * 60);
     } else {
-      setIsResting(false);
+      setShowNextButton(false);
+      setShowBreak(false);
       console.log("Đã hoàn thành tất cả các bài thi");
     }
   };
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
+    if (showBreak && !isBreakPaused && breakTimeLeft > 0) {
+      intervalId = setInterval(() => {
+        setBreakTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(intervalId!);
+    };
+  }, [showBreak, breakTimeLeft, isBreakPaused]);
+
+  // Xử lý khi nghỉ giải lao hết thời gian
+  useEffect(() => {
+    if (breakTimeLeft === 0 && showBreak) {
+      handleNext(); // Chuyển sang bài thi tiếp theo
+      setShowBreak(false); // Ẩn phần nghỉ giải lao
+      setBreakTimeLeft(5 * 60); // Reset thời gian nghỉ giải lao
+      setIsBreakPaused(false); // Reset trạng thái tạm dừng nghỉ giải lao
+    }
+  }, [breakTimeLeft, showBreak]);
+  useEffect(() => {
+    // Cập nhật trạng thái khi chuyển sang bài thi tiếp theo
+    setDisable(isSubmitted);
+  }, [currentExamIndex, isSubmitted]);
   let globalIndex = 1;
 
   const renderListQuestion = (q: any, depth = 0) => {
@@ -431,8 +437,7 @@ const ExamPage = () => {
       </div>
     );
   };
-  const validTimeEnd = parsedExam.length > 0 ? parsedExam[0].time * 60 : 0;
-  const examName = parsedExam.length > 0 ? parsedExam[0].name : "Exam";
+
   const matchingItem = namesAndLevels.find((item) => item.id === parsedTests);
   console.log("matchingItem", matchingItem);
 
@@ -452,8 +457,6 @@ const ExamPage = () => {
               {exam.name}:({exam.point}) {convert(convert(exam.question))}
             </Text>
             {exam.questions?.map((q, index) => {
-              // console.log("exam.questions:", exam.questions);
-              // console.log("Sub questions (if any):", q.questions);
               if (q.questions && q.questions.length > 0) {
                 return (
                   <div key={q.id}>
@@ -513,7 +516,7 @@ const ExamPage = () => {
           </div>
         ))}
       </div>
-      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full">
+      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10">
         <div className="flex p-5 gap-4 border-b">
           <Image
             src={img}
@@ -555,26 +558,20 @@ const ExamPage = () => {
               ?.flatMap((exam) => exam.questions)
               .map((q) => renderListQuestion(q))}
           </div>
-          {isResting && currentTestIndex < parsedTests.length - 1 && (
-            <>
-              {countdownActive && (
-                <div className="mt-6">
-                  <CountDown
-                    timeR={countdownTime}
-                    isPaused={false}
-                    name="Thời gian nghỉ giải lao"
-                  />
-                  <Button
-                    className="w-full bg-red-500 text-white mt-4"
-                    onClick={handleSkipRest}
-                  >
-                    Bỏ qua giờ nghỉ
-                  </Button>
-                </div>
-              )}
-            </>
-          )}
         </div>
+        {showBreak && (
+          <div className="flex flex-col items-center justify-center gap-2.5 mb-5">
+            <Text type="title-20-bold" color="main-color-primary">
+              Nghỉ giải lao
+            </Text>
+            <CountDown
+              className="mt-2"
+              timeR={breakTimeLeft} // Sử dụng breakTimeLeft
+              isPaused={isBreakPaused}
+              // name="Thời gian còn lại"
+            />
+          </div>
+        )}
         <Dialog>
           <DialogTrigger asChild>
             {!disable && (
@@ -605,6 +602,7 @@ const ExamPage = () => {
             </DialogClose>
           </DialogContent>
         </Dialog>
+        {showNextButton && <Button onClick={handleNext}>Bỏ qua</Button>}
       </div>
     </div>
   );

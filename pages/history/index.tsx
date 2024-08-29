@@ -23,20 +23,66 @@ interface HistoryItem {
   total_score: number;
   created_at: string;
   updated_at: string;
+  status: 0 | 1;
+  test: Test;
+}
+interface Test {
+  id: number;
+  tt_id: number;
+  level_id: number;
+  name: string;
+  slug: string;
+  image: string | null;
+  pass_score: number;
+  des: string | null;
+  lang: string;
+  is_online: boolean;
+  created_at: string;
+  updated_at: string;
 }
 const History = () => {
   const [user, setUser] = useRecoilState(userProfile);
-
-  // const router = useRouter();
-  // const { testId } = router.query;
+  const [dataTest, setDataTest] = useState<
+    {
+      name: string;
+      pass_score: number;
+      id: number;
+    }[]
+  >([]);
   const user_id = user?.user_id;
   const [historyData, setHistoryData] = useState<HistoryItem[] | null>(null);
+  // const [allTestIds, setAllTestIds] = useState<number[]>([]);
+  const router = useRouter();
+
   const fetchHistory = async () => {
     try {
       const response = await axios.get(
         `https://kosei-web.eupsolution.net/api/user-tests/${user_id}`
       );
+      console.log("History=====", response.data);
+
       setHistoryData(response.data);
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        const allTestIds = response.data.map((item) => item.test_id);
+        console.log("all==========", allTestIds);
+        const testData = response.data
+          .map((item) => {
+            if (item.test_id === item.test.id) {
+              return {
+                id: item.test.id,
+                name: item.test.name,
+                pass_score: item.test.pass_score,
+              };
+            }
+            return null; // Trả về null nếu không khớp
+          })
+          .filter(Boolean);
+
+        console.log("Extracted Test Data:", testData);
+        // setDataTest(testData);
+      } else {
+        console.log("Response data is not an array or is empty.");
+      }
     } catch (err) {
       console.log("Error fetch history", err);
     }
@@ -44,6 +90,18 @@ const History = () => {
   useEffect(() => {
     fetchHistory();
   }, [user_id]);
+  // const testId =
+  //   historyData && historyData.length > 0 ? historyData.test_id : null;
+  // console.log("testId===History", testId);
+
+  // const matchingItem = dataTest.find((item) => item.id === testId);
+  const matchingItem = historyData
+    ?.map((item) => (item.test_id === item.test.id ? item.test : null))
+    .filter(Boolean)[0];
+  console.log("matchingHistory=", matchingItem);
+  const handleClick = (id: number) => {
+    router.push(`/detail-trial-test/${id}`);
+  };
   return (
     <div className="container">
       <Text type="title-32-bold" className="text-center mb-5">
@@ -53,7 +111,15 @@ const History = () => {
         {historyData ? (
           historyData.map((item, index) => (
             <div className="p-5 bg-[#f6f6f6] rounded-xl w-full" key={index}>
-              <Text type="title-18-semibold">{item.total_score}</Text>
+              <div className="flex gap-2 items-center">
+                <Text type="title-18-semibold">
+                  {item.test_id === item.test.id ? item.test.name : ""}
+                </Text>
+                <Text type="body-16-semibold" className="text-[#dd2328]">
+                  ({item.status === 0 ? "Đỗ" : "Trượt"})
+                </Text>
+              </div>
+
               <div className="flex gap-1 items-center mt-2">
                 <Image src={clock} alt="" />
                 <Text color="neutral-5">
@@ -94,13 +160,17 @@ const History = () => {
                   </Text>
                 </div>
               </div>
-              <Button variant="default" className="mt-5 w-full">
+              <Button
+                variant="default"
+                className="mt-5 w-full"
+                onClick={() => handleClick(item.id)}
+              >
                 Xem chi tiết
               </Button>
             </div>
           ))
         ) : (
-          <Text>Not data</Text>
+          <Text>Loading ...</Text>
         )}
       </div>
     </div>
