@@ -235,6 +235,7 @@ const ExamPage = () => {
                 correctAnswer={correctAnswers[q.id]}
                 point={q.point}
                 img={q?.image}
+                attachment={""}
               />
             ))}
           </div>
