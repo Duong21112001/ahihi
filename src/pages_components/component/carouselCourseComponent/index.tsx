@@ -57,39 +57,6 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
           >
             {course.name}
           </Text>
-          {/* <Box flex agileItem="agile-center" className={styles.rate}>
-            <Box flex right={10} className={styles.rateIcon}>
-              {[...Array(4)].map((value, key) => {
-                return (
-                  <Image
-                    src="/svg/rating.svg"
-                    alt="rating"
-                    layout="fixed"
-                    width={20}
-                    height={20}
-                    style={{ marginRight: 2 }}
-                    key={`rating-${key}`}
-                  />
-                );
-              })}
-              {[...Array(1)].map((value, key) => {
-                return (
-                  <Image
-                    src="/svg/rating.svg"
-                    alt="rating"
-                    layout="fixed"
-                    width={20}
-                    height={20}
-                    style={{ marginRight: 2 }}
-                    key={`un-rating-${key}`}
-                  />
-                );
-              })}
-            </Box>
-            <Text type="body-16-regular" color="dark-500">
-              4.8 (120 đánh giá)
-            </Text>
-          </Box> */}
           <Box
             flex
             agileItem="agile-center"

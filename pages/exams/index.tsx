@@ -189,7 +189,7 @@ const ExamPage = () => {
 
       const answeredQuestions = Object.keys(answers).length;
       const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
-      if (answeredPercentage >= 10) {
+      if (answeredPercentage >= 70) {
         setIsButtonDisabled(false);
       } else {
         setIsButtonDisabled(true);

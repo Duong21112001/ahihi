@@ -137,21 +137,21 @@ const History = () => {
                   </Text>
                 </div>
                 <div className="flex justify-between items-end">
-                  <Text>Vocab</Text>
+                  <Text>Ngữ pháp + Từ vựng</Text>
                   <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>
 
                   <Text type="body-16-semibold" className="text-[#dd2328]">
-                    {item.vocab_score}
+                    {item.vocab_score + item.vocab_score}
                   </Text>
                 </div>
-                <div className="flex justify-between items-end">
+                {/* <div className="flex justify-between items-end">
                   <Text>Grammar</Text>
                   <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>
 
                   <Text type="body-16-semibold" className="text-[#dd2328]">
                     {item.grammar_score}
                   </Text>
-                </div>
+                </div> */}
                 <div className="flex justify-between items-end">
                   <Text>Reading</Text>
                   <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>

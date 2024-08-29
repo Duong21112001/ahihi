@@ -3,71 +3,11 @@ import styles from "./index.module.css";
 import "react-multi-carousel/lib/styles.css";
 import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useRequest } from "@umijs/hooks";
-import { listTeacher } from "./service";
-import { IlistTeacher } from "@/utils/model/teacher";
-import Button from "@/components/Button";
-import { convert } from "html-to-text";
-import avt from "../../../../public/Images/avt.png";
 import vector from "../../../../public/Images/arrow.png";
 import React from "react";
 import { cn } from "@/utils";
-const data = [
-  {
-    img: avt,
-    name: "NGUYỄN MINH A",
-    des: [
-      { des1: "Giáo viên phụ trách lớp offline" },
-      { des1: "Tốt nghiệp trường Đại học Thương Mại" },
-      { des1: "Đạt chứng chỉ JLPT N1" },
-    ],
-  },
-  {
-    img: avt,
-    name: "NGUYỄN MINH A",
-    des: [
-      { des1: "Giáo viên phụ trách lớp offline" },
-      { des1: "Tốt nghiệp trường Đại học Thương Mại" },
-      { des1: "Đạt chứng chỉ JLPT N1" },
-    ],
-  },
-  {
-    img: avt,
-    name: "NGUYỄN MINH A",
-    des: [
-      { des1: "Giáo viên phụ trách lớp offline" },
-      { des1: "Tốt nghiệp trường Đại học Thương Mại" },
-      { des1: "Đạt chứng chỉ JLPT N1" },
-    ],
-  },
-  {
-    img: avt,
-    name: "NGUYỄN MINH A",
-    des: [
-      { des1: "Giáo viên phụ trách lớp offline" },
-      { des1: "Tốt nghiệp trường Đại học Thương Mại" },
-      { des1: "Đạt chứng chỉ JLPT N1" },
-    ],
-  },
-  {
-    img: avt,
-    name: "NGUYỄN MINH A",
-    des: [
-      { des1: "Giáo viên phụ trách lớp offline" },
-      { des1: "Tốt nghiệp trường Đại học Thương Mại" },
-      { des1: "Đạt chứng chỉ JLPT N1" },
-    ],
-  },
-  {
-    img: avt,
-    name: "NGUYỄN MINH A",
-    des: [
-      { des1: "Giáo viên phụ trách lớp offline" },
-      { des1: "Tốt nghiệp trường Đại học Thương Mại" },
-      { des1: "Đạt chứng chỉ JLPT N1" },
-    ],
-  },
-];
+import Carousel from "react-multi-carousel";
+
 interface TeacherProps {
   name: string;
   content: string;
@@ -79,7 +19,24 @@ interface TeacherProps {
 const Lecturers = () => {
   const [listTeacher, setListTeacher] = useState<TeacherProps[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 3,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 480 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 540, min: 0 },
+      items: 1,
+    },
+  };
   useEffect(() => {
     const fetchBanners = async () => {
       try {
@@ -102,7 +59,7 @@ const Lecturers = () => {
     fetchBanners();
   }, []);
   return (
-    <div className="container max-xl:min-w-fit max-lg:max-w-fit max-xl:flex max-xl:flex-col max-xl:items-center max-lg:px-5">
+    <div className="container max-xl:min-w-0 max-xl:flex max-xl:flex-col max-xl:items-center max-lg:px-5">
       <div className="">
         <Text
           type="heading-h2"
@@ -118,35 +75,51 @@ const Lecturers = () => {
           80.000+ học viên
         </Text>
       </div>
-      <div className="grid grid-cols-3 gap-y-[140px] gap-x-[33px] mt-[190px] max-lg:grid-cols-1 max-xl:gap-y-[140px] max-xl:mt-[150px] max-xl:grid-cols-2 max-xl:gap-x-10">
-        {React.Children.toArray(
-          listTeacher.map((item) => (
-            <div className={cn("relative", styles.bg)}>
-              <div className="border-[#195AE7] border-8 w-fit rounded-full p-2 absolute top-[-20%] left-[14%]">
-                <Image
-                  src={`https://kosei-web.eupsolution.net${item.image}`}
-                  alt=""
-                  width={223}
-                  height={223}
-                  className="w-[223px] h-[223px] rounded-full object-cover"
-                />
-              </div>
-
-              <div className="flex flex-col items-center mt-[196px]">
-                <Text className="text-[22px] font-bold mb-5">{item.name}</Text>
-                <div className="flex gap-1">
-                  <Image
-                    src={vector}
+      <div className="gap-x-[33px] max-xl:gap-x-10">
+        <Carousel
+          // autoPlay
+          // autoPlaySpeed={3000}
+          responsive={responsive}
+          infinite={true}
+          transitionDuration={500}
+          centerMode={false}
+          renderArrowsWhenDisabled={true}
+          showDots={true}
+          className="pb-10 max-lg:pb-5"
+        >
+          {React.Children.toArray(
+            listTeacher.map((item) => (
+              <div className={cn("relative", styles.bg)}>
+                <div className="border-[#195AE7] border-8 w-fit rounded-full p-2 absolute top-[-20%] left-[18%] max-lg:left-[13%]">
+                  <img
+                    src={`https://kosei-web.eupsolution.net${item.image}`}
                     alt=""
-                    width={6}
-                    height={8}
-                    className="h-fit"
+                    width={223}
+                    height={223}
+                    className="w-[223px] h-[223px] rounded-full object-cover"
                   />
-                  <Text className="leading-6 w-[266px] text-center">
-                    {item.content}
-                  </Text>
                 </div>
-                {/* {React.Children.toArray(
+
+                <div className="flex flex-col items-center mt-40">
+                  <div className="mt-52 flex flex-col items-center">
+                    <Text className="text-[22px] font-bold mb-5">
+                      {item.name}
+                    </Text>
+                    <div className="flex gap-1">
+                      <Image
+                        src={vector}
+                        alt=""
+                        width={6}
+                        height={8}
+                        className="h-fit"
+                      />
+                      <Text className="leading-6 text-center h-[112px] overflow-auto ">
+                        {item.content}
+                      </Text>
+                    </div>
+                  </div>
+
+                  {/* {React.Children.toArray(
                   item.des.map((it) => (
                     <div className="flex items-center gap-1">
                       <Image src={vector} alt="" width={6} height={8} />
@@ -154,10 +127,11 @@ const Lecturers = () => {
                     </div>
                   ))
                 )} */}
+                </div>
               </div>
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </Carousel>
       </div>
     </div>
   );

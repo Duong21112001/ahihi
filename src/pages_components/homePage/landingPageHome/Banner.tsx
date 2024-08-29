@@ -67,7 +67,7 @@ const Banner = () => {
       showDots={false}
     >
       {banners.map((item) => (
-        <Image
+        <img
           src={`https://kosei-web.eupsolution.net${item.path}`}
           alt=""
           key={item.id}

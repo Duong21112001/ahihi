@@ -206,7 +206,7 @@ const RegisterTrialTests = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="bg-white w-[30%] p-6 rounded-xl shadow-lg max-lg:w-full"
+              className="bg-white w-[30%] p-6 rounded-xl shadow-lg max-lg:w-full max-xl:w-[50%]"
             >
               <div className="flex flex-col gap-4">
                 <Text type="title-32-bold" className="text-center">

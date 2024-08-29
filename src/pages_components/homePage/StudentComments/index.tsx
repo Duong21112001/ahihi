@@ -106,10 +106,10 @@ const StudentComments = () => {
                   {item.message}
                 </Text>
                 <div className={styles.user}>
-                  <Image
+                  <img
                     src={`https://kosei-web.eupsolution.net${item.avatar}`}
                     alt="user-comment"
-                    layout="fixed"
+                    // layout="fixed"
                     width={65}
                     height={65}
                     style={{ marginRight: 20 }}
