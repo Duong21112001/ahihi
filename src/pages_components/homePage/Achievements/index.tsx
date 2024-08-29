@@ -47,7 +47,14 @@ const Achievements = () => {
       <div className={styles.oneAchievementsPadding}>
         <div className={styles.oneAchievements}>
           <div className={styles.img}>
-            <img src={data?.avatar} alt="achievements" />
+            {data?.avatar ? (
+              <img src={data?.avatar} alt="achievements" />
+            ) : (
+              <img
+                src="../../../../public/Images/mascot.png"
+                alt="achievements"
+              />
+            )}
             <div className={styles.zoomOut}>
               <ImageModal url={data?.avatar} />
             </div>

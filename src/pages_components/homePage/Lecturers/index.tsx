@@ -33,7 +33,7 @@ const Lecturers = () => {
       items: 1,
     },
     mobile: {
-      breakpoint: { max: 540, min: 0 },
+      breakpoint: { max: 540, min: 300 },
       items: 1,
     },
   };

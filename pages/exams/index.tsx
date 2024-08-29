@@ -359,16 +359,20 @@ const ExamPage = () => {
 
     const passScore = totalPassScore;
     const resultMessage = `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`;
+    setIsPaused(true);
     setResult(resultMessage);
     setAnswerResults(tempAnswerResults);
     setCorrectAnswers(tempCorrectAnswers);
     setDisable(true);
     setIsButtonDisabled(true);
-    setIsPaused(true);
     setShowNextButton(true);
     if (currentExamIndex === parsedExam.length - 1) {
       setShowNextButton(false);
       setShowBreak(false);
+      // setShowNextButton(true);
+    } else {
+      setShowNextButton(true);
+      setShowBreak(true);
     }
     setShowBreak(true);
   };
@@ -411,7 +415,7 @@ const ExamPage = () => {
   }, [breakTimeLeft, showBreak]);
   useEffect(() => {
     // Cập nhật trạng thái khi chuyển sang bài thi tiếp theo
-    setDisable(isSubmitted);
+    setDisable(false);
   }, [currentExamIndex, isSubmitted]);
   let globalIndex = 1;
 
@@ -602,6 +606,9 @@ const ExamPage = () => {
             </DialogClose>
           </DialogContent>
         </Dialog>
+        {currentExamIndex === parsedExam.length - 1 && showBreak && (
+          <Button onClick={() => router.push("/exam")}>Quay lại</Button>
+        )}
         {showNextButton && <Button onClick={handleNext}>Bỏ qua</Button>}
       </div>
     </div>

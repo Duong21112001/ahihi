@@ -75,22 +75,7 @@ const ContentCourse = ({ course }: Courseprops) => {
       >
         {course?.name}
       </Text>
-      <Box flex agileItem="agile-center" bottom={12}>
-        {course?.star && (
-          <Box flex agileItem="agile-center">
-            <Rating numberRating={course?.star} />
-          </Box>
-        )}
 
-        <Box flex agileItem="agile-flex-end">
-          <Text type="body-14-medium" color="neutral-2" right={5}>
-            {course?.star}
-          </Text>
-          <Text type="tag-12-regular" color="neutral-4">
-            ({course?.total_rate} đánh giá)
-          </Text>
-        </Box>
-      </Box>
       <Text type="body-16-regular" color="neutral-4" bottom={12}>
         {course?.description}
       </Text>

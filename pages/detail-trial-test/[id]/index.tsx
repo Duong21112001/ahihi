@@ -5,6 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Text from "@/components/Text";
+import { cn } from "@/utils";
 
 const DetailHistory = () => {
   const route = useRouter();
@@ -40,14 +41,26 @@ const DetailHistory = () => {
     selectedAnswer: string
   ) => {
     if (answer === correctAnswer) {
-      return "border-[#09ed09] bg-[#c7f4c7]";
+      return "border-[#0a8328] bg-[#E7EFF7]";
     } else if (answer === selectedAnswer) {
-      return "border-[#f40c0c] bg-[#f7c8c8]";
+      return "border-[#FF0000] bg-[#FFE5E5]";
     } else {
       return "border-gray-300";
     }
   };
-
+  const getBorderClassItem = (
+    answer: string,
+    correctAnswer: string,
+    selectedAnswer: string
+  ) => {
+    if (answer === correctAnswer) {
+      return " bg-[#B7CFE7]";
+    } else if (answer === selectedAnswer) {
+      return "bg-[#B7CFE7]";
+    } else {
+      return "";
+    }
+  };
   // Hàm xác định màu của input radio
   const getRadioClass = (
     answer: string,
@@ -80,22 +93,34 @@ const DetailHistory = () => {
                   return (
                     <div
                       key={option}
-                      className={`flex items-center gap-3 border rounded-full py-3 px-4 ${getBorderClass(
+                      className={`flex items-center gap-3 border rounded-full pr-4  ${getBorderClass(
                         optionIndex,
                         question.correct_answer,
                         item.answer
                       )}`}
                     >
-                      <input
-                        type="radio"
-                        disabled
-                        checked={item.answer === optionIndex}
-                        className={`w-4 h-4 ${getRadioClass(
-                          option,
-                          question.correct_answer,
-                          item.answer
-                        )}`}
-                      />
+                      <div
+                        className={cn(
+                          "border py-3 px-4 rounded-tl-full rounded-bl-full",
+                          getBorderClassItem(
+                            optionIndex,
+                            question.correct_answer,
+                            item.answer
+                          )
+                        )}
+                      >
+                        <input
+                          type="radio"
+                          disabled
+                          checked={item.answer === optionIndex}
+                          className={`w-5 h-5 ${getRadioClass(
+                            option,
+                            question.correct_answer,
+                            item.answer
+                          )}`}
+                        />
+                      </div>
+
                       <Text>{convert(convert(question[answerKey]))}</Text>
                     </div>
                   );
