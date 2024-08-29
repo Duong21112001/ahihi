@@ -279,8 +279,12 @@ const Header = () => {
                   <Text
                     type="body-16-regular"
                     onClick={() => {
+                      const isRegistered = localStorage.getItem("isRegistered");
+
                       if (!user?.user_id) {
                         router.push("/login");
+                      } else if (isRegistered === "true") {
+                        router.push("/exam");
                       } else {
                         router.push({
                           pathname: "/register-trial-tests",
