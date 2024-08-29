@@ -393,7 +393,7 @@ const ExamPage = () => {
     if (showBreak && !isBreakPaused && breakTimeLeft > 0) {
       intervalId = setInterval(() => {
         setBreakTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
+      }, 1000) as NodeJS.Timeout;
     }
     return () => {
       clearInterval(intervalId!);
