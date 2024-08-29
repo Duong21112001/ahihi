@@ -268,8 +268,8 @@ const LoginForm = () => {
               onProfileSuccess={(response) => {
                 console.log("responseFb======", response);
 
-                setCookie("fullname", response.name);
-                setCookie("avatar", response.picture?.data.url);
+                // setCookie("fullname", response.name);
+                // setCookie("avatar", response.picture?.data.url);
               }}
               style={{
                 backgroundColor: "#1877f2",
@@ -319,8 +319,8 @@ const LoginForm = () => {
                       credentialResponse?.credential
                     ) as any;
 
-                    setCookie("fullname", decoded.name);
-                    setCookie("avatar", credentialResponse.picture);
+                    // setCookie("fullname", decoded.name);
+                    // setCookie("avatar", credentialResponse.picture);
                     if (credentialResponse.credential) {
                       runLoginGoogle(credentialResponse.credential);
                     }
