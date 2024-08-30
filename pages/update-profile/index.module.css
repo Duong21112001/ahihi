@@ -1,8 +1,45 @@
 .bg {
   background: url(../../public/Images/Rectangle\ 34624261.png);
-  height: 100vh;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.profileForm {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 8px 10px 0px #14518929;
+  background: var(--background-3);
+  padding: 20px;
+  border-radius: 15px;
+}
+.profileFormItem {
+  margin-bottom: 15px;
+}
+.datePicker {
+  background: var(--neutral-10);
+  padding-left: 10px;
+  width: calc(100% - 50px);
+  height: 100%;
+}
+.datePicker:focus-visible {
+  outline: none;
+}
+
+.datePicker[type="date"]::-webkit-inner-spin-button,
+.datePicker[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+.birthday {
+  display: flex;
+  align-items: center;
+  background: var(--neutral-10);
+  width: 100%;
+  height: 56px;
+  padding-left: 10px;
+  border-radius: 12px;
+}
+.buttonSubmit {
+  margin: 20px auto;
 }
