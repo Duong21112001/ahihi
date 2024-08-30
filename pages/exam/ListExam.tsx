@@ -93,7 +93,7 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
                     onClick={() => setSelectedSkillId(it.id)}
                   >
                     <Text className="text-[#2D3748]" type="body-14-semibold">
-                      {it.name} ({item.pass_score})
+                      {it.name}
                     </Text>
 
                     <div className="flex items-center gap-1">

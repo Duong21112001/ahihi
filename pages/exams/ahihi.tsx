@@ -79,10 +79,7 @@ const ExamPage = () => {
           );
           const data = await response.json();
           if (Array.isArray(data)) {
-            const filteredQuestions = data.filter(
-              // (q) => q.test_id === parsedTests[currentTestIndex]?.test_id
-              (q) => q.test_id === testId
-            );
+            const filteredQuestions = data.filter((q) => q.test_id === testId);
             setQuestion(filteredQuestions);
           } else {
             setError("Data empty");

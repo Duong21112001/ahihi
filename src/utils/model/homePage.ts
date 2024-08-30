@@ -8,7 +8,29 @@ export interface RegisterConsultationParam {
   address: string;
   content: string;
 }
-
+export interface DataLearning {
+  author_infor: string;
+  cat_id: number;
+  cou_price: number;
+  cou_sale: number;
+  cou_summary: string;
+  cou_title: string;
+  course_status: number;
+  cover_path: string;
+  curriculum: null;
+  detail: string;
+  expired_at: string;
+  hot: number;
+  image: string;
+  intro_video_path: null;
+  level_id: number;
+  name: string;
+  price_jp: number;
+  teacher_id: number;
+  total_learned: number;
+  vimeo_link: string;
+  youtube_link: string;
+}
 export interface LevelListResponse {
   id: number;
   name: string;

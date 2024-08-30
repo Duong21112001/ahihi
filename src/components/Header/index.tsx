@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 import { useEffect, useState } from "react";
 import Text from "../Text";
 import React from "react";
-import { deleteCookie, getCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import Button from "../Button";
 import { useRequest } from "@umijs/hooks";
 import { getUser } from "@/service/user";
@@ -21,6 +21,7 @@ import { ROUTER } from "@/api/constant";
 import Search from "../Search";
 import Course from "./Course";
 import Document from "../../../pages/document/Document";
+import { cn } from "@/utils";
 const Header = () => {
   const router = useRouter();
   const [navBarOpen, setnavBarOpen] = useState(false);
@@ -132,7 +133,13 @@ const Header = () => {
           type="body-16-medium"
           color="neutral-2"
           className={styles.history}
-          onClick={handleChange}
+          onClick={() => {
+            if (!user?.user_id) {
+              router.push("/login");
+            } else {
+              router.push("/history");
+            }
+          }}
         >
           Lịch sử thi
         </Text>
@@ -279,7 +286,7 @@ const Header = () => {
                   <Text
                     type="body-16-regular"
                     onClick={() => {
-                      const isRegistered = localStorage.getItem("isRegistered");
+                      const isRegistered = getCookie("isRegistered");
 
                       if (!user?.user_id) {
                         router.push("/login");
@@ -321,7 +328,7 @@ const Header = () => {
                   </Text>
                 </>
               )}
-              <div className={styles.searchBottom}>
+              <div className={cn(styles.searchBottom)}>
                 <Search
                   isSearchActive={isSearchActive}
                   setIsSearchActive={setIsSearchActive}

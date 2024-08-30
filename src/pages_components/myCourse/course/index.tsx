@@ -25,6 +25,8 @@ const MyCourseCarousel = () => {
   const { loading: loadingLearning, data: dataLearning } = useRequest(
     async () => {
       const result = await getCourseStuding();
+      console.log("result====", result);
+
       return result;
     },
     {
@@ -49,13 +51,13 @@ const MyCourseCarousel = () => {
             >
               {course.name}
             </Text>
-            <div className={styles.progress}>
+            {/* <div className={styles.progress}>
               <div className={styles.progressActive} style={{ width: "30%" }} />
-            </div>
+            </div> */}
             <Box flex agileItem="agile-center" justContent="content-beetween">
-              <Text type="body-16-regular" color="neutral-3">
+              {/* <Text type="body-16-regular" color="neutral-3">
                 Hoàn thành: 25%
-              </Text>
+              </Text> */}
               <Text
                 type="body-16-medium"
                 color="main-color-primary"
@@ -81,7 +83,7 @@ const MyCourseCarousel = () => {
       <div className={styles.courseCarouselContainer}>
         {!loading &&
           data &&
-          data?.map((item: Course) => {
+          dataLearning?.map((item: Course) => {
             return (
               <div key={`course-${item?.id}`} className={styles.courseCarousel}>
                 <CourseComponent course={item} />

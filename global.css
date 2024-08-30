@@ -602,7 +602,7 @@ a:focus {
 
 .container-class-course {
   height: unset;
-  width: calc(100% - 150px);
+  /* width: calc(100% - 150px); */
   margin: 20px auto;
   position: static !important;
 }
