@@ -25,12 +25,12 @@ const Lecturers = () => {
       items: 3,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1280 },
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 768, min: 480 },
-      items: 1,
+      breakpoint: { max: 1120, min: 480 },
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 540, min: 300 },
@@ -59,7 +59,7 @@ const Lecturers = () => {
     fetchBanners();
   }, []);
   return (
-    <div className="container max-xl:min-w-0 max-xl:flex max-xl:flex-col max-xl:items-center max-lg:px-5">
+    <div className="container max-xl:min-w-0 max-xl:flex max-xl:flex-col  max-lg:px-5">
       <div className="">
         <Text
           type="heading-h2"
@@ -77,8 +77,8 @@ const Lecturers = () => {
       </div>
       <div className="gap-x-[33px] max-xl:gap-x-10">
         <Carousel
-          // autoPlay
-          // autoPlaySpeed={3000}
+          autoPlay
+          autoPlaySpeed={3000}
           responsive={responsive}
           infinite={true}
           transitionDuration={500}
@@ -90,7 +90,7 @@ const Lecturers = () => {
           {React.Children.toArray(
             listTeacher.map((item) => (
               <div className={cn("relative", styles.bg)}>
-                <div className="border-[#195AE7] border-8 w-fit rounded-full p-2 absolute top-[-20%] left-[18%] max-lg:left-[13%]">
+                <div className="border-[#195AE7] border-8 w-fit rounded-full p-2 absolute top-[-20%] left-[18%] max-lg:left-[13%] max-xl:left-[25%]">
                   <img
                     src={`https://kosei-web.eupsolution.net${item.image}`}
                     alt=""
@@ -113,7 +113,7 @@ const Lecturers = () => {
                         height={8}
                         className="h-fit"
                       />
-                      <Text className="leading-6 text-center h-[112px] overflow-auto ">
+                      <Text className="leading-6 text-center h-[112px] overflow-auto max-xl:w-[322px]">
                         {item.content}
                       </Text>
                     </div>

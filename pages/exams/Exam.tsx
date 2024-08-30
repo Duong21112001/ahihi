@@ -97,7 +97,7 @@ const Question: React.FC<QuestionProps> = ({
                   {name}.
                 </Text>
                 <Text type="body-16-medium">
-                  {convert(convert(question))} {point}
+                  {convert(convert(question))} ({point})
                 </Text>
                 <img src={img} alt="" />
               </FormLabel>

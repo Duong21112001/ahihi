@@ -557,11 +557,13 @@
 @media screen and (max-width: 1024px) {
   .searchBottom {
     display: none;
+    width: 100%;
   }
 }
 
 .searchTop {
   display: none;
+  width: 100%;
 }
 
 @media screen and (max-width: 1024px) {

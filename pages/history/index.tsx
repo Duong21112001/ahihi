@@ -52,6 +52,7 @@ const History = () => {
   >([]);
   const user_id = user?.user_id;
   const [historyData, setHistoryData] = useState<HistoryItem[] | null>(null);
+  const [total, setTotal] = useState<number[]>([]);
   // const [allTestIds, setAllTestIds] = useState<number[]>([]);
   const router = useRouter();
 
@@ -61,7 +62,14 @@ const History = () => {
         `https://kosei-web.eupsolution.net/api/user-tests/${user_id}`
       );
       console.log("History=====", response.data);
-
+      const updatedData = response.data.map((item: HistoryItem) => ({
+        ...item,
+        total_score:
+          item.grammar_score +
+          item.vocab_score +
+          item.reading_score +
+          item.listening_score,
+      }));
       setHistoryData(response.data);
       if (Array.isArray(response.data) && response.data.length > 0) {
         const allTestIds = response.data.map((item) => item.test_id);
@@ -80,6 +88,7 @@ const History = () => {
           .filter(Boolean);
 
         console.log("Extracted Test Data:", testData);
+
         // setDataTest(testData);
       } else {
         console.log("Response data is not an array or is empty.");
@@ -91,11 +100,7 @@ const History = () => {
   useEffect(() => {
     fetchHistory();
   }, [user_id]);
-  // const testId =
-  //   historyData && historyData.length > 0 ? historyData.test_id : null;
-  // console.log("testId===History", testId);
 
-  // const matchingItem = dataTest.find((item) => item.id === testId);
   const matchingItem = historyData
     ?.map((item) => (item.test_id === item.test.id ? item.test : null))
     .filter(Boolean)[0];
@@ -133,7 +138,11 @@ const History = () => {
                   <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>
 
                   <Text type="body-16-semibold" className="text-[#dd2328]">
-                    {item.total_score}
+                    {item.grammar_score +
+                      item.listening_score +
+                      item.reading_score +
+                      item.vocab_score}
+                    /{item.total_score}
                   </Text>
                 </div>
                 <div className="flex justify-between items-end">
@@ -153,7 +162,7 @@ const History = () => {
                   </Text>
                 </div> */}
                 <div className="flex justify-between items-end">
-                  <Text>Reading</Text>
+                  <Text>Đọc hiểu</Text>
                   <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>
 
                   <Text type="body-16-semibold" className="text-[#dd2328]">
@@ -161,7 +170,7 @@ const History = () => {
                   </Text>
                 </div>
                 <div className="flex justify-between items-end">
-                  <Text>Listening</Text>
+                  <Text>Nghe hiểu</Text>
                   <div className="flex-grow mx-2 border-t border-dotted border-gray-400"></div>
 
                   <Text type="body-16-semibold" className="text-[#dd2328]">
@@ -172,7 +181,14 @@ const History = () => {
               <Button
                 variant="default"
                 className="mt-5 w-full"
-                onClick={() => handleClick(item.id)}
+                // onClick={() => handleClick(item.id)}
+                onClick={() => {
+                  if (!user?.user_id) {
+                    router.push("/login");
+                  } else {
+                    handleClick(item.id);
+                  }
+                }}
               >
                 Xem chi tiết
               </Button>
