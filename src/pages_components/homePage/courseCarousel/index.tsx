@@ -22,7 +22,7 @@ const CourseCarousel = () => {
   return (
     <div className={styles.courseCarouselPadding}>
       <div className={styles.courseCarouselWrap}>
-        <div className={styles.courseCarouselContainer}>
+        <div>
           <Text
             type="title-40-bold"
             color="neutral-1"

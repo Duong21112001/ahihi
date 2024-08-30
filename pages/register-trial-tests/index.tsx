@@ -38,6 +38,7 @@ import sdt from "../../public/Images/sdt.png";
 import mail from "../../public/Images/mail.png";
 import rank from "../../public/Images/rank.png";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { setCookie } from "cookies-next";
 const REQUIRED = "Không được bỏ trống trường này";
 const INVALID_PHONE = "Số điện thoại không hợp lệ";
 const FormSchema = z.object({
@@ -123,11 +124,8 @@ const RegisterTrialTests = () => {
 
     try {
       await registerTrialTest(params);
-      localStorage.setItem("isRegistered", "true");
-      console.log(
-        "Đã lưu vào localStorage:",
-        localStorage.getItem("isRegistered")
-      );
+      setCookie("isRegistered", "true");
+      // console.log("Đã lưu vào localStorage:", setCookie("isRegistered"));
 
       router.push({ pathname: "/exam" });
     } catch (error) {

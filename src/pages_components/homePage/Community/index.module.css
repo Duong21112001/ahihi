@@ -74,11 +74,7 @@
   padding-left: 10px;
 }
 
-.communityWrap .communityContent {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
+
 
 @media screen and (max-width: 768px) {
   .communityWrap {

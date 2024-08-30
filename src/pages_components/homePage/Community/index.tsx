@@ -94,13 +94,17 @@ const Community = () => {
           </Text>
           <div
             className={cn(
-              "max-md:flex-col max-lg:items-center max-mds:w-full !max-lg:grid max-lg:grid-cols-2",
+              " max-lg:grid max-lg:grid-cols-2 max-md:grid-cols-1 flex gap-5 !max-lg:w-full",
               styles.communityContent
             )}
           >
             {React.Children.toArray(
               fanpage?.map((item) => (
-                <Link target="_blank" href={item.url} className={styles.new}>
+                <Link
+                  target="_blank"
+                  href={item.url}
+                  className={cn("!w-full", styles.new)}
+                >
                   <Image
                     src={`https://kosei-web.eupsolution.net${item.thumbnail}`}
                     className={cn("object-cover", styles.img)}

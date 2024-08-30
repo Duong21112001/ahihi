@@ -63,17 +63,13 @@ const ExamPage = () => {
   console.log("currentExam=====", currentExam);
 
   const examName = currentExam ? currentExam.name : "Exam";
-  // const [validTimeEnd, setValidTimeEnd] = useState(
-  //   parsedExam.length > 0 ? parsedExam[0].time * 60 : 0
-  // );
-  const validTimeEnd = currentExam ? currentExam.time * 60 : 0;
-  console.log("ValidTime===========", validTimeEnd);
 
-  // const validTimeEnd =
-  //   parsedExam.length > 0 ? parsedExam[currentExamIndex].time * 60 : 0;
-  console.log("parsedExam=========", parsedExam);
+  const validTimeEnd = currentExam ? currentExam.time * 60 : 0;
+  // console.log("ValidTime===========", validTimeEnd);
+
+  // console.log("parsedExam=========", parsedExam);
   const parsedTests = id ? JSON.parse(id as string) : [];
-  console.log("question=========", parsedTests);
+  // console.log("question=========", parsedTests);
   const testId = id;
   const token = getCookie("kosei-token");
   const [user] = useRecoilState(userProfile);
@@ -128,8 +124,8 @@ const ExamPage = () => {
     fetchTrial();
   }, []);
   useEffect(() => {
-    console.log("testId:", testId);
-    console.log("namesAndLevels:", namesAndLevels);
+    // console.log("testId:", testId);
+    // console.log("namesAndLevels:", namesAndLevels);
   }, [testId, namesAndLevels]);
 
   useEffect(() => {
@@ -160,8 +156,8 @@ const ExamPage = () => {
           );
           console.log("filteredData====", filteredData);
 
-          console.log("examIds====", examIds);
-          console.log("Ids====", id);
+          // console.log("examIds====", examIds);
+          // console.log("Ids====", id);
 
           const trialTestId = data[0].trial_test_id;
 
@@ -185,7 +181,7 @@ const ExamPage = () => {
   useEffect(() => {
     if (question) {
       const totalQuestions = question.flatMap((exam) => exam.questions).length;
-      console.log("totalQuestions", totalQuestions);
+      // console.log("totalQuestions", totalQuestions);
 
       const answeredQuestions = Object.keys(answers).length;
       const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
@@ -220,13 +216,14 @@ const ExamPage = () => {
     }[] = [];
 
     question.forEach((exam) => {
-      totalPassScore = exam.point || 0;
+      totalPassScore += exam.point || 0;
+      console.log("totalPassScore=====", totalPassScore);
 
       exam.questions.forEach((q) => {
         if (q.questions && q.questions.length > 0) {
           q.questions.forEach((subQ) => {
             const userAnswer = answers[subQ.id];
-            console.log("userAnswer===========", userAnswer);
+            // console.log("userAnswer===========", userAnswer);
 
             if (userAnswer !== undefined) {
               answeredCount++;
@@ -305,7 +302,7 @@ const ExamPage = () => {
             tempCorrectAnswers[q.id] = correctAnswer;
 
             const isCorrect = userAnswer === correctAnswer;
-            console.log("userAnswerSubQ===========", userAnswer);
+            // console.log("userAnswerSubQ===========", userAnswer);
 
             if (isCorrect) {
               correctCount++;
@@ -326,7 +323,7 @@ const ExamPage = () => {
               score: q.point,
               type: q.ctype,
             });
-            console.log("questionArrayy", questionsArray);
+            // console.log("questionArrayy", questionsArray);
           }
         }
       });
@@ -352,23 +349,27 @@ const ExamPage = () => {
         }
       );
 
-      console.log("API response:", response.data);
+      // console.log("API response:", response.data);
     } catch (error) {
       console.error("Error calling API:", error);
     }
 
     const passScore = totalPassScore;
     const resultMessage = `Số điểm đạt được: ${totalScore} / ${passScore} (Đúng: ${correctCount} / ${answeredCount})`;
+    setIsPaused(true);
     setResult(resultMessage);
     setAnswerResults(tempAnswerResults);
     setCorrectAnswers(tempCorrectAnswers);
     setDisable(true);
     setIsButtonDisabled(true);
-    setIsPaused(true);
     setShowNextButton(true);
     if (currentExamIndex === parsedExam.length - 1) {
       setShowNextButton(false);
       setShowBreak(false);
+      // setShowNextButton(true);
+    } else {
+      setShowNextButton(true);
+      setShowBreak(true);
     }
     setShowBreak(true);
   };
@@ -411,7 +412,7 @@ const ExamPage = () => {
   }, [breakTimeLeft, showBreak]);
   useEffect(() => {
     // Cập nhật trạng thái khi chuyển sang bài thi tiếp theo
-    setDisable(isSubmitted);
+    setDisable(false);
   }, [currentExamIndex, isSubmitted]);
   let globalIndex = 1;
 
@@ -454,14 +455,14 @@ const ExamPage = () => {
             ref={(el) => (questionRefs.current[examIndex] = el)}
           >
             <Text type="body-16-bold">
-              {exam.name}:({exam.point}) {convert(convert(exam.question))}
+              {exam.name}: {convert(convert(exam.question))} ({exam.point})
             </Text>
             {exam.questions?.map((q, index) => {
               if (q.questions && q.questions.length > 0) {
                 return (
                   <div key={q.id}>
                     <Text type="body-16-bold">
-                      {convert(convert(q.question))}
+                      {convert(convert(q.question))} ({q.point})
                     </Text>
                     <div className="mt-5">
                       {q.questions.map((subQ, subIndex) => (
@@ -602,6 +603,9 @@ const ExamPage = () => {
             </DialogClose>
           </DialogContent>
         </Dialog>
+        {currentExamIndex === parsedExam.length - 1 && showBreak && (
+          <Button onClick={() => router.push("/exam")}>Quay lại</Button>
+        )}
         {showNextButton && <Button onClick={handleNext}>Bỏ qua</Button>}
       </div>
     </div>

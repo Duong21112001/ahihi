@@ -125,7 +125,7 @@ const Footer = () => {
                       <Text type="body-16-medium">{footerData.email}</Text>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-5 max-w-[466px]">
+                  <div className="flex flex-col gap-5 w-[220px]">
                     <Text type="title-18-bold">Địa chỉ</Text>
                     <div className="flex gap-2 items-start">
                       <Image
@@ -160,24 +160,6 @@ const Footer = () => {
                       >
                         <Text type="body-16-medium">
                           CS2: {footerData.address_2}
-                        </Text>
-                      </a>
-                    </div>
-                    <div className="flex gap-2 items-start">
-                      <Image
-                        src={location}
-                        alt="Location Icon"
-                        width={24}
-                        height={24}
-                        className="w-6 h-6"
-                      />
-                      <a
-                        href={footerData.address_map_3}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Text type="body-16-medium">
-                          CS3: {footerData.address_3}
                         </Text>
                       </a>
                     </div>
