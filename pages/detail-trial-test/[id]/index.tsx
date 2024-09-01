@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { Details, HistoryDetail, Question } from "@/utils/model/user"; // Đảm bảo 'Question' được import từ model phù hợp
+import { Details, HistoryDetail, Question } from "@/utils/model/user";
 import { NextPageContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -65,6 +65,7 @@ const DetailHistory = () => {
       return "border-gray-300";
     }
   };
+
   const getBorderClassItem = (
     answer: string,
     correctAnswer: string,
@@ -80,7 +81,7 @@ const DetailHistory = () => {
       return "";
     }
   };
-  // Hàm xác định màu của input radio
+
   const getRadioClass = (
     answer: string,
     correctAnswer: string,
@@ -95,22 +96,38 @@ const DetailHistory = () => {
   };
 
   return (
-    <div className="container max-lg:min-w-0  ">
-      <div className="border-2 rounded-xl m-20 p-10 flex flex-col gap-4">
+    <div className="container max-xl:min-w-0  ">
+      <div className="border-2 rounded-xl m-20 max-xl:m-10 p-10 flex flex-col gap-4 max-lg:p-5">
         {historyDetail?.details.map((item: Details) => {
-          const question = item.question as Question; // Khẳng định kiểu cho item.question
+          const question = item.question as Question;
+
           return (
             <div key={item.id} className="flex flex-col gap-2">
-              <Text type="body-16-bold">
-                {convert(convert(question.question))}
-              </Text>
-              <div className="grid grid-cols-2 gap-4">
+              {/* Kiểm tra và hiển thị dữ liệu dựa trên loại dữ liệu */}
+              {question.image ? (
+                <img
+                  src={question.image}
+                  alt="Question"
+                  className="max-w-full h-auto"
+                />
+              ) : question.attachment ? (
+                <audio controls className="max-lg:max-w-[252px]">
+                  <source src={question.attachment} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              ) : (
+                <Text type="body-16-bold">
+                  {convert(convert(question.question))}
+                </Text>
+              )}
+
+              <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
                 {["1", "2", "3", "4"].map((option, index) => {
                   const answerKey = `answer_${String.fromCharCode(
                     97 + index
                   )}` as keyof Question;
                   const optionIndex = String(index + 1);
-                  // Khẳng định kiểu cho thuộc tính động
+
                   return (
                     <div
                       key={option}
