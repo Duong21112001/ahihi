@@ -109,11 +109,11 @@ const History = () => {
     router.push(`/detail-trial-test/${id}`);
   };
   return (
-    <div className="container">
+    <div className="container max-xl:min-w-0">
       <Text type="title-32-bold" className="text-center mb-5">
         Lịch sử thi thử
       </Text>
-      <div className="grid grid-cols-3 gap-[30px]">
+      <div className="grid grid-cols-3 gap-[30px] max-xl:grid-cols-2 max-md:grid-cols-1">
         {historyData ? (
           historyData.map((item, index) => (
             <div className="p-5 bg-[#f6f6f6] rounded-xl w-full" key={index}>
