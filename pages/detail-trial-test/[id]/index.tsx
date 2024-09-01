@@ -42,12 +42,14 @@ const DetailHistory = () => {
       C: "3",
       D: "4",
     };
-
+    if (letterToIndexMap[correctAnswer]) {
+      return letterToIndexMap[correctAnswer];
+    }
     if (!isNaN(Number(correctAnswer))) {
       return correctAnswer;
     }
 
-    return letterToIndexMap[correctAnswer] || "0";
+    return "0";
   };
 
   // Hàm so sánh và trả về lớp CSS dựa trên đáp án đúng và đáp án người dùng chọn
@@ -98,28 +100,31 @@ const DetailHistory = () => {
   return (
     <div className="container max-xl:min-w-0  ">
       <div className="border-2 rounded-xl m-20 max-xl:m-10 p-10 flex flex-col gap-4 max-lg:p-5">
-        {historyDetail?.details.map((item: Details) => {
+        {historyDetail?.details.map((item: Details, index) => {
           const question = item.question as Question;
 
           return (
             <div key={item.id} className="flex flex-col gap-2">
               {/* Kiểm tra và hiển thị dữ liệu dựa trên loại dữ liệu */}
-              {question.image ? (
-                <img
-                  src={question.image}
-                  alt="Question"
-                  className="max-w-full h-auto"
-                />
-              ) : question.attachment ? (
-                <audio controls className="max-lg:max-w-[252px]">
-                  <source src={question.attachment} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              ) : (
-                <Text type="body-16-bold">
-                  {convert(convert(question.question))}
-                </Text>
-              )}
+              <div className="flex gap-2 items-center">
+                <Text type="body-16-bold">{index + 1}.</Text>
+                {question.image ? (
+                  <img
+                    src={question.image}
+                    alt="Question"
+                    className="max-w-full h-auto"
+                  />
+                ) : question.attachment ? (
+                  <audio controls className="max-md:max-w-[252px] w-full">
+                    <source src={question.attachment} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                ) : (
+                  <Text type="body-16-bold">
+                    {convert(convert(question.question))}
+                  </Text>
+                )}
+              </div>
 
               <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
                 {["1", "2", "3", "4"].map((option, index) => {

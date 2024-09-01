@@ -119,7 +119,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
           className={styles.cloudRight}
         />
       </div>
-      <div className={styles.infos}>
+      {/* <div className={styles.infos}>
         <Text type="title-20-bold" color="neutral-1" bottom={10}>
           Khoá học này gồm có
         </Text>
@@ -145,7 +145,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

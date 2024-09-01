@@ -153,6 +153,7 @@ const CourseDetail = () => {
           )}
         </div>
       </div>
+
       <div className={styles.contentCourseWrap}>
         <div className={styles.contentCourseContainer}>
           <div className={cn("w-[50%]")}>
