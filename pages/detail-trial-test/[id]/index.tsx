@@ -34,13 +34,30 @@ const DetailHistory = () => {
     }
   }, [id]);
 
+  // Hàm để chuyển đổi correct_answer thành số (1, 2, 3, 4)
+  const getCorrectAnswerIndex = (correctAnswer: string): string => {
+    const letterToIndexMap: { [key: string]: string } = {
+      A: "1",
+      B: " 2",
+      C: "3",
+      D: "4",
+    };
+
+    if (!isNaN(Number(correctAnswer))) {
+      return correctAnswer;
+    }
+
+    return letterToIndexMap[correctAnswer] || "0";
+  };
+
   // Hàm so sánh và trả về lớp CSS dựa trên đáp án đúng và đáp án người dùng chọn
   const getBorderClass = (
     answer: string,
     correctAnswer: string,
     selectedAnswer: string
   ) => {
-    if (answer === correctAnswer) {
+    const correctAnswerIndex = getCorrectAnswerIndex(correctAnswer);
+    if (answer === correctAnswerIndex) {
       return "border-[#0a8328] bg-[#E7EFF7]";
     } else if (answer === selectedAnswer) {
       return "border-[#FF0000] bg-[#FFE5E5]";
@@ -53,7 +70,9 @@ const DetailHistory = () => {
     correctAnswer: string,
     selectedAnswer: string
   ) => {
-    if (answer === correctAnswer) {
+    const correctAnswerIndex = getCorrectAnswerIndex(correctAnswer);
+
+    if (answer === correctAnswerIndex) {
       return " bg-[#B7CFE7]";
     } else if (answer === selectedAnswer) {
       return "bg-[#B7CFE7]";
@@ -67,8 +86,10 @@ const DetailHistory = () => {
     correctAnswer: string,
     selectedAnswer: string
   ) => {
+    const correctAnswerIndex = getCorrectAnswerIndex(correctAnswer);
+
     if (selectedAnswer) {
-      return answer === correctAnswer ? "green-500" : "red-500";
+      return answer === correctAnswerIndex ? "green-500" : "red-500";
     }
     return "";
   };
@@ -86,7 +107,7 @@ const DetailHistory = () => {
               <div className="grid grid-cols-2 gap-4">
                 {["1", "2", "3", "4"].map((option, index) => {
                   const answerKey = `answer_${String.fromCharCode(
-                    96 + parseInt(option)
+                    97 + index
                   )}` as keyof Question;
                   const optionIndex = String(index + 1);
                   // Khẳng định kiểu cho thuộc tính động
