@@ -21,4 +21,5 @@ export interface UpdateProps {
   address: string;
   mobile: string;
   email: string;
+  avatar_path: string;
 }

@@ -37,3 +37,5 @@ export const ROUTER = {
 };
 
 export const KOSEI_TOKEN = "kosei-token";
+
+export const imageUrl = "https://kosei-web.eupsolution.net";

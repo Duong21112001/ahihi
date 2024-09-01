@@ -19,6 +19,7 @@ interface TextInputProps {
   heightIcon?: number;
   password?: boolean;
   iconRight?: React.ReactElement<any>;
+  isDisabled?: boolean;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -37,6 +38,7 @@ const TextInput: React.FC<TextInputProps> = ({
   heightIcon,
   password,
   iconRight,
+  isDisabled = false,
 }) => {
   const { errors } = meta;
   const classes = classNames("text-input", [className], {
@@ -91,6 +93,7 @@ const TextInput: React.FC<TextInputProps> = ({
             }}
             placeholder={placeholder}
             type={isVisibleEye ? "password" : "text"}
+            disabled={isDisabled}
           />
         ) : (
           <textarea
