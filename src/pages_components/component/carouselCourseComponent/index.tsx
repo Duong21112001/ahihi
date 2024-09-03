@@ -125,7 +125,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       autoPlay
       autoPlaySpeed={3000}
       responsive={responsive}
-      showDots={true}
+      // showDots={true}
       infinite={true}
       transitionDuration={500}
       containerClass={classNames(

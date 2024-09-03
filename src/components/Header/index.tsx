@@ -99,6 +99,7 @@ const Header = () => {
             <Box flex agileItem="agile-center">
               <Image
                 src="/svg/no-user.svg"
+                // scr= {avatar}
                 alt="no-user"
                 layout="fixed"
                 width={24}
@@ -373,6 +374,7 @@ const Header = () => {
           >
             <Image
               src="/svg/no-user.svg"
+              // scr= {avatar}
               alt="no-user"
               layout="fixed"
               width={24}
