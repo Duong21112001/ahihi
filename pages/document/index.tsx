@@ -110,7 +110,10 @@ const DocumentList = () => {
 
               <div className="p-4">
                 <div className="border-b border-[#EDF2F7] pb-4">
-                  <Text type="title-18-bold" className="text-[#093969]">
+                  <Text
+                    type="title-18-bold"
+                    className="text-[#093969] line-clamp-2"
+                  >
                     {convert(convert(it.title))}
                   </Text>
                   <Text
