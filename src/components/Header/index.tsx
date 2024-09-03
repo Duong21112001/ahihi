@@ -98,7 +98,7 @@ const Header = () => {
           <div className={styles.dropDownUser}>
             <Box flex agileItem="agile-center">
               <Image
-                src={avatar}
+                src="/svg/no-user.svg"
                 alt="no-user"
                 layout="fixed"
                 width={24}
@@ -372,7 +372,7 @@ const Header = () => {
             onClick={() => setIsShowDropdown(!isShowDropdown)}
           >
             <Image
-              src={avatar}
+              src="/svg/no-user.svg"
               alt="no-user"
               layout="fixed"
               width={24}
