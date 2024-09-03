@@ -26,7 +26,12 @@ const Time = () => {
   }, []);
   const formatDateTime = (dateTimeString: any) => {
     const [date, time] = dateTimeString.split(" ");
-    return `${time} ${date}`;
+    // return `${time} ${date}`;
+    const formattedTime = time.slice(0, 5);
+    const [year, month, day] = date.split("-");
+    const formattedDate = `${day}-${month}-${year}`;
+
+    return `${formattedTime} ${formattedDate}`;
   };
   const names = trialTest.map((item) => item.name).join(" ,");
   const start = trialTest.map((item) => formatDateTime(item.start_date));

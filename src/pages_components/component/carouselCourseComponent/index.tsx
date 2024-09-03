@@ -51,7 +51,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
         />
         <div className={styles.courseContent}>
           <Text
-            type="title-24-bold"
+            type="title-20-bold"
             color="neutral-1"
             className={styles.courseContentTitle}
           >

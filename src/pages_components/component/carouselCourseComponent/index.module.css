@@ -13,6 +13,7 @@
     margin-bottom: 0;
   }
 }
+
 .coursePadding .images {
   border-bottom: 1px solid var(--neutral-4);
   width: 100%;
@@ -27,23 +28,29 @@
     min-height: auto;
   }
 }
+
 .coursePadding .courseContent {
   padding: 18px 16px 0px 16px;
 }
+
 .coursePadding .courseContent .courseContentTitle {
   max-height: 40px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
 }
+
 .coursePadding .courseContent .courseTitle {
   margin-bottom: 8px;
 }
+
 .coursePadding .courseContent .infoCourse {
   margin-bottom: 32px;
 }
+
 .coursePadding .courseContent .buttons button {
   width: calc(50% - 6px);
 }
+
 .coursePadding .rate {
   margin-bottom: 16px;
 }
@@ -55,32 +62,39 @@
     font-size: 14px;
     line-height: 20px;
   }
+
   .courseTitle {
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 10px;
   }
+
   .rate {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 10px;
   }
+
   .rate .rateIcon {
     margin-bottom: 10px;
     margin-right: 0;
   }
+
   .infoCourse {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
   }
+
   .infoCourse .infoCourseTime img {
     width: 20px;
     height: 20px;
   }
+
   .infoCourse .infoCourseTime:first-child {
     margin-bottom: 5px;
   }
+
   .containerClassCourse {
     width: calc(100% - 80px);
     padding-bottom: 35px;
@@ -93,15 +107,18 @@
     line-height: 20px;
     margin-bottom: 10px;
   }
+
   .rate {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 10px;
   }
+
   .rate .rateIcon {
     margin-bottom: 10px;
     margin-right: 0;
   }
+
   .coursePadding {
     padding: 10px;
   }
@@ -113,6 +130,7 @@
     line-height: 32px;
     margin-bottom: 10px;
   }
+
   .tabs .buttonTab {
     font-size: 12px;
     margin-right: 5px;

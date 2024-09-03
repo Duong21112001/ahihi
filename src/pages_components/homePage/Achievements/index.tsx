@@ -106,8 +106,8 @@ const Achievements = () => {
           <div>
             {!loadingAchievement && dataAchievement?.length > 0 && (
               <Carousel
-                autoPlay={true}
-                autoPlaySpeed={3000}
+                // autoPlay={true}
+                // autoPlaySpeed={3000}
                 responsive={responsive}
                 showDots={true}
                 infinite={true}

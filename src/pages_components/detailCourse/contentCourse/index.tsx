@@ -57,9 +57,8 @@ const ContentCourse = ({ course }: Courseprops) => {
         return <AboutCourse data={course} />;
       case "2":
         return <CourseVideo data={course} />;
+
       case "3":
-        return <TeacherCourse idTeacher={course?.teacher_id} />;
-      case "4":
         return <ReviewCourse />;
       default:
         return <></>;

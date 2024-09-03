@@ -127,14 +127,14 @@ const Question: React.FC<QuestionProps> = ({
                     >
                       <FormItem
                         className={cn(
-                          "outline outline-1 outline-[#c9d2d8] rounded-[40px] flex items-center w-full cursor-pointer",
+                          "outline outline-1 outline-[#c9d2d8] rounded-full flex  w-full cursor-pointer",
                           getFormItemClass(option)
                         )}
                       >
                         <FormControl>
                           <div
                             className={cn(
-                              "bg-[#f5f5f5] p-4 rounded-tl-[40px] rounded-bl-[40px] mr-2.5 ",
+                              "bg-[#f5f5f5] p-4 rounded-tl-full rounded-bl-full mr-2.5 min-h-full flex !items-center justify-center",
                               selectedAnswer === option ? "!bg-[#B7CFE7]" : ""
                             )}
                           >
@@ -151,7 +151,7 @@ const Question: React.FC<QuestionProps> = ({
                             />
                           </div>
                         </FormControl>
-                        <FormLabel className="!mt-0 px-2">
+                        <FormLabel className="!mt-0 py-2 px-3">
                           <Text type="body-16-medium">
                             {index + 1}. {convert(convert(option))}
                           </Text>
