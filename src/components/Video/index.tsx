@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 
 interface VideoProps {
   url: string;
-  width: string;
+  width?: string;
   height?: string;
   className?: string;
 }
@@ -12,13 +12,14 @@ const Video: React.FC<VideoProps> = ({ url, width, className, height }) => {
   return (
     <div className="player-wrapper">
       <ReactPlayer
+        className={className}
         width={width}
         height={height}
         url={url}
         config={{
           youtube: {
             playerVars: {
-              autoplay: 1,
+              autoplay: 0,
             },
           },
         }}

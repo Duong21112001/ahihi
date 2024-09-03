@@ -46,11 +46,11 @@ const CollapseLearning: React.FC<CollapseProps> = ({
           </Text>
         </div>
 
-        <div className={styles.collapseItemRight}>
+        {/* <div className={styles.collapseItemRight}>
           <Text type="title-20-bold" color="neutral-10">
             {`${percent}%`}
           </Text>
-        </div>
+        </div> */}
       </div>
       {open && <>{children}</>}
     </div>

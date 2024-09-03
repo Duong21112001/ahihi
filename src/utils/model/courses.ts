@@ -82,6 +82,7 @@ export interface Lectures {
   youtube_id: string;
   free: number;
   learned: number;
+  curriculum: string;
 }
 export interface CourseLessons {
   id: number;

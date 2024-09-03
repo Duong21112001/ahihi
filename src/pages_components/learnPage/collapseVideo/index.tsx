@@ -10,6 +10,7 @@ interface CollapseProps {
   learned?: number;
   numberIndex: number;
   onClickCallBack?: (numberIndex: number) => void;
+  isDocument?: boolean;
 }
 
 const CollapseVideo: React.FC<CollapseProps> = ({
@@ -17,6 +18,7 @@ const CollapseVideo: React.FC<CollapseProps> = ({
   learned,
   numberIndex,
   onClickCallBack,
+  isDocument,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -28,12 +30,12 @@ const CollapseVideo: React.FC<CollapseProps> = ({
     <div className={styles.container}>
       <div className={styles.collapseItemLeft}>
         <div className={styles.border} />
-        <Image
-          src="/svg/stop.svg"
-          alt="stop"
+        <img
+          src={isDocument ? "/Images/document.png" : "/svg/stop.svg"}
+          alt={isDocument ? "document" : "stop"}
           width={14}
           height={16}
-          layout="fixed"
+          // layout="fixed"
           style={{ marginRight: 10, cursor: "pointer" }}
           onClick={() => onClickCallBack && onClickCallBack(numberIndex)}
         />
@@ -42,7 +44,7 @@ const CollapseVideo: React.FC<CollapseProps> = ({
         </Text>
       </div>
 
-      <div className={styles.collapseItemRight}>
+      {/* <div className={styles.collapseItemRight}>
         <CircularProgressbarWithChildren
           value={50}
           maxValue={100}
@@ -54,7 +56,7 @@ const CollapseVideo: React.FC<CollapseProps> = ({
             {learned}
           </Text>
         </CircularProgressbarWithChildren>
-      </div>
+      </div> */}
     </div>
   );
 };

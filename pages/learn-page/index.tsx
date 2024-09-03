@@ -19,6 +19,7 @@ import PlaceholderBox from "@/components/placeholderBox";
 import Text from "@/components/Text";
 import classNames from "classnames";
 import Studing from "@/pages_components/learnPage/studing";
+import Button from "@/components/Button";
 
 const LearnPage: NextPageWithLayout = () => {
   const [nav1, setNav1]: any = useState();
@@ -150,11 +151,23 @@ const LearnPage: NextPageWithLayout = () => {
                           key={`video-${Lecture?.id}`}
                         >
                           <PlaceholderBox loading={loadingListCourse}>
-                            <Video
-                              width="100%"
-                              height="400px"
-                              url={`https://youtube.com/embed/${Lecture?.youtube_id}`}
-                            />
+                            {Lecture?.youtube_id ? (
+                              <Video
+                                width="100%"
+                                height="400px"
+                                url={`https://youtube.com/embed/${Lecture?.youtube_id}`}
+                              />
+                            ) : Lecture.curriculum ? (
+                              <a
+                                href={Lecture?.curriculum}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Button type="btn-blue">Mở tài liệu</Button>
+                              </a>
+                            ) : (
+                              <p>No video or document</p>
+                            )}
                           </PlaceholderBox>
                         </div>
                       );
@@ -296,11 +309,15 @@ const LearnPage: NextPageWithLayout = () => {
                                                 key={`lectures-${lectures?.id}`}
                                               >
                                                 <CollapseVideo
-                                                  title={lectures?.video_titile}
+                                                  title={lectures?.lec_title}
                                                   learned={lectures?.learned}
                                                   numberIndex={index}
                                                   onClickCallBack={
                                                     onClickCallBack
+                                                  }
+                                                  isDocument={
+                                                    !lectures.youtube_id &&
+                                                    !!lectures.curriculum
                                                   }
                                                 />
                                               </div>
