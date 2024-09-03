@@ -51,7 +51,7 @@ const Time = () => {
           </div>
         </div>
       ) : (
-        "Hong có bài thi đâu"
+        "Hiện tại chưa có kỳ thi nào"
       )}
     </div>
   );

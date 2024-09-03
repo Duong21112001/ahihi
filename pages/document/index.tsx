@@ -63,7 +63,7 @@ const DocumentList = () => {
             <div className="w-[40%] max-lg:w-full">
               <Text
                 type="title-32-bold"
-                className="tracking-[.2px] leading-[48px] mb-2"
+                className="tracking-[.2px] leading-[48px] mb-2 line-clamp-2"
               >
                 {item.title}
               </Text>

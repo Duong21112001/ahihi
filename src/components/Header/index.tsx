@@ -97,11 +97,16 @@ const Header = () => {
         <div className={styles.dropDownShadow}>
           <div className={styles.dropDownUser}>
             <Box flex agileItem="agile-center">
-              <Image
+              <img
                 // src="/svg/no-user.svg"
-                src={avatar}
+                // src={`https://kosei-web.eupsolution.net${avatar}`}
+                src={
+                  avatar
+                    ? `https://kosei-web.eupsolution.net${avatar}`
+                    : "/svg/no-user.svg"
+                }
                 alt="no-user"
-                layout="fixed"
+                // layout="fixed"
                 width={24}
                 height={24}
                 style={{ marginRight: 12 }}
@@ -372,11 +377,16 @@ const Header = () => {
             className={styles.user}
             onClick={() => setIsShowDropdown(!isShowDropdown)}
           >
-            <Image
+            <img
               // src="/svg/no-user.svg"
-              src={avatar}
+              // src={`https://kosei-web.eupsolution.net${avatar}`}
+              src={
+                avatar
+                  ? `https://kosei-web.eupsolution.net${avatar}`
+                  : "/svg/no-user.svg"
+              }
               alt="no-user"
-              layout="fixed"
+              // layout="fixed"
               width={24}
               height={24}
               style={{ marginRight: 12 }}

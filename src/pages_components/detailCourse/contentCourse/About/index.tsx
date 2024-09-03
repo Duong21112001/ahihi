@@ -8,7 +8,10 @@ interface AboutCourseProps {
 const AboutCourse = ({ data }: AboutCourseProps) => {
   return (
     <div className={styles.AboutCourse}>
-      <div dangerouslySetInnerHTML={{ __html: data?.cou_summary }}></div>
+      <div
+        dangerouslySetInnerHTML={{ __html: data?.cou_summary }}
+        className="leading-6"
+      ></div>
     </div>
   );
 };

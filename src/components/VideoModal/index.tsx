@@ -51,11 +51,11 @@ const VideoModal: React.FC<ModalVideoProps> = ({
       {type === "play-image" && (
         <div className={styles.videoImage}>
           <img src="/Images/video-image.png" alt="video" />
-          <div className={styles.play} onClick={open}>
+          {/* <div className={styles.play} onClick={open}>
             <div className={styles.border}>
               <div className={styles.icon} />
             </div>
-          </div>
+          </div> */}
         </div>
       )}
       {type === "play-button" && (

@@ -43,12 +43,8 @@ const ContentCourse = ({ course }: Courseprops) => {
       value: "2",
     },
     {
-      label: "Về giảng viên",
-      value: "3",
-    },
-    {
       label: "Nhận xét của học viên",
-      value: "4",
+      value: "3",
     },
   ];
   const renderTab = () => {

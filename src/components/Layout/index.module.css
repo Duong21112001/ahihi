@@ -1,11 +1,11 @@
 .authWrap .authContainer {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   background-color: var(--background-2);
 }
 
 .authWrap .authContainer {
-  min-height: 100vh;
+  height: auto;
   background: url('../../../public/Images/Default.png');
   display: flex;
   align-items: center;
