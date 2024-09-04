@@ -74,7 +74,7 @@ const ContentCourse = ({ course }: Courseprops) => {
       <Text type="body-16-regular" color="neutral-4" bottom={12}>
         {course?.description}
       </Text>
-      <div className={styles.infoCourseWrap}>
+      {/* <div className={styles.infoCourseWrap}>
         <div className={styles.infoCourse}>
           {infos.map((info) => {
             return (
@@ -104,7 +104,7 @@ const ContentCourse = ({ course }: Courseprops) => {
             </Text>
           </Button>
         </Box>
-      </div>
+      </div> */}
       <div className={styles.tabsWrap}>
         <div className={styles.tabs}>
           {tabs.map((tab) => {

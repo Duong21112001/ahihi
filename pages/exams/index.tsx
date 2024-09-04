@@ -506,7 +506,7 @@ const ExamPage = () => {
                       disable={disable}
                       answerResults={answerResults}
                       correctAnswer={correctAnswers[q.id]}
-                      // point={q.point}
+                      point={q.point}
                       img={q?.image}
                       attachment={q?.attachment}
                     />

@@ -85,6 +85,7 @@ const GetComment = ({
         `https://kosei-web.eupsolution.net/api/comments/reply`,
         {
           user_id: user?.user_id,
+          avatar: user?.avatar,
           type: "document",
           document_id: documentId,
           content: replyContent,
@@ -189,7 +190,11 @@ const GetComment = ({
           <div className="flex flex-col gap-1">
             <div className="flex gap-2 items-center">
               <Image
-                src={avt}
+                src={
+                  comment.user?.avatar
+                    ? `https://kosei-web.eupsolution.net${comment.user?.avatar}`
+                    : "/Images/mascot.png"
+                }
                 alt=""
                 width={50}
                 height={50}
@@ -262,6 +267,7 @@ const GetComment = ({
                 (reply: {
                   id: React.Key | null | undefined;
                   user: {
+                    avatar: string;
                     name:
                       | string
                       | number
@@ -276,6 +282,7 @@ const GetComment = ({
                       | null
                       | undefined;
                   };
+
                   content:
                     | string
                     | number
