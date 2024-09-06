@@ -134,7 +134,7 @@ const Question: React.FC<QuestionProps> = ({
                         <FormControl>
                           <div
                             className={cn(
-                              "bg-[#f5f5f5] p-4 rounded-tl-full rounded-bl-full mr-2.5 min-h-full flex !items-center justify-center",
+                              "bg-[#f5f5f5] p-4 rounded-tl-full rounded-bl-full min-h-full flex !items-center justify-center",
                               selectedAnswer === option ? "!bg-[#B7CFE7]" : ""
                             )}
                           >
@@ -151,7 +151,10 @@ const Question: React.FC<QuestionProps> = ({
                             />
                           </div>
                         </FormControl>
-                        <FormLabel className="!mt-0 py-2 px-3">
+                        <FormLabel
+                          className="!mt-0 py-2 px-3 flex items-center cursor-pointer"
+                          htmlFor={`option-${questionId}-${index}`}
+                        >
                           <Text type="body-16-medium">
                             {index + 1}. {convert(convert(option))}
                           </Text>

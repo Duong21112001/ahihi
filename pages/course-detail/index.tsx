@@ -113,7 +113,7 @@ const CourseDetail = () => {
         </div>
         <div className={styles.courseCarousel}>
           <Text type="title-40-bold" color="neutral-1" bottom={48}>
-            Khoá học liên quan
+            Khóa học liên quan
           </Text>
           {loadingListCourse ? (
             <p>Loading...</p>

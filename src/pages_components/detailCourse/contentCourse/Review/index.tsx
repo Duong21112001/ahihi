@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import Form, { Field } from "rc-field-form";
 import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
-import Comment from "../../../../../pages/document-detail/Comment";
 import { useRouter } from "next/router";
+import Comment from "./Comment";
 interface Category {
   id: number;
   name: string;
@@ -45,80 +45,52 @@ const ReviewCourse = () => {
   const { id } = route.query;
   const onFinish = () => {};
 
-  const listRating = [
-    {
-      label: "Tuyệt vời",
-      value: "100%",
-    },
-    {
-      label: "Rất tốt",
-      value: "30%",
-    },
-    {
-      label: "Tốt",
-      value: "10%",
-    },
-    {
-      label: "Chưa ưng ý",
-      value: "5%",
-    },
-    {
-      label: "Tệ",
-      value: "0%",
-    },
-  ];
-  useEffect(() => {
-    if (id) {
-      const fetchDocumentDetail = async () => {
-        try {
-          const response = await fetch(
-            `https://kosei-web.eupsolution.net/api/documents/${id}`
-          );
-          const data = await response.json();
-          console.log("document====", data);
+  // const listRating = [
+  //   {
+  //     label: "Tuyệt vời",
+  //     value: "100%",
+  //   },
+  //   {
+  //     label: "Rất tốt",
+  //     value: "30%",
+  //   },
+  //   {
+  //     label: "Tốt",
+  //     value: "10%",
+  //   },
+  //   {
+  //     label: "Chưa ưng ý",
+  //     value: "5%",
+  //   },
+  //   {
+  //     label: "Tệ",
+  //     value: "0%",
+  //   },
+  // ];
+  // useEffect(() => {
+  //   if (id) {
+  //     const fetchDocumentDetail = async () => {
+  //       try {
+  //         const response = await fetch(
+  //           `https://kosei-web.eupsolution.net/api/documents/${id}`
+  //         );
+  //         const data = await response.json();
+  //         console.log("document====", data);
 
-          setDocument(data);
-        } catch (err) {
-          setError("Failed to fetch document details");
-        }
-      };
-      fetchDocumentDetail();
-    }
-  }, [id]);
+  //         setDocument(data);
+  //       } catch (err) {
+  //         setError("Failed to fetch document details");
+  //       }
+  //     };
+  //     fetchDocumentDetail();
+  //   }
+  // }, [id]);
   const RatingProgress = () => {
+    const route = useRouter();
+    const { id } = route.query;
     return (
       <div>
-        {/* {listRating.map((rating) => {
-          return (
-            <div
-              className={styles.ratingProgress}
-              key={`rating-${rating.label}`}
-            >
-              <Text
-                type="body-16-regular"
-                color="neutral-3"
-                right={20}
-                className={styles.text}
-              >
-                {rating.label}hihihihi
-              </Text>
-              <div className={styles.progress}>
-                <div
-                  className={styles.progressActive}
-                  style={{ width: rating?.value }}
-                />
-              </div>
-              <Text
-                type="body-16-regular"
-                color="neutral-5"
-                className={styles.textNumber}
-              >
-                {rating?.value}
-              </Text>
-            </div>
-          );
-        })} */}
-        <Comment className="w-full" documentId={document?.id ?? 0} />
+        <Comment className="w-full" courseId={id ?? 0} />
       </div>
     );
   };

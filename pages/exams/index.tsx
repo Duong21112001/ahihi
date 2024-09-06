@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Question from "./Exam";
 import Text from "@/components/Text";
 import CountDown from "./CountDown";
-import img from "../../public/Images/cotton-sheep.png";
+import img from "../../public/Images/Ichido-banner.png";
 import Image from "next/image";
 import {
   Questions,
@@ -443,8 +443,8 @@ const ExamPage = () => {
   console.log("matchingItem", matchingItem);
 
   return (
-    <div className="flex max-lg:flex-col-reverse">
-      <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5 max-lg:w-full">
+    <div className="flex max-lg:flex-col-reverse overflow-hidden">
+      <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5 max-lg:w-full overflow-y-auto pb-10 h-[100vh]">
         <Link href="/exam">
           <Image src={arrow} alt="" width={38} height={38} />
         </Link>
@@ -517,15 +517,9 @@ const ExamPage = () => {
           </div>
         ))}
       </div>
-      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10">
-        <div className="flex p-5 gap-4 border-b">
-          <Image
-            src={img}
-            alt=""
-            width={45}
-            height={45}
-            className="min-w-[45px] max-w-[45px]"
-          />
+      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10 h-[100vh] sticky top-0">
+        <div className="flex py-5 gap-4 border-b">
+          <Image src={img} alt="" className="w-[65px] h-[65px]" />
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <Text type="body-16-bold">{matchingItem?.name}</Text>

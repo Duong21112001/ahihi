@@ -9,12 +9,22 @@ import vector from "../../public/svg/Vector.svg";
 import { cn } from "@/utils";
 import cloud from "../../public/Images/Group 1597882862.png";
 import { ExamProps, Test, TrialTests } from "@/utils/model/courses";
+import { useRecoilState } from "recoil";
+import { userProfile } from "@/context/User";
 const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [trialTest, setTrialTest] = useState<TrialTests[]>([]);
   // const [level, setLevel] = useState<Level[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedSkillId, setSelectedSkillId] = useState<number | null>(null);
+  const router = useRouter();
+  const [user, setUser] = useRecoilState(userProfile);
+
+  useEffect(() => {
+    if (!user?.user_id) {
+      router.push("/login");
+    }
+  }, [router]);
   useEffect(() => {
     const fetchTrial = async () => {
       try {
@@ -46,7 +56,6 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   // const handlePageClick = (event: any) => {
   //   setCurrentPage(event.selected);
   // };
-  const router = useRouter();
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

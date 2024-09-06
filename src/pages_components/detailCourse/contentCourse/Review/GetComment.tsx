@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
-import avt from "../../../public/Images/mascot.png";
+import avt from "../../../../../public/Images/mascot.png";
 import Button from "@/components/Button";
 import Text from "@/components/Text";
 import { cn } from "@/utils";
@@ -10,11 +10,11 @@ import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
 const GetComment = ({
   className,
-  documentId,
+  courseId,
   isRefreshApi,
 }: {
   className?: string;
-  documentId: number;
+  courseId: number;
   isRefreshApi: boolean;
 }) => {
   const [comments, setComments] = useState<any[]>([]);
@@ -32,7 +32,7 @@ const GetComment = ({
   const fetchComments = async () => {
     try {
       const response = await axios.get(
-        `https://kosei-web.eupsolution.net/api/document/${documentId}/comments`
+        `https://kosei-web.eupsolution.net/api/course/${courseId}/comments`
       );
       console.log("Fetched comments:", response.data);
       setComments(response?.data?.reverse());
@@ -47,7 +47,7 @@ const GetComment = ({
   };
   useEffect(() => {
     fetchComments();
-  }, [documentId, isRefreshApi]);
+  }, [courseId, isRefreshApi]);
 
   const timeAgo = (dateTime: string) => {
     const now = new Date();
@@ -84,10 +84,10 @@ const GetComment = ({
       const response = await axios.post(
         `https://kosei-web.eupsolution.net/api/comments/reply`,
         {
-          user_id: user?.user_id,
+          user_id: user?.fullname,
           avatar: user?.avatar,
-          type: "document",
-          document_id: documentId,
+          type: "course",
+          document_id: courseId,
           content: replyContent,
           parent_id: commentId,
         },
@@ -272,34 +272,10 @@ const GetComment = ({
                   id: React.Key | null | undefined;
                   user: {
                     avatar: string;
-                    name:
-                      | string
-                      | number
-                      | boolean
-                      | React.ReactElement<
-                          any,
-                          string | React.JSXElementConstructor<any>
-                        >
-                      | Iterable<React.ReactNode>
-                      | React.ReactPortal
-                      | Promise<React.AwaitedReactNode>
-                      | null
-                      | undefined;
+                    name: string;
                   };
 
-                  content:
-                    | string
-                    | number
-                    | boolean
-                    | React.ReactElement<
-                        any,
-                        string | React.JSXElementConstructor<any>
-                      >
-                    | Iterable<React.ReactNode>
-                    | React.ReactPortal
-                    | Promise<React.AwaitedReactNode>
-                    | null
-                    | undefined;
+                  content: string;
                   created_at: string;
                 }) => (
                   <div key={reply.id} className="flex gap-2 mt-2 flex-col">
