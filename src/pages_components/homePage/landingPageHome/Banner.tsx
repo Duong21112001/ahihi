@@ -58,13 +58,14 @@ const Banner = () => {
   return (
     <Carousel
       autoPlay
-      autoPlaySpeed={8000}
+      autoPlaySpeed={3000}
       responsive={responsive}
       infinite={true}
       transitionDuration={500}
       centerMode={false}
       renderArrowsWhenDisabled={true}
       showDots={false}
+      pauseOnHover={false}
     >
       {banners.map((item) => (
         <img

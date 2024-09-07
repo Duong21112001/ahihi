@@ -105,28 +105,12 @@ const Lecturers = () => {
                     <Text className="text-[22px] font-bold mb-5">
                       {item.name}
                     </Text>
-                    <div className="flex gap-1">
-                      <Image
-                        src={vector}
-                        alt=""
-                        width={6}
-                        height={8}
-                        className="h-fit"
-                      />
+                    <div className="flex gap-1 items-start">
                       <Text className="leading-6 text-center h-[112px] overflow-auto max-xl:w-[322px]">
                         {item.content}
                       </Text>
                     </div>
                   </div>
-
-                  {/* {React.Children.toArray(
-                  item.des.map((it) => (
-                    <div className="flex items-center gap-1">
-                      <Image src={vector} alt="" width={6} height={8} />
-                      <Text className="leading-6">{it.des1}</Text>
-                    </div>
-                  ))
-                )} */}
                 </div>
               </div>
             ))

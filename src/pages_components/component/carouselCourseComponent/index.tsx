@@ -134,6 +134,7 @@ const CourseCarouselComponent = (props: CourseCarouselProps) => {
       )}
       centerMode={false}
       renderArrowsWhenDisabled={true}
+      pauseOnHover={false}
     >
       {!loading &&
         dataCarousel?.map((course: Course, index: number) => {

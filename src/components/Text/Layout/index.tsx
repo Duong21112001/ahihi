@@ -10,7 +10,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <div className="min-h-[100vh] flex flex-col">
       <Header />
       <div>{children}</div>
       <Footer />
@@ -19,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         autoClose={2000}
         className="toastClassName"
       />
-    </>
+    </div>
   );
 };
 
