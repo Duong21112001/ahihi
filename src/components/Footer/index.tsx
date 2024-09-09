@@ -86,7 +86,7 @@ const Footer = () => {
           <div className="ml-7 text-white">
             <div className="flex gap-5 justify-between w-full">
               {footerData && (
-                <div className="flex w-full !justify-between max-md:grid max-md:grid-cols-1 max-md:gap-5 max-lg:grid max-lg:grid-cols-2 max-lg:gap-y-5">
+                <div className="flex w-full !justify-between max-md:grid max-md:grid-cols-1 max-md:gap-5 max-lg:grid max-lg:grid-cols-2 max-lg:gap-y-5 max-xl:grid-cols-3">
                   <div className="flex flex-col gap-5">
                     <Text className="text-lg font-bold">Liên hệ</Text>
                     <div className="flex gap-2 items-start">

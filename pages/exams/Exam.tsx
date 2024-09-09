@@ -97,7 +97,7 @@ const Question: React.FC<QuestionProps> = ({
                   {name}.
                 </Text>
                 <Text type="body-16-medium">
-                  {convert(convert(question))} ({point})
+                  {convert(convert(question))} ({point} 点)
                 </Text>
                 <img src={img} alt="" />
               </FormLabel>
@@ -167,7 +167,7 @@ const Question: React.FC<QuestionProps> = ({
               <FormMessage />
               {showDetail && (
                 <Text type="body-16-medium" color="main-color-primary">
-                  Giải thích:{convert(convert(correctAnswer))}
+                  {convert(convert(correctAnswer))}
                 </Text>
               )}
             </FormItem>

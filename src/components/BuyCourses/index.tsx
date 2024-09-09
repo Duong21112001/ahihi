@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { Course } from "@/utils/model/courses";
 import { getCookie } from "cookies-next";
 import VideoModal from "../VideoModal";
+import Video from "../Video";
 
 interface BuyCoursesProps {
   course: Course;
@@ -49,10 +50,22 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
   const discount = course?.discount_value;
   const price = course?.cou_price;
   const token = getCookie("kosei-token");
+  const formatNumber = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
   return (
     <div className={styles.buyCourseWrap}>
       <div className={styles.buyCourse}>
-        {!course?.youtube_link ? (
+        {/* <div className={styles.img}> */}
+        <Video
+          // width="100"
+          width="500px"
+          className="w-full"
+          url={`https://youtube.com/embed/${course.youtube_link}`}
+        />
+        {/* </div> */}
+
+        {/* {!course?.youtube_link ? (
           <VideoModal url="https://youtube.com/embed/CSwvnpY_dnc" />
         ) : course?.image ? (
           <img src={course.image} alt="course" className={styles.img} />
@@ -62,14 +75,12 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
             alt="course"
             className={styles.img}
           />
-        )}
-
-        <div className={styles.video}></div>
-
+        )} */}
         <Text type="heading-h2" color="neutral-1" bottom={8}>
-          {discount ? (((100 - discount) * price) / 100).toFixed(0) : price}đ
+          {/* {discount ? (((100 - discount) * price) / 100).toFixed(0) : price}đ */}
+          {course?.cou_price ? formatNumber(course.cou_price) : "0"} đ
         </Text>
-        {course?.discount_value && (
+        {/* {course?.discount_value && (
           <Box flex agileItem="agile-center" bottom={32}>
             <Text
               type="title-18-regular"
@@ -85,9 +96,9 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
               </Text>
             </div>
           </Box>
-        )}
+        )} */}
 
-        <Button
+        {/* <Button
           type="btn-primary"
           bottom={16}
           onClick={() =>
@@ -107,8 +118,8 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
         </Button>
         <Button type="btn-secondary" bottom={21}>
           Liên hệ tư vấn
-        </Button>
-        <img
+        </Button> */}
+        {/* <img
           src="/Images/cloud-right-3.png"
           alt="cloud-left"
           className={styles.cloudLeft}
@@ -117,7 +128,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
           src="/svg/cloud-small-2.svg"
           alt="cloud-right"
           className={styles.cloudRight}
-        />
+        /> */}
       </div>
       {/* <div className={styles.infos}>
         <Text type="title-20-bold" color="neutral-1" bottom={10}>

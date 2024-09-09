@@ -64,11 +64,19 @@ const ListExam = ({ setSelectedContest }: { setSelectedContest: any }) => {
   const currentTests = allTests.slice(startIndex, endIndex);
   return (
     <div className="relative">
-      <Image src={cloud} alt="" className="absolute top-[25%] left-0" />
-      <Image src={cloud} alt="" className="absolute top-0 right-0 rotate-180" />
+      <Image
+        src={cloud}
+        alt=""
+        className="absolute top-[25%] left-0 max-lg:hidden"
+      />
+      <Image
+        src={cloud}
+        alt=""
+        className="absolute top-0 right-0 rotate-180 max-lg:hidden"
+      />
 
       <div className="container !pt-10 max-lg:py-0 max-lg:min-w-0">
-        <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-5 relative ">
+        <div className="grid grid-cols-3 gap-5 relative max-lg:flex max-lg:flex-col max-lg:items-center">
           {currentTests.map((item: Test) => (
             <div
               className={cn(

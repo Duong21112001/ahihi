@@ -165,6 +165,7 @@ const ExamPage = () => {
           setTrialTestId(trialTestId);
           setType(cType);
           setQuestion(filteredData);
+          setLoading(false);
         } else {
           setError("No questions found");
         }
@@ -441,108 +442,131 @@ const ExamPage = () => {
 
   const matchingItem = namesAndLevels.find((item) => item.id === parsedTests);
   console.log("matchingItem", matchingItem);
-
+  const handleGoBack = () => {
+    router.push("/exam");
+  };
   return (
     <div className="flex max-lg:flex-col-reverse overflow-hidden">
       <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5 max-lg:w-full overflow-y-auto pb-10 h-[100vh]">
         <Link href="/exam">
           <Image src={arrow} alt="" width={38} height={38} />
         </Link>
-        {question?.map((exam, examIndex) => (
-          <div
-            key={exam.id}
-            className="flex flex-col gap-5 pr-20"
-            ref={(el) => (questionRefs.current[examIndex] = el)}
-          >
-            <Text type="body-16-bold">
-              {exam.name}: {convert(convert(exam.question))} ({exam.point})
-            </Text>
-            {exam.questions?.map((q, index) => {
-              if (q.questions && q.questions.length > 0) {
-                return (
-                  <div key={q.id}>
-                    <Text type="body-16-bold">
-                      {convert(convert(q.question))} ({q.point})
-                    </Text>
-                    <div className="mt-5">
-                      {q.questions.map((subQ, subIndex) => (
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            {question?.map((exam, examIndex) => (
+              <div
+                key={exam.id}
+                className="flex flex-col gap-5 pr-20"
+                ref={(el) => (questionRefs.current[examIndex] = el)}
+              >
+                <Text type="body-16-bold" className="mt-5">
+                  {exam.name}: {convert(convert(exam.question))} ({exam.point}{" "}
+                  点)
+                </Text>
+                {exam.questions?.map((q, index) => {
+                  if (q.questions && q.questions.length > 0) {
+                    return (
+                      <div key={q.id}>
+                        <Text>
+                          {convert(convert(q.question))} ({q.point} 点)
+                        </Text>
+                        <div className="mt-5">
+                          {q.questions.map((subQ, subIndex) => (
+                            <Question
+                              key={subQ.id}
+                              questionId={subQ.id}
+                              question={subQ.question}
+                              options={[
+                                subQ.answer_a,
+                                subQ.answer_b,
+                                subQ.answer_c,
+                                subQ.answer_d,
+                              ]}
+                              onAnswer={handleAnswer}
+                              name={`${questionIndex++}`}
+                              showDetail={showDetail}
+                              disable={disable}
+                              answerResults={answerResults}
+                              correctAnswer={correctAnswers[subQ.id]}
+                              point={subQ.point}
+                              img={subQ?.image}
+                              attachment={subQ?.attachment}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={q.id}>
+                        <Text>
+                          {convert(convert(q.question))} ({q.point} 点)
+                        </Text>
                         <Question
-                          key={subQ.id}
-                          questionId={subQ.id}
-                          question={subQ.question}
+                          questionId={q.id}
+                          question={""}
                           options={[
-                            subQ.answer_a,
-                            subQ.answer_b,
-                            subQ.answer_c,
-                            subQ.answer_d,
+                            q.answer_a,
+                            q.answer_b,
+                            q.answer_c,
+                            q.answer_d,
                           ]}
                           onAnswer={handleAnswer}
                           name={`${questionIndex++}`}
                           showDetail={showDetail}
                           disable={disable}
                           answerResults={answerResults}
-                          correctAnswer={correctAnswers[subQ.id]}
-                          point={subQ.point}
-                          img={subQ?.image}
-                          attachment={subQ?.attachment}
+                          correctAnswer={correctAnswers[q.id]}
+                          point={q.point}
+                          img={q?.image}
+                          attachment={q?.attachment}
                         />
-                      ))}
-                    </div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={q.id}>
-                    <Text type="body-16-bold">
-                      {convert(convert(q.question))} ({q.point})
-                    </Text>
-                    <Question
-                      questionId={q.id}
-                      question={""}
-                      options={[q.answer_a, q.answer_b, q.answer_c, q.answer_d]}
-                      onAnswer={handleAnswer}
-                      name={`${questionIndex++}`}
-                      showDetail={showDetail}
-                      disable={disable}
-                      answerResults={answerResults}
-                      correctAnswer={correctAnswers[q.id]}
-                      point={q.point}
-                      img={q?.image}
-                      attachment={q?.attachment}
-                    />
-                  </div>
-                );
-              }
-            })}
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
-      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10 h-[100vh] sticky top-0">
-        <div className="flex py-5 gap-4 border-b">
-          <Image src={img} alt="" className="w-[65px] h-[65px]" />
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <Text type="body-16-bold">{matchingItem?.name}</Text>
+      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10 h-[100vh] max-lg:h-[30vh] sticky top-0 px-4 max-md:h-[50vh]">
+        <div className="flex py-5 gap-4 border-b items-center max-lg:justify-between max-lg:w-full max-lg:px-10">
+          <div className="flex items-center">
+            <Image src={img} alt="" className="w-[65px] h-[65px]" />
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <Text type="body-16-bold">{matchingItem?.name}</Text>
+              </div>
               <Text
                 type="body-14-bold"
-                className="bg-[#0F5FAF] text-white px-2 py-[2px] rounded-xl"
+                className="bg-[#0F5FAF] text-white px-2 py-[2px] rounded-xl w-fit"
               >
                 N{matchingItem?.level}
               </Text>
+              <Text
+                type="body-16-regular"
+                className="border-2 w-fit px-3 py-1 border-[#0F5FAF] rounded-md"
+              >
+                {examName}
+              </Text>
             </div>
-
-            <Text
-              type="body-16-regular"
-              className="border-2 w-fit px-3 py-1 border-[#0F5FAF] rounded-md"
-            >
-              {examName}
-            </Text>
           </div>
+
+          <CountDown
+            isPaused={loading || isPaused}
+            timeR={validTimeEnd}
+            name="Thời gian còn lại"
+            className="max-lg:block max-lg:mt-0 hidden max-md:hidden"
+          />
         </div>
         <CountDown
-          isPaused={isPaused}
+          isPaused={loading || isPaused}
           timeR={validTimeEnd}
           name="Thời gian còn lại"
+          className="max-lg:hidden max-md:block"
         />
         <div className="p-4 ">
           <div className="mt-5 my-2.5 text-center">
@@ -554,7 +578,7 @@ const ExamPage = () => {
               .map((q) => renderListQuestion(q))}
           </div>
         </div>
-        {showBreak && (
+        {!(currentExamIndex === parsedExam.length - 1) && showBreak && (
           <div className="flex flex-col items-center justify-center gap-2.5 mb-5">
             <Text type="title-20-bold" color="main-color-primary">
               Nghỉ giải lao
@@ -598,7 +622,7 @@ const ExamPage = () => {
           </DialogContent>
         </Dialog>
         {currentExamIndex === parsedExam.length - 1 && showBreak && (
-          <Button onClick={() => router.push("/exam")}>Quay lại</Button>
+          <Button onClick={handleGoBack}>Quay lại</Button>
         )}
         {showNextButton && <Button onClick={handleNext}>Bỏ qua</Button>}
       </div>

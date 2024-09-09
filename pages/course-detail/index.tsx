@@ -86,12 +86,7 @@ const CourseDetail = () => {
             className={styles.mascot}
             width={288}
           />
-          <img
-            src="/Images/hand-left.png"
-            alt="hand-left"
-            className={styles.handLeft}
-            width={70}
-          />
+
           <img
             src="/Images/hand-right.png"
             alt="hand-right"

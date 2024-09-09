@@ -113,7 +113,7 @@ const History = () => {
       <Text type="title-32-bold" className="text-center mb-5">
         Lịch sử thi thử
       </Text>
-      <div className="grid grid-cols-3 gap-[30px] max-xl:grid-cols-2 max-md:grid-cols-1">
+      <div className="grid grid-cols-3 gap-[30px] max-xl:grid-cols-2 max-md:grid-cols-1 max-xl:px-10">
         {historyData ? (
           historyData.map((item, index) => (
             <div className="p-5 bg-[#f6f6f6] rounded-xl w-full" key={index}>
@@ -122,7 +122,7 @@ const History = () => {
                   {item.test_id === item.test.id ? item.test.name : ""}
                 </Text>
                 <Text type="body-16-semibold" className="text-[#dd2328]">
-                  ({item.status === 0 ? "Đỗ" : "Trượt"})
+                  ({item.status === 1 ? "Đạt" : "Không đạt"})
                 </Text>
               </div>
 
