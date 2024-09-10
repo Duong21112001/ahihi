@@ -31,6 +31,8 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import { useRecoilState } from "recoil";
 import { userProfile } from "@/context/User";
+import Footer from "@/components/Footer";
+import LayoutFooter from "@/components/Layout/layout-footer";
 
 const ExamPage = () => {
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
@@ -446,7 +448,7 @@ const ExamPage = () => {
     router.push("/exam");
   };
   return (
-    <div className="flex max-lg:flex-col-reverse overflow-hidden">
+    <div className="flex max-lg:flex-col-reverse min-h-[100vh]">
       <div className="flex-1 flex flex-col gap-6 w-[72%] px-10 py-5 max-lg:w-full overflow-y-auto pb-10 h-[100vh]">
         <Link href="/exam">
           <Image src={arrow} alt="" width={38} height={38} />
@@ -469,7 +471,7 @@ const ExamPage = () => {
                   if (q.questions && q.questions.length > 0) {
                     return (
                       <div key={q.id}>
-                        <Text>
+                        <Text className="leading-5">
                           {convert(convert(q.question))} ({q.point} 点)
                         </Text>
                         <div className="mt-5">

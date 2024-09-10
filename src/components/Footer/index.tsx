@@ -12,6 +12,7 @@ import Tiktok from "../../../public/Images/TikTok - Original.png";
 import Message from "../../../public/Images/messenger icon.png";
 import Zalo from "../../../public/Images/image 10.png";
 import Link from "next/link";
+import { cn } from "@/utils";
 interface FooterProps {
   _token: string;
   site_title: string;
@@ -77,7 +78,7 @@ const Footer = () => {
   //   }
   // };
   return (
-    <div className={styles.container}>
+    <div className={cn("mt-auto", styles.container)}>
       <div className="container !p-0 max-lg:min-w-fit">
         <div
           className={`${styles.top} flex flex-col border-b-[1px] border-[#EDF2F7] pb-8 `}
