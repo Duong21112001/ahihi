@@ -84,10 +84,10 @@ const GetComment = ({
       const response = await axios.post(
         `https://kosei-web.eupsolution.net/api/comments/reply`,
         {
-          user_id: user?.fullname,
-          avatar: user?.avatar,
+          user_id: user?.user_id,
+          image_path: user.avatar,
           type: "course",
-          document_id: courseId,
+          course_id: courseId,
           content: replyContent,
           parent_id: commentId,
         },
@@ -193,12 +193,12 @@ const GetComment = ({
                 src={
                   comment.user?.avatar_path
                     ? `https://kosei-web.eupsolution.net${comment.user?.avatar_path}`
-                    : "/Images/mascot.png"
+                    : `https://kosei-web.eupsolution.net${user?.avatar}`
                 }
                 alt=""
                 width={50}
                 height={50}
-                className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
+                className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF] max-h-[50px]"
               />
               <Text type="body-14-bold" color="main-color-primary">
                 {comment.user?.name}
@@ -240,7 +240,7 @@ const GetComment = ({
                   src={
                     comment.user?.avatar_path
                       ? `https://kosei-web.eupsolution.net${comment.user?.avatar_path}`
-                      : "/Images/mascot.png"
+                      : `https://kosei-web.eupsolution.net${user?.avatar}`
                   }
                   alt=""
                   width={50}
@@ -286,7 +286,7 @@ const GetComment = ({
                           alt=""
                           width={50}
                           height={50}
-                          className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF]"
+                          className="rounded-full border border-[#0F5FAF] bg-[#0F5FAF] max-h-[50px]"
                         />
                         <Text type="body-14-bold" color="main-color-primary">
                           {reply.user?.name}

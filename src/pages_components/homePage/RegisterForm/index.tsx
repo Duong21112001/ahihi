@@ -250,7 +250,7 @@ const RegisterForm = () => {
         </Text>
       </Form>
       <ModalMessage
-        title="Cảm ơn bạn đã đăng ký khóa học trung tâm"
+        title="Cảm ơn bạn đã đăng ký tư vấn khóa học trung tâm"
         content="Kosei sẽ liên hệ với bạn trong thời gian sớm nhất"
         ref={refModal}
         width={500}

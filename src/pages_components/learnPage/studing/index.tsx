@@ -25,7 +25,7 @@ const Studing: React.FC<StudingProps> = ({ ListQuestion }) => {
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [correctCount, setCorrectCount] = useState<number>(0);
   const [showDetails, setShowDetails] = useState<boolean>(false);
-
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const onFinish = (values: any) => {
     let correct = 0;
     ListQuestion?.forEach((question) => {
@@ -98,7 +98,7 @@ const Studing: React.FC<StudingProps> = ({ ListQuestion }) => {
                     </DialogTrigger>
                     <DialogContent className="flex flex-col items-center justify-center gap-0">
                       <Text type="title-20-bold" color="main-color-primary">
-                        Chúc mừng bạn đã hoàn thành bài thi
+                        Chúc mừng bạn đã hoàn thành bài tập
                       </Text>
                       <Image src={Success} width={180} height={180} alt={""} />
                       <DialogDescription>

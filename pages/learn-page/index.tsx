@@ -98,10 +98,10 @@ const LearnPage: NextPageWithLayout = () => {
   );
 
   const tabs = [
-    {
-      label: "Tổng quan",
-      value: "1",
-    },
+    // {
+    //   label: "Tổng quan",
+    //   value: "1",
+    // },
     {
       label: "Tài liệu học tập",
       value: "2",
@@ -158,13 +158,13 @@ const LearnPage: NextPageWithLayout = () => {
                                 url={`https://youtube.com/embed/${Lecture?.youtube_id}`}
                               />
                             ) : Lecture.curriculum ? (
-                              <a
-                                href={Lecture?.curriculum}
-                                target="_blank"
+                              <iframe
+                                src={`https://kosei-web.eupsolution.net${Lecture?.curriculum}`}
+                                // target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <Button type="btn-blue">Mở tài liệu</Button>
-                              </a>
+                                {/* <Button type="btn-blue">Mở tài liệu</Button> */}
+                              </iframe>
                             ) : (
                               <p>No video or document</p>
                             )}

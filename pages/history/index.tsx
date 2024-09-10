@@ -117,12 +117,19 @@ const History = () => {
         {historyData ? (
           historyData.map((item, index) => (
             <div className="p-5 bg-[#f6f6f6] rounded-xl w-full" key={index}>
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center justify-between">
                 <Text type="title-18-semibold">
                   {item.test_id === item.test.id ? item.test.name : ""}
                 </Text>
-                <Text type="body-16-semibold" className="text-[#dd2328]">
-                  ({item.status === 1 ? "Đạt" : "Không đạt"})
+                <Text
+                  type="body-16-semibold"
+                  className={
+                    item.status === 1
+                      ? "text-green-500 bg-green-100 px-4 py-1 rounded-md"
+                      : "text-red-500 bg-red-100 px-4 py-1 rounded-md"
+                  }
+                >
+                  {item.status === 1 ? "Đạt" : "Không đạt"}
                 </Text>
               </div>
 

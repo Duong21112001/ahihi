@@ -82,18 +82,19 @@ const CourseVideo: React.FC<CourseVideoProps> = ({ data }) => {
           <div className="flex justify-center mb-5 mt-10  w-full">
             {currentFreeLecture.youtube_id ? (
               <Video
-                // width="100"
+                width="100%"
+                height="300px"
                 className="w-full"
                 url={`https://youtube.com/embed/${currentFreeLecture.youtube_id}`}
               />
             ) : currentFreeLecture.curriculum ? (
-              <a
-                href={currentFreeLecture.curriculum}
-                target="_blank"
+              <iframe
+                src={`https://kosei-web.eupsolution.net${currentFreeLecture?.curriculum}`}
                 rel="noopener noreferrer"
+                className="w-full h-[400px] max-lg:h-[200px]"
               >
-                <Button type="btn-blue">Mở tài liệu</Button>
-              </a>
+                {/* <Button type="btn-blue">Mở tài liệu</Button> */}
+              </iframe>
             ) : (
               <p>No video or document available</p>
             )}

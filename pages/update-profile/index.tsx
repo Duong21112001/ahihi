@@ -177,11 +177,7 @@ const UpdateProfile = () => {
                   </Field>
                   {avatar && !loadingUploadImage && (
                     <img
-                      src={
-                        avatar
-                          ? `${imageUrl}${avatar}`
-                          : "/path/to/default/profile/pic.png"
-                      }
+                      src={avatar ? `${imageUrl}${avatar}` : ""}
                       alt="Profile"
                       className="w-32 h-32 rounded-md object-cover"
                     />

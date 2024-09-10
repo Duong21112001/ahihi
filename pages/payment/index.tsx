@@ -258,7 +258,7 @@ const PayMent: NextPageWithLayout = () => {
                 Thời gian:
               </Text>
               <Text type="body-16-semibold" color="neutral-1">
-                {data?.expired_at} Ngày
+                {data?.expired_at} Tháng
               </Text>
             </Box>
           </div>

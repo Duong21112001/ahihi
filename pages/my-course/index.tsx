@@ -26,13 +26,13 @@ const MyCoursePage: NextPageWithLayout = () => {
     },
   ];
   const tabs = [
-    {
-      label: "Khoá học của tôi",
-      value: "1",
-    },
+    // {
+    //   label: "Khoá học của tôi",
+    //   value: "1",
+    // },
     {
       label: "Tổng quan",
-      value: "2",
+      value: "1",
     },
     {
       label: "Tài liệu học tập",

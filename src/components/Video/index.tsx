@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import React from "react";
 import ReactPlayer from "react-player";
 
@@ -10,7 +11,7 @@ interface VideoProps {
 
 const Video: React.FC<VideoProps> = ({ url, width, className, height }) => {
   return (
-    <div className="player-wrapper">
+    <div className="w-[100%]">
       <ReactPlayer
         className={className}
         width={width}

@@ -9,6 +9,7 @@ import { Course } from "@/utils/model/courses";
 import { getCookie } from "cookies-next";
 import VideoModal from "../VideoModal";
 import Video from "../Video";
+import { cn } from "@/utils";
 
 interface BuyCoursesProps {
   course: Course;
@@ -54,13 +55,12 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
   return (
-    <div className={styles.buyCourseWrap}>
-      <div className={styles.buyCourse}>
+    <div className={cn("w-full", styles.buyCourseWrap)}>
+      <div className={cn("w-full", styles.buyCourse)}>
         {/* <div className={styles.img}> */}
         <Video
-          // width="100"
-          width="500px"
-          className="w-full"
+          width="100%"
+          height="300px"
           url={`https://youtube.com/embed/${course.youtube_link}`}
         />
         {/* </div> */}
@@ -75,11 +75,16 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
             alt="course"
             className={styles.img}
           />
+
         )} */}
-        <Text type="heading-h2" color="neutral-1" bottom={8}>
-          {/* {discount ? (((100 - discount) * price) / 100).toFixed(0) : price}đ */}
-          {course?.cou_price ? formatNumber(course.cou_price) : "0"} đ
-        </Text>
+        <p className="flex gap-2 items-center mb-2">
+          <Text type="title-20-semibold"> Giá khóa học : </Text>
+          <Text type="title-24-bold" color="neutral-1">
+            {/* {discount ? (((100 - discount) * price) / 100).toFixed(0) : price}đ */}
+            {course?.cou_price ? formatNumber(course.cou_price) : "0"} đ
+          </Text>
+        </p>
+
         {/* {course?.discount_value && (
           <Box flex agileItem="agile-center" bottom={32}>
             <Text
@@ -98,7 +103,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
           </Box>
         )} */}
 
-        {/* <Button
+        <Button
           type="btn-primary"
           bottom={16}
           onClick={() =>
@@ -116,7 +121,7 @@ const BuyCourses = ({ course }: BuyCoursesProps) => {
         >
           Đăng ký ngay!
         </Button>
-        <Button type="btn-secondary" bottom={21}>
+        {/* <Button type="btn-secondary" bottom={21}>
           Liên hệ tư vấn
         </Button> */}
         {/* <img

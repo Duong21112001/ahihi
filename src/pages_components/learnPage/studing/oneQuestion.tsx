@@ -42,6 +42,29 @@ const OneQuestion: React.FC<StudingProps> = ({
       value: "D",
     },
   ];
+  const renderQuestionContent = (content: string) => {
+    // Kiểm tra nếu content là URL ảnh
+    const imageFormats = [".jpg", ".jpeg", ".png", ".gif"];
+    const isImage = imageFormats.some((format) => content.includes(format));
+
+    // Nếu là ảnh, hiển thị ảnh
+    if (isImage) {
+      return (
+        <img
+          src={`https://kosei-web.eupsolution.net${content}`}
+          // alt="question visual"
+        />
+      );
+      // src={`https://kosei-web.eupsolution.net${item.thumbnail}`}
+    }
+
+    // Nếu là text, hiển thị text
+    return (
+      <Text type="title-20-bold" color="neutral-3">
+        {content}
+      </Text>
+    );
+  };
 
   return (
     <div className={styles.question}>
@@ -70,7 +93,8 @@ const OneQuestion: React.FC<StudingProps> = ({
           return (
             <div>
               <Text type="title-20-bold" color="neutral-3" bottom={10}>
-                {convert(convert(questions?.question))}
+                {/* {convert(convert(questions?.question))} */}
+                {renderQuestionContent(convert(convert(questions?.question)))}
               </Text>
               <div className={styles.questionRadio}>
                 {listQuestion?.map((questionRadio) => {
@@ -80,6 +104,7 @@ const OneQuestion: React.FC<StudingProps> = ({
                       key={`question-radio-${questionRadio?.label}`}
                     >
                       <Radio
+                        id={questionRadio.value}
                         value={questionRadio?.value}
                         gender={question}
                         onChange={onChangeRadio}

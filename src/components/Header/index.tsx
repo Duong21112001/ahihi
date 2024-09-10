@@ -110,6 +110,7 @@ const Header = () => {
                 width={24}
                 height={24}
                 style={{ marginRight: 12 }}
+                className="rounded-full min-w-6 h-6 object-fill"
               />
               <Text type="body-14-semibold" color="neutral-1" right={12}>
                 {nameUser}
@@ -390,6 +391,7 @@ const Header = () => {
               width={24}
               height={24}
               style={{ marginRight: 12 }}
+              className="rounded-full min-w-6 h-6 object-fill"
             />
             <div
               style={{

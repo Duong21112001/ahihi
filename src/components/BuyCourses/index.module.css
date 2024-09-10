@@ -76,11 +76,11 @@
   .buyCourseWrap {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .buyCourseWrap .buyCourse {
-    width: calc(60% - 10px);
+    /* width: calc(60% - 10px); */
   }
 
   .buyCourseWrap .buyCourse .cloudLeft {

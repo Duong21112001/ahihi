@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import Text from "@/components/Text";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import Button from "@/components/Button";
 
 interface CollapseProps {
   title: string;
@@ -30,18 +31,23 @@ const CollapseVideo: React.FC<CollapseProps> = ({
     <div className={styles.container}>
       <div className={styles.collapseItemLeft}>
         <div className={styles.border} />
-        <img
-          src={isDocument ? "/Images/document.png" : "/svg/stop.svg"}
-          alt={isDocument ? "document" : "stop"}
-          width={14}
-          height={16}
-          // layout="fixed"
-          style={{ marginRight: 10, cursor: "pointer" }}
+        <div
           onClick={() => onClickCallBack && onClickCallBack(numberIndex)}
-        />
-        <Text type="tag-12-semibold" color="neutral-1">
-          {title}
-        </Text>
+          className="flex items-center gap-1 cursor-pointer"
+        >
+          <img
+            src={isDocument ? "/Images/document.png" : "/svg/stop.svg"}
+            alt={isDocument ? "document" : "stop"}
+            width={14}
+            height={16}
+            // layout="fixed"
+            style={{ marginRight: 10, cursor: "pointer" }}
+            onClick={() => onClickCallBack && onClickCallBack(numberIndex)}
+          />
+          <Text type="tag-12-semibold" color="neutral-1">
+            {title}
+          </Text>
+        </div>
       </div>
 
       {/* <div className={styles.collapseItemRight}>

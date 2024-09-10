@@ -532,8 +532,8 @@ const ExamPage = () => {
           </div>
         )}
       </div>
-      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10 h-[100vh] max-lg:h-[30vh] sticky top-0 px-4 max-md:h-[50vh]">
-        <div className="flex py-5 gap-4 border-b items-center max-lg:justify-between max-lg:w-full max-lg:px-10">
+      <div className="w-1/4 border-l bg-[#f5f5f5] max-lg:w-full flex flex-col items-center pb-10 h-[100vh] max-lg:h-auto sticky top-0 px-4 max-md:h-auto">
+        <div className="flex py-5 gap-4 border-b items-center max-lg:justify-between max-lg:w-full max-lg:px-5 max-lg:py-2">
           <div className="flex items-center">
             <Image src={img} alt="" className="w-[65px] h-[65px]" />
             <div className="flex flex-col gap-2">
@@ -572,7 +572,7 @@ const ExamPage = () => {
           <div className="mt-5 my-2.5 text-center">
             <Text type="body-16-semibold">Câu hỏi đã làm</Text>
           </div>
-          <div className="grid grid-cols-8 gap-2 pr-10 cursor-pointer max-lg:grid-cols-5 w-fit mx-auto">
+          <div className="grid grid-cols-5 max-lg:grid-cols-8 gap-2 cursor-pointer w-fit mx-auto">
             {question
               ?.flatMap((exam) => exam.questions)
               .map((q) => renderListQuestion(q))}

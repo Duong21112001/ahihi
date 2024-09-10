@@ -6,6 +6,7 @@ interface RadioProps {
   value?: any;
   gender: string | null;
   label?: string;
+  id?: any;
 }
 
 const Radio: React.FunctionComponent<RadioProps> = ({
@@ -13,16 +14,18 @@ const Radio: React.FunctionComponent<RadioProps> = ({
   value,
   gender,
   label,
+  id,
   ...props
 }) => {
   return (
     <div className={styles.inputRadioWrap}>
-      <label className={styles.inputRadio}>
+      <label className={styles.inputRadio} htmlFor={id}>
         <input
           type="radio"
           {...props}
           checked={gender === value}
           onChange={() => onChange(value)}
+          id={id}
         />
 
         <div className={styles.radio}>
